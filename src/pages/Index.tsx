@@ -103,11 +103,12 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      <Hero onVideoEnd={() => setVideoEnded(true)} />
+      
       <ProductCatalog openCategory={selectedCategory} />
       
       {/* Main content with left margin for sidebar */}
       <div className="ml-72">
-        <Hero onVideoEnd={() => setVideoEnded(true)} />
       {/* Scrolling Categories Section - overlapping video */}
       <div className="relative overflow-hidden py-8 -mt-20 z-20 glass-effect">
         <div className="flex animate-scroll whitespace-nowrap">
