@@ -29,11 +29,26 @@ interface ModernChatBotProps {
 const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(() => {
+    // Load saved conversation from localStorage
+    const saved = localStorage.getItem('chatbotMessages');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [showInitialOptions, setShowInitialOptions] = useState(true);
+  const [showInitialOptions, setShowInitialOptions] = useState(() => {
+    const saved = localStorage.getItem('chatbotMessages');
+    return !saved || saved === '[]';
+  });
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Save messages to localStorage whenever they change
+  useEffect(() => {
+    if (messages.length > 0) {
+      localStorage.setItem('chatbotMessages', JSON.stringify(messages));
+      setShowInitialOptions(false);
+    }
+  }, [messages]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -46,6 +61,12 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
   const handleInitialChoice = (choice: string) => {
     setShowInitialOptions(false);
     handleSendMessage(choice);
+  };
+
+  const clearConversation = () => {
+    setMessages([]);
+    setShowInitialOptions(true);
+    localStorage.removeItem('chatbotMessages');
   };
 
   const streamChat = async (userMessages: Message[]) => {
@@ -218,14 +239,27 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                 <p className="text-xs text-white/80">Uvijek tu za pomoć</p>
               </div>
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(false)}
-              className="hover:bg-white/20 text-white relative z-10"
-            >
-              <X className="h-5 w-5" />
-            </Button>
+            <div className="flex gap-2 relative z-10">
+              {messages.length > 0 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearConversation}
+                  className="hover:bg-white/20 text-white text-xs"
+                  title="Novi razgovor"
+                >
+                  Novo
+                </Button>
+              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(false)}
+                className="hover:bg-white/20 text-white relative z-10"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
 
           <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-background">
