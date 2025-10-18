@@ -13,15 +13,7 @@ const categoryButtons = [
 ];
 
 const Hero = () => {
-  const [showButtons, setShowButtons] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowButtons(true);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
@@ -62,13 +54,13 @@ const Hero = () => {
             className={cn(
               "absolute group cursor-pointer transition-all duration-500",
               button.position,
-              showButtons 
+              videoEnded 
                 ? "opacity-100 translate-y-0" 
                 : "opacity-0 translate-y-8"
             )}
             style={{
               transitionDelay: `${index * 100}ms`,
-              animation: showButtons ? "float 3s ease-in-out infinite" : "none",
+              animation: videoEnded ? "float 3s ease-in-out infinite" : "none",
               animationDelay: `${index * 0.2}s`,
             }}
           >
