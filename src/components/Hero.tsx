@@ -29,11 +29,11 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
         <div className="text-center space-y-6 animate-fade-in">
           <h1 className="text-6xl md:text-8xl font-bold text-center text-white drop-shadow-2xl"
               style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}>
-            Dive into Excellence
+            Zaronite u bazen po mjeri.
           </h1>
           
           <p className="text-xl md:text-3xl text-center text-white/95 max-w-3xl drop-shadow-lg font-light">
-            Otkrijte vrhunska rješenja za bazene s naprednom AI tehnologijom
+            Najkvalitetnija bazenska oprema i izgradnja bazena na jednom mjestu
           </p>
           
           <div className="flex gap-4 justify-center mt-8">
