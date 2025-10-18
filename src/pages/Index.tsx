@@ -113,6 +113,9 @@ const Index = () => {
           </div>
           <div className="text-center space-y-4">
             <p className="text-lg text-foreground/90 leading-relaxed">
+              Nudimo izgradnju bazena te proizvode za opremanje bazena.
+            </p>
+            <p className="text-lg text-foreground/90 leading-relaxed">
               Od 2006. godine specijalizirani smo za izgradnju i opremanje bazena. Kao glavni partner AstralPool Fluidra Group u Dalmaciji, nudimo vrhunsku opremu, profesionalnu ugradnju i potpunu tehničku podršku.
             </p>
             <p className="text-lg text-foreground/90 leading-relaxed">
