@@ -17,27 +17,26 @@ const Hero = () => {
 
   return (
     <div className="relative h-[70vh] w-full overflow-hidden">
-      {/* Video Background - Positioned to the right */}
+      {/* Video Background */}
       <video
         autoPlay
         muted
         playsInline
         onEnded={() => setVideoEnded(true)}
-        className="absolute top-0 right-0 w-full h-full object-cover"
-        style={{ transform: 'translateX(20%)' }}
+        className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
       </video>
       
-      {/* White Overlay */}
-      <div className="absolute inset-0 bg-white/80" />
+      {/* Subtle Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-background/60" />
 
       {/* Hero Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
-        <h1 className="text-5xl md:text-7xl font-bold text-center mb-4 text-foreground">
+        <h1 className="text-5xl md:text-7xl font-bold text-center mb-4 text-white drop-shadow-2xl">
           Dive into Excellence
         </h1>
-        <p className="text-xl md:text-2xl text-center text-muted-foreground max-w-2xl mb-8">
+        <p className="text-xl md:text-2xl text-center text-white/95 max-w-2xl mb-8 drop-shadow-lg">
           Discover premium pool solutions that transform your backyard into a paradise
         </p>
       </div>
