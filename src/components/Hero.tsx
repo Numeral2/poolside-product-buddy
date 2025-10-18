@@ -16,7 +16,7 @@ const Hero = () => {
   const [videoEnded, setVideoEnded] = useState(false);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative h-[70vh] w-full overflow-hidden">
       {/* Video Background - Positioned to the right */}
       <video
         autoPlay
