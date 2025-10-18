@@ -1,12 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Filter, Flame, Sparkles, Sun, TestTube, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface HeroProps {
-  onVideoEnd: () => void;
-}
-
-const Hero = ({ onVideoEnd }: HeroProps) => {
+const Hero = () => {
+  const [videoEnded, setVideoEnded] = useState(false);
 
   return (
     <div className="relative h-[70vh] w-full overflow-hidden">
@@ -16,7 +14,7 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
         autoPlay
         muted
         playsInline
-        onEnded={onVideoEnd}
+        onEnded={() => setVideoEnded(true)}
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/hero-video.mp4?v=3" type="video/mp4" />
