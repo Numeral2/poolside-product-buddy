@@ -11,41 +11,42 @@ interface ProductCardProps {
 
 const ProductCard = ({ name, description, price, category, image }: ProductCardProps) => {
   return (
-    <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-border hover:border-primary/50 bg-card relative">
+    <Card className="group overflow-hidden transition-all duration-500 hover:-translate-y-3 border-2 border-border hover:border-primary/50 bg-card relative h-full">
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
            style={{ background: "var(--gradient-glass)" }} />
       
       {image && (
-        <div className="h-64 overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="h-48 overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
           <img 
             src={image} 
             alt={name} 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
           />
+          <div className="absolute top-3 right-3 z-20">
+            <Badge 
+              className="whitespace-nowrap font-bold text-xs backdrop-blur-md"
+              style={{ 
+                background: "var(--gradient-water)",
+                color: "white",
+                border: "none",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.2)"
+              }}
+            >
+              {category}
+            </Badge>
+          </div>
         </div>
       )}
-      <CardHeader className="space-y-3 relative z-10">
-        <div className="flex items-start justify-between gap-3">
-          <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
-            {name}
-          </CardTitle>
-          <Badge 
-            className="whitespace-nowrap font-semibold"
-            style={{ 
-              background: "var(--gradient-water)",
-              color: "white",
-              border: "none"
-            }}
-          >
-            {category}
-          </Badge>
-        </div>
-        <CardDescription className="text-base leading-relaxed">
+      <CardHeader className="space-y-3 relative z-10 p-5">
+        <CardTitle className="text-lg font-bold group-hover:text-primary transition-colors leading-tight">
+          {name}
+        </CardTitle>
+        <CardDescription className="text-sm leading-relaxed line-clamp-2">
           {description}
         </CardDescription>
         {price && (
-          <div className="text-3xl font-bold pt-2"
+          <div className="text-2xl font-bold pt-2"
                style={{ 
                  background: "var(--gradient-water)",
                  WebkitBackgroundClip: "text",
