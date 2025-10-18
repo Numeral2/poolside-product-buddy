@@ -6,6 +6,25 @@ import ProductCard from "@/components/ProductCard";
 import bazeniPlusLogo from "@/assets/bazeniplus-logo.png";
 import astralPoolLogo from "@/assets/astralpool-logo.png";
 
+const categories = [
+  "Filteri",
+  "Pumpe",
+  "Skimmeri",
+  "Osnovna i ABS oprema",
+  "PVC cijevi i fitinzi",
+  "Rasvjeta",
+  "Kemikalije",
+  "Pribor za čišćenje",
+  "Mozaik",
+  "Materijal za oblaganje",
+  "Doziranje i elektronika",
+  "Efekti",
+  "Inox ljestve",
+  "Prekrivači",
+  "Grijanje",
+  "Roboti",
+];
+
 const Index = () => {
   const [displayedProducts, setDisplayedProducts] = useState<any[]>([]);
 
@@ -13,6 +32,20 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <Hero />
+      
+      {/* Scrolling Categories Section */}
+      <div className="relative overflow-hidden bg-gradient-to-b from-black/20 to-transparent py-6 -mt-16 z-20">
+        <div className="flex animate-scroll whitespace-nowrap">
+          {[...categories, ...categories].map((category, index) => (
+            <div
+              key={index}
+              className="inline-flex items-center px-8 py-3 mx-2 bg-primary/90 backdrop-blur-sm rounded-full text-white font-semibold shadow-lg hover:bg-primary transition-all duration-300 cursor-pointer"
+            >
+              {category}
+            </div>
+          ))}
+        </div>
+      </div>
       
       {/* Partner Section with gradient transition */}
       <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50 -mt-20 pt-24">
