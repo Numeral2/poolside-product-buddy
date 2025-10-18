@@ -44,18 +44,20 @@ Kada preporučuješ proizvode, uvijek koristi search_products alat da pokažeš 
     const tools = [
       {
         type: "function",
-        name: "search_products",
-        description: "Pretraži bazu proizvoda po kategoriji ili ključnim riječima. Koristi ovo UVIJEK kada korisnik pita o proizvodima.",
-        parameters: {
-          type: "object",
-          properties: {
-            category: {
-              type: "string",
-              description: "Kategorija proizvoda (npr. 'Pumpe', 'Filteri', 'Kemikalije', 'Roboti', 'Grijanje')"
-            },
-            searchTerm: {
-              type: "string",
-              description: "Ključna riječ za pretragu (npr. 'robot', 'kemija', 'grijanje')"
+        function: {
+          name: "search_products",
+          description: "Pretraži bazu proizvoda po kategoriji ili ključnim riječima. Koristi ovo UVIJEK kada korisnik pita o proizvodima.",
+          parameters: {
+            type: "object",
+            properties: {
+              category: {
+                type: "string",
+                description: "Kategorija proizvoda (npr. 'Pumpe', 'Filteri', 'Kemikalije', 'Roboti', 'Grijanje')"
+              },
+              searchTerm: {
+                type: "string",
+                description: "Ključna riječ za pretragu (npr. 'robot', 'kemija', 'grijanje')"
+              }
             }
           }
         }
