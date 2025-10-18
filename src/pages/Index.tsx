@@ -105,10 +105,13 @@ const Index = () => {
       <Navigation />
       <Hero onVideoEnd={() => setVideoEnded(true)} />
       
-      <ProductCatalog openCategory={selectedCategory} />
-      
-      {/* Main content with left margin for sidebar */}
-      <div className="ml-72">
+      <div className="flex">
+        <div className="sticky top-16 h-[calc(100vh-4rem)]">
+          <ProductCatalog openCategory={selectedCategory} />
+        </div>
+        
+        {/* Main content */}
+        <div className="flex-1">
       {/* Scrolling Categories Section - overlapping video */}
       <div className="relative overflow-hidden py-8 -mt-20 z-20 glass-effect">
         <div className="flex animate-scroll whitespace-nowrap">
@@ -220,6 +223,7 @@ const Index = () => {
       )}
 
         <ModernChatBot onOpenCatalog={openCatalog} />
+        </div>
       </div>
     </div>
   );
