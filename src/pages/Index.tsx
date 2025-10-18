@@ -231,18 +231,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="relative overflow-hidden bg-gradient-to-b from-muted/50 to-muted border-t border-primary/20">
-        {/* Background Image */}
-        <div 
-          className="absolute bottom-0 right-0 w-96 h-96 opacity-15 pointer-events-none"
-          style={{
-            backgroundImage: "url('/images/olive-tree.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat"
-          }}
-        />
-        
-        <div className="container mx-auto px-4 py-16 relative z-10">
+        <div className="container mx-auto px-4 py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             {/* Logo and Description */}
             <div className="space-y-6">
