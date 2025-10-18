@@ -230,85 +230,97 @@ const Index = () => {
       )}
 
       {/* Footer */}
-      <footer className="bg-[#2a2a2a] text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <footer className="relative overflow-hidden bg-gradient-to-b from-muted/50 to-muted border-t border-primary/20">
+        <div className="container mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             {/* Logo and Description */}
-            <div className="space-y-4">
-              <img src={coolpoolLogo} alt="Bazeni Plus" className="h-16 w-auto object-contain brightness-0 invert" />
-              <p className="text-gray-300 text-sm leading-relaxed">
+            <div className="space-y-6 animate-fade-in">
+              <div className="flex items-center gap-3">
+                <img src={coolpoolLogo} alt="CoolPool" className="h-20 w-auto object-contain" />
+              </div>
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 Stručnjaci za izgradnju, opremanje i održavanje bazena. Vrhunska kvaliteta, transparentnost i posvećenost svakom detalju. Vaš savršen bazen – naš standard.
               </p>
             </div>
 
             {/* Social Networks */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold flex items-center gap-2">
-                DRUŠTVENE MREŽE
-                <span className="h-0.5 w-12 bg-[#f39c12]"></span>
-              </h3>
-              <div className="flex gap-4">
+            <div className="space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+              <div className="flex items-center gap-3">
+                <h3 className="text-lg font-bold text-foreground uppercase tracking-wider">
+                  Društvene Mreže
+                </h3>
+                <div className="h-0.5 flex-1 max-w-[60px]" style={{ background: "var(--gradient-water)" }}></div>
+              </div>
+              <div className="flex gap-3">
                 <a 
                   href="https://facebook.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="h-10 w-10 rounded-full bg-white/10 hover:bg-[#f39c12] flex items-center justify-center transition-all"
+                  className="group h-12 w-12 rounded-full glass-effect border border-primary/20 flex items-center justify-center transition-all hover:scale-110 hover:shadow-lg"
+                  style={{ boxShadow: "var(--shadow-float)" }}
                 >
-                  <Facebook className="h-5 w-5" />
+                  <Facebook className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                 </a>
                 <a 
                   href="https://instagram.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="h-10 w-10 rounded-full bg-white/10 hover:bg-[#f39c12] flex items-center justify-center transition-all"
+                  className="group h-12 w-12 rounded-full glass-effect border border-primary/20 flex items-center justify-center transition-all hover:scale-110 hover:shadow-lg"
+                  style={{ boxShadow: "var(--shadow-float)" }}
                 >
-                  <Instagram className="h-5 w-5" />
+                  <Instagram className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                 </a>
                 <a 
                   href="https://wa.me" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="h-10 w-10 rounded-full bg-white/10 hover:bg-[#f39c12] flex items-center justify-center transition-all"
+                  className="group h-12 w-12 rounded-full glass-effect border border-primary/20 flex items-center justify-center transition-all hover:scale-110 hover:shadow-lg"
+                  style={{ boxShadow: "var(--shadow-float)" }}
                 >
-                  <MessageCircle className="h-5 w-5" />
+                  <MessageCircle className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                 </a>
               </div>
             </div>
 
             {/* Working Hours */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold flex items-center gap-2">
-                RADNO VRIJEME
-                <span className="h-0.5 w-12 bg-[#f39c12]"></span>
-              </h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Ponedjeljak</span>
-                  <span className="font-semibold">9:00 - 17:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Utorak</span>
-                  <span className="font-semibold">9:00 - 17:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Srijeda</span>
-                  <span className="font-semibold">9:00 - 17:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Četvrtak</span>
-                  <span className="font-semibold">9:00 - 17:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Petak</span>
-                  <span className="font-semibold">9:00 - 17:00</span>
-                </div>
+            <div className="space-y-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="flex items-center gap-3">
+                <h3 className="text-lg font-bold text-foreground uppercase tracking-wider">
+                  Radno Vrijeme
+                </h3>
+                <div className="h-0.5 flex-1 max-w-[60px]" style={{ background: "var(--gradient-water)" }}></div>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { day: "Ponedjeljak", hours: "9:00 - 17:00" },
+                  { day: "Utorak", hours: "9:00 - 17:00" },
+                  { day: "Srijeda", hours: "9:00 - 17:00" },
+                  { day: "Četvrtak", hours: "9:00 - 17:00" },
+                  { day: "Petak", hours: "9:00 - 17:00" },
+                ].map((item, index) => (
+                  <div 
+                    key={item.day}
+                    className="flex justify-between items-center p-2 rounded-lg glass-effect border border-primary/10 hover:border-primary/30 transition-all"
+                    style={{ animationDelay: `${0.3 + index * 0.05}s` }}
+                  >
+                    <span className="text-muted-foreground text-sm">{item.day}</span>
+                    <span className="font-semibold text-foreground text-sm">{item.hours}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
-            Bazeni Plus | © {new Date().getFullYear()}
+          <div className="border-t border-primary/20 pt-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-sm text-muted-foreground">
+                CoolPool | © {new Date().getFullYear()} | Sva prava pridržana
+              </p>
+              <div className="flex items-center gap-4">
+                <img src={astralPoolLogo} alt="AstralPool" className="h-8 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+              </div>
+            </div>
           </div>
         </div>
       </footer>
