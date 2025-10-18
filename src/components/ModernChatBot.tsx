@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -26,6 +27,7 @@ interface ModernChatBotProps {
 }
 
 const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -112,9 +114,11 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
               currentProducts = parsed.products;
               console.log("Received products:", currentProducts);
               
-              // Open catalog with the first product's category
+              // Navigate to products page with the category
               if (currentProducts && currentProducts.length > 0) {
-                onOpenCatalog(currentProducts[0].category);
+                const category = currentProducts[0].category;
+                navigate(`/products?category=${category}`);
+                onOpenCatalog(category);
               }
             }
             

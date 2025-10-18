@@ -35,6 +35,12 @@ VAŽNE UPUTE:
 - Pomozi im da pronađu idealno rješenje za njihove potrebe
 - Znaj sve o: filterima, pumpama, skimmerima, kemikalijama, rasvjeti, robotima, grijanju, prekrivačima i više
 
+POSEBNO VAŽNO ZA FILTERE:
+- Kada korisnik pita o "filteri" ili "filtere" ili "filter", ODMAH koristi search_products sa category="Filteri" i searchTerm=""
+- Ovo će prikazati SVE filtere iz našeg asortimana
+- Objasni razliku između različitih tipova filtera
+- Pomozi im odabrati pravi filter za veličinu njihovog bazena
+
 Kategorije proizvoda:
 - Izgradnja: Bazeni, SPA kade, Saune, Laghetto
 - Oprema: Filteri, Pumpe, Skimmeri, Osnovna i ABS oprema, PVC cijevi i fitinzi, Rasvjeta, Kemikalije, Pribor za čišćenje, Mozaik, Materijal za oblaganje, Doziranje i elektronika, Efekti, Inox ljestve, Prekrivači, Grijanje, Roboti
@@ -167,7 +173,7 @@ Kada preporučuješ proizvode, uvijek koristi search_products alat da pokažeš 
                         query = query.or(`name.ilike.%${args.searchTerm}%,description.ilike.%${args.searchTerm}%,category.ilike.%${args.searchTerm}%`);
                       }
                       
-                      const { data: products, error } = await query.limit(6);
+                      const { data: products, error } = await query.limit(20);
                       
                       if (error) {
                         console.error("Error fetching products:", error);
