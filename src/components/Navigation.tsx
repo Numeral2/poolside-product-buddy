@@ -9,29 +9,29 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
-import bazeniPlusLogo from "@/assets/bazeniplus-nav-logo.png";
+import coolpoolLogo from "@/assets/coolpool-logo.png";
 
 const Navigation = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg border-b border-border shadow-sm">
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md border-b border-border/50 shadow-sm">
+      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center">
-          <img src={bazeniPlusLogo} alt="BazeniPlus" className="h-12 w-auto object-contain" />
+          <img src={coolpoolLogo} alt="CoolPool" className="h-10 w-auto object-contain" />
         </Link>
         
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6">
           <Link 
             to="/" 
-            className="text-foreground hover:text-primary transition-colors font-semibold"
+            className="text-sm text-foreground hover:text-primary transition-colors font-medium"
           >
             Početna
           </Link>
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="text-foreground hover:text-primary transition-colors font-semibold flex items-center gap-1">
+              <button className="text-sm text-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
                 Ponuda
-                <ChevronDown className="h-4 w-4" />
+                <ChevronDown className="h-3 w-3" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-64 bg-background z-50">
@@ -105,8 +105,8 @@ const Navigation = () => {
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Menu className="h-4 w-4" />
+              <Button variant="ghost" size="sm" className="gap-1.5 text-sm h-8 px-3">
+                <Menu className="h-3.5 w-3.5" />
                 Meni
               </Button>
             </DropdownMenuTrigger>
@@ -126,14 +126,14 @@ const Navigation = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="flex gap-3">
+          <div className="flex gap-2">
             <Link to="/signin">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="text-sm h-8 px-3">
                 Prijava
               </Button>
             </Link>
             <Link to="/signup">
-              <Button size="sm" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90">
+              <Button size="sm" className="text-sm h-8 px-4 bg-gradient-to-r from-primary to-secondary hover:opacity-90">
                 Registracija
               </Button>
             </Link>
