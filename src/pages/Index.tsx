@@ -95,7 +95,7 @@ const Index = () => {
             <Link
               key={index}
               to={`/products?category=${category}`}
-              className="inline-flex items-center px-8 py-3 mx-2 bg-card backdrop-blur-sm rounded-full text-foreground font-semibold shadow-lg hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-border"
+              className="inline-flex items-center px-6 py-2 mx-2 bg-card/70 backdrop-blur-sm rounded-full text-foreground text-sm font-semibold shadow-lg hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer border border-border/50"
             >
               {category}
             </Link>
