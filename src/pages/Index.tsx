@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ChatBot from "@/components/ChatBot";
@@ -37,12 +38,13 @@ const Index = () => {
       <div className="relative overflow-hidden bg-gradient-to-b from-black/20 to-transparent py-6 -mt-16 z-20">
         <div className="flex animate-scroll whitespace-nowrap">
           {[...categories, ...categories].map((category, index) => (
-            <div
+            <Link
               key={index}
-              className="inline-flex items-center px-8 py-3 mx-2 bg-primary/90 backdrop-blur-sm rounded-full text-white font-semibold shadow-lg hover:bg-primary transition-all duration-300 cursor-pointer"
+              to={`/products?category=${category}`}
+              className="inline-flex items-center px-8 py-3 mx-2 bg-primary/90 backdrop-blur-sm rounded-full text-white font-semibold shadow-lg hover:bg-primary hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               {category}
-            </div>
+            </Link>
           ))}
         </div>
       </div>
