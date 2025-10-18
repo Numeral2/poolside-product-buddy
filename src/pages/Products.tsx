@@ -75,7 +75,7 @@ const Products = () => {
                 description={product.description}
                 price={product.price}
                 category={product.category}
-                features={product.features}
+                image={product.image_url}
               />
             ))}
           </div>

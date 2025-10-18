@@ -1,44 +1,38 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check } from "lucide-react";
 
 interface ProductCardProps {
   name: string;
   description: string;
-  price: number;
+  price?: number;
   category: string;
-  features: string[];
+  image?: string;
 }
 
-const ProductCard = ({ name, description, price, category, features }: ProductCardProps) => {
+const ProductCard = ({ name, description, price, category, image }: ProductCardProps) => {
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50">
-      <div 
-        className="h-48 bg-gradient-to-br from-primary to-secondary"
-        style={{ background: 'var(--gradient-water)' }}
-      />
-      <CardHeader>
-        <div className="flex items-start justify-between">
-          <div>
-            <CardTitle className="text-xl mb-2">{name}</CardTitle>
-            <Badge variant="secondary">{category}</Badge>
-          </div>
-          <div className="text-2xl font-bold text-primary">
+    <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border-0 bg-card">
+      {image && (
+        <div className="h-64 overflow-hidden">
+          <img 
+            src={image} 
+            alt={name} 
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+          />
+        </div>
+      )}
+      <CardHeader className="space-y-3">
+        <div className="flex items-start justify-between gap-3">
+          <CardTitle className="text-xl font-bold">{name}</CardTitle>
+          <Badge className="bg-primary/10 text-primary hover:bg-primary/20 whitespace-nowrap">{category}</Badge>
+        </div>
+        <CardDescription className="text-base leading-relaxed">{description}</CardDescription>
+        {price && (
+          <div className="text-3xl font-bold text-primary pt-2">
             ${price.toFixed(2)}
           </div>
-        </div>
-        <CardDescription className="mt-2">{description}</CardDescription>
+        )}
       </CardHeader>
-      <CardContent>
-        <ul className="space-y-2">
-          {features.slice(0, 3).map((feature, index) => (
-            <li key={index} className="flex items-start gap-2 text-sm">
-              <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-      </CardContent>
     </Card>
   );
 };

@@ -6,6 +6,14 @@ import ChatBot from "@/components/ChatBot";
 import ProductCard from "@/components/ProductCard";
 import bazeniPlusLogo from "@/assets/bazeniplus-logo.png";
 import astralPoolLogo from "@/assets/astralpool-logo.png";
+import pool1 from "@/assets/pool-1.png";
+import pool2 from "@/assets/pool-2.png";
+import pool3 from "@/assets/pool-3.png";
+import pool4 from "@/assets/pool-4.png";
+import pool5 from "@/assets/pool-5.png";
+import pool6 from "@/assets/pool-6.png";
+import { Sparkles, Tag } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const categories = [
   "Filteri",
@@ -26,6 +34,51 @@ const categories = [
   "Roboti",
 ];
 
+const featuredProjects = [
+  {
+    id: 1,
+    name: "Luksuzna Vila s Infinity Bazenom",
+    description: "Moderan dizajn s panoramskim pogledom i infinity rubom",
+    category: "Infinity Bazeni",
+    image: pool1,
+  },
+  {
+    id: 2,
+    name: "Nadzemni Bazen Premium",
+    description: "Elegantna nadzemna konstrukcija s potpunom opremom",
+    category: "Nadzemni Bazeni",
+    image: pool2,
+  },
+  {
+    id: 3,
+    name: "Obiteljski Bazen",
+    description: "Savršen bazen za obitelj s prostranom terasom",
+    category: "Obiteljski Bazeni",
+    image: pool3,
+  },
+  {
+    id: 4,
+    name: "Wellness Centar s Saunom",
+    description: "Kompletno wellness rješenje za vaš dom",
+    category: "Wellness",
+    image: pool4,
+  },
+  {
+    id: 5,
+    name: "Hidromasažna Kada Premium",
+    description: "Vrhunska hidromasažna kada za potpuno opuštanje",
+    category: "Hidromasaža",
+    image: pool5,
+  },
+  {
+    id: 6,
+    name: "Krovni Bazen",
+    description: "Ekskluzivno rješenje za krovne terase",
+    category: "Krovni Bazeni",
+    image: pool6,
+  },
+];
+
 const Index = () => {
   const [displayedProducts, setDisplayedProducts] = useState<any[]>([]);
 
@@ -34,14 +87,27 @@ const Index = () => {
       <Navigation />
       <Hero />
       
+      {/* Discount Banner */}
+      <div className="relative bg-gradient-to-r from-primary via-primary to-secondary py-4 -mt-16 z-20">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center gap-4 text-white">
+            <Tag className="h-6 w-6 animate-pulse" />
+            <span className="text-xl md:text-2xl font-bold">
+              Posebna Akcija: 20% Popusta na Sve Proizvode!
+            </span>
+            <Tag className="h-6 w-6 animate-pulse" />
+          </div>
+        </div>
+      </div>
+      
       {/* Scrolling Categories Section */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-black/20 to-transparent py-6 -mt-16 z-20">
+      <div className="relative overflow-hidden bg-gradient-to-b from-black/20 to-transparent py-8 z-20">
         <div className="flex animate-scroll whitespace-nowrap">
           {[...categories, ...categories].map((category, index) => (
             <Link
               key={index}
               to={`/products?category=${category}`}
-              className="inline-flex items-center px-8 py-3 mx-2 bg-primary/90 backdrop-blur-sm rounded-full text-white font-semibold shadow-lg hover:bg-primary hover:scale-105 transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center px-8 py-3 mx-2 bg-card backdrop-blur-sm rounded-full text-foreground font-semibold shadow-lg hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-border"
             >
               {category}
             </Link>
@@ -49,13 +115,27 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Partner Section with gradient transition */}
-      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50 -mt-20 pt-24">
+      {/* AI Search Banner */}
+      <div className="bg-gradient-to-b from-muted/50 to-transparent py-8">
+        <div className="container mx-auto px-4 max-w-3xl text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Sparkles className="h-8 w-8 text-primary animate-pulse" />
+            <h2 className="text-3xl font-bold">AI Tražilica</h2>
+            <Sparkles className="h-8 w-8 text-primary animate-pulse" />
+          </div>
+          <p className="text-lg text-muted-foreground mb-6">
+            Koristite našu naprednu AI tražilicu u donjem desnom kutu za brzo pronalaženje savršenog bazena ili opreme!
+          </p>
+        </div>
+      </div>
+      
+      {/* Partner Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
-            <img src={bazeniPlusLogo} alt="BazeniPlus" className="h-14 w-auto object-contain" />
+            <img src={bazeniPlusLogo} alt="BazeniPlus" className="h-16 w-auto object-contain" />
             <span className="text-3xl font-light text-foreground/60">+</span>
-            <img src={astralPoolLogo} alt="AstralPool" className="h-14 w-auto object-contain" />
+            <img src={astralPoolLogo} alt="AstralPool" className="h-16 w-auto object-contain" />
           </div>
           <div className="text-center space-y-4">
             <p className="text-lg text-foreground/90 leading-relaxed">
@@ -64,6 +144,33 @@ const Index = () => {
             <p className="text-lg text-foreground/90 leading-relaxed">
               Uz nas dobivate kvalitetu, pouzdan servis i dugotrajan užitak u savršeno funkcionalnom bazenu.
             </p>
+          </div>
+        </div>
+      </section>
+      
+      {/* Featured Projects Section */}
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">
+            Naši Izdvojeni Projekti
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProjects.map((project) => (
+              <ProductCard 
+                key={project.id} 
+                name={project.name}
+                description={project.description}
+                category={project.category}
+                image={project.image}
+              />
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link to="/products">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90">
+                Pogledajte Sve Proizvode
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -83,7 +190,6 @@ const Index = () => {
                   description={product.description}
                   price={product.price}
                   category={product.category}
-                  features={product.features}
                 />
               ))}
             </div>
