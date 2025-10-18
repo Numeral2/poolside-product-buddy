@@ -16,6 +16,10 @@ import { Sparkles, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const categories = [
+  "Bazeni",
+  "SPA kade",
+  "Saune",
+  "Laghetto",
   "Filteri",
   "Pumpe",
   "Skimmeri",
