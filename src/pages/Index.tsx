@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
@@ -15,6 +15,7 @@ import pool6 from "@/assets/pool-6.png";
 import thinkingPerson from "@/assets/thinking-person.png";
 import { Package, Hammer } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { removeBackground, loadImage } from "@/utils/removeBackground";
 
 const categories = [
   "Filteri",
@@ -83,6 +84,27 @@ const featuredProjects = [
 const Index = () => {
   const [displayedProducts, setDisplayedProducts] = useState<any[]>([]);
   const [videoEnded, setVideoEnded] = useState(false);
+  const [processedImage, setProcessedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const processImage = async () => {
+      try {
+        const response = await fetch(thinkingPerson);
+        const blob = await response.blob();
+        const img = await loadImage(blob);
+        const processedBlob = await removeBackground(img);
+        const url = URL.createObjectURL(processedBlob);
+        setProcessedImage(url);
+      } catch (error) {
+        console.error('Failed to process image:', error);
+        setProcessedImage(thinkingPerson);
+      }
+    };
+    
+    if (videoEnded) {
+      processImage();
+    }
+  }, [videoEnded]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -104,35 +126,61 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Choice Section - appears after video ends */}
+      {/* Stats Section - appears after video ends */}
       {videoEnded && (
         <div className="relative py-16 z-20">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 max-w-4xl mx-auto">
-              <img 
-                src={thinkingPerson} 
-                alt="Thinking about pool needs" 
-                className="w-48 h-48 object-contain animate-fade-in"
-              />
-              <div className="flex flex-col gap-4 animate-fade-in">
-                <h3 className="text-2xl font-bold text-center md:text-left mb-2">
-                  Što trebate?
-                </h3>
-                <Link to="/products">
-                  <Button size="lg" className="w-full bg-primary hover:bg-primary/90 gap-2">
-                    <Package className="h-5 w-5" />
+            <div className="flex flex-col md:flex-row items-center justify-center gap-12 max-w-5xl mx-auto">
+              <div className="flex-shrink-0 animate-fade-in">
+                <img 
+                  src={processedImage || thinkingPerson} 
+                  alt="Thinking about pool needs" 
+                  className="w-64 h-64 object-contain"
+                />
+              </div>
+              <div className="flex flex-col gap-6 animate-fade-in">
+                <div className="text-center md:text-left">
+                  <h2 className="text-5xl md:text-6xl font-bold text-primary mb-2">
+                    18 godina
+                  </h2>
+                  <p className="text-2xl text-foreground/80">s Vama</p>
+                </div>
+                <div className="text-center md:text-left">
+                  <h2 className="text-5xl md:text-6xl font-bold text-primary mb-2">
+                    1000+
+                  </h2>
+                  <p className="text-2xl text-foreground/80">Izgradenih bazena</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Choice Section */}
+      {videoEnded && (
+        <div className="relative pb-16 z-20">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col items-center gap-6 max-w-2xl mx-auto">
+              <h3 className="text-3xl font-bold text-center animate-fade-in">
+                Što trebate?
+              </h3>
+              <div className="flex flex-col sm:flex-row gap-4 w-full animate-fade-in">
+                <Link to="/products" className="flex-1">
+                  <Button size="lg" className="w-full bg-primary hover:bg-primary/90 gap-2 h-16 text-lg">
+                    <Package className="h-6 w-6" />
                     Proizvode za bazen i opremu
                   </Button>
                 </Link>
                 <Button 
                   size="lg" 
-                  className="w-full bg-secondary hover:bg-secondary/90 gap-2"
+                  className="flex-1 w-full bg-secondary hover:bg-secondary/90 gap-2 h-16 text-lg"
                   onClick={() => {
                     const chatbot = document.querySelector('[data-chatbot]');
                     if (chatbot instanceof HTMLElement) chatbot.click();
                   }}
                 >
-                  <Hammer className="h-5 w-5" />
+                  <Hammer className="h-6 w-6" />
                   Izgradnju bazena
                 </Button>
               </div>
