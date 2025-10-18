@@ -16,23 +16,22 @@ const Hero = () => {
   const [videoEnded, setVideoEnded] = useState(false);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
-      {/* Video Background */}
-      <video
-        autoPlay
-        muted
-        playsInline
-        onEnded={() => setVideoEnded(true)}
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/hero-video.mp4" type="video/mp4" />
-      </video>
+    <div className="relative h-screen w-full overflow-hidden bg-background">
+      {/* Video Background - Smaller and Centered */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <video
+          autoPlay
+          muted
+          playsInline
+          onEnded={() => setVideoEnded(true)}
+          className="w-4/5 h-4/5 object-cover rounded-lg"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+      </div>
       
-      {/* Gradient Overlay */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/90"
-        style={{ background: 'var(--gradient-hero)' }}
-      />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
       {/* Hero Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
