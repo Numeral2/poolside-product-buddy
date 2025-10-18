@@ -94,23 +94,20 @@ const featuredProjects = [
 const Index = () => {
   const [displayedProducts, setDisplayedProducts] = useState<any[]>([]);
   const [videoEnded, setVideoEnded] = useState(false);
-  const [catalogOpen, setCatalogOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
 
   const openCatalog = (category?: string) => {
     setSelectedCategory(category);
-    setCatalogOpen(true);
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <ProductCatalog 
-        isOpen={catalogOpen} 
-        onClose={() => setCatalogOpen(false)}
-        openCategory={selectedCategory}
-      />
-      <Hero onVideoEnd={() => setVideoEnded(true)} />
+      <ProductCatalog openCategory={selectedCategory} />
+      
+      {/* Main content with left margin for sidebar */}
+      <div className="ml-72">
+        <Hero onVideoEnd={() => setVideoEnded(true)} />
       {/* Scrolling Categories Section - overlapping video */}
       <div className="relative overflow-hidden py-8 -mt-20 z-20 glass-effect">
         <div className="flex animate-scroll whitespace-nowrap">
@@ -221,7 +218,8 @@ const Index = () => {
         </section>
       )}
 
-      <ModernChatBot onOpenCatalog={openCatalog} />
+        <ModernChatBot onOpenCatalog={openCatalog} />
+      </div>
     </div>
   );
 };

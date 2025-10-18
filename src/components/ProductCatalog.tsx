@@ -49,12 +49,10 @@ const catalogSections: CatalogSection[] = [
 ];
 
 interface ProductCatalogProps {
-  isOpen: boolean;
-  onClose: () => void;
   openCategory?: string;
 }
 
-const ProductCatalog = ({ isOpen, onClose, openCategory }: ProductCatalogProps) => {
+const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   useEffect(() => {
@@ -74,36 +72,13 @@ const ProductCatalog = ({ isOpen, onClose, openCategory }: ProductCatalogProps) 
   };
 
   return (
-    <>
-      {/* Backdrop */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 animate-fade-in"
-          onClick={onClose}
-        />
-      )}
+    <div className="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 bg-background/95 backdrop-blur-md border-r shadow-lg z-30 overflow-hidden">
+      <div className="flex items-center p-4 border-b">
+        <h2 className="text-lg font-bold text-foreground">Katalog Proizvoda</h2>
+      </div>
 
-      {/* Sidebar */}
-      <div
-        className={cn(
-          "fixed left-0 top-0 h-full w-80 bg-background border-r shadow-2xl z-50 transition-transform duration-300",
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        )}
-      >
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-xl font-bold text-foreground">Katalog Proizvoda</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="h-8 w-8 p-0"
-          >
-            <X className="h-5 w-5" />
-          </Button>
-        </div>
-
-        <ScrollArea className="h-[calc(100vh-4rem)]">
-          <div className="p-4 space-y-2">
+      <ScrollArea className="h-[calc(100vh-8rem)]">
+        <div className="p-3 space-y-2">
             {catalogSections.map((section) => {
               const Icon = section.icon;
               const isExpanded = expandedSection === section.title;
@@ -112,14 +87,14 @@ const ProductCatalog = ({ isOpen, onClose, openCategory }: ProductCatalogProps) 
                 <div key={section.title} className="space-y-1">
                   <button
                     onClick={() => toggleSection(section.title)}
-                    className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-muted transition-colors group"
+                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-muted transition-colors group"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="h-8 w-8 rounded-lg flex items-center justify-center"
+                    <div className="flex items-center gap-2">
+                      <div className="h-7 w-7 rounded-lg flex items-center justify-center"
                            style={{ background: "var(--gradient-water)" }}>
-                        <Icon className="h-4 w-4 text-white" />
+                        <Icon className="h-3.5 w-3.5 text-white" />
                       </div>
-                      <span className="font-semibold text-foreground">{section.title}</span>
+                      <span className="font-semibold text-sm text-foreground">{section.title}</span>
                     </div>
                     <ChevronRight
                       className={cn(
@@ -130,14 +105,13 @@ const ProductCatalog = ({ isOpen, onClose, openCategory }: ProductCatalogProps) 
                   </button>
 
                   {isExpanded && (
-                    <div className="ml-11 space-y-1 animate-fade-in">
+                    <div className="ml-9 space-y-0.5 animate-fade-in">
                       {section.categories.map((category) => (
                         <Link
                           key={category}
                           to={`/products?category=${encodeURIComponent(category)}`}
-                          onClick={onClose}
                           className={cn(
-                            "block px-4 py-2 rounded-md text-sm text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors",
+                            "block px-3 py-1.5 rounded-md text-xs text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors",
                             openCategory?.toLowerCase() === category.toLowerCase() && "bg-primary/10 text-primary font-medium"
                           )}
                         >
@@ -149,10 +123,9 @@ const ProductCatalog = ({ isOpen, onClose, openCategory }: ProductCatalogProps) 
                 </div>
               );
             })}
-          </div>
-        </ScrollArea>
-      </div>
-    </>
+        </div>
+      </ScrollArea>
+    </div>
   );
 };
 
