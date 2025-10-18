@@ -88,9 +88,24 @@ const Index = () => {
       <Navigation />
       <Hero onVideoEnd={() => setVideoEnded(true)} />
       
+      {/* Scrolling Categories Section - overlapping video */}
+      <div className="relative overflow-hidden bg-gradient-to-b from-black/20 to-transparent py-8 -mt-20 z-20">
+        <div className="flex animate-scroll whitespace-nowrap">
+          {[...categories, ...categories].map((category, index) => (
+            <Link
+              key={index}
+              to={`/products?category=${category}`}
+              className="inline-flex items-center px-8 py-3 mx-2 bg-card backdrop-blur-sm rounded-full text-foreground font-semibold shadow-lg hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-border"
+            >
+              {category}
+            </Link>
+          ))}
+        </div>
+      </div>
+      
       {/* Search Button - appears after video ends */}
       {videoEnded && (
-        <div className="relative -mt-16 z-20 pb-8">
+        <div className="relative py-8 z-20">
           <div className="container mx-auto px-4 flex justify-center">
             <button
               onClick={() => {
@@ -105,21 +120,6 @@ const Index = () => {
           </div>
         </div>
       )}
-      
-      {/* Scrolling Categories Section */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-black/20 to-transparent py-8 z-20">
-        <div className="flex animate-scroll whitespace-nowrap">
-          {[...categories, ...categories].map((category, index) => (
-            <Link
-              key={index}
-              to={`/products?category=${category}`}
-              className="inline-flex items-center px-8 py-3 mx-2 bg-card backdrop-blur-sm rounded-full text-foreground font-semibold shadow-lg hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-border"
-            >
-              {category}
-            </Link>
-          ))}
-        </div>
-      </div>
       
       {/* Partner Section */}
       <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">
