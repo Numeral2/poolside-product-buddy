@@ -19,6 +19,7 @@ const Hero = () => {
     <div className="relative h-[70vh] w-full overflow-hidden">
       {/* Video Background */}
       <video
+        key="hero-video-v3"
         autoPlay
         muted
         playsInline
@@ -26,7 +27,7 @@ const Hero = () => {
         onEnded={() => setVideoEnded(true)}
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/hero-video.mp4" type="video/mp4" />
+        <source src="/hero-video.mp4?v=3" type="video/mp4" />
       </video>
       
       {/* Subtle Overlay for Text Readability */}
