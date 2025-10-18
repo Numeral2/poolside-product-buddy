@@ -16,6 +16,7 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
         muted
         playsInline
         loop
+        preload="auto"
         onEnded={onVideoEnd}
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
