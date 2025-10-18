@@ -115,20 +115,6 @@ const Index = () => {
         </div>
       </div>
       
-      {/* AI Search Banner */}
-      <div className="bg-gradient-to-b from-muted/50 to-transparent py-8">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Sparkles className="h-8 w-8 text-primary animate-pulse" />
-            <h2 className="text-3xl font-bold">AI Tražilica</h2>
-            <Sparkles className="h-8 w-8 text-primary animate-pulse" />
-          </div>
-          <p className="text-lg text-muted-foreground mb-6">
-            Koristite našu naprednu AI tražilicu u donjem desnom kutu za brzo pronalaženje savršenog bazena ili opreme!
-          </p>
-        </div>
-      </div>
-      
       {/* Partner Section */}
       <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">
         <div className="container mx-auto max-w-4xl">

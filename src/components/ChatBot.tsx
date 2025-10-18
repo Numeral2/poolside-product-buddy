@@ -19,14 +19,42 @@ interface ChatBotProps {
 
 const ChatBot = ({ onProductsUpdate }: ChatBotProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: "Hi! I'm your pool products assistant. Ask me about our products, prices, or recommendations!",
-    },
-  ]);
+  const [showInitialOptions, setShowInitialOptions] = useState(true);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleOptionClick = async (option: string) => {
+    setShowInitialOptions(false);
+    const userMessage = option;
+    setMessages([{ role: "user", content: userMessage }]);
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("pool-chat", {
+        body: { message: userMessage },
+      });
+
+      if (error) throw error;
+
+      const assistantMessage: Message = { 
+        role: "assistant", 
+        content: data.response,
+        products: data.products || []
+      };
+
+      setMessages((prev) => [...prev, assistantMessage]);
+
+      if (data.products && data.products.length > 0) {
+        onProductsUpdate(data.products);
+      }
+    } catch (error: any) {
+      console.error("Chat error:", error);
+      toast.error("Failed to get response. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -100,6 +128,25 @@ const ChatBot = ({ onProductsUpdate }: ChatBotProps) => {
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-background">
+            {showInitialOptions && (
+              <div className="space-y-3">
+                <p className="text-center text-muted-foreground mb-4">Što trebate?</p>
+                <Button
+                  onClick={() => handleOptionClick("Tražim proizvode za bazen")}
+                  className="w-full bg-primary hover:bg-primary/90 text-white"
+                  disabled={isLoading}
+                >
+                  Tražim proizvode za bazen
+                </Button>
+                <Button
+                  onClick={() => handleOptionClick("Tražim izgradnju bazena")}
+                  className="w-full bg-secondary hover:bg-secondary/90 text-white"
+                  disabled={isLoading}
+                >
+                  Tražim izgradnju bazena
+                </Button>
+              </div>
+            )}
             {messages.map((message, index) => (
               <div key={index} className="space-y-2">
                 <div
