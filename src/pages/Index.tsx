@@ -14,8 +14,8 @@ const Index = () => {
       <Navigation />
       <Hero />
       
-      {/* Partner Section */}
-      <section className="py-16 px-4 bg-muted/50">
+      {/* Partner Section with gradient transition */}
+      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50 -mt-20 pt-24">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col md:flex-row items-center justify-center gap-12 mb-12">
             <img src={bazeniPlusLogo} alt="BazeniPlus" className="h-16 object-contain" />

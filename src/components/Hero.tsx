@@ -23,15 +23,14 @@ const Hero = () => {
         autoPlay
         muted
         playsInline
-        loop
         onEnded={() => setVideoEnded(true)}
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/hero-video.mp4?v=3" type="video/mp4" />
       </video>
       
-      {/* Subtle Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-background/60 z-[1]" />
+      {/* Subtle Overlay for Text Readability with smooth bottom transition */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-transparent z-[1]" />
 
       {/* Hero Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
