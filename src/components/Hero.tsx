@@ -29,15 +29,15 @@ const Hero = () => {
         <source src="/hero-video.mp4" type="video/mp4" />
       </video>
       
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60" />
+      {/* White Overlay */}
+      <div className="absolute inset-0 bg-white/80" />
 
       {/* Hero Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
-        <h1 className="text-5xl md:text-7xl font-bold text-center mb-4 text-white drop-shadow-2xl">
+        <h1 className="text-5xl md:text-7xl font-bold text-center mb-4 text-foreground">
           Dive into Excellence
         </h1>
-        <p className="text-xl md:text-2xl text-center text-white/90 max-w-2xl mb-8 drop-shadow-lg">
+        <p className="text-xl md:text-2xl text-center text-muted-foreground max-w-2xl mb-8">
           Discover premium pool solutions that transform your backyard into a paradise
         </p>
       </div>
