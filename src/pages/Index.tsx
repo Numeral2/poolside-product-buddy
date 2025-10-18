@@ -81,24 +81,30 @@ const featuredProjects = [
 
 const Index = () => {
   const [displayedProducts, setDisplayedProducts] = useState<any[]>([]);
+  const [videoEnded, setVideoEnded] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <Hero />
+      <Hero onVideoEnd={() => setVideoEnded(true)} />
       
-      {/* Discount Banner */}
-      <div className="relative bg-gradient-to-r from-primary via-primary to-secondary py-4 -mt-16 z-20">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center gap-4 text-white">
-            <Tag className="h-6 w-6 animate-pulse" />
-            <span className="text-xl md:text-2xl font-bold">
-              Posebna Akcija: 20% Popusta na Sve Proizvode!
-            </span>
-            <Tag className="h-6 w-6 animate-pulse" />
+      {/* Search Button - appears after video ends */}
+      {videoEnded && (
+        <div className="relative -mt-16 z-20 pb-8">
+          <div className="container mx-auto px-4 flex justify-center">
+            <button
+              onClick={() => {
+                const chatbot = document.querySelector('[data-chatbot]');
+                if (chatbot instanceof HTMLElement) chatbot.click();
+              }}
+              className="flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full text-lg font-semibold shadow-lg hover:scale-105 transition-all duration-300 animate-fade-in"
+            >
+              <Sparkles className="h-6 w-6" />
+              Otvori AI Tražilicu
+            </button>
           </div>
         </div>
-      </div>
+      )}
       
       {/* Scrolling Categories Section */}
       <div className="relative overflow-hidden bg-gradient-to-b from-black/20 to-transparent py-8 z-20">
@@ -112,20 +118,6 @@ const Index = () => {
               {category}
             </Link>
           ))}
-        </div>
-      </div>
-      
-      {/* AI Search Banner */}
-      <div className="bg-gradient-to-b from-muted/50 to-transparent py-8">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Sparkles className="h-8 w-8 text-primary animate-pulse" />
-            <h2 className="text-3xl font-bold">AI Tražilica</h2>
-            <Sparkles className="h-8 w-8 text-primary animate-pulse" />
-          </div>
-          <p className="text-lg text-muted-foreground mb-6">
-            Koristite našu naprednu AI tražilicu u donjem desnom kutu za brzo pronalaženje savršenog bazena ili opreme!
-          </p>
         </div>
       </div>
       

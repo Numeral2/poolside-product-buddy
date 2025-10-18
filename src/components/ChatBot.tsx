@@ -71,6 +71,7 @@ const ChatBot = ({ onProductsUpdate }: ChatBotProps) => {
           size="lg"
           className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-2xl bg-gradient-to-r from-primary to-secondary hover:opacity-90 z-50"
           style={{ boxShadow: 'var(--shadow-float)' }}
+          data-chatbot
         >
           <MessageCircle className="h-6 w-6" />
         </Button>
