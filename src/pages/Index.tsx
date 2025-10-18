@@ -4,8 +4,8 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ModernChatBot from "@/components/ModernChatBot";
 import ProductCard from "@/components/ProductCard";
-import bazeniPlusLogo from "@/assets/bazeniplus-logo.png";
 import astralPoolLogo from "@/assets/astralpool-logo.png";
+import coolpoolLogo from "@/assets/coolpool-logo.png";
 import pool1 from "@/assets/pool-1.png";
 import pool2 from "@/assets/pool-2.png";
 import pool3 from "@/assets/pool-3.png";
@@ -14,6 +14,13 @@ import pool5 from "@/assets/pool-5.png";
 import pool6 from "@/assets/pool-6.png";
 import { Sparkles, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const categories = [
   "Bazeni",
@@ -110,7 +117,7 @@ const Index = () => {
       <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
-            <img src={bazeniPlusLogo} alt="BazeniPlus" className="h-16 w-auto object-contain" />
+            <img src={coolpoolLogo} alt="CoolPool" className="h-20 w-auto object-contain" />
             <span className="text-3xl font-light text-foreground/60">+</span>
             <img src={astralPoolLogo} alt="AstralPool" className="h-16 w-auto object-contain" />
           </div>
@@ -128,26 +135,34 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Featured Projects Section - Horizontal Scroll */}
+      {/* Featured Projects Section - Carousel */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">
             Naši Izdvojeni Projekti
           </h2>
-        </div>
-        <div className="overflow-x-auto scrollbar-hide px-4">
-          <div className="flex gap-6 pb-4" style={{ width: "max-content" }}>
-            {featuredProjects.map((project) => (
-              <div key={project.id} className="w-[400px] flex-shrink-0">
-                <ProductCard 
-                  name={project.name}
-                  description={project.description}
-                  category={project.category}
-                  image={project.image}
-                />
-              </div>
-            ))}
-          </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-6xl mx-auto"
+          >
+            <CarouselContent className="-ml-6">
+              {featuredProjects.map((project) => (
+                <CarouselItem key={project.id} className="pl-6 md:basis-1/2 lg:basis-1/3">
+                  <ProductCard 
+                    name={project.name}
+                    description={project.description}
+                    category={project.category}
+                    image={project.image}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0" />
+            <CarouselNext className="right-0" />
+          </Carousel>
         </div>
         <div className="text-center mt-12">
           <Link to="/products">
