@@ -12,14 +12,26 @@ import pool3 from "@/assets/pool-3.png";
 import pool4 from "@/assets/pool-4.png";
 import pool5 from "@/assets/pool-5.png";
 import pool6 from "@/assets/pool-6.png";
-import { Tag } from "lucide-react";
+import { Sparkles, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const categories = [
-  "Bazeni",
-  "SPA kade",
-  "Saune",
-  "Laghetto",
+  "Filteri",
+  "Pumpe",
+  "Skimmeri",
+  "Osnovna i ABS oprema",
+  "PVC cijevi i fitinzi",
+  "Rasvjeta",
+  "Kemikalije",
+  "Pribor za čišćenje",
+  "Mozaik",
+  "Materijal za oblaganje",
+  "Doziranje i elektronika",
+  "Efekti",
+  "Inox ljestve",
+  "Prekrivači",
+  "Grijanje",
+  "Roboti",
 ];
 
 const featuredProjects = [
@@ -89,19 +101,31 @@ const Index = () => {
       </div>
       
       {/* Scrolling Categories Section */}
-      <div className="relative bg-gradient-to-b from-black/20 to-transparent py-8 z-20">
-        <div className="container mx-auto px-4">
-          <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-            {categories.map((category, index) => (
-              <Link
-                key={index}
-                to={`/products?category=${category}`}
-                className="inline-flex items-center px-10 py-4 bg-card backdrop-blur-sm rounded-full text-foreground font-semibold shadow-lg hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-border whitespace-nowrap flex-shrink-0"
-              >
-                {category}
-              </Link>
-            ))}
+      <div className="relative overflow-hidden bg-gradient-to-b from-black/20 to-transparent py-8 z-20">
+        <div className="flex animate-scroll whitespace-nowrap">
+          {[...categories, ...categories].map((category, index) => (
+            <Link
+              key={index}
+              to={`/products?category=${category}`}
+              className="inline-flex items-center px-8 py-3 mx-2 bg-card backdrop-blur-sm rounded-full text-foreground font-semibold shadow-lg hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-border"
+            >
+              {category}
+            </Link>
+          ))}
+        </div>
+      </div>
+      
+      {/* AI Search Banner */}
+      <div className="bg-gradient-to-b from-muted/50 to-transparent py-8">
+        <div className="container mx-auto px-4 max-w-3xl text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Sparkles className="h-8 w-8 text-primary animate-pulse" />
+            <h2 className="text-3xl font-bold">AI Tražilica</h2>
+            <Sparkles className="h-8 w-8 text-primary animate-pulse" />
           </div>
+          <p className="text-lg text-muted-foreground mb-6">
+            Koristite našu naprednu AI tražilicu u donjem desnom kutu za brzo pronalaženje savršenog bazena ili opreme!
+          </p>
         </div>
       </div>
       
