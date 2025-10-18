@@ -253,14 +253,40 @@ const Index = () => {
       <footer className="relative overflow-hidden bg-gradient-to-b from-muted/50 to-muted border-t border-primary/20">
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            {/* Logo and Description */}
+            {/* Company Info and Map */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <img src={coolpoolLogo} alt="CoolPool" className="h-20 w-auto object-contain" />
               </div>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                Stručnjaci za izgradnju, opremanje i održavanje bazena. Vrhunska kvaliteta, transparentnost i posvećenost svakom detalju. Vaš savršen bazen – naš standard.
-              </p>
+              <div className="text-muted-foreground text-sm leading-relaxed space-y-1">
+                <p className="font-bold text-foreground">COOL POOL d.o.o.</p>
+                <p>Kroz Smrdečac 31, 21000 Split</p>
+                <p>OIB: 58469938489</p>
+                <p className="font-semibold text-foreground mt-2">Adresa poslovanja:</p>
+                <p>Slanice 22, 21000 Split</p>
+                <p className="mt-2">
+                  <a href="mailto:info@coolpool.hr" className="hover:text-primary transition-colors">
+                    info@coolpool.hr
+                  </a>
+                </p>
+                <p>
+                  <a href="tel:+385956633214" className="hover:text-primary transition-colors">
+                    +385 (0) 95 66 33 214
+                  </a>
+                </p>
+              </div>
+              <div className="mt-4 rounded-lg overflow-hidden border border-primary/20">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.8974315573835!2d16.457!3d43.513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13355e2b4c6f8b3d%3A0x0!2sSlanice%2022%2C%2021000%2C%20Split!5e0!3m2!1sen!2shr!4v1234567890"
+                  width="100%"
+                  height="200"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Cool Pool Location"
+                />
+              </div>
             </div>
 
             {/* Social Networks */}
