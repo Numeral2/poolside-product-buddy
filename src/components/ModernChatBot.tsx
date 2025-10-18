@@ -220,7 +220,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
         <Button
           onClick={() => setIsOpen(true)}
           size="lg"
-          className="fixed bottom-6 right-6 h-14 w-14 shadow-lg z-50 group overflow-hidden"
+          className="fixed bottom-6 right-6 max-md:bottom-4 max-md:right-4 h-14 w-14 shadow-lg z-50 group overflow-hidden"
           style={{
             background: "var(--gradient-water)",
           }}
@@ -232,7 +232,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
 
       {isOpen && (
         <Card
-          className="fixed bottom-6 right-6 w-[420px] h-[600px] flex flex-col shadow-lg z-50 border overflow-hidden"
+          className="fixed bottom-6 right-6 w-[420px] h-[600px] max-md:bottom-0 max-md:right-0 max-md:left-0 max-md:top-0 max-md:w-full max-md:h-full max-md:rounded-none flex flex-col shadow-lg z-50 border overflow-hidden"
         >
           <div
             className="p-5 flex items-center justify-between text-white"
