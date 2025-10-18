@@ -13,6 +13,7 @@ import pool3 from "@/assets/pool-3.png";
 import pool4 from "@/assets/pool-4.png";
 import pool5 from "@/assets/pool-5.png";
 import pool6 from "@/assets/pool-6.png";
+import filter1 from "@/assets/filter-1.png";
 import { Sparkles, Tag, Facebook, Instagram, MessageCircle, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -153,7 +154,10 @@ const Index = () => {
             <span className="text-3xl font-light text-foreground/60">+</span>
             <img src={astralPoolLogo} alt="AstralPool" className="h-16 w-auto object-contain" />
           </div>
-          <div className="text-center space-y-3">
+          <div className="text-center space-y-2">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              18+ godina s Vama i 1000+ izgrađenih bazena.
+            </h2>
             <p className="text-lg text-foreground/90 leading-relaxed">
               Nudimo izgradnju bazena te proizvode za opremanje bazena.
             </p>
@@ -163,20 +167,26 @@ const Index = () => {
             <p className="text-lg text-foreground/90 leading-relaxed">
               Uz nas dobivate kvalitetu, pouzdan servis i dugotrajan užitak u savršeno funkcionalnom bazenu.
             </p>
-            <div className="flex gap-4 justify-center mt-4">
+            <div className="flex gap-4 justify-center mt-6 flex-wrap">
             <button
               onClick={() => openCatalog("Bazeni")}
-              className="px-8 py-3 font-semibold text-white shadow-md hover:shadow-lg transition-all"
+              className="relative overflow-hidden px-8 py-3 font-semibold text-white shadow-md hover:shadow-lg transition-all hover:scale-105 group min-w-[200px] h-[120px] flex items-center justify-center"
               style={{ background: "var(--gradient-water)" }}
             >
-              Izgradnja
+              <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
+                <img src={pool1} alt="" className="w-full h-full object-cover" />
+              </div>
+              <span className="relative z-10 text-xl">Izgradnja</span>
             </button>
             <button
               onClick={() => openCatalog("Filteri")}
-              className="px-8 py-3 font-semibold text-white shadow-md hover:shadow-lg transition-all"
+              className="relative overflow-hidden px-8 py-3 font-semibold text-white shadow-md hover:shadow-lg transition-all hover:scale-105 group min-w-[200px] h-[120px] flex items-center justify-center"
               style={{ background: "var(--gradient-water-deep)" }}
             >
-              Oprema
+              <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
+                <img src={filter1} alt="" className="w-full h-full object-cover" />
+              </div>
+              <span className="relative z-10 text-xl">Oprema</span>
             </button>
             </div>
           </div>
