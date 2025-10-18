@@ -9,6 +9,16 @@ import { toast } from "sonner";
 interface Message {
   role: "user" | "assistant";
   content: string;
+  products?: Product[];
+}
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  price: number;
+  image_url?: string;
 }
 
 const ModernChatBot = () => {
@@ -64,6 +74,7 @@ const ModernChatBot = () => {
       let textBuffer = "";
       let streamDone = false;
       let assistantContent = "";
+      let currentProducts: Product[] | undefined;
 
       // Add empty assistant message that will be updated
       setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
@@ -91,6 +102,13 @@ const ModernChatBot = () => {
 
           try {
             const parsed = JSON.parse(jsonStr);
+            
+            // Handle products event
+            if (parsed.type === "products") {
+              currentProducts = parsed.products;
+              console.log("Received products:", currentProducts);
+            }
+            
             const content = parsed.choices?.[0]?.delta?.content as string | undefined;
             if (content) {
               assistantContent += content;
@@ -99,6 +117,7 @@ const ModernChatBot = () => {
                 newMessages[newMessages.length - 1] = {
                   role: "assistant",
                   content: assistantContent,
+                  products: currentProducts,
                 };
                 return newMessages;
               });
@@ -108,6 +127,18 @@ const ModernChatBot = () => {
             break;
           }
         }
+      }
+      
+      // Update final message with products if they exist
+      if (currentProducts) {
+        setMessages((prev) => {
+          const newMessages = [...prev];
+          newMessages[newMessages.length - 1] = {
+            ...newMessages[newMessages.length - 1],
+            products: currentProducts,
+          };
+          return newMessages;
+        });
       }
     } catch (error) {
       console.error("Chat error:", error);
@@ -244,6 +275,45 @@ const ModernChatBot = () => {
                       <p className="text-sm leading-relaxed whitespace-pre-wrap">
                         {message.content}
                       </p>
+                      {message.products && message.products.length > 0 && (
+                        <div className="mt-4 space-y-2">
+                          <p className="text-xs font-semibold text-foreground/70">Naši proizvodi:</p>
+                          <div className="grid grid-cols-1 gap-2">
+                            {message.products.map((product) => (
+                              <div
+                                key={product.id}
+                                className="p-3 rounded-lg border bg-background hover:shadow-md transition-all cursor-pointer"
+                              >
+                                <div className="flex gap-3">
+                                  {product.image_url && (
+                                    <img
+                                      src={product.image_url}
+                                      alt={product.name}
+                                      className="w-16 h-16 object-cover rounded"
+                                    />
+                                  )}
+                                  <div className="flex-1 min-w-0">
+                                    <h4 className="font-semibold text-sm text-foreground truncate">
+                                      {product.name}
+                                    </h4>
+                                    <p className="text-xs text-muted-foreground line-clamp-2">
+                                      {product.description}
+                                    </p>
+                                    <div className="flex items-center justify-between mt-1">
+                                      <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                                        {product.category}
+                                      </span>
+                                      <span className="text-sm font-bold text-primary">
+                                        {product.price.toFixed(2)} €
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
