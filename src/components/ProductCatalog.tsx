@@ -72,13 +72,12 @@ const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
   };
 
   return (
-    <div className="w-72 bg-background/95 backdrop-blur-md border-r shadow-lg overflow-hidden">
-      <div className="flex items-center justify-between p-4 border-b sticky top-0 bg-background z-10">
+    <div className="w-72 bg-background/95 backdrop-blur-md border-r shadow-lg">
+      <div className="flex items-center p-4 border-b sticky top-0 bg-background z-10">
         <h2 className="text-lg font-bold text-foreground">Katalog Proizvoda</h2>
       </div>
 
-      <ScrollArea className="h-[calc(100vh-12rem)]">
-        <div className="p-3 space-y-2">
+      <div className="p-3 space-y-2">
             {catalogSections.map((section) => {
               const Icon = section.icon;
               const isExpanded = expandedSection === section.title;
@@ -123,8 +122,7 @@ const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
                 </div>
               );
             })}
-        </div>
-      </ScrollArea>
+      </div>
     </div>
   );
 };
