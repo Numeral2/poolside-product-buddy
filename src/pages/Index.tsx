@@ -12,7 +12,8 @@ import pool3 from "@/assets/pool-3.png";
 import pool4 from "@/assets/pool-4.png";
 import pool5 from "@/assets/pool-5.png";
 import pool6 from "@/assets/pool-6.png";
-import { Sparkles, Tag } from "lucide-react";
+import thinkingPerson from "@/assets/thinking-person.png";
+import { Package, Hammer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const categories = [
@@ -103,20 +104,39 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Search Button - appears after video ends */}
+      {/* Choice Section - appears after video ends */}
       {videoEnded && (
-        <div className="relative py-8 z-20">
-          <div className="container mx-auto px-4 flex justify-center">
-            <button
-              onClick={() => {
-                const chatbot = document.querySelector('[data-chatbot]');
-                if (chatbot instanceof HTMLElement) chatbot.click();
-              }}
-              className="flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full text-lg font-semibold shadow-lg hover:scale-105 transition-all duration-300 animate-fade-in"
-            >
-              <Sparkles className="h-6 w-6" />
-              Otvori AI Tražilicu
-            </button>
+        <div className="relative py-16 z-20">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 max-w-4xl mx-auto">
+              <img 
+                src={thinkingPerson} 
+                alt="Thinking about pool needs" 
+                className="w-48 h-48 object-contain animate-fade-in"
+              />
+              <div className="flex flex-col gap-4 animate-fade-in">
+                <h3 className="text-2xl font-bold text-center md:text-left mb-2">
+                  Što trebate?
+                </h3>
+                <Link to="/products">
+                  <Button size="lg" className="w-full bg-primary hover:bg-primary/90 gap-2">
+                    <Package className="h-5 w-5" />
+                    Proizvode za bazen i opremu
+                  </Button>
+                </Link>
+                <Button 
+                  size="lg" 
+                  className="w-full bg-secondary hover:bg-secondary/90 gap-2"
+                  onClick={() => {
+                    const chatbot = document.querySelector('[data-chatbot]');
+                    if (chatbot instanceof HTMLElement) chatbot.click();
+                  }}
+                >
+                  <Hammer className="h-5 w-5" />
+                  Izgradnju bazena
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       )}
