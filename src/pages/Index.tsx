@@ -13,7 +13,7 @@ import pool3 from "@/assets/pool-3.png";
 import pool4 from "@/assets/pool-4.png";
 import pool5 from "@/assets/pool-5.png";
 import pool6 from "@/assets/pool-6.png";
-import { Sparkles, Tag, Facebook, Instagram, MessageCircle } from "lucide-react";
+import { Sparkles, Tag, Facebook, Instagram, MessageCircle, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -124,6 +124,26 @@ const Index = () => {
           ))}
         </div>
       </div>
+      
+      {/* AI Search Section */}
+      <section className="py-12 px-4 bg-gradient-to-b from-transparent to-muted/30">
+        <div className="container mx-auto max-w-3xl text-center">
+          <p className="text-lg md:text-xl text-foreground/90 mb-6">
+            Ponude, cijene i kalkulacije za bazene — uz pomoć AI-a!<br />
+            Pronađite sve informacije o bazenima jednostavno i brzo.
+          </p>
+          <button
+            onClick={() => {
+              const chatbot = document.querySelector('[data-chatbot]');
+              if (chatbot instanceof HTMLElement) chatbot.click();
+            }}
+            className="px-8 py-3 rounded-full font-semibold text-base text-white shadow-md hover:scale-105 transition-all duration-300 inline-flex items-center gap-2 group bg-primary/90 hover:bg-primary"
+          >
+            <Search className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            AI Tražilica
+          </button>
+        </div>
+      </section>
       
       {/* Partner Section */}
       <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">

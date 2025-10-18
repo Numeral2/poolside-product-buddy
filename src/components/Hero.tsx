@@ -36,7 +36,7 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
             Najkvalitetnija bazenska oprema i izgradnja bazena na jednom mjestu
           </p>
           
-          <p className="text-lg md:text-xl text-center text-white/90 max-w-2xl drop-shadow-lg font-light mt-4">
+          <p className="text-lg md:text-xl text-center text-white/90 max-w-2xl mx-auto drop-shadow-lg font-light mt-4">
             Ponude, cijene i kalkulacije za bazene — uz pomoć AI-a!<br />
             Pronađite sve informacije o bazenima jednostavno i brzo.
           </p>
