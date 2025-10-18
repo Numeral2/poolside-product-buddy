@@ -103,24 +103,6 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Search Button - appears after video ends */}
-      {videoEnded && (
-        <div className="relative py-8 z-20">
-          <div className="container mx-auto px-4 flex justify-center">
-            <button
-              onClick={() => {
-                const chatbot = document.querySelector('[data-chatbot]');
-                if (chatbot instanceof HTMLElement) chatbot.click();
-              }}
-              className="flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full text-lg font-semibold shadow-lg hover:scale-105 transition-all duration-300 animate-fade-in"
-            >
-              <Sparkles className="h-6 w-6" />
-              Otvori AI Tražilicu
-            </button>
-          </div>
-        </div>
-      )}
-      
       {/* Partner Section */}
       <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">
         <div className="container mx-auto max-w-4xl">
