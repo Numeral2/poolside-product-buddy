@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 interface Message {
   role: "user" | "assistant";
   content: string;
+  products?: any[];
 }
 
 interface ChatBotProps {
@@ -42,10 +43,13 @@ const ChatBot = ({ onProductsUpdate }: ChatBotProps) => {
 
       if (error) throw error;
 
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: data.response },
-      ]);
+      const assistantMessage: Message = { 
+        role: "assistant", 
+        content: data.response,
+        products: data.products || []
+      };
+
+      setMessages((prev) => [...prev, assistantMessage]);
 
       if (data.products && data.products.length > 0) {
         onProductsUpdate(data.products);
@@ -97,23 +101,52 @@ const ChatBot = ({ onProductsUpdate }: ChatBotProps) => {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-background">
             {messages.map((message, index) => (
-              <div
-                key={index}
-                className={cn(
-                  "flex",
-                  message.role === "user" ? "justify-end" : "justify-start"
-                )}
-              >
+              <div key={index} className="space-y-2">
                 <div
                   className={cn(
-                    "max-w-[80%] rounded-lg p-3",
-                    message.role === "user"
-                      ? "bg-primary text-white"
-                      : "bg-muted text-foreground"
+                    "flex",
+                    message.role === "user" ? "justify-end" : "justify-start"
                   )}
                 >
-                  <p className="text-sm">{message.content}</p>
+                  <div
+                    className={cn(
+                      "max-w-[80%] rounded-lg p-3",
+                      message.role === "user"
+                        ? "bg-primary text-white"
+                        : "bg-muted text-foreground"
+                    )}
+                  >
+                    <p className="text-sm">{message.content}</p>
+                  </div>
                 </div>
+                
+                {/* Display products inline if available */}
+                {message.products && message.products.length > 0 && (
+                  <div className="pl-2 space-y-2">
+                    {message.products.map((product) => (
+                      <Card key={product.id} className="p-3 hover:shadow-md transition-shadow">
+                        <div className="flex gap-3">
+                          {product.image_url && (
+                            <img 
+                              src={product.image_url} 
+                              alt={product.name}
+                              className="w-16 h-16 object-cover rounded"
+                            />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-sm text-foreground truncate">
+                              {product.name}
+                            </h4>
+                            <p className="text-xs text-muted-foreground">{product.category}</p>
+                            <p className="text-sm font-bold text-primary mt-1">
+                              ${product.price}
+                            </p>
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
             {isLoading && (
