@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import ChatBot from "@/components/ChatBot";
+import ModernChatBot from "@/components/ModernChatBot";
 import ProductCard from "@/components/ProductCard";
 import bazeniPlusLogo from "@/assets/bazeniplus-logo.png";
 import astralPoolLogo from "@/assets/astralpool-logo.png";
@@ -91,17 +91,16 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <Hero onVideoEnd={() => setVideoEnded(true)} />
-      
       {/* Scrolling Categories Section - overlapping video */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-black/20 to-transparent py-8 -mt-20 z-20">
+      <div className="relative overflow-hidden py-8 -mt-20 z-20 glass-effect">
         <div className="flex animate-scroll whitespace-nowrap">
           {[...categories, ...categories].map((category, index) => (
             <Link
               key={index}
               to={`/products?category=${category}`}
-              className="inline-flex items-center px-6 py-2 mx-2 bg-card/70 backdrop-blur-sm rounded-full text-foreground text-sm font-semibold shadow-lg hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer border border-border/50"
+              className="inline-flex items-center px-6 py-3 mx-2 glass-effect rounded-full text-foreground text-sm font-bold shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-primary/30 hover:border-primary group"
             >
-              {category}
+              <span className="group-hover:animate-shimmer">{category}</span>
             </Link>
           ))}
         </div>
@@ -148,7 +147,11 @@ const Index = () => {
           </div>
           <div className="text-center mt-12">
             <Link to="/products">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90">
+              <Button 
+                size="lg" 
+                className="text-white font-bold shadow-lg hover:scale-105 transition-all duration-300 text-lg px-8 py-6"
+                style={{ background: "var(--gradient-water)", boxShadow: "var(--shadow-float)" }}
+              >
                 Pogledajte Sve Proizvode
               </Button>
             </Link>
@@ -178,7 +181,7 @@ const Index = () => {
         </section>
       )}
 
-      <ChatBot onProductsUpdate={setDisplayedProducts} />
+      <ModernChatBot />
     </div>
   );
 };

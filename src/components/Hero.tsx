@@ -10,7 +10,6 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
 
   return (
     <div className="relative h-[70vh] w-full overflow-hidden">
-      {/* Video Background */}
       <video
         key="hero-video-v3"
         autoPlay
@@ -23,17 +22,38 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
         <source src="/hero-video.mp4?v=3" type="video/mp4" />
       </video>
       
-      {/* Subtle Overlay for Text Readability with smooth bottom transition */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-transparent z-[1]" />
+      <div className="absolute inset-0 z-[1]" style={{ background: "var(--gradient-hero)" }} />
 
-      {/* Hero Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
-        <h1 className="text-5xl md:text-7xl font-bold text-center mb-4 text-white drop-shadow-2xl">
-          Dive into Excellence
-        </h1>
-        <p className="text-xl md:text-2xl text-center text-white/95 max-w-2xl mb-8 drop-shadow-lg">
-          Discover premium pool solutions that transform your backyard into a paradise
-        </p>
+        <div className="text-center space-y-6 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect mb-4">
+            <Sparkles className="h-5 w-5 text-primary animate-glow-pulse" />
+            <span className="text-sm font-semibold text-foreground">AI-Powered Pool Solutions</span>
+          </div>
+          
+          <h1 className="text-6xl md:text-8xl font-bold text-center text-white drop-shadow-2xl"
+              style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}>
+            Dive into Excellence
+          </h1>
+          
+          <p className="text-xl md:text-3xl text-center text-white/95 max-w-3xl drop-shadow-lg font-light">
+            Otkrijte vrhunska rješenja za bazene s naprednom AI tehnologijom
+          </p>
+          
+          <div className="flex gap-4 justify-center mt-8">
+            <button
+              onClick={() => {
+                const chatbot = document.querySelector('[data-chatbot]');
+                if (chatbot instanceof HTMLElement) chatbot.click();
+              }}
+              className="px-8 py-4 rounded-full font-semibold text-lg text-white shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-3 group"
+              style={{ background: "var(--gradient-ai)", boxShadow: "var(--shadow-ai)" }}
+            >
+              <Sparkles className="h-6 w-6 group-hover:rotate-12 transition-transform" />
+              Započni s AI Asistentom
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

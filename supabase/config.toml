@@ -1,1 +1,7 @@
 project_id = "tgwnhrvvqrkufebvqgdn"
+
+[functions.pool-chat]
+verify_jwt = false
+
+[functions.ai-pool-chat]
+verify_jwt = false
