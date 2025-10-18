@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ModernChatBot from "@/components/ModernChatBot";
 import ProductCard from "@/components/ProductCard";
+import ProductCatalog from "@/components/ProductCatalog";
 import astralPoolLogo from "@/assets/astralpool-logo.png";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
 import pool1 from "@/assets/pool-1.png";
@@ -93,10 +94,22 @@ const featuredProjects = [
 const Index = () => {
   const [displayedProducts, setDisplayedProducts] = useState<any[]>([]);
   const [videoEnded, setVideoEnded] = useState(false);
+  const [catalogOpen, setCatalogOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
+
+  const openCatalog = (category?: string) => {
+    setSelectedCategory(category);
+    setCatalogOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      <ProductCatalog 
+        isOpen={catalogOpen} 
+        onClose={() => setCatalogOpen(false)}
+        openCategory={selectedCategory}
+      />
       <Hero onVideoEnd={() => setVideoEnded(true)} />
       {/* Scrolling Categories Section - overlapping video */}
       <div className="relative overflow-hidden py-8 -mt-20 z-20 glass-effect">
@@ -131,6 +144,13 @@ const Index = () => {
             <p className="text-lg text-foreground/90 leading-relaxed">
               Uz nas dobivate kvalitetu, pouzdan servis i dugotrajan užitak u savršeno funkcionalnom bazenu.
             </p>
+            <button
+              onClick={() => openCatalog()}
+              className="mt-6 px-6 py-3 rounded-lg font-semibold text-white shadow-lg hover:scale-105 transition-all"
+              style={{ background: "var(--gradient-water)" }}
+            >
+              Pregledajte Katalog
+            </button>
           </div>
         </div>
       </section>
@@ -151,12 +171,14 @@ const Index = () => {
             <CarouselContent className="-ml-6">
               {featuredProjects.map((project) => (
                 <CarouselItem key={project.id} className="pl-6 md:basis-1/2 lg:basis-1/3">
-                  <ProductCard 
-                    name={project.name}
-                    description={project.description}
-                    category={project.category}
-                    image={project.image}
-                  />
+                  <div onClick={() => openCatalog(project.category)} className="cursor-pointer">
+                    <ProductCard 
+                      name={project.name}
+                      description={project.description}
+                      category={project.category}
+                      image={project.image}
+                    />
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -199,7 +221,7 @@ const Index = () => {
         </section>
       )}
 
-      <ModernChatBot />
+      <ModernChatBot onOpenCatalog={openCatalog} />
     </div>
   );
 };

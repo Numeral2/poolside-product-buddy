@@ -21,7 +21,11 @@ interface Product {
   image_url?: string;
 }
 
-const ModernChatBot = () => {
+interface ModernChatBotProps {
+  onOpenCatalog: (category?: string) => void;
+}
+
+const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -107,6 +111,11 @@ const ModernChatBot = () => {
             if (parsed.type === "products") {
               currentProducts = parsed.products;
               console.log("Received products:", currentProducts);
+              
+              // Open catalog with the first product's category
+              if (currentProducts && currentProducts.length > 0) {
+                onOpenCatalog(currentProducts[0].category);
+              }
             }
             
             const content = parsed.choices?.[0]?.delta?.content as string | undefined;
@@ -282,6 +291,7 @@ const ModernChatBot = () => {
                             {message.products.map((product) => (
                               <div
                                 key={product.id}
+                                onClick={() => onOpenCatalog(product.category)}
                                 className="p-3 rounded-lg border bg-background hover:shadow-md transition-all cursor-pointer"
                               >
                                 <div className="flex gap-3">
