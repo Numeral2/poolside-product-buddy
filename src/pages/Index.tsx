@@ -13,7 +13,7 @@ import pool3 from "@/assets/pool-3.png";
 import pool4 from "@/assets/pool-4.png";
 import pool5 from "@/assets/pool-5.png";
 import pool6 from "@/assets/pool-6.png";
-import { Sparkles, Tag } from "lucide-react";
+import { Sparkles, Tag, Facebook, Instagram, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -143,13 +143,22 @@ const Index = () => {
             <p className="text-lg text-foreground/90 leading-relaxed">
               Uz nas dobivate kvalitetu, pouzdan servis i dugotrajan užitak u savršeno funkcionalnom bazenu.
             </p>
-            <button
-              onClick={() => openCatalog()}
-              className="mt-6 px-6 py-3 rounded-lg font-semibold text-white shadow-lg hover:scale-105 transition-all"
-              style={{ background: "var(--gradient-water)" }}
-            >
-              Pregledajte Katalog
-            </button>
+            <div className="flex gap-4 justify-center mt-6">
+              <button
+                onClick={() => openCatalog("Bazeni")}
+                className="px-8 py-3 rounded-lg font-semibold text-white shadow-lg hover:scale-105 transition-all"
+                style={{ background: "var(--gradient-water)" }}
+              >
+                Izgradnja
+              </button>
+              <button
+                onClick={() => openCatalog("Filteri")}
+                className="px-8 py-3 rounded-lg font-semibold text-white shadow-lg hover:scale-105 transition-all"
+                style={{ background: "var(--gradient-water-deep)" }}
+              >
+                Oprema
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -219,6 +228,90 @@ const Index = () => {
           </div>
         </section>
       )}
+
+      {/* Footer */}
+      <footer className="bg-[#2a2a2a] text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Logo and Description */}
+            <div className="space-y-4">
+              <img src={coolpoolLogo} alt="Bazeni Plus" className="h-16 w-auto object-contain brightness-0 invert" />
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Stručnjaci za izgradnju, opremanje i održavanje bazena. Vrhunska kvaliteta, transparentnost i posvećenost svakom detalju. Vaš savršen bazen – naš standard.
+              </p>
+            </div>
+
+            {/* Social Networks */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-bold flex items-center gap-2">
+                DRUŠTVENE MREŽE
+                <span className="h-0.5 w-12 bg-[#f39c12]"></span>
+              </h3>
+              <div className="flex gap-4">
+                <a 
+                  href="https://facebook.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="h-10 w-10 rounded-full bg-white/10 hover:bg-[#f39c12] flex items-center justify-center transition-all"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a 
+                  href="https://instagram.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="h-10 w-10 rounded-full bg-white/10 hover:bg-[#f39c12] flex items-center justify-center transition-all"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a 
+                  href="https://wa.me" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="h-10 w-10 rounded-full bg-white/10 hover:bg-[#f39c12] flex items-center justify-center transition-all"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Working Hours */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-bold flex items-center gap-2">
+                RADNO VRIJEME
+                <span className="h-0.5 w-12 bg-[#f39c12]"></span>
+              </h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Ponedjeljak</span>
+                  <span className="font-semibold">9:00 - 17:00</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Utorak</span>
+                  <span className="font-semibold">9:00 - 17:00</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Srijeda</span>
+                  <span className="font-semibold">9:00 - 17:00</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Četvrtak</span>
+                  <span className="font-semibold">9:00 - 17:00</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Petak</span>
+                  <span className="font-semibold">9:00 - 17:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
+            Bazeni Plus | © {new Date().getFullYear()}
+          </div>
+        </div>
+      </footer>
 
         <ModernChatBot onOpenCatalog={openCatalog} />
       </div>
