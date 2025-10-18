@@ -12,7 +12,7 @@ import pool3 from "@/assets/pool-3.png";
 import pool4 from "@/assets/pool-4.png";
 import pool5 from "@/assets/pool-5.png";
 import pool6 from "@/assets/pool-6.png";
-import thinkingPerson from "@/assets/thinking-person.png";
+import aiLogo from "@/assets/ai-logo.png";
 import { Package, Hammer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -83,6 +83,7 @@ const featuredProjects = [
 const Index = () => {
   const [displayedProducts, setDisplayedProducts] = useState<any[]>([]);
   const [videoEnded, setVideoEnded] = useState(false);
+  const [showProjects, setShowProjects] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
@@ -104,38 +105,46 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Choice Section - appears after video ends */}
+      {/* AI Choice Section - appears after video ends */}
       {videoEnded && (
-        <div className="relative py-16 z-20">
+        <div className="relative py-20 z-20 bg-gradient-to-b from-background/50 to-transparent">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 max-w-4xl mx-auto">
+            <div className="flex flex-col items-center justify-center gap-8 max-w-3xl mx-auto text-center">
               <img 
-                src={thinkingPerson} 
-                alt="Thinking about pool needs" 
-                className="w-48 h-48 object-contain animate-fade-in"
+                src={aiLogo} 
+                alt="AI Assistant" 
+                className="w-32 h-32 object-contain animate-fade-in"
               />
-              <div className="flex flex-col gap-4 animate-fade-in">
-                <h3 className="text-2xl font-bold text-center md:text-left mb-2">
-                  Što trebate?
-                </h3>
-                <Link to="/products">
-                  <Button size="lg" className="w-full bg-primary hover:bg-primary/90 gap-2">
-                    <Package className="h-5 w-5" />
-                    Proizvode za bazen i opremu
+              <h2 className="text-4xl font-bold animate-fade-in">
+                Što trebate?
+              </h2>
+              <div className="flex flex-col sm:flex-row gap-4 w-full max-w-2xl animate-fade-in">
+                <Link to="/products" className="flex-1">
+                  <Button size="lg" className="w-full bg-primary hover:bg-primary/90 gap-2 h-auto py-4">
+                    <Package className="h-6 w-6" />
+                    <span className="text-lg">Proizvode za bazen i opremu</span>
                   </Button>
                 </Link>
                 <Button 
                   size="lg" 
-                  className="w-full bg-secondary hover:bg-secondary/90 gap-2"
+                  className="flex-1 bg-secondary hover:bg-secondary/90 gap-2 h-auto py-4"
                   onClick={() => {
                     const chatbot = document.querySelector('[data-chatbot]');
                     if (chatbot instanceof HTMLElement) chatbot.click();
                   }}
                 >
-                  <Hammer className="h-5 w-5" />
-                  Izgradnju bazena
+                  <Hammer className="h-6 w-6" />
+                  <span className="text-lg">Izgradnju bazena</span>
                 </Button>
               </div>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="mt-8 animate-fade-in"
+                onClick={() => setShowProjects(true)}
+              >
+                Naši projekti
+              </Button>
             </div>
           </div>
         </div>
@@ -160,8 +169,9 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Featured Projects Section */}
-      <section className="py-16 px-4 bg-muted/30">
+      {/* Featured Projects Section - shown after clicking button */}
+      {showProjects && (
+        <section className="py-16 px-4 bg-muted/30 animate-fade-in">
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">
             Naši Izdvojeni Projekti
@@ -185,7 +195,8 @@ const Index = () => {
             </Link>
           </div>
         </div>
-      </section>
+        </section>
+      )}
       
       {/* AI-Suggested Products Section */}
       {displayedProducts.length > 0 && (
