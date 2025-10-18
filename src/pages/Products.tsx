@@ -1,10 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
-import ProductCard from "@/components/ProductCard";
+import ProductCard, { ProductVariant } from "@/components/ProductCard";
 import ChatBot from "@/components/ChatBot";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  image_url: string;
+}
+
+interface GroupedProduct {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  image: string;
+  variants?: ProductVariant[];
+}
 
 const Products = () => {
   const [searchParams] = useSearchParams();
@@ -42,11 +61,59 @@ const Products = () => {
     }
   };
 
-  const handleProductsUpdate = (chatProducts: any[]) => {
-    if (chatProducts.length > 0) {
-      setFilteredProducts(chatProducts);
-    }
+  const groupProducts = (products: Product[]): GroupedProduct[] => {
+    const groups: { [key: string]: Product[] } = {};
+    
+    products.forEach(product => {
+      // Extract base name (e.g., "Filter IML Lisboa" from "Filter IML Lisboa 450")
+      const baseName = product.name.replace(/\s+\d+$/, "");
+      
+      if (!groups[baseName]) {
+        groups[baseName] = [];
+      }
+      groups[baseName].push(product);
+    });
+
+    return Object.entries(groups).map(([baseName, groupedProducts]) => {
+      if (groupedProducts.length > 1) {
+        // Multiple variants exist
+        const variants: ProductVariant[] = groupedProducts.map(p => {
+          const sizeMatch = p.name.match(/\d+$/);
+          const size = sizeMatch ? sizeMatch[0] : p.name;
+          return {
+            id: p.id,
+            size: size,
+            price: p.price,
+          };
+        }).sort((a, b) => parseFloat(a.size) - parseFloat(b.size));
+
+        return {
+          id: groupedProducts[0].id,
+          name: baseName,
+          description: groupedProducts[0].description,
+          price: groupedProducts[0].price,
+          category: groupedProducts[0].category,
+          image: groupedProducts[0].image_url,
+          variants,
+        };
+      } else {
+        // Single product
+        const p = groupedProducts[0];
+        return {
+          id: p.id,
+          name: p.name,
+          description: p.description,
+          price: p.price,
+          category: p.category,
+          image: p.image_url,
+        };
+      }
+    });
   };
+
+  const groupedProducts = useMemo(() => {
+    return groupProducts(filteredProducts);
+  }, [filteredProducts]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -68,27 +135,32 @@ const Products = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map((product) => (
+            {groupedProducts.map((product) => (
               <ProductCard
                 key={product.id}
                 name={product.name}
                 description={product.description}
                 price={product.price}
                 category={product.category}
-                image={product.image_url}
+                image={product.image}
+                variants={product.variants}
               />
             ))}
           </div>
         )}
 
-        {!isLoading && filteredProducts.length === 0 && (
+        {!isLoading && groupedProducts.length === 0 && (
           <div className="text-center py-20">
             <p className="text-lg text-muted-foreground">No products found.</p>
           </div>
         )}
       </div>
 
-      <ChatBot onProductsUpdate={handleProductsUpdate} />
+      <ChatBot onProductsUpdate={(chatProducts) => {
+        if (chatProducts.length > 0) {
+          setFilteredProducts(chatProducts);
+        }
+      }} />
     </div>
   );
 };
