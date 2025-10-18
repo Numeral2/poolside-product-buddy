@@ -114,10 +114,12 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
               currentProducts = parsed.products;
               console.log("Received products:", currentProducts);
               
-              // Navigate to products page with the category
+              // Navigate to products page with the category and products data
               if (currentProducts && currentProducts.length > 0) {
                 const category = currentProducts[0].category;
-                navigate(`/products?category=${category}`);
+                // Store products in sessionStorage so Products page can use them
+                sessionStorage.setItem('chatbotProducts', JSON.stringify(currentProducts));
+                navigate(`/products?category=${category}&fromChat=true`);
                 onOpenCatalog(category);
               }
             }

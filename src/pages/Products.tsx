@@ -28,22 +28,40 @@ interface GroupedProduct {
 const Products = () => {
   const [searchParams] = useSearchParams();
   const category = searchParams.get("category");
+  const fromChat = searchParams.get("fromChat");
   const [products, setProducts] = useState<any[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Check if we have products from chatbot
+    if (fromChat === "true") {
+      const chatProducts = sessionStorage.getItem('chatbotProducts');
+      if (chatProducts) {
+        try {
+          const parsedProducts = JSON.parse(chatProducts);
+          setProducts(parsedProducts);
+          setFilteredProducts(parsedProducts);
+          setIsLoading(false);
+          sessionStorage.removeItem('chatbotProducts'); // Clean up
+          return;
+        } catch (e) {
+          console.error("Error parsing chatbot products:", e);
+        }
+      }
+    }
     fetchProducts();
-  }, []);
+  }, [fromChat]);
 
   useEffect(() => {
-    if (category && products.length > 0) {
+    // Only filter if products weren't loaded from chatbot
+    if (fromChat !== "true" && category && products.length > 0) {
       const filtered = products.filter(p => p.category === category);
       setFilteredProducts(filtered);
-    } else {
+    } else if (fromChat !== "true") {
       setFilteredProducts(products);
     }
-  }, [category, products]);
+  }, [category, products, fromChat]);
 
   const fetchProducts = async () => {
     try {
