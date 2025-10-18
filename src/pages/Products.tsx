@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import ProductCard, { ProductVariant } from "@/components/ProductCard";
-import ChatBot from "@/components/ChatBot";
+import ModernChatBot from "@/components/ModernChatBot";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
 
@@ -174,11 +174,7 @@ const Products = () => {
         )}
       </div>
 
-      <ChatBot onProductsUpdate={(chatProducts) => {
-        if (chatProducts.length > 0) {
-          setFilteredProducts(chatProducts);
-        }
-      }} />
+      <ModernChatBot onOpenCatalog={() => {}} />
     </div>
   );
 };
