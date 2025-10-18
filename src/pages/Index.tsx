@@ -17,9 +17,10 @@ const Index = () => {
       {/* Partner Section with gradient transition */}
       <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50 -mt-20 pt-24">
         <div className="container mx-auto max-w-4xl">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-12 mb-12">
-            <img src={bazeniPlusLogo} alt="BazeniPlus" className="h-16 object-contain" />
-            <img src={astralPoolLogo} alt="AstralPool" className="h-16 object-contain" />
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
+            <img src={bazeniPlusLogo} alt="BazeniPlus" className="h-14 w-auto object-contain" />
+            <span className="text-3xl font-light text-foreground/60">+</span>
+            <img src={astralPoolLogo} alt="AstralPool" className="h-14 w-auto object-contain" />
           </div>
           <div className="text-center space-y-4">
             <p className="text-lg text-foreground/90 leading-relaxed">
