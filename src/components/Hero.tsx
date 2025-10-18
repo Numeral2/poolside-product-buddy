@@ -22,14 +22,15 @@ const Hero = () => {
         autoPlay
         muted
         playsInline
+        loop
         onEnded={() => setVideoEnded(true)}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
       </video>
       
       {/* Subtle Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-background/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-background/60 z-[1]" />
 
       {/* Hero Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
@@ -57,8 +58,9 @@ const Hero = () => {
             )}
             style={{
               transitionDelay: `${index * 100}ms`,
-              animation: videoEnded ? "float 3s ease-in-out infinite" : "none",
-              animationDelay: `${index * 0.2}s`,
+              ...(videoEnded && {
+                animation: `float 3s ease-in-out infinite ${index * 0.2}s`,
+              }),
             }}
           >
             <div className="flex items-center overflow-hidden rounded-full shadow-2xl hover:shadow-accent/50 transition-all duration-300">
