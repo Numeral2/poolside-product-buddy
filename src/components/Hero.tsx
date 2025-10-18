@@ -16,19 +16,18 @@ const Hero = () => {
   const [videoEnded, setVideoEnded] = useState(false);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-background">
-      {/* Video Background - Smaller and Centered */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <video
-          autoPlay
-          muted
-          playsInline
-          onEnded={() => setVideoEnded(true)}
-          className="w-4/5 h-4/5 object-cover rounded-lg"
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-        </video>
-      </div>
+    <div className="relative h-screen w-full overflow-hidden">
+      {/* Video Background - Positioned to the right */}
+      <video
+        autoPlay
+        muted
+        playsInline
+        onEnded={() => setVideoEnded(true)}
+        className="absolute top-0 right-0 w-full h-full object-cover"
+        style={{ transform: 'translateX(20%)' }}
+      >
+        <source src="/hero-video.mp4" type="video/mp4" />
+      </video>
       
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/60" />
