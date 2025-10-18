@@ -103,11 +103,13 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <ProductCatalog openCategory={selectedCategory} />
+      <Hero onVideoEnd={() => setVideoEnded(true)} />
       
-      {/* Main content with left margin for sidebar */}
-      <div className="ml-72">
-        <Hero onVideoEnd={() => setVideoEnded(true)} />
+      {/* Content with sidebar starting after hero */}
+      <div className="flex">
+        <ProductCatalog openCategory={selectedCategory} />
+        
+        <div className="flex-1">
       {/* Scrolling Categories Section - overlapping video */}
       <div className="relative overflow-hidden py-8 -mt-20 z-20 glass-effect">
         <div className="flex animate-scroll whitespace-nowrap">
@@ -218,7 +220,8 @@ const Index = () => {
         </section>
       )}
 
-        <ModernChatBot onOpenCatalog={openCatalog} />
+          <ModernChatBot onOpenCatalog={openCatalog} />
+        </div>
       </div>
     </div>
   );
