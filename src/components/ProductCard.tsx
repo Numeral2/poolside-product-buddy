@@ -52,7 +52,7 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
           />
         </div>
       )}
-      <CardHeader className="space-y-4 relative z-10">
+      <CardHeader className="space-y-2 relative z-10">
         <div className="flex items-start justify-between gap-3">
           <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
             {displayName}

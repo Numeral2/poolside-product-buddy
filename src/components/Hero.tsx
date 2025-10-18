@@ -26,7 +26,7 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
       <div className="absolute inset-0 z-[1]" style={{ background: "var(--gradient-hero)" }} />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
-        <div className="text-center space-y-6 animate-fade-in">
+        <div className="text-center space-y-3 animate-fade-in">
           <h1 className="text-6xl md:text-8xl font-bold text-center text-white drop-shadow-2xl"
               style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}>
             Zaronite u bazen po mjeri.

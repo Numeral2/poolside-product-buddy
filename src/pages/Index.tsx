@@ -111,7 +111,7 @@ const Index = () => {
       <div className="md:ml-72">
         <Hero onVideoEnd={() => setVideoEnded(true)} />
       {/* Scrolling Categories Section - overlapping video */}
-      <div className="relative overflow-hidden py-8 -mt-20 z-20 glass-effect">
+      <div className="relative overflow-hidden py-6 -mt-20 z-20 glass-effect">
         <div className="flex animate-scroll whitespace-nowrap">
           {[...categories, ...categories].map((category, index) => (
             <Link
@@ -126,9 +126,9 @@ const Index = () => {
       </div>
       
       {/* AI Search Section */}
-      <section className="py-12 px-4 bg-gradient-to-b from-transparent to-muted/30">
+      <section className="py-8 px-4 bg-gradient-to-b from-transparent to-muted/30">
         <div className="container mx-auto max-w-3xl text-center">
-          <p className="text-lg md:text-xl text-foreground/90 mb-6">
+          <p className="text-lg md:text-xl text-foreground/90 mb-4">
             Ponude, cijene i kalkulacije za bazene — uz pomoć AI-a!<br />
             Pronađite sve informacije o bazenima jednostavno i brzo.
           </p>
@@ -146,14 +146,14 @@ const Index = () => {
       </section>
       
       {/* Partner Section */}
-      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">
+      <section className="py-12 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
             <img src={coolpoolLogo} alt="CoolPool" className="h-20 w-auto object-contain" />
             <span className="text-3xl font-light text-foreground/60">+</span>
             <img src={astralPoolLogo} alt="AstralPool" className="h-16 w-auto object-contain" />
           </div>
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-3">
             <p className="text-lg text-foreground/90 leading-relaxed">
               Nudimo izgradnju bazena te proizvode za opremanje bazena.
             </p>
@@ -163,7 +163,7 @@ const Index = () => {
             <p className="text-lg text-foreground/90 leading-relaxed">
               Uz nas dobivate kvalitetu, pouzdan servis i dugotrajan užitak u savršeno funkcionalnom bazenu.
             </p>
-            <div className="flex gap-4 justify-center mt-6">
+            <div className="flex gap-4 justify-center mt-4">
             <button
               onClick={() => openCatalog("Bazeni")}
               className="px-8 py-3 font-semibold text-white shadow-md hover:shadow-lg transition-all"
@@ -184,9 +184,9 @@ const Index = () => {
       </section>
       
       {/* Featured Projects Section - Carousel */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-12 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
+          <h2 className="text-4xl font-bold text-center mb-8">
             Naši Izdvojeni Projekti
           </h2>
           <Carousel
@@ -214,7 +214,7 @@ const Index = () => {
             <CarouselNext className="right-0" />
           </Carousel>
         </div>
-        <div className="text-center mt-12">
+        <div className="text-center mt-8">
           <Link to="/products">
             <Button 
               size="lg" 
@@ -229,9 +229,9 @@ const Index = () => {
       
       {/* AI-Suggested Products Section */}
       {displayedProducts.length > 0 && (
-        <section className="py-16 px-4 bg-muted/30">
+        <section className="py-12 px-4 bg-muted/30">
           <div className="container mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
+            <h2 className="text-3xl font-bold text-center mb-6 text-foreground">
               Products We Think You'll Love
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -251,10 +251,10 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="relative overflow-hidden bg-gradient-to-b from-muted/50 to-muted border-t border-primary/20">
-        <div className="container mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             {/* Logo and Description */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <img src={coolpoolLogo} alt="CoolPool" className="h-20 w-auto object-contain" />
               </div>
@@ -264,7 +264,7 @@ const Index = () => {
             </div>
 
             {/* Social Networks */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <h3 className="text-lg font-bold text-foreground uppercase tracking-wider">
                   Društvene Mreže
@@ -300,14 +300,14 @@ const Index = () => {
             </div>
 
             {/* Working Hours */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <h3 className="text-lg font-bold text-foreground uppercase tracking-wider">
                   Radno Vrijeme
                 </h3>
                 <div className="h-0.5 flex-1 max-w-[60px]" style={{ background: "var(--gradient-water)" }}></div>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {[
                   { day: "Ponedjeljak", hours: "9:00 - 17:00" },
                   { day: "Utorak", hours: "9:00 - 17:00" },
@@ -328,7 +328,7 @@ const Index = () => {
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-primary/20 pt-8">
+          <div className="border-t border-primary/20 pt-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm text-muted-foreground">
                 CoolPool | © {new Date().getFullYear()} | Sva prava pridržana
