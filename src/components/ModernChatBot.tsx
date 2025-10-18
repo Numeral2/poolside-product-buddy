@@ -28,27 +28,39 @@ interface ModernChatBotProps {
 
 const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(() => {
+    // Load chatbot open state from localStorage
+    const saved = localStorage.getItem('chatbotIsOpen');
+    return saved === 'true';
+  });
   const [messages, setMessages] = useState<Message[]>(() => {
     // Load saved conversation from localStorage
     const saved = localStorage.getItem('chatbotMessages');
-    return saved ? JSON.parse(saved) : [];
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    // Add initial greeting message
+    return [{
+      role: "assistant",
+      content: "Pozdrav! 👋 Ja sam vaš AI asistent za bazene.\n\nMogu vam pomoći da:\n• Pronađete pravu opremu za vaš bazen\n• Saznate više o našim proizvodima\n• Dobijete savjet o održavanju bazena\n• Informacije o izgradnji bazena\n\nŠto vas zanima danas?"
+    }];
   });
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [showInitialOptions, setShowInitialOptions] = useState(() => {
-    const saved = localStorage.getItem('chatbotMessages');
-    return !saved || saved === '[]';
-  });
+  const [showInitialOptions, setShowInitialOptions] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Save messages to localStorage whenever they change
   useEffect(() => {
     if (messages.length > 0) {
       localStorage.setItem('chatbotMessages', JSON.stringify(messages));
-      setShowInitialOptions(false);
     }
   }, [messages]);
+
+  // Save isOpen state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('chatbotIsOpen', isOpen.toString());
+  }, [isOpen]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -64,9 +76,13 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
   };
 
   const clearConversation = () => {
-    setMessages([]);
-    setShowInitialOptions(true);
-    localStorage.removeItem('chatbotMessages');
+    const initialMessage: Message = {
+      role: "assistant",
+      content: "Pozdrav! 👋 Ja sam vaš AI asistent za bazene.\n\nMogu vam pomoći da:\n• Pronađete pravu opremu za vaš bazen\n• Saznate više o našim proizvodima\n• Dobijete savjet o održavanju bazena\n• Informacije o izgradnji bazena\n\nŠto vas zanima danas?"
+    };
+    setMessages([initialMessage]);
+    setShowInitialOptions(false);
+    localStorage.setItem('chatbotMessages', JSON.stringify([initialMessage]));
   };
 
   const streamChat = async (userMessages: Message[]) => {
