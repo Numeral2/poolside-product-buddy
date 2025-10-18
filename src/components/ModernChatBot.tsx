@@ -204,34 +204,26 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
         <Button
           onClick={() => setIsOpen(true)}
           size="lg"
-          className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-2xl z-50 group overflow-hidden"
+          className="fixed bottom-6 right-6 h-14 w-14 shadow-lg z-50 group overflow-hidden"
           style={{
-            background: "var(--gradient-ai)",
-            boxShadow: "var(--shadow-ai)",
+            background: "var(--gradient-water)",
           }}
           data-chatbot
         >
-          <div className="relative">
-            <Sparkles className="h-7 w-7 text-white transition-transform group-hover:scale-110 group-hover:rotate-12" />
-            <div className="absolute inset-0 animate-ripple opacity-30">
-              <div className="h-16 w-16 rounded-full border-2 border-white" />
-            </div>
-          </div>
+          <Sparkles className="h-6 w-6 text-white transition-transform group-hover:scale-110" />
         </Button>
       )}
 
       {isOpen && (
         <Card
-          className="fixed bottom-6 right-6 w-[420px] h-[600px] flex flex-col shadow-2xl z-50 border-2 overflow-hidden animate-fade-in"
-          style={{ boxShadow: "var(--shadow-sharp)" }}
+          className="fixed bottom-6 right-6 w-[420px] h-[600px] flex flex-col shadow-lg z-50 border overflow-hidden"
         >
           <div
-            className="p-5 flex items-center justify-between text-white relative overflow-hidden"
-            style={{ background: "var(--gradient-ai)" }}
+            className="p-5 flex items-center justify-between text-white"
+            style={{ background: "var(--gradient-water)" }}
           >
-            <div className="absolute inset-0 animate-shimmer opacity-30" />
-            <div className="flex items-center gap-3 relative z-10">
-              <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 flex items-center justify-center bg-white/20">
                 <Bot className="h-6 w-6" />
               </div>
               <div>
@@ -239,7 +231,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                 <p className="text-xs text-white/80">Uvijek tu za pomoć</p>
               </div>
             </div>
-            <div className="flex gap-2 relative z-10">
+            <div className="flex gap-2">
               {messages.length > 0 && (
                 <Button
                   variant="ghost"
@@ -255,7 +247,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(false)}
-                className="hover:bg-white/20 text-white relative z-10"
+                className="hover:bg-white/20 text-white"
               >
                 <X className="h-5 w-5" />
               </Button>
@@ -264,11 +256,11 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
 
           <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-background">
             {showInitialOptions && messages.length === 0 ? (
-              <div className="space-y-4 animate-fade-in">
+              <div className="space-y-4">
                 <div className="text-center space-y-2">
-                  <div className="inline-flex h-16 w-16 rounded-full items-center justify-center mb-3 animate-glow-pulse"
-                       style={{ background: "var(--gradient-ai)" }}>
-                    <Sparkles className="h-8 w-8 text-white" />
+                  <div className="inline-flex h-14 w-14 items-center justify-center mb-3"
+                       style={{ background: "var(--gradient-water)" }}>
+                    <Sparkles className="h-7 w-7 text-white" />
                   </div>
                   <h4 className="text-xl font-bold text-foreground">Što trebate?</h4>
                   <p className="text-sm text-muted-foreground">Odaberite ili napišite svoju poruku</p>
@@ -304,13 +296,13 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                   <div
                     key={index}
                     className={cn(
-                      "flex animate-fade-in",
+                      "flex",
                       message.role === "user" ? "justify-end" : "justify-start"
                     )}
                   >
                     <div
                       className={cn(
-                        "max-w-[85%] rounded-2xl p-4 shadow-md",
+                        "max-w-[85%] p-4 shadow-sm",
                         message.role === "user"
                           ? "text-white"
                           : "bg-card text-foreground border"
@@ -369,7 +361,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                 ))}
                 {isLoading && (
                   <div className="flex justify-start">
-                    <div className="bg-card rounded-2xl p-4 border">
+                    <div className="bg-card p-4 border">
                       <div className="flex gap-2">
                         <div className="w-2.5 h-2.5 rounded-full animate-bounce" 
                              style={{ background: "var(--gradient-water)" }} />
@@ -399,7 +391,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Napišite vašu poruku..."
                 disabled={isLoading}
-                className="flex-1 border-2 focus:border-primary transition-colors"
+                className="flex-1 border focus:border-primary transition-colors"
               />
               <Button
                 type="submit"
