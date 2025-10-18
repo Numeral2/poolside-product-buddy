@@ -128,34 +128,37 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Featured Projects Section */}
-      <section className="py-16 px-4 bg-muted/30">
-        <div className="container mx-auto">
+      {/* Featured Projects Section - Horizontal Scroll */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">
             Naši Izdvojeni Projekti
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        </div>
+        <div className="overflow-x-auto scrollbar-hide px-4">
+          <div className="flex gap-6 pb-4" style={{ width: "max-content" }}>
             {featuredProjects.map((project) => (
-              <ProductCard 
-                key={project.id} 
-                name={project.name}
-                description={project.description}
-                category={project.category}
-                image={project.image}
-              />
+              <div key={project.id} className="w-[400px] flex-shrink-0">
+                <ProductCard 
+                  name={project.name}
+                  description={project.description}
+                  category={project.category}
+                  image={project.image}
+                />
+              </div>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Link to="/products">
-              <Button 
-                size="lg" 
-                className="text-white font-bold shadow-lg hover:scale-105 transition-all duration-300 text-lg px-8 py-6"
-                style={{ background: "var(--gradient-water)", boxShadow: "var(--shadow-float)" }}
-              >
-                Pogledajte Sve Proizvode
-              </Button>
-            </Link>
-          </div>
+        </div>
+        <div className="text-center mt-12">
+          <Link to="/products">
+            <Button 
+              size="lg" 
+              className="text-white font-bold shadow-lg hover:scale-105 transition-all duration-300 text-lg px-8 py-6"
+              style={{ background: "var(--gradient-water)", boxShadow: "var(--shadow-float)" }}
+            >
+              Pogledajte Sve Proizvode
+            </Button>
+          </Link>
         </div>
       </section>
       

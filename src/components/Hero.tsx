@@ -26,11 +26,6 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
         <div className="text-center space-y-6 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect mb-4">
-            <Sparkles className="h-5 w-5 text-primary animate-glow-pulse" />
-            <span className="text-sm font-semibold text-foreground">AI-Powered Pool Solutions</span>
-          </div>
-          
           <h1 className="text-6xl md:text-8xl font-bold text-center text-white drop-shadow-2xl"
               style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}>
             Dive into Excellence
@@ -46,11 +41,10 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
                 const chatbot = document.querySelector('[data-chatbot]');
                 if (chatbot instanceof HTMLElement) chatbot.click();
               }}
-              className="px-8 py-4 rounded-full font-semibold text-lg text-white shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-3 group"
-              style={{ background: "var(--gradient-ai)", boxShadow: "var(--shadow-ai)" }}
+              className="px-6 py-3 rounded-full font-semibold text-base text-white shadow-md hover:scale-105 transition-all duration-300 flex items-center gap-2 group bg-primary/90 hover:bg-primary"
             >
-              <Sparkles className="h-6 w-6 group-hover:rotate-12 transition-transform" />
-              Započni s AI Asistentom
+              <Sparkles className="h-5 w-5 group-hover:rotate-12 transition-transform" />
+              AI Asistent
             </button>
           </div>
         </div>
