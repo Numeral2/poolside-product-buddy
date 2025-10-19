@@ -65,7 +65,7 @@ const Navigation = () => {
             to="/izgradnja" 
             className="text-sm text-foreground hover:text-primary transition-colors font-medium hidden md:block"
           >
-            Izgradnja
+            Izgradnja bazena
           </Link>
           
           <DropdownMenu>
@@ -76,18 +76,18 @@ const Navigation = () => {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-64 bg-background z-50">
-              <DropdownMenuLabel className="text-primary font-bold">Izgradnja bazena</DropdownMenuLabel>
+              <DropdownMenuLabel className="text-primary font-bold">Projekti</DropdownMenuLabel>
               <DropdownMenuItem asChild>
-                <Link to="/products?category=Bazeni" className="w-full cursor-pointer">Bazeni</Link>
+                <Link to="/projekti" className="w-full cursor-pointer">Bazeni</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/products?category=SPA kade" className="w-full cursor-pointer">SPA kade</Link>
+                <Link to="/projekti" className="w-full cursor-pointer">SPA kade</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/products?category=Saune" className="w-full cursor-pointer">Saune</Link>
+                <Link to="/projekti" className="w-full cursor-pointer">Saune</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/products?category=Laghetto" className="w-full cursor-pointer">Laghetto</Link>
+                <Link to="/projekti" className="w-full cursor-pointer">Laghetto</Link>
               </DropdownMenuItem>
               
               <DropdownMenuSeparator />
