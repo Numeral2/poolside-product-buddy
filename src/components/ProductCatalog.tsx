@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronRight, Package, Wrench, Droplets, Sun, Shield, X, FolderOpen } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronRight, Package, Wrench, Droplets, Sun, Shield, FolderOpen } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
@@ -16,11 +15,6 @@ const catalogSections: CatalogSection[] = [
   {
     title: "Projekti",
     icon: FolderOpen,
-    categories: ["Bazeni"]
-  },
-  {
-    title: "Izgradnja",
-    icon: Package,
     categories: ["Bazeni", "SPA kade", "Saune", "Laghetto"]
   },
   {
@@ -85,6 +79,18 @@ const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
 
       <ScrollArea className="flex-1">
         <div className="p-3 space-y-2">
+            <Link to="/izgradnja" className="block">
+              <button className="w-full flex items-center justify-between p-2 hover:bg-muted transition-colors group">
+                <div className="flex items-center gap-2">
+                  <div className="h-7 w-7 flex items-center justify-center"
+                       style={{ background: "var(--gradient-water)" }}>
+                    <Package className="h-3.5 w-3.5 text-white" />
+                  </div>
+                  <span className="font-semibold text-sm text-foreground">Izgradnja</span>
+                </div>
+              </button>
+            </Link>
+
             {catalogSections.map((section) => {
               const Icon = section.icon;
               const isExpanded = expandedSection === section.title;
@@ -115,7 +121,7 @@ const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
                       {section.categories.map((category) => (
                         <Link
                           key={category}
-                          to={section.title === "Projekti" ? `/projekti` : `/products?category=${encodeURIComponent(category)}`}
+                          to={section.title === "Projekti" ? `/projekti?category=${encodeURIComponent(category)}` : `/products?category=${encodeURIComponent(category)}`}
                           className={cn(
                             "block px-3 py-1.5 text-xs text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors",
                             openCategory?.toLowerCase() === category.toLowerCase() && "bg-primary/10 text-primary font-medium"
