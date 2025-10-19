@@ -4,10 +4,20 @@ import Navigation from "@/components/Navigation";
 import ProductCard, { ProductVariant } from "@/components/ProductCard";
 import ModernChatBot from "@/components/ModernChatBot";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2 } from "lucide-react";
+import { Loader2, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import projectBelEtage from "@/assets/project-bel-etage.png";
+import projectBrela from "@/assets/project-brela.png";
+import projectCamping from "@/assets/project-camping.png";
+import projectDamianii from "@/assets/project-damianii.png";
+import projectGava from "@/assets/project-gava.png";
+import projectLokva from "@/assets/project-lokva.png";
+import projectMarina from "@/assets/project-marina.png";
+import projectDuce from "@/assets/project-duce.png";
+import projectMakarska from "@/assets/project-makarska.png";
 
 interface Product {
   id: string;
@@ -40,6 +50,7 @@ const Products = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
   const [minPrice, setMinPrice] = useState<string>("0");
   const [maxPrice, setMaxPrice] = useState<string>("10000");
+  const [selectedProject, setSelectedProject] = useState<{ title: string; location: string; image: string } | null>(null);
 
   const categories = [
     "Bazeni", "SPA kade", "Saune", "Laghetto", "Filteri", "Pumpe", 
@@ -181,6 +192,72 @@ const Products = () => {
     return groupProducts(filteredProducts);
   }, [filteredProducts]);
 
+  const projectImages = [
+    {
+      id: 1,
+      title: "Bel Etage Split",
+      description: "Luksuzni infinity bazen s panoramskim pogledom",
+      image: projectBelEtage,
+      location: "Split",
+    },
+    {
+      id: 2,
+      title: "Vila Brela",
+      description: "Elegantni privatni bazen s pogledom na more",
+      image: projectBrela,
+      location: "Brela",
+    },
+    {
+      id: 3,
+      title: "Camping Split",
+      description: "Moderni javni bazeni za kampiste",
+      image: projectCamping,
+      location: "Camping Split",
+    },
+    {
+      id: 4,
+      title: "Hotel Damianii",
+      description: "Luksuzni hotelski bazen uz obalu",
+      image: projectDamianii,
+      location: "Duće",
+    },
+    {
+      id: 5,
+      title: "Gava Resort",
+      description: "Premium resort bazen s hidromasažom",
+      image: projectGava,
+      location: "Milna",
+    },
+    {
+      id: 6,
+      title: "Lokva Rogoznica",
+      description: "Spektakularni infinity bazen uz kamp",
+      image: projectLokva,
+      location: "Lokva Rogoznica",
+    },
+    {
+      id: 7,
+      title: "Marina Residences",
+      description: "Ekskluzivni privatni bazen s pogledom na marinu",
+      image: projectMarina,
+      location: "Marina",
+    },
+    {
+      id: 8,
+      title: "Duće Riviera",
+      description: "Luksuzni krovni bazeni s pogledom na more",
+      image: projectDuce,
+      location: "Duće",
+    },
+    {
+      id: 9,
+      title: "Makarska Premium",
+      description: "Moderna vila s rooftop infinity bazenom",
+      image: projectMakarska,
+      location: "Makarska",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -246,24 +323,60 @@ const Products = () => {
           </div>
         </div>
 
-        {isLoading ? (
+{isLoading ? (
           <div className="flex justify-center items-center py-20">
             <Loader2 className="h-12 w-12 animate-spin text-primary" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {groupedProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                name={product.name}
-                description={product.description}
-                price={product.price}
-                category={product.category}
-                image={product.image}
-                variants={product.variants}
-              />
-            ))}
-          </div>
+          <>
+            {/* Project Images Section - Only show when Bazeni category is selected */}
+            {selectedCategory === "Bazeni" && (
+              <div className="mb-12">
+                <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+                  Naši Realizirani Projekti
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                  {projectImages.map((project) => (
+                    <div 
+                      key={project.id}
+                      className="group relative overflow-hidden rounded-lg border border-primary/20 hover:border-primary/50 transition-all cursor-pointer"
+                      onClick={() => setSelectedProject(project)}
+                    >
+                      <div className="aspect-[4/3] overflow-hidden">
+                        <img 
+                          src={project.image} 
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="p-6 bg-card">
+                        <div className="flex items-start justify-between gap-2 mb-2">
+                          <h3 className="text-xl font-bold">{project.title}</h3>
+                          <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
+                        </div>
+                        <p className="text-foreground/70">{project.description}</p>
+                        <p className="text-sm text-primary mt-2 font-medium">{project.location}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {groupedProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  name={product.name}
+                  description={product.description}
+                  price={product.price}
+                  category={product.category}
+                  image={product.image}
+                  variants={product.variants}
+                />
+              ))}
+            </div>
+          </>
         )}
 
         {!isLoading && groupedProducts.length === 0 && (
@@ -274,6 +387,32 @@ const Products = () => {
       </div>
 
       <ModernChatBot onOpenCatalog={() => {}} />
+
+      {/* Project Location Dialog */}
+      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+        <DialogContent className="max-w-3xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-2xl">
+              <MapPin className="h-6 w-6 text-primary" />
+              {selectedProject?.title}
+            </DialogTitle>
+          </DialogHeader>
+          {selectedProject && (
+            <div className="space-y-4">
+              <img 
+                src={selectedProject.image} 
+                alt={selectedProject.title}
+                className="w-full h-auto rounded-lg"
+              />
+              <div className="flex items-center gap-2 text-lg">
+                <MapPin className="h-5 w-5 text-primary" />
+                <span className="font-semibold">Lokacija:</span>
+                <span className="text-primary">{selectedProject.location}</span>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
