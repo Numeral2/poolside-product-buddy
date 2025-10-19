@@ -131,8 +131,10 @@ const Izgradnja = () => {
                 className="text-white font-bold shadow-md hover:shadow-lg transition-all duration-300"
                 style={{ background: "var(--gradient-water)" }}
                 onClick={() => {
-                  const chatbot = document.querySelector('[data-chatbot]');
-                  if (chatbot instanceof HTMLElement) chatbot.click();
+                  const contactSection = document.getElementById('contact-form');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
                 }}
               >
                 Zatražite Ponudu
@@ -319,7 +321,7 @@ const Izgradnja = () => {
         </section>
 
         {/* Contact Form Section */}
-        <section className="py-16 px-4 bg-gradient-to-b from-muted/30 to-transparent">
+        <section id="contact-form" className="py-16 px-4 bg-gradient-to-b from-muted/30 to-transparent">
           <div className="container mx-auto max-w-3xl">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">

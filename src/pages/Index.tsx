@@ -270,12 +270,21 @@ const Index = () => {
             <CarouselNext className="right-0" />
           </Carousel>
         </div>
-        <div className="text-center mt-8">
-          <Link to="/products">
+        <div className="text-center mt-8 flex flex-wrap gap-4 justify-center">
+          <Link to="/izgradnja">
             <Button 
               size="lg" 
               className="text-white font-bold shadow-md hover:shadow-lg transition-all duration-300 text-lg px-8 py-6"
               style={{ background: "var(--gradient-water)" }}
+            >
+              Zatražite Ponudu
+            </Button>
+          </Link>
+          <Link to="/products">
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="font-bold text-lg px-8 py-6"
             >
               Pogledajte Sve Proizvode
             </Button>
