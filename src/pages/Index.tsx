@@ -236,6 +236,25 @@ const Index = () => {
               </div>
             </button>
           </div>
+          
+          {/* AI Section */}
+          <div className="mt-12 text-center max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/90 leading-relaxed mb-6">
+              Saznajte sve o bazenima i opremanju uz naš AI te otkrijte proizvode koji najbolje odgovaraju vašem bazenu.
+            </p>
+            <Button
+              onClick={() => {
+                const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
+                if (chatbot) chatbot.click();
+              }}
+              size="lg"
+              className="text-white text-lg px-8 py-6 h-auto"
+              style={{ background: "var(--gradient-water)" }}
+            >
+              <Sparkles className="mr-2 h-5 w-5" />
+              Razgovarajte s AI
+            </Button>
+          </div>
         </div>
       </section>
       

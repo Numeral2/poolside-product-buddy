@@ -3,7 +3,7 @@ import { ChevronRight, Package, Wrench, Droplets, Sun, Shield, FolderOpen } from
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import PhCalculator from "@/components/PhCalculator";
+
 
 interface CatalogSection {
   title: string;
@@ -137,7 +137,7 @@ const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
             })}
         </div>
 
-        <PhCalculator />
+        
       </ScrollArea>
     </div>
   );
