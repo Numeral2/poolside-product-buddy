@@ -46,7 +46,7 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
                 if (chatbot instanceof HTMLElement) chatbot.click();
               }}
               className="px-6 py-3 rounded-full font-semibold text-base text-white shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center gap-2 group"
-              style={{ background: "rgba(255, 255, 255, 0.25)", backdropFilter: "blur(10px)" }}
+              style={{ background: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.3)" }}
             >
               <Search className="h-5 w-5 group-hover:scale-110 transition-transform" />
               AI Tražilica
