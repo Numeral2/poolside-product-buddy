@@ -1,7 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCatalog from "@/components/ProductCatalog";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,8 +19,7 @@ import sauna from "@/assets/sauna.png";
 import laghetto from "@/assets/laghetto.png";
 
 const Projekti = () => {
-  const [searchParams] = useSearchParams();
-  const category = searchParams.get("category") || "Bazeni";
+  const [activeCategory, setActiveCategory] = useState<string>("Bazeni");
   const [selectedProject, setSelectedProject] = useState<{ title: string; location: string; image: string } | null>(null);
 
   const allProjects = {
@@ -119,7 +117,7 @@ const Projekti = () => {
     ],
   };
 
-  const currentProjects = allProjects[category as keyof typeof allProjects] || allProjects["Bazeni"];
+  const currentProjects = allProjects[activeCategory as keyof typeof allProjects] || allProjects["Bazeni"];
 
   return (
     <div className="min-h-screen bg-background">
@@ -145,18 +143,18 @@ const Projekti = () => {
         {/* Projects Tabs */}
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl">
-            <Tabs value={category} className="w-full">
+            <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
               <TabsList className="grid w-full grid-cols-4 mb-8">
-                <TabsTrigger value="Bazeni" onClick={() => window.location.href = "/projekti?category=Bazeni"}>
+                <TabsTrigger value="Bazeni">
                   Bazeni
                 </TabsTrigger>
-                <TabsTrigger value="SPA kade" onClick={() => window.location.href = "/projekti?category=SPA kade"}>
+                <TabsTrigger value="SPA kade">
                   SPA Kade
                 </TabsTrigger>
-                <TabsTrigger value="Saune" onClick={() => window.location.href = "/projekti?category=Saune"}>
+                <TabsTrigger value="Saune">
                   Saune
                 </TabsTrigger>
-                <TabsTrigger value="Laghetto" onClick={() => window.location.href = "/projekti?category=Laghetto"}>
+                <TabsTrigger value="Laghetto">
                   Laghetto
                 </TabsTrigger>
               </TabsList>
