@@ -271,7 +271,7 @@ const Index = () => {
           </Carousel>
         </div>
         <div className="text-center mt-8 flex flex-wrap gap-4 justify-center">
-          <Link to="/izgradnja">
+          <Link to="/izgradnja#contact-form">
             <Button 
               size="lg" 
               className="text-white font-bold shadow-md hover:shadow-lg transition-all duration-300 text-lg px-8 py-6"
