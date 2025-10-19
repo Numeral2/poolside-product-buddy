@@ -130,6 +130,78 @@ const Izgradnja = () => {
           </div>
         </section>
 
+        {/* Construction Process Section */}
+        <section className="py-16 px-4 bg-gradient-to-b from-transparent to-muted/30">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">
+              Proces Izgradnje Bazena
+            </h2>
+            <p className="text-lg text-center text-foreground/80 mb-12 max-w-3xl mx-auto">
+              Izgradnja bazena počinje kvalitetnim planiranjem i završava preciznom izvedbom. 
+              Cijeli proces obuhvaća nekoliko ključnih faza:
+            </p>
+            
+            <div className="space-y-6">
+              {[
+                {
+                  number: "01",
+                  title: "Planiranje i projektiranje",
+                  description: "Definiraju se dimenzije, oblik i pozicija bazena te priprema tehnička dokumentacija i izbor materijala."
+                },
+                {
+                  number: "02",
+                  title: "Iskop i priprema terena",
+                  description: "Provodi se iskop, izravnavanje i priprema podloge uz postavljanje drenaže i armature."
+                },
+                {
+                  number: "03",
+                  title: "Izrada konstrukcije",
+                  description: "Ovisno o tipu bazena (betonski, panelni, folijski), gradi se osnovna struktura koja osigurava čvrstoću i dugotrajnost."
+                },
+                {
+                  number: "04",
+                  title: "Instalacije i hidroizolacija",
+                  description: "Ugrađuju se sustavi za filtraciju, cirkulaciju, rasvjetu i grijanje, a zatim se izvodi hidroizolacija."
+                },
+                {
+                  number: "05",
+                  title: "Završni radovi",
+                  description: "Postavlja se završna obloga – keramika, mozaik ili PVC folija – te se bazen puni vodom i testira."
+                }
+              ].map((step) => (
+                <div 
+                  key={step.number}
+                  className="glass-effect border border-primary/20 p-6 md:p-8 rounded-lg hover:border-primary/40 transition-all group"
+                >
+                  <div className="flex flex-col md:flex-row gap-6 items-start">
+                    <div 
+                      className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-white shadow-lg group-hover:scale-110 transition-transform"
+                      style={{ background: "var(--gradient-water)" }}
+                    >
+                      {step.number}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground">
+                        {step.title}
+                      </h3>
+                      <p className="text-foreground/80 text-base md:text-lg leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <p className="text-lg md:text-xl text-foreground/90 max-w-3xl mx-auto leading-relaxed font-medium">
+                Rezultat je bazen koji kombinira funkcionalnost, estetiku i dugovječnost – 
+                spreman za uživanje dugi niz godina.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Pool Types Section */}
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl">
