@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-import { Filter, Flame, Sparkles, Sun, TestTube, Shield, Search } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Search } from "lucide-react";
 
 interface HeroProps {
   onVideoEnd: () => void;
@@ -26,7 +24,7 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
       <div className="absolute inset-0 z-[1]" style={{ background: "var(--gradient-hero)" }} />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
-        <div className="text-center space-y-3 animate-fade-in">
+        <div className="text-center space-y-6 animate-fade-in max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold text-center text-white drop-shadow-2xl"
               style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}>
             Zaronite u bazen po mjeri.
@@ -35,6 +33,25 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
           <p className="text-lg md:text-2xl text-center text-white/95 max-w-3xl mx-auto drop-shadow-lg font-light">
             Najkvalitetnija bazenska oprema i izgradnja bazena na jednom mjestu
           </p>
+          
+          {/* AI Search */}
+          <div className="mt-8">
+            <p className="text-base md:text-lg text-white/95 mb-4 drop-shadow-lg">
+              Ponude, cijene i kalkulacije za bazene — uz pomoć AI-a!<br />
+              Pronađite sve informacije o bazenima jednostavno i brzo.
+            </p>
+            <button
+              onClick={() => {
+                const chatbot = document.querySelector('[data-chatbot]');
+                if (chatbot instanceof HTMLElement) chatbot.click();
+              }}
+              className="px-6 py-3 rounded-full font-semibold text-base text-white shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center gap-2 group"
+              style={{ background: "rgba(255, 255, 255, 0.25)", backdropFilter: "blur(10px)" }}
+            >
+              <Search className="h-5 w-5 group-hover:scale-110 transition-transform" />
+              AI Tražilica
+            </button>
+          </div>
         </div>
       </div>
     </div>

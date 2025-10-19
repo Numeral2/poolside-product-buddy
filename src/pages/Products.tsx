@@ -5,6 +5,9 @@ import ProductCard, { ProductVariant } from "@/components/ProductCard";
 import ModernChatBot from "@/components/ModernChatBot";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface Product {
   id: string;
@@ -26,12 +29,25 @@ interface GroupedProduct {
 }
 
 const Products = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category");
   const fromChat = searchParams.get("fromChat");
+  const searchQuery = searchParams.get("search");
   const [products, setProducts] = useState<any[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string>(category || "all");
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
+  const [minPrice, setMinPrice] = useState<string>("0");
+  const [maxPrice, setMaxPrice] = useState<string>("10000");
+
+  const categories = [
+    "Bazeni", "SPA kade", "Saune", "Laghetto", "Filteri", "Pumpe", 
+    "Skimmeri", "Osnovna i ABS oprema", "PVC cijevi i fitinzi", "Rasvjeta",
+    "Kemikalije", "Pribor za čišćenje", "Mozaik", "Materijal za oblaganje",
+    "Doziranje i elektronika", "Efekti", "Inox ljestve", "Prekrivači",
+    "Grijanje", "Roboti"
+  ];
 
   useEffect(() => {
     // Check if we have products from chatbot
@@ -54,14 +70,46 @@ const Products = () => {
   }, [fromChat]);
 
   useEffect(() => {
-    // Only filter if products weren't loaded from chatbot
-    if (fromChat !== "true" && category && products.length > 0) {
-      const filtered = products.filter(p => p.category === category);
-      setFilteredProducts(filtered);
-    } else if (fromChat !== "true") {
-      setFilteredProducts(products);
+    if (fromChat === "true") return;
+    
+    let filtered = [...products];
+    
+    // Category filter
+    if (selectedCategory && selectedCategory !== "all") {
+      filtered = filtered.filter(p => p.category === selectedCategory);
     }
-  }, [category, products, fromChat]);
+    
+    // Price filter
+    filtered = filtered.filter(p => p.price >= priceRange[0] && p.price <= priceRange[1]);
+    
+    // Search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(p => 
+        p.name.toLowerCase().includes(query) || 
+        p.description.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+      );
+    }
+    
+    setFilteredProducts(filtered);
+  }, [category, products, fromChat, selectedCategory, priceRange, searchQuery]);
+
+  const handleCategoryChange = (value: string) => {
+    setSelectedCategory(value);
+    if (value === "all") {
+      searchParams.delete("category");
+    } else {
+      searchParams.set("category", value);
+    }
+    setSearchParams(searchParams);
+  };
+
+  const handlePriceFilter = () => {
+    const min = parseFloat(minPrice) || 0;
+    const max = parseFloat(maxPrice) || 10000;
+    setPriceRange([min, max]);
+  };
 
   const fetchProducts = async () => {
     try {
@@ -138,13 +186,64 @@ const Products = () => {
       <Navigation />
       
       <div className="container mx-auto px-4 pt-24 pb-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {category ? category : "All Products"}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            {searchQuery ? `Rezultati pretrage: "${searchQuery}"` : 
+             category ? category : "Svi Proizvodi"}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore our premium selection of pool equipment and accessories
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+            Istražite našu premium ponudu bazenske opreme i dodataka
           </p>
+        </div>
+
+        {/* Filters */}
+        <div className="mb-8 p-4 glass-effect border border-primary/20 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Category Filter */}
+            <div>
+              <label className="text-sm font-semibold mb-2 block">Kategorija</label>
+              <Select value={selectedCategory} onValueChange={handleCategoryChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Sve kategorije" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Sve kategorije</SelectItem>
+                  {categories.map(cat => (
+                    <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Price Filter */}
+            <div className="md:col-span-2">
+              <label className="text-sm font-semibold mb-2 block">Raspon cijena (€)</label>
+              <div className="flex gap-2 items-end">
+                <div className="flex-1">
+                  <Input
+                    type="number"
+                    placeholder="Min"
+                    value={minPrice}
+                    onChange={(e) => setMinPrice(e.target.value)}
+                    className="h-9"
+                  />
+                </div>
+                <span className="text-muted-foreground">-</span>
+                <div className="flex-1">
+                  <Input
+                    type="number"
+                    placeholder="Max"
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                    className="h-9"
+                  />
+                </div>
+                <Button onClick={handlePriceFilter} size="sm" className="h-9">
+                  Filtriraj
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {isLoading ? (
@@ -169,7 +268,7 @@ const Products = () => {
 
         {!isLoading && groupedProducts.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-lg text-muted-foreground">No products found.</p>
+            <p className="text-lg text-muted-foreground">Nema pronađenih proizvoda.</p>
           </div>
         )}
       </div>

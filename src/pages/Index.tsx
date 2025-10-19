@@ -126,102 +126,121 @@ const Index = () => {
         </div>
       </div>
       
-      {/* AI Search Section */}
-      <section className="py-6 px-4 bg-gradient-to-b from-transparent to-muted/30">
-        <div className="container mx-auto max-w-3xl text-center">
-          <p className="text-base md:text-lg text-foreground/90 mb-3">
-            Ponude, cijene i kalkulacije za bazene — uz pomoć AI-a!<br />
-            Pronađite sve informacije o bazenima jednostavno i brzo.
-          </p>
-          <button
-            onClick={() => {
-              const chatbot = document.querySelector('[data-chatbot]');
-              if (chatbot instanceof HTMLElement) chatbot.click();
-            }}
-            className="px-8 py-3 rounded-full font-semibold text-base text-white shadow-md hover:scale-105 transition-all duration-300 inline-flex items-center gap-2 group bg-primary/90 hover:bg-primary"
-          >
-            <Search className="h-5 w-5 group-hover:scale-110 transition-transform" />
-            AI Tražilica
-          </button>
-        </div>
-      </section>
-      
-      {/* Partner Section */}
-      <section className="py-8 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">
-        <div className="container mx-auto max-w-4xl">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+      {/* Stats Section with Partners */}
+      <section className="py-12 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
+        <div className="container mx-auto max-w-5xl">
+          {/* Partner Logos */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-12">
             <img src={coolpoolLogo} alt="CoolPool" className="h-16 w-auto object-contain" />
             <span className="text-2xl font-light text-foreground/60">+</span>
             <img src={astralPoolLogo} alt="AstralPool" className="h-14 w-auto object-contain" />
           </div>
-          <div className="text-center space-y-4">
-            <div className="space-y-2">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                18+ godina s Vama
-              </h2>
-              <h3 className="text-2xl md:text-3xl font-bold text-primary">
-                1000+ izgrađenih bazena
-              </h3>
-            </div>
-            
-            <div className="max-w-3xl mx-auto space-y-3">
-              <p className="text-lg text-foreground/90 leading-relaxed font-medium">
-                Nudimo izgradnju bazena te proizvode za opremanje bazena.
-              </p>
-              <p className="text-base text-foreground/80 leading-relaxed">
-                Od 2006. godine specijalizirani smo za izgradnju i opremanje bazena. Kao glavni partner AstralPool Fluidra Group u Dalmaciji, nudimo vrhunsku opremu, profesionalnu ugradnju i potpunu tehničku podršku.
-              </p>
-              <p className="text-base text-foreground/80 leading-relaxed">
-                Uz nas dobivate kvalitetu, pouzdan servis i dugotrajan užitak u savršeno funkcionalnom bazenu.
-              </p>
-            </div>
-            
-            <div className="flex gap-4 justify-center mt-6 flex-wrap">
-              <Link to="/izgradnja">
-                <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[240px] h-[180px] cursor-pointer">
-                  <img 
-                    src={pool1} 
-                    alt="Izgradnja bazena" 
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div 
-                    className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity"
-                    style={{ background: "var(--gradient-water)" }}
-                  />
-                  <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-4">
-                    <span className="text-2xl mb-2">🏗️</span>
-                    <span className="text-xl font-bold">Izgradnja</span>
-                    <span className="text-xs mt-1 opacity-90">Saznajte više</span>
-                  </div>
-                </div>
-              </Link>
-              
-              <button
-                onClick={() => openCatalog("Filteri")}
-                className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[240px] h-[180px]"
+          
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="text-center p-6">
+              <div 
+                className="text-5xl font-bold mb-3"
+                style={{ 
+                  background: "var(--gradient-water)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}
               >
+                18+
+              </div>
+              <p className="text-lg font-semibold">Godina Iskustva</p>
+            </div>
+            <div className="text-center p-6">
+              <div 
+                className="text-5xl font-bold mb-3"
+                style={{ 
+                  background: "var(--gradient-water)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}
+              >
+                1000+
+              </div>
+              <p className="text-lg font-semibold">Izgrađenih Bazena</p>
+            </div>
+            <div className="text-center p-6">
+              <div 
+                className="text-5xl font-bold mb-3"
+                style={{ 
+                  background: "var(--gradient-water)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}
+              >
+                100%
+              </div>
+              <p className="text-lg font-semibold">Zadovoljnih Klijenata</p>
+            </div>
+          </div>
+          
+          {/* Description */}
+          <div className="text-center max-w-3xl mx-auto space-y-3 mb-8">
+            <p className="text-lg text-foreground/90 leading-relaxed font-medium">
+              Nudimo izgradnju bazena te proizvode za opremanje bazena.
+            </p>
+            <p className="text-base text-foreground/80 leading-relaxed">
+              Od 2006. godine specijalizirani smo za izgradnju i opremanje bazena. Kao glavni partner AstralPool Fluidra Group u Dalmaciji, nudimo vrhunsku opremu, profesionalnu ugradnju i potpunu tehničku podršku.
+            </p>
+            <p className="text-base text-foreground/80 leading-relaxed">
+              Uz nas dobivate kvalitetu, pouzdan servis i dugotrajan užitak u savršeno funkcionalnom bazenu.
+            </p>
+          </div>
+          
+          {/* CTA Cards */}
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Link to="/izgradnja">
+              <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[240px] h-[180px] cursor-pointer">
                 <img 
-                  src={filter1} 
-                  alt="Oprema za bazene" 
+                  src={pool1} 
+                  alt="Izgradnja bazena" 
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div 
                   className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity"
-                  style={{ background: "var(--gradient-water-deep)" }}
+                  style={{ background: "var(--gradient-water)" }}
                 />
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-4">
-                  <span className="text-2xl mb-2">⚙️</span>
-                  <span className="text-xl font-bold">Oprema</span>
-                  <span className="text-xs mt-1 opacity-90">Pregledajte katalog</span>
+                  <span className="text-2xl mb-2">🏗️</span>
+                  <span className="text-xl font-bold">Izgradnja</span>
+                  <span className="text-xs mt-1 opacity-90">Saznajte više</span>
                 </div>
-              </button>
-            </div>
+              </div>
+            </Link>
+            
+            <button
+              onClick={() => openCatalog("Filteri")}
+              className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[240px] h-[180px]"
+            >
+              <img 
+                src={filter1} 
+                alt="Oprema za bazene" 
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div 
+                className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity"
+                style={{ background: "var(--gradient-water-deep)" }}
+              />
+              <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-4">
+                <span className="text-2xl mb-2">⚙️</span>
+                <span className="text-xl font-bold">Oprema</span>
+                <span className="text-xs mt-1 opacity-90">Pregledajte katalog</span>
+              </div>
+            </button>
           </div>
         </div>
       </section>
       
       {/* Featured Projects Section - Carousel */}
-      <section className="py-8 bg-muted/30">
+      <section className="py-8 bg-transparent">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-6">
             Naši Izdvojeni Projekti

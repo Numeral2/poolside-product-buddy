@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, ChevronDown, ShoppingCart } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Menu, ChevronDown, ShoppingCart, Search } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +16,15 @@ import coolpoolLogo from "@/assets/coolpool-logo.png";
 
 const Navigation = () => {
   const { totalItems } = useCart();
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md border-b border-border/50 shadow-sm">
@@ -22,7 +33,20 @@ const Navigation = () => {
           <img src={coolpoolLogo} alt="CoolPool" className="h-10 w-auto object-contain" />
         </Link>
         
-        <div className="flex items-center gap-6 ml-auto">
+        <div className="flex items-center gap-4 ml-auto">
+          {/* Search Bar */}
+          <form onSubmit={handleSearch} className="hidden lg:flex items-center gap-2">
+            <div className="relative">
+              <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Pretraži proizvode..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-8 w-48 h-8 text-sm"
+              />
+            </div>
+          </form>
           <Link 
             to="/" 
             className="text-sm text-foreground hover:text-primary transition-colors font-medium hidden md:block"
