@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronRight, Package, Wrench, Droplets, Sun, Shield, X } from "lucide-react";
+import { ChevronRight, Package, Wrench, Droplets, Sun, Shield, X, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,11 @@ interface CatalogSection {
 }
 
 const catalogSections: CatalogSection[] = [
+  {
+    title: "Projekti",
+    icon: FolderOpen,
+    categories: ["Bazeni"]
+  },
   {
     title: "Izgradnja",
     icon: Package,
@@ -110,7 +115,7 @@ const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
                       {section.categories.map((category) => (
                         <Link
                           key={category}
-                          to={`/products?category=${encodeURIComponent(category)}`}
+                          to={section.title === "Projekti" ? `/projekti` : `/products?category=${encodeURIComponent(category)}`}
                           className={cn(
                             "block px-3 py-1.5 text-xs text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors",
                             openCategory?.toLowerCase() === category.toLowerCase() && "bg-primary/10 text-primary font-medium"
