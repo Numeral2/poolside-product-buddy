@@ -154,40 +154,67 @@ const Index = () => {
             <span className="text-3xl font-light text-foreground/60">+</span>
             <img src={astralPoolLogo} alt="AstralPool" className="h-16 w-auto object-contain" />
           </div>
-          <div className="text-center space-y-2">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              18+ godina s Vama i 1000+ izgrađenih bazena.
-            </h2>
-            <p className="text-lg text-foreground/90 leading-relaxed">
-              Nudimo izgradnju bazena te proizvode za opremanje bazena.
-            </p>
-            <p className="text-lg text-foreground/90 leading-relaxed">
-              Od 2006. godine specijalizirani smo za izgradnju i opremanje bazena. Kao glavni partner AstralPool Fluidra Group u Dalmaciji, nudimo vrhunsku opremu, profesionalnu ugradnju i potpunu tehničku podršku.
-            </p>
-            <p className="text-lg text-foreground/90 leading-relaxed">
-              Uz nas dobivate kvalitetu, pouzdan servis i dugotrajan užitak u savršeno funkcionalnom bazenu.
-            </p>
-            <div className="flex gap-4 justify-center mt-6 flex-wrap">
-            <button
-              onClick={() => openCatalog("Bazeni")}
-              className="relative overflow-hidden px-8 py-3 font-semibold text-white shadow-md hover:shadow-lg transition-all hover:scale-105 group min-w-[200px] h-[120px] flex items-center justify-center"
-              style={{ background: "var(--gradient-water)" }}
-            >
-              <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
-                <img src={pool1} alt="" className="w-full h-full object-cover" />
-              </div>
-              <span className="relative z-10 text-xl">Izgradnja</span>
-            </button>
-            <button
-              onClick={() => openCatalog("Filteri")}
-              className="relative overflow-hidden px-8 py-3 font-semibold text-white shadow-md hover:shadow-lg transition-all hover:scale-105 group min-w-[200px] h-[120px] flex items-center justify-center"
-              style={{ background: "var(--gradient-water-deep)" }}
-            >
-              <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
-                <img src={filter1} alt="" className="w-full h-full object-cover" />
-              </div>
-              <span className="relative z-10 text-xl">Oprema</span>
-            </button>
+          <div className="text-center space-y-6">
+            <div className="space-y-3">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground">
+                18+ godina s Vama
+              </h2>
+              <h3 className="text-3xl md:text-4xl font-bold text-primary">
+                1000+ izgrađenih bazena
+              </h3>
+            </div>
+            
+            <div className="max-w-3xl mx-auto space-y-4">
+              <p className="text-xl text-foreground/90 leading-relaxed font-medium">
+                Nudimo izgradnju bazena te proizvode za opremanje bazena.
+              </p>
+              <p className="text-lg text-foreground/80 leading-relaxed">
+                Od 2006. godine specijalizirani smo za izgradnju i opremanje bazena. Kao glavni partner AstralPool Fluidra Group u Dalmaciji, nudimo vrhunsku opremu, profesionalnu ugradnju i potpunu tehničku podršku.
+              </p>
+              <p className="text-lg text-foreground/80 leading-relaxed">
+                Uz nas dobivate kvalitetu, pouzdan servis i dugotrajan užitak u savršeno funkcionalnom bazenu.
+              </p>
+            </div>
+            
+            <div className="flex gap-6 justify-center mt-8 flex-wrap">
+              <Link to="/izgradnja">
+                <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[280px] h-[200px] cursor-pointer">
+                  <img 
+                    src={pool1} 
+                    alt="Izgradnja bazena" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div 
+                    className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity"
+                    style={{ background: "var(--gradient-water)" }}
+                  />
+                  <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-6">
+                    <span className="text-3xl mb-2">🏗️</span>
+                    <span className="text-2xl font-bold">Izgradnja</span>
+                    <span className="text-sm mt-2 opacity-90">Saznajte više</span>
+                  </div>
+                </div>
+              </Link>
+              
+              <button
+                onClick={() => openCatalog("Filteri")}
+                className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[280px] h-[200px]"
+              >
+                <img 
+                  src={filter1} 
+                  alt="Oprema za bazene" 
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div 
+                  className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity"
+                  style={{ background: "var(--gradient-water-deep)" }}
+                />
+                <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-6">
+                  <span className="text-3xl mb-2">⚙️</span>
+                  <span className="text-2xl font-bold">Oprema</span>
+                  <span className="text-sm mt-2 opacity-90">Pregledajte katalog</span>
+                </div>
+              </button>
             </div>
           </div>
         </div>
