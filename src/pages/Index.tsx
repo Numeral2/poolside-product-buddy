@@ -112,13 +112,13 @@ const Index = () => {
       <div className="md:ml-72">
         <Hero onVideoEnd={() => setVideoEnded(true)} />
       {/* Scrolling Categories Section - overlapping video */}
-      <div className="relative overflow-hidden py-6 -mt-20 z-20 glass-effect">
+      <div className="relative overflow-hidden py-4 -mt-16 z-20 glass-effect">
         <div className="flex animate-scroll whitespace-nowrap">
           {[...categories, ...categories].map((category, index) => (
             <Link
               key={index}
               to={`/products?category=${category}`}
-              className="inline-flex items-center px-6 py-3 mx-2 glass-effect text-foreground text-sm font-bold shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer border border-primary/20 hover:border-primary group"
+              className="inline-flex items-center px-4 py-2 mx-2 glass-effect text-foreground text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer border border-primary/20 hover:border-primary group"
             >
               <span className="group-hover:text-primary transition-colors">{category}</span>
             </Link>
@@ -127,9 +127,9 @@ const Index = () => {
       </div>
       
       {/* AI Search Section */}
-      <section className="py-8 px-4 bg-gradient-to-b from-transparent to-muted/30">
+      <section className="py-6 px-4 bg-gradient-to-b from-transparent to-muted/30">
         <div className="container mx-auto max-w-3xl text-center">
-          <p className="text-lg md:text-xl text-foreground/90 mb-4">
+          <p className="text-base md:text-lg text-foreground/90 mb-3">
             Ponude, cijene i kalkulacije za bazene — uz pomoć AI-a!<br />
             Pronađite sve informacije o bazenima jednostavno i brzo.
           </p>
@@ -147,38 +147,38 @@ const Index = () => {
       </section>
       
       {/* Partner Section */}
-      <section className="py-12 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">
+      <section className="py-8 px-4 bg-gradient-to-b from-transparent via-muted/30 to-muted/50">
         <div className="container mx-auto max-w-4xl">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
-            <img src={coolpoolLogo} alt="CoolPool" className="h-20 w-auto object-contain" />
-            <span className="text-3xl font-light text-foreground/60">+</span>
-            <img src={astralPoolLogo} alt="AstralPool" className="h-16 w-auto object-contain" />
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+            <img src={coolpoolLogo} alt="CoolPool" className="h-16 w-auto object-contain" />
+            <span className="text-2xl font-light text-foreground/60">+</span>
+            <img src={astralPoolLogo} alt="AstralPool" className="h-14 w-auto object-contain" />
           </div>
-          <div className="text-center space-y-6">
-            <div className="space-y-3">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground">
+          <div className="text-center space-y-4">
+            <div className="space-y-2">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                 18+ godina s Vama
               </h2>
-              <h3 className="text-3xl md:text-4xl font-bold text-primary">
+              <h3 className="text-2xl md:text-3xl font-bold text-primary">
                 1000+ izgrađenih bazena
               </h3>
             </div>
             
-            <div className="max-w-3xl mx-auto space-y-4">
-              <p className="text-xl text-foreground/90 leading-relaxed font-medium">
+            <div className="max-w-3xl mx-auto space-y-3">
+              <p className="text-lg text-foreground/90 leading-relaxed font-medium">
                 Nudimo izgradnju bazena te proizvode za opremanje bazena.
               </p>
-              <p className="text-lg text-foreground/80 leading-relaxed">
+              <p className="text-base text-foreground/80 leading-relaxed">
                 Od 2006. godine specijalizirani smo za izgradnju i opremanje bazena. Kao glavni partner AstralPool Fluidra Group u Dalmaciji, nudimo vrhunsku opremu, profesionalnu ugradnju i potpunu tehničku podršku.
               </p>
-              <p className="text-lg text-foreground/80 leading-relaxed">
+              <p className="text-base text-foreground/80 leading-relaxed">
                 Uz nas dobivate kvalitetu, pouzdan servis i dugotrajan užitak u savršeno funkcionalnom bazenu.
               </p>
             </div>
             
-            <div className="flex gap-6 justify-center mt-8 flex-wrap">
+            <div className="flex gap-4 justify-center mt-6 flex-wrap">
               <Link to="/izgradnja">
-                <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[280px] h-[200px] cursor-pointer">
+                <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[240px] h-[180px] cursor-pointer">
                   <img 
                     src={pool1} 
                     alt="Izgradnja bazena" 
@@ -188,17 +188,17 @@ const Index = () => {
                     className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity"
                     style={{ background: "var(--gradient-water)" }}
                   />
-                  <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-6">
-                    <span className="text-3xl mb-2">🏗️</span>
-                    <span className="text-2xl font-bold">Izgradnja</span>
-                    <span className="text-sm mt-2 opacity-90">Saznajte više</span>
+                  <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-4">
+                    <span className="text-2xl mb-2">🏗️</span>
+                    <span className="text-xl font-bold">Izgradnja</span>
+                    <span className="text-xs mt-1 opacity-90">Saznajte više</span>
                   </div>
                 </div>
               </Link>
               
               <button
                 onClick={() => openCatalog("Filteri")}
-                className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[280px] h-[200px]"
+                className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[240px] h-[180px]"
               >
                 <img 
                   src={filter1} 
@@ -209,10 +209,10 @@ const Index = () => {
                   className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity"
                   style={{ background: "var(--gradient-water-deep)" }}
                 />
-                <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-6">
-                  <span className="text-3xl mb-2">⚙️</span>
-                  <span className="text-2xl font-bold">Oprema</span>
-                  <span className="text-sm mt-2 opacity-90">Pregledajte katalog</span>
+                <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-4">
+                  <span className="text-2xl mb-2">⚙️</span>
+                  <span className="text-xl font-bold">Oprema</span>
+                  <span className="text-xs mt-1 opacity-90">Pregledajte katalog</span>
                 </div>
               </button>
             </div>
@@ -221,9 +221,9 @@ const Index = () => {
       </section>
       
       {/* Featured Projects Section - Carousel */}
-      <section className="py-12 bg-muted/30">
+      <section className="py-8 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-8">
+          <h2 className="text-3xl font-bold text-center mb-6">
             Naši Izdvojeni Projekti
           </h2>
           <Carousel

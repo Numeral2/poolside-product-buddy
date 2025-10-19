@@ -27,12 +27,12 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
         <div className="text-center space-y-3 animate-fade-in">
-          <h1 className="text-6xl md:text-8xl font-bold text-center text-white drop-shadow-2xl"
+          <h1 className="text-4xl md:text-6xl font-bold text-center text-white drop-shadow-2xl"
               style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}>
             Zaronite u bazen po mjeri.
           </h1>
           
-          <p className="text-xl md:text-3xl text-center text-white/95 max-w-3xl mx-auto drop-shadow-lg font-light">
+          <p className="text-lg md:text-2xl text-center text-white/95 max-w-3xl mx-auto drop-shadow-lg font-light">
             Najkvalitetnija bazenska oprema i izgradnja bazena na jednom mjestu
           </p>
         </div>
