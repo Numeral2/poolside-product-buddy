@@ -4,15 +4,26 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { MapPin, X } from "lucide-react";
 import pool1 from "@/assets/pool-1.png";
 import pool2 from "@/assets/pool-2.png";
 import pool3 from "@/assets/pool-3.png";
 import pool4 from "@/assets/pool-4.png";
 import pool5 from "@/assets/pool-5.png";
 import pool6 from "@/assets/pool-6.png";
+import projectBelEtage from "@/assets/project-bel-etage.png";
+import projectBrela from "@/assets/project-brela.png";
+import projectCamping from "@/assets/project-camping.png";
+import projectDamianii from "@/assets/project-damianii.png";
+import projectGava from "@/assets/project-gava.png";
+import projectLokva from "@/assets/project-lokva.png";
+import projectMarina from "@/assets/project-marina.png";
+import projectDuce from "@/assets/project-duce.png";
+import projectMakarska from "@/assets/project-makarska.png";
 
 const Izgradnja = () => {
   const { toast } = useToast();
@@ -23,6 +34,7 @@ const Izgradnja = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedPool, setSelectedPool] = useState<{ title: string; location: string; image: string } | null>(null);
 
   useEffect(() => {
     if (window.location.hash === '#contact-form') {
@@ -85,36 +97,105 @@ const Izgradnja = () => {
       title: "Infinity Bazeni",
       description: "Moderan dizajn s beskrajnim rubom i panoramskim pogledom",
       image: pool1,
+      location: "",
     },
     {
       id: 2,
       title: "Nadzemni Bazeni",
       description: "Brza montaža, ekonomično rješenje s vrhunskom kvalitetom",
       image: pool2,
+      location: "",
     },
     {
       id: 3,
       title: "Obiteljski Bazeni",
       description: "Prostrani bazeni idealni za obitelji s djecom",
       image: pool3,
+      location: "",
     },
     {
       id: 4,
       title: "Wellness Bazeni",
       description: "Kombinirani wellness prostori s bazenom i saunom",
       image: pool4,
+      location: "",
     },
     {
       id: 5,
       title: "Hidromasažne Kade",
       description: "Vrhunska hidromasažna iskustva za potpuno opuštanje",
       image: pool5,
+      location: "",
     },
     {
       id: 6,
       title: "Krovni Bazeni",
       description: "Ekskluzivna rješenja za krovne terase",
       image: pool6,
+      location: "",
+    },
+    {
+      id: 7,
+      title: "Bel Etage Split",
+      description: "Luksuzni infinity bazen s panoramskim pogledom",
+      image: projectBelEtage,
+      location: "Split",
+    },
+    {
+      id: 8,
+      title: "Vila Brela",
+      description: "Elegantni privatni bazen s pogledom na more",
+      image: projectBrela,
+      location: "Brela",
+    },
+    {
+      id: 9,
+      title: "Camping Split",
+      description: "Moderni javni bazeni za kampiste",
+      image: projectCamping,
+      location: "Camping Split",
+    },
+    {
+      id: 10,
+      title: "Hotel Damianii",
+      description: "Luksuzni hotelski bazen uz obalu",
+      image: projectDamianii,
+      location: "Duće",
+    },
+    {
+      id: 11,
+      title: "Gava Resort",
+      description: "Premium resort bazen s hidromasažom",
+      image: projectGava,
+      location: "Milna",
+    },
+    {
+      id: 12,
+      title: "Lokva Rogoznica",
+      description: "Spektakularni infinity bazen uz kamp",
+      image: projectLokva,
+      location: "Lokva Rogoznica",
+    },
+    {
+      id: 13,
+      title: "Marina Residences",
+      description: "Ekskluzivni privatni bazen s pogledom na marinu",
+      image: projectMarina,
+      location: "Marina",
+    },
+    {
+      id: 14,
+      title: "Duće Riviera",
+      description: "Luksuzni krovni bazeni s pogledom na more",
+      image: projectDuce,
+      location: "Duće",
+    },
+    {
+      id: 15,
+      title: "Makarska Premium",
+      description: "Moderna vila s rooftop infinity bazenom",
+      image: projectMakarska,
+      location: "Makarska",
     },
   ];
 
@@ -277,13 +358,14 @@ const Izgradnja = () => {
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Vrste Bazena
+              Naši Realizirani Projekti
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {poolTypes.map((pool) => (
                 <div 
                   key={pool.id}
                   className="group relative overflow-hidden rounded-lg border border-primary/20 hover:border-primary/50 transition-all cursor-pointer"
+                  onClick={() => pool.location && setSelectedPool(pool)}
                 >
                   <div className="aspect-[4/3] overflow-hidden">
                     <img 
@@ -293,14 +375,48 @@ const Izgradnja = () => {
                     />
                   </div>
                   <div className="p-6 bg-card">
-                    <h3 className="text-xl font-bold mb-2">{pool.title}</h3>
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="text-xl font-bold">{pool.title}</h3>
+                      {pool.location && (
+                        <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
+                      )}
+                    </div>
                     <p className="text-foreground/70">{pool.description}</p>
+                    {pool.location && (
+                      <p className="text-sm text-primary mt-2 font-medium">{pool.location}</p>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
+
+        {/* Location Dialog */}
+        <Dialog open={!!selectedPool} onOpenChange={() => setSelectedPool(null)}>
+          <DialogContent className="max-w-3xl">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2 text-2xl">
+                <MapPin className="h-6 w-6 text-primary" />
+                {selectedPool?.title}
+              </DialogTitle>
+            </DialogHeader>
+            {selectedPool && (
+              <div className="space-y-4">
+                <img 
+                  src={selectedPool.image} 
+                  alt={selectedPool.title}
+                  className="w-full h-auto rounded-lg"
+                />
+                <div className="flex items-center gap-2 text-lg">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <span className="font-semibold">Lokacija:</span>
+                  <span className="text-primary">{selectedPool.location}</span>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
 
         {/* Why Choose Us Section */}
         <section className="py-16 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
