@@ -16,6 +16,10 @@ import pool6 from "@/assets/pool-6.png";
 import filter1 from "@/assets/filter-1.png";
 import { Sparkles, Tag, Facebook, Instagram, MessageCircle, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Carousel,
   CarouselContent,
@@ -93,12 +97,64 @@ const featuredProjects = [
 ];
 
 const Index = () => {
+  const { toast } = useToast();
   const [displayedProducts, setDisplayedProducts] = useState<any[]>([]);
   const [videoEnded, setVideoEnded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const openCatalog = (category?: string) => {
     setSelectedCategory(category);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.subject) {
+      toast({
+        title: "Greška",
+        description: "Molimo popunite sva obavezna polja",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Uspješno poslano!",
+        description: "Primili smo vašu poruku i odgovorit ćemo vam uskoro.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error: any) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Greška",
+        description: "Došlo je do greške. Molimo pokušajte ponovo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -254,6 +310,106 @@ const Index = () => {
               <Sparkles className="mr-2 h-5 w-5" />
               Razgovarajte s AI
             </Button>
+          </div>
+        </div>
+      </section>
+      
+      {/* Contact Form Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-muted/30 to-transparent">
+        <div className="container mx-auto max-w-3xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Kontaktirajte Nas
+            </h2>
+            <p className="text-xl text-foreground/80">
+              Za više informacija ili za ponudu obratite se našim profesionalnim tehničarima za bazene
+            </p>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="space-y-6 glass-effect p-8 rounded-lg border border-primary/20">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium mb-2">
+                Vaše ime <span className="text-destructive">*</span>
+              </label>
+              <Input
+                id="name"
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder="Unesite vaše ime"
+                required
+                className="w-full"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium mb-2">
+                Vaša e-pošta <span className="text-destructive">*</span>
+              </label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                placeholder="vasa@email.com"
+                required
+                className="w-full"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                Predmet <span className="text-destructive">*</span>
+              </label>
+              <Input
+                id="subject"
+                type="text"
+                value={formData.subject}
+                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                placeholder="Upit o izgradnji bazena"
+                required
+                className="w-full"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium mb-2">
+                Vaša poruka (opcionalno)
+              </label>
+              <Textarea
+                id="message"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                placeholder="Unesite vašu poruku..."
+                rows={6}
+                className="w-full resize-none"
+              />
+            </div>
+
+            <Button
+              type="submit"
+              size="lg"
+              disabled={isSubmitting}
+              className="w-full text-white font-bold shadow-md hover:shadow-lg transition-all duration-300 text-lg"
+              style={{ background: isSubmitting ? "var(--muted)" : "var(--gradient-water)" }}
+            >
+              {isSubmitting ? "Šaljem..." : "Pošalji Upit"}
+            </Button>
+          </form>
+
+          <div className="mt-12 text-center">
+            <p className="text-lg text-foreground/80 mb-4">
+              Ili nas nazovite direktno:
+            </p>
+            <a href="tel:+385956633214">
+              <Button 
+                size="lg"
+                variant="outline"
+                className="font-bold text-lg px-8"
+              >
+                +385 (0) 95 66 33 214
+              </Button>
+            </a>
           </div>
         </div>
       </section>
