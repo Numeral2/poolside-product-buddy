@@ -271,6 +271,15 @@ const Index = () => {
           </Carousel>
         </div>
         <div className="text-center mt-8 flex flex-wrap gap-4 justify-center">
+          <Link to="/projekti">
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="font-bold text-lg px-8 py-6"
+            >
+              Pogledaj Više Projekata
+            </Button>
+          </Link>
           <Link to="/izgradnja#contact-form">
             <Button 
               size="lg" 
