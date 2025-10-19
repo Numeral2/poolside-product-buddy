@@ -233,7 +233,7 @@ const Izgradnja = () => {
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Naši Proizvodi i Usluge
+              Naši Projekti
             </h2>
             
             <div className="space-y-12">
@@ -244,7 +244,7 @@ const Izgradnja = () => {
                   Nudimo širok asortiman bazena za sve potrebe - od privatnih kuća do hotela i apartmana. 
                   Infinity bazeni, nadzemni bazeni, obiteljski bazeni i krovni bazeni vrhunske kvalitete.
                 </p>
-                <Link to="/products?category=Bazeni">
+                <Link to="/projekti?category=Bazeni">
                   <Button 
                     size="lg"
                     className="text-white font-bold"
@@ -263,7 +263,7 @@ const Izgradnja = () => {
                   s bazenom i saunom za savršen odmor kod kuće.
                 </p>
                 <div className="flex gap-4 flex-wrap">
-                  <Link to="/products?category=SPA kade">
+                  <Link to="/projekti?category=SPA kade">
                     <Button 
                       size="lg"
                       className="text-white font-bold"
@@ -272,7 +272,7 @@ const Izgradnja = () => {
                       Pogledaj SPA Kade
                     </Button>
                   </Link>
-                  <Link to="/products?category=Saune">
+                  <Link to="/projekti?category=Saune">
                     <Button 
                       size="lg"
                       variant="outline"
@@ -291,7 +291,7 @@ const Izgradnja = () => {
                   Prirodni bazeni Laghetto koji spajaju eleganciju konvencionalnih bazena s 
                   ekološkim pristupom prirodnih jezera. Posebna tehnologija pročišćavanja vode.
                 </p>
-                <Link to="/products?category=Laghetto">
+                <Link to="/projekti?category=Laghetto">
                   <Button 
                     size="lg"
                     className="text-white font-bold"
