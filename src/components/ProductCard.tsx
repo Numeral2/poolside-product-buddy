@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ShoppingCart } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 import {
   Select,
   SelectContent,
@@ -25,6 +28,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ name, description, price, category, image, variants }: ProductCardProps) => {
+  const { addToCart } = useCart();
   const [selectedVariant, setSelectedVariant] = useState<string>(
     variants && variants.length > 0 ? variants[0].id : ""
   );
@@ -36,6 +40,22 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
   const displayName = variants && variants.length > 0
     ? name.replace(/\s+\d+$/, "")
     : name;
+
+  const handleAddToCart = () => {
+    if (!currentPrice) return;
+    
+    const selectedVariantData = variants?.find(v => v.id === selectedVariant);
+    
+    addToCart({
+      id: name,
+      name: displayName,
+      price: currentPrice,
+      category,
+      image,
+      variantId: selectedVariantData?.id,
+      variantSize: selectedVariantData?.size,
+    });
+  };
 
   return (
     <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-border hover:border-primary/50 bg-card relative">
@@ -91,14 +111,24 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
         )}
 
         {currentPrice && (
-          <div className="text-3xl font-bold pt-2"
-               style={{ 
-                 background: "var(--gradient-water)",
-                 WebkitBackgroundClip: "text",
-                 WebkitTextFillColor: "transparent",
-                 backgroundClip: "text"
-               }}>
-            €{currentPrice.toFixed(2)}
+          <div className="flex items-center justify-between pt-2">
+            <div className="text-3xl font-bold"
+                 style={{ 
+                   background: "var(--gradient-water)",
+                   WebkitBackgroundClip: "text",
+                   WebkitTextFillColor: "transparent",
+                   backgroundClip: "text"
+                 }}>
+              €{currentPrice.toFixed(2)}
+            </div>
+            <Button
+              onClick={handleAddToCart}
+              className="text-white font-bold"
+              style={{ background: "var(--gradient-water)" }}
+            >
+              <ShoppingCart className="h-4 w-4 mr-2" />
+              Dodaj
+            </Button>
           </div>
         )}
       </CardHeader>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, ChevronDown } from "lucide-react";
+import { Menu, ChevronDown, ShoppingCart } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +13,8 @@ import {
 import coolpoolLogo from "@/assets/coolpool-logo.png";
 
 const Navigation = () => {
+  const { totalItems } = useCart();
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md border-b border-border/50 shadow-sm">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -19,19 +22,33 @@ const Navigation = () => {
           <img src={coolpoolLogo} alt="CoolPool" className="h-12 w-auto object-contain" />
         </Link>
         
-        <div className="flex items-center gap-3 ml-auto">
+        <div className="flex items-center gap-6 ml-auto">
           <Link 
             to="/" 
-            className="text-xs text-foreground hover:text-primary transition-colors font-medium hidden md:block"
+            className="text-sm text-foreground hover:text-primary transition-colors font-medium hidden md:block"
           >
             Početna
           </Link>
           
+          <Link 
+            to="/o-nama" 
+            className="text-sm text-foreground hover:text-primary transition-colors font-medium hidden md:block"
+          >
+            O nama
+          </Link>
+
+          <Link 
+            to="/izgradnja" 
+            className="text-sm text-foreground hover:text-primary transition-colors font-medium hidden md:block"
+          >
+            Izgradnja
+          </Link>
+          
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="text-xs text-foreground hover:text-primary transition-colors font-medium flex items-center gap-0.5 hidden md:flex">
+              <button className="text-sm text-foreground hover:text-primary transition-colors font-medium flex items-center gap-1 hidden md:flex">
                 Ponuda
-                <ChevronDown className="h-3 w-3" />
+                <ChevronDown className="h-4 w-4" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-64 bg-background z-50">
@@ -105,8 +122,8 @@ const Navigation = () => {
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="gap-1 text-xs h-7 px-2 md:hidden">
-                <Menu className="h-3 w-3" />
+              <Button variant="ghost" size="sm" className="gap-1 text-sm h-8 px-2 md:hidden">
+                <Menu className="h-4 w-4" />
                 Meni
               </Button>
             </DropdownMenuTrigger>
@@ -115,29 +132,32 @@ const Navigation = () => {
                 <Link to="/" className="w-full">Početna</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/products" className="w-full">Proizvodi</Link>
+                <Link to="/o-nama" className="w-full">O nama</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/signin" className="w-full">Prijava</Link>
+                <Link to="/izgradnja" className="w-full">Izgradnja</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/signup" className="w-full">Registracija</Link>
+                <Link to="/products" className="w-full">Ponuda</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="hidden md:flex gap-2">
-            <Link to="/signin">
-              <Button variant="ghost" size="sm" className="text-xs h-7 px-2">
-                Prijava
-              </Button>
-            </Link>
-            <Link to="/signup">
-              <Button size="sm" className="text-xs h-7 px-3 bg-gradient-to-r from-primary to-secondary hover:opacity-90">
-                Registracija
-              </Button>
-            </Link>
-          </div>
+          <Link to="/cart" className="relative">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="h-10 w-10 p-0"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full text-xs flex items-center justify-center text-white font-bold"
+                      style={{ background: "var(--gradient-water)" }}>
+                  {totalItems}
+                </span>
+              )}
+            </Button>
+          </Link>
         </div>
       </div>
     </nav>
