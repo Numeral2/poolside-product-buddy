@@ -106,13 +106,13 @@ const Izgradnja = () => {
               >
                 Zatražite Ponudu
               </Button>
-              <Link to="/products?category=Bazeni">
+              <Link to="/projekti">
                 <Button 
                   size="lg"
                   variant="outline"
                   className="font-bold"
                 >
-                  Pregledajte Proizvode
+                  Naši Projekti
                 </Button>
               </Link>
             </div>
