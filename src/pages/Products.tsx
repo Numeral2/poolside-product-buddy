@@ -133,13 +133,17 @@ const Products = () => {
     products.forEach(product => {
       let baseName = product.name;
       
-      // Handle products ending with numbers (e.g., "Filter IML Lisboa 450")
+      // Handle products ending with numbers (e.g., "Filter IML Lisboa 450", "Filter Astral Aster 500")
       if (/\s+\d+$/.test(product.name)) {
         baseName = product.name.replace(/\s+\d+$/, "");
       }
       // Handle products with size in middle (e.g., "6-putni multiventil 1 ½\" Astral")
       else if (product.name.includes('multiventil') && (product.name.includes('1 ½"') || product.name.includes('2"'))) {
         baseName = product.name.replace(/\s*1 ½"\s*|\s*2"\s*/, ' ').trim();
+      }
+      // Handle products with mm sizes (e.g., "Kvarcni pijesak 0.4-0.8mm", "Filter staklo 0.5-1.0mm")
+      else if (/\s+[\d.-]+mm$/.test(product.name)) {
+        baseName = product.name.replace(/\s+[\d.-]+mm$/, "");
       }
       
       if (!groups[baseName]) {
@@ -173,6 +177,16 @@ const Products = () => {
             return {
               id: p.id,
               size: '2"',
+              price: p.price,
+            };
+          }
+          
+          // Extract size for mm-based products (e.g., "0.4-0.8mm", "1-2mm")
+          const mmSizeMatch = p.name.match(/([\d.-]+mm)$/);
+          if (mmSizeMatch) {
+            return {
+              id: p.id,
+              size: mmSizeMatch[1],
               price: p.price,
             };
           }

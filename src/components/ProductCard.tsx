@@ -52,9 +52,19 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
       return description.replace(/model\s+\d+/i, `model ${selectedVariantData.size}`);
     }
     
+    // For Astral Aster filters: replace "model XXX" with current size
+    if (name.includes('Astral Aster')) {
+      return description.replace(/model\s+\d+/i, `model ${selectedVariantData.size}`);
+    }
+    
     // For multiventil: replace size specification in description
     if (name.includes('multiventil')) {
       return description.replace(/\d+\s*½?\s*"/g, selectedVariantData.size);
+    }
+    
+    // For mm-based products (Kvarcni pijesak, Filter staklo): replace granulacije XXmm
+    if (description.includes('granulacije')) {
+      return description.replace(/granulacije\s+[\d.-]+mm/i, `granulacije ${selectedVariantData.size}`);
     }
     
     // Default: replace last number with current size
