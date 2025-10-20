@@ -170,6 +170,7 @@ const Projekti = () => {
                       <img 
                         src={project.image} 
                         alt={project.title}
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
@@ -206,6 +207,7 @@ const Projekti = () => {
                 <img 
                   src={selectedProject.image} 
                   alt={selectedProject.title}
+                  loading="lazy"
                   className="w-full h-auto rounded-lg"
                 />
                 <div className="flex items-center gap-2 text-lg">
