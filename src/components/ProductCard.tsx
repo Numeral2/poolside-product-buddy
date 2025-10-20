@@ -41,6 +41,13 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
     ? name.replace(/\s+\d+$/, "")
     : name;
 
+  const currentDescription = variants && variants.length > 0
+    ? description.replace(/\d+/g, (match) => {
+        const selectedVariantData = variants.find(v => v.id === selectedVariant);
+        return selectedVariantData?.size || match;
+      })
+    : description;
+
   const handleAddToCart = () => {
     if (!currentPrice) return;
     
@@ -89,7 +96,7 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
           </Badge>
         </div>
         <CardDescription className="text-base leading-relaxed">
-          {description}
+          {currentDescription}
         </CardDescription>
 
         {variants && variants.length > 0 && (
