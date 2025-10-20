@@ -15,7 +15,6 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
         playsInline
         loop
         preload="auto"
-        poster="/hero-poster.jpg"
         onEnded={onVideoEnd}
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
