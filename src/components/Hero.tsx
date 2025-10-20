@@ -9,7 +9,7 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
   return (
     <div className="relative h-[90vh] w-full overflow-hidden">
       <video
-        key="hero-video-v4"
+        key="hero-video-v5"
         autoPlay
         muted
         playsInline
@@ -18,8 +18,9 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
         poster="/hero-poster.png"
         onEnded={onVideoEnd}
         className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ filter: "brightness(1.1)" }}
       >
-        <source src="/hero-video.mp4?v=4" type="video/mp4" />
+        <source src="/hero-video.mp4?v=5" type="video/mp4" />
       </video>
       
       <div className="absolute inset-0 z-[1]" style={{ background: "var(--gradient-hero)" }} />
