@@ -332,8 +332,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                               variant="outline"
                               onClick={() => {
                                 const category = message.products![0].category;
-                                sessionStorage.setItem('chatbotProducts', JSON.stringify(message.products));
-                                navigate(`/products?category=${category}&fromChat=true`);
+                                navigate(`/products?category=${category}`);
                                 onOpenCatalog(category);
                               }}
                               className="text-xs h-7"
