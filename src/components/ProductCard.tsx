@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -41,12 +41,25 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
     ? name.replace(/\s+\d+$/, "")
     : name;
 
-  const currentDescription = variants && variants.length > 0
-    ? description.replace(/\d+/g, (match) => {
-        const selectedVariantData = variants.find(v => v.id === selectedVariant);
-        return selectedVariantData?.size || match;
-      })
-    : description;
+  const currentDescription = useMemo(() => {
+    if (!variants || variants.length === 0) return description;
+    
+    const selectedVariantData = variants.find(v => v.id === selectedVariant);
+    if (!selectedVariantData) return description;
+    
+    // For Lisboa filters: replace "model XXX" with current size
+    if (name.includes('Lisboa')) {
+      return description.replace(/model\s+\d+/i, `model ${selectedVariantData.size}`);
+    }
+    
+    // For multiventil: replace size specification in description
+    if (name.includes('multiventil')) {
+      return description.replace(/\d+\s*½?\s*"/g, selectedVariantData.size);
+    }
+    
+    // Default: replace last number with current size
+    return description.replace(/\d+(?=[^\d]*$)/, selectedVariantData.size);
+  }, [variants, selectedVariant, description, name]);
 
   const handleAddToCart = () => {
     if (!currentPrice) return;

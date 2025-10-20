@@ -131,8 +131,16 @@ const Products = () => {
     const groups: { [key: string]: Product[] } = {};
     
     products.forEach(product => {
-      // Extract base name (e.g., "Filter IML Lisboa" from "Filter IML Lisboa 450")
-      const baseName = product.name.replace(/\s+\d+$/, "");
+      let baseName = product.name;
+      
+      // Handle products ending with numbers (e.g., "Filter IML Lisboa 450")
+      if (/\s+\d+$/.test(product.name)) {
+        baseName = product.name.replace(/\s+\d+$/, "");
+      }
+      // Handle products with size in middle (e.g., "6-putni multiventil 1 ½\" Astral")
+      else if (product.name.includes('multiventil') && (product.name.includes('1 ½"') || product.name.includes('2"'))) {
+        baseName = product.name.replace(/\s*1 ½"\s*|\s*2"\s*/, ' ').trim();
+      }
       
       if (!groups[baseName]) {
         groups[baseName] = [];
@@ -144,14 +152,42 @@ const Products = () => {
       if (groupedProducts.length > 1) {
         // Multiple variants exist
         const variants: ProductVariant[] = groupedProducts.map(p => {
-          const sizeMatch = p.name.match(/\d+$/);
-          const size = sizeMatch ? sizeMatch[0] : p.name;
+          // Extract size for standard products (number at end)
+          const standardSizeMatch = p.name.match(/\d+$/);
+          if (standardSizeMatch) {
+            return {
+              id: p.id,
+              size: standardSizeMatch[0],
+              price: p.price,
+            };
+          }
+          
+          // Extract size for multiventil products
+          if (p.name.includes('1 ½"')) {
+            return {
+              id: p.id,
+              size: '1 ½"',
+              price: p.price,
+            };
+          } else if (p.name.includes('2"')) {
+            return {
+              id: p.id,
+              size: '2"',
+              price: p.price,
+            };
+          }
+          
           return {
             id: p.id,
-            size: size,
+            size: p.name,
             price: p.price,
           };
-        }).sort((a, b) => parseFloat(a.size) - parseFloat(b.size));
+        }).sort((a, b) => {
+          // Parse sizes for sorting
+          const sizeA = parseFloat(a.size.replace(/[^\d.]/g, '')) || 0;
+          const sizeB = parseFloat(b.size.replace(/[^\d.]/g, '')) || 0;
+          return sizeA - sizeB;
+        });
 
         return {
           id: groupedProducts[0].id,
