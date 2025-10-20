@@ -9,7 +9,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
@@ -71,27 +70,11 @@ const Navigation = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="text-sm text-foreground hover:text-primary transition-colors font-medium flex items-center gap-1 hidden md:flex">
-                Ponuda
+                Web Shop
                 <ChevronDown className="h-4 w-4" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-64 bg-background z-50">
-              <DropdownMenuLabel className="text-primary font-bold">Projekti</DropdownMenuLabel>
-              <DropdownMenuItem asChild>
-                <Link to="/projekti" className="w-full cursor-pointer">Bazeni</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/projekti" className="w-full cursor-pointer">SPA kade</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/projekti" className="w-full cursor-pointer">Saune</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/projekti" className="w-full cursor-pointer">Laghetto</Link>
-              </DropdownMenuItem>
-              
-              <DropdownMenuSeparator />
-              
               <DropdownMenuLabel className="text-primary font-bold">Oprema za bazene</DropdownMenuLabel>
               <DropdownMenuItem asChild>
                 <Link to="/products?category=Filteri" className="w-full cursor-pointer">Filteri</Link>
@@ -162,7 +145,7 @@ const Navigation = () => {
                 <Link to="/izgradnja" className="w-full">Izgradnja</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/products" className="w-full">Ponuda</Link>
+                <Link to="/products" className="w-full">Web Shop</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
