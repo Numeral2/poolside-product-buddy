@@ -88,50 +88,44 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
   };
 
   return (
-    <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-border hover:border-primary/50 bg-card relative">
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-           style={{ background: "var(--gradient-glass)" }} />
+    <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border/50 hover:border-border bg-card">
+      
       
       {image && (
-        <div className="h-72 overflow-hidden relative bg-muted/30">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="h-72 overflow-hidden relative bg-muted/20">
           <img 
             src={image} 
             alt={name} 
-            className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 p-4"
+            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 p-4"
           />
         </div>
       )}
-      <CardHeader className="space-y-2 relative z-10">
+      <CardHeader className="space-y-3">
         <div className="flex items-start justify-between gap-3">
-          <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
+          <CardTitle className="text-xl font-bold text-foreground">
             {displayName}
           </CardTitle>
           <Badge 
+            variant="secondary"
             className="whitespace-nowrap font-semibold"
-            style={{ 
-              background: "var(--gradient-water)",
-              color: "white",
-              border: "none"
-            }}
           >
             {category}
           </Badge>
         </div>
-        <CardDescription className="text-base leading-relaxed">
+        <CardDescription className="text-sm leading-relaxed">
           {currentDescription}
         </CardDescription>
 
         {variants && variants.length > 0 && (
           <div className="space-y-2">
-            <label className="text-sm font-medium">Odaberite veličinu:</label>
+            <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Veličina:</label>
             <Select value={selectedVariant} onValueChange={setSelectedVariant}>
-              <SelectTrigger className="w-full bg-background/80 backdrop-blur-sm border-2 z-50">
+              <SelectTrigger className="w-full bg-background border z-50 font-medium">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-background border-2 z-[100]">
+              <SelectContent className="bg-background border z-[100]">
                 {variants.map((variant) => (
-                  <SelectItem key={variant.id} value={variant.id} className="cursor-pointer">
+                  <SelectItem key={variant.id} value={variant.id} className="cursor-pointer font-medium">
                     {variant.size} - €{variant.price.toFixed(2)}
                   </SelectItem>
                 ))}
@@ -142,19 +136,12 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
 
         {currentPrice && (
           <div className="flex items-center justify-between pt-2">
-            <div className="text-3xl font-bold"
-                 style={{ 
-                   background: "var(--gradient-water)",
-                   WebkitBackgroundClip: "text",
-                   WebkitTextFillColor: "transparent",
-                   backgroundClip: "text"
-                 }}>
+            <div className="text-3xl font-black text-foreground tracking-tight">
               €{currentPrice.toFixed(2)}
             </div>
             <Button
               onClick={handleAddToCart}
-              className="text-white font-bold"
-              style={{ background: "var(--gradient-water)" }}
+              className="font-bold shadow-md hover:shadow-lg transition-shadow"
             >
               <ShoppingCart className="h-4 w-4 mr-2" />
               Dodaj
