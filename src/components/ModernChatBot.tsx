@@ -150,15 +150,6 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
             if (parsed.type === "products") {
               currentProducts = parsed.products;
               console.log("Received products:", currentProducts);
-              
-              // Navigate to products page with the category and products data
-              if (currentProducts && currentProducts.length > 0) {
-                const category = currentProducts[0].category;
-                // Store products in sessionStorage so Products page can use them
-                sessionStorage.setItem('chatbotProducts', JSON.stringify(currentProducts));
-                navigate(`/products?category=${category}&fromChat=true`);
-                onOpenCatalog(category);
-              }
             }
             
             const content = parsed.choices?.[0]?.delta?.content as string | undefined;
@@ -329,18 +320,32 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                           : {}
                       }
                     >
-                      <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                       <p className="text-sm leading-relaxed whitespace-pre-wrap">
                         {message.content}
                       </p>
                       {message.products && message.products.length > 0 && (
-                        <div className="mt-4 space-y-2">
-                          <p className="text-xs font-semibold text-foreground/70">Naši proizvodi:</p>
+                        <div className="mt-4 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <p className="text-xs font-semibold text-foreground/70">Naši proizvodi:</p>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => {
+                                const category = message.products![0].category;
+                                sessionStorage.setItem('chatbotProducts', JSON.stringify(message.products));
+                                navigate(`/products?category=${category}&fromChat=true`);
+                                onOpenCatalog(category);
+                              }}
+                              className="text-xs h-7"
+                            >
+                              Vidi sve
+                            </Button>
+                          </div>
                           <div className="grid grid-cols-1 gap-2">
-                            {message.products.map((product) => (
+                            {message.products.slice(0, 3).map((product) => (
                               <div
                                 key={product.id}
-                                onClick={() => onOpenCatalog(product.category)}
-                                className="p-3 rounded-lg border bg-background hover:shadow-md transition-all cursor-pointer"
+                                className="p-3 rounded-lg border bg-background"
                               >
                                 <div className="flex gap-3">
                                   {product.image_url && (
@@ -361,14 +366,19 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                                       <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">
                                         {product.category}
                                       </span>
-                                      <span className="text-sm font-bold text-primary">
-                                        {product.price.toFixed(2)} €
+                                      <span className="text-sm font-bold text-foreground">
+                                        €{product.price.toFixed(2)}
                                       </span>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             ))}
+                            {message.products.length > 3 && (
+                              <p className="text-xs text-center text-muted-foreground">
+                                +{message.products.length - 3} proizvoda - kliknite "Vidi sve"
+                              </p>
+                            )}
                           </div>
                         </div>
                       )}
