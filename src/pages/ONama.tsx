@@ -312,17 +312,6 @@ const ONama = () => {
                   Kontaktirajte Nas
                 </Button>
               </Link>
-              <Button 
-                size="lg"
-                variant="outline"
-                className="font-bold text-lg px-8"
-                onClick={() => {
-                  const chatbot = document.querySelector('[data-chatbot]');
-                  if (chatbot instanceof HTMLElement) chatbot.click();
-                }}
-              >
-                AI Asistent
-              </Button>
               <a href="tel:+385956633214">
                 <Button 
                   size="lg"
