@@ -21,35 +21,35 @@ const ONama = () => {
           <div className="container mx-auto max-w-6xl text-center">
             <img 
               src={coolpoolLogo} 
-              alt="CoolPool" 
+              alt="CoolPool Hrvatska" 
               className="h-24 w-auto mx-auto mb-8 object-contain"
             />
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
-              O Nama
+              Dobrodošli u CoolPool Hrvatska
             </h1>
             <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-              Vaš partner za bazene od 2006. godine
+              Lidera u izgradnji bazena, sauna i wellness rješenja po mjeri
             </p>
           </div>
         </section>
 
-        {/* Story Section */}
+        {/* Mission Section */}
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  18+ Godina Iskustva
+                  Naša Misija
                 </h2>
                 <div className="space-y-4 text-lg text-foreground/90 leading-relaxed">
                   <p>
-                    COOL POOL d.o.o. je vodeća tvrtka u Dalmaciji specijalizirana za izgradnju i opremanje bazena. Od 2006. godine pružamo vrhunske usluge našim klijentima, gradeći povjerenje kvalitetom i predanošću.
+                    <strong>Svaki kupac je na prvom mjestu.</strong> Gradimo bazene po vašim željama, mjerama i viziji, koristeći najnovije tehnologije i kvalitetne materijale koji garantiraju dugotrajnost i eleganciju.
                   </p>
                   <p>
-                    Kao glavni partner <strong>AstralPool Fluidra Group</strong> za regiju Dalmacije, nudimo najkvalitetniju opremu na tržištu uz stručnu podršku i servis.
+                    CoolPool spaja stručnost, preciznost i moderni dizajn. Naši stručnjaci prate svaki korak – od ideje do završne kapljice vode.
                   </p>
                   <p>
-                    Naš tim čine iskusni stručnjaci koji su realizirali preko <strong>1000 projekata</strong>, od malih obiteljskih bazena do velikih luksuznih kompleksa.
+                    Nudimo kompletna rješenja za privatne i javne bazene, uključujući filtraciju, pročišćavanje vode, rasvjetu, grijanje i automatizaciju.
                   </p>
                 </div>
               </div>
@@ -74,108 +74,70 @@ const ONama = () => {
           </div>
         </section>
 
-        {/* Stats Section */}
+        {/* AI Pools Section */}
         <section className="py-16 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
           <div className="container mx-auto max-w-6xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              <div className="p-8">
-                <div 
-                  className="text-5xl font-bold mb-3"
-                  style={{ 
-                    background: "var(--gradient-water)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text"
-                  }}
-                >
-                  18+
-                </div>
-                <p className="text-xl font-semibold">Godina Iskustva</p>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                AI Bazeni – Prvi u Hrvatskoj 🤖
+              </h2>
+              <div className="max-w-4xl mx-auto space-y-4 text-lg text-foreground/90 leading-relaxed">
+                <p>
+                  Ponosno predstavljamo <strong>prvi hrvatski AI sustav za planiranje i opremanje bazena.</strong>
+                </p>
+                <p>
+                  Naš pametni asistent omogućuje vam da unesete dimenzije bazena, željeni pH, tip pročišćavanja i pumpanja, a AI odmah preporuči najbolje proizvode i opremu prema vašim potrebama.
+                </p>
+                <p className="font-semibold">
+                  Sve preporuke su personalizirane, brze i besplatne.
+                </p>
               </div>
-              <div className="p-8">
-                <div 
-                  className="text-5xl font-bold mb-3"
-                  style={{ 
-                    background: "var(--gradient-water)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text"
-                  }}
-                >
-                  1000+
-                </div>
-                <p className="text-xl font-semibold">Izgrađenih Bazena</p>
-              </div>
-              <div className="p-8">
-                <div 
-                  className="text-5xl font-bold mb-3"
-                  style={{ 
-                    background: "var(--gradient-water)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text"
-                  }}
-                >
-                  100%
-                </div>
-                <p className="text-xl font-semibold">Zadovoljnih Klijenata</p>
-              </div>
+            </div>
+            
+            <div className="p-8 glass-effect border border-primary/20 rounded-lg max-w-3xl mx-auto text-center">
+              <div className="text-4xl mb-4">💬</div>
+              <p className="text-xl font-semibold mb-2">
+                Pitajte naš AI bilo što o bazenima, saunama, opremi i održavanju
+              </p>
+              <p className="text-foreground/80">
+                Dostupno 24/7, potpuno besplatno
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Partnership Section */}
+        {/* Webshop Section */}
         <section className="py-16 px-4">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">
-              Naše Partnerstvo
-            </h2>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
-              <img src={coolpoolLogo} alt="CoolPool" className="h-20 w-auto object-contain" />
-              <span className="text-3xl font-light text-foreground/60">+</span>
-              <img src={astralPoolLogo} alt="AstralPool" className="h-16 w-auto object-contain" />
-            </div>
-            <p className="text-lg text-foreground/90 leading-relaxed max-w-2xl mx-auto">
-              Kao službeni partner AstralPool Fluidra Group, jednog od vodećih svjetskih proizvođača opreme za bazene, 
-              garantiramo vrhunsku kvalitetu i najnovije tehnološke inovacije za vaš bazen.
-            </p>
-          </div>
-        </section>
-
-        {/* Values Section */}
-        <section className="py-16 px-4 bg-muted/30">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Naše Vrijednosti
+              Webshop – Sve za Vaš Bazen na Jednom Mjestu 🛒
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="p-6 glass-effect border border-primary/20">
-                <div className="text-3xl mb-4">🎯</div>
-                <h3 className="text-xl font-bold mb-3">Kvaliteta</h3>
-                <p className="text-foreground/80">
-                  Koristimo samo najbolje materijale i opremu od renomiranih proizvođača
-                </p>
-              </div>
-              <div className="p-6 glass-effect border border-primary/20">
-                <div className="text-3xl mb-4">💎</div>
-                <h3 className="text-xl font-bold mb-3">Profesionalnost</h3>
-                <p className="text-foreground/80">
-                  Naš tim stručnjaka osigurava vrhunsku izvedbu svakog projekta
-                </p>
-              </div>
-              <div className="p-6 glass-effect border border-primary/20">
-                <div className="text-3xl mb-4">🤝</div>
-                <h3 className="text-xl font-bold mb-3">Pouzdanost</h3>
-                <p className="text-foreground/80">
-                  Uz nas ste sigurni - od projektiranja do održavanja
-                </p>
-              </div>
-              <div className="p-6 glass-effect border border-primary/20">
-                <div className="text-3xl mb-4">⚡</div>
-                <h3 className="text-xl font-bold mb-3">Inovativnost</h3>
-                <p className="text-foreground/80">
-                  Pratimo najnovije trendove i tehnologije u industriji bazena
-                </p>
+            <div className="max-w-3xl mx-auto">
+              <p className="text-lg text-foreground/90 leading-relaxed mb-8 text-center">
+                Na našem webshopu pronađite širok izbor:
+              </p>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="p-6 glass-effect border border-primary/20 rounded-lg text-center">
+                  <div className="text-3xl mb-4">💧</div>
+                  <h3 className="font-bold mb-2">Oprema za bazene</h3>
+                  <p className="text-sm text-foreground/80">
+                    Pumpe, filteri, rasvjeta, kemikalije
+                  </p>
+                </div>
+                <div className="p-6 glass-effect border border-primary/20 rounded-lg text-center">
+                  <div className="text-3xl mb-4">🧖</div>
+                  <h3 className="font-bold mb-2">Saune i wellness</h3>
+                  <p className="text-sm text-foreground/80">
+                    Kompletan asortiman za vaš wellness
+                  </p>
+                </div>
+                <div className="p-6 glass-effect border border-primary/20 rounded-lg text-center">
+                  <div className="text-3xl mb-4">⚡</div>
+                  <h3 className="font-bold mb-2">Automatika</h3>
+                  <p className="text-sm text-foreground/80">
+                    Automatsko održavanje i ušteda energije
+                  </p>
+                </div>
               </div>
             </div>
           </div>
