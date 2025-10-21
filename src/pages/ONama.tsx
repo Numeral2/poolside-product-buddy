@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import ProductCatalog from "@/components/ProductCatalog";
 import { Button } from "@/components/ui/button";
+import { Sparkles, MessageCircle, ShoppingBag, Droplets, Waves, Zap, Target, Award, Handshake, Lightbulb } from "lucide-react";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
 import astralPoolLogo from "@/assets/astralpool-logo.png";
 import pool1 from "@/assets/pool-1.png";
@@ -77,29 +78,33 @@ const ONama = () => {
         {/* AI Pools Section */}
         <section className="py-16 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
           <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                AI Bazeni – Prvi u Hrvatskoj 🤖
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <Sparkles className="w-10 h-10 text-primary" />
+              <h2 className="text-3xl md:text-4xl font-bold">
+                AI Bazeni – Prvi u Hrvatskoj
               </h2>
-              <div className="max-w-4xl mx-auto space-y-4 text-lg text-foreground/90 leading-relaxed">
-                <p>
-                  Ponosno predstavljamo <strong>prvi hrvatski AI sustav za planiranje i opremanje bazena.</strong>
-                </p>
-                <p>
-                  Naš pametni asistent omogućuje vam da unesete dimenzije bazena, željeni pH, tip pročišćavanja i pumpanja, a AI odmah preporuči najbolje proizvode i opremu prema vašim potrebama.
-                </p>
-                <p className="font-semibold">
-                  Sve preporuke su personalizirane, brze i besplatne.
-                </p>
-              </div>
             </div>
             
-            <div className="p-8 glass-effect border border-primary/20 rounded-lg max-w-3xl mx-auto text-center">
-              <div className="text-4xl mb-4">💬</div>
-              <p className="text-xl font-semibold mb-2">
-                Pitajte naš AI bilo što o bazenima, saunama, opremi i održavanju
+            <div className="max-w-4xl mx-auto space-y-6 text-lg text-foreground/90 leading-relaxed mb-12">
+              <p className="text-center">
+                Ponosno predstavljamo <strong>prvi hrvatski AI sustav za planiranje i opremanje bazena.</strong>
               </p>
-              <p className="text-foreground/80">
+              <p className="text-center">
+                Naš pametni asistent omogućuje vam da unesete dimenzije bazena, željeni pH, tip pročišćavanja i pumpanja, a AI odmah preporuči najbolje proizvode i opremu prema vašim potrebama.
+              </p>
+              <p className="text-center font-semibold">
+                Sve preporuke su personalizirane, brze i besplatne.
+              </p>
+            </div>
+            
+            <div className="p-8 glass-effect border border-primary/20 rounded-lg max-w-3xl mx-auto">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <MessageCircle className="w-8 h-8 text-primary" />
+                <p className="text-xl font-semibold">
+                  Pitajte naš AI bilo što o bazenima, saunama, opremi i održavanju
+                </p>
+              </div>
+              <p className="text-center text-foreground/80">
                 Dostupno 24/7, potpuno besplatno
               </p>
             </div>
@@ -109,35 +114,173 @@ const ONama = () => {
         {/* Webshop Section */}
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Webshop – Sve za Vaš Bazen na Jednom Mjestu 🛒
-            </h2>
+            <div className="flex items-center justify-center gap-3 mb-12">
+              <ShoppingBag className="w-10 h-10 text-primary" />
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Webshop – Sve za Vaš Bazen na Jednom Mjestu
+              </h2>
+            </div>
             <div className="max-w-3xl mx-auto">
               <p className="text-lg text-foreground/90 leading-relaxed mb-8 text-center">
                 Na našem webshopu pronađite širok izbor:
               </p>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="p-6 glass-effect border border-primary/20 rounded-lg text-center">
-                  <div className="text-3xl mb-4">💧</div>
-                  <h3 className="font-bold mb-2">Oprema za bazene</h3>
-                  <p className="text-sm text-foreground/80">
+                <div className="p-6 glass-effect border border-primary/20 rounded-lg hover:border-primary/40 transition-all">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 rounded-full bg-primary/10">
+                      <Droplets className="w-8 h-8 text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-center mb-2">Oprema za bazene</h3>
+                  <p className="text-sm text-foreground/80 text-center">
                     Pumpe, filteri, rasvjeta, kemikalije
                   </p>
                 </div>
-                <div className="p-6 glass-effect border border-primary/20 rounded-lg text-center">
-                  <div className="text-3xl mb-4">🧖</div>
-                  <h3 className="font-bold mb-2">Saune i wellness</h3>
-                  <p className="text-sm text-foreground/80">
+                <div className="p-6 glass-effect border border-primary/20 rounded-lg hover:border-primary/40 transition-all">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 rounded-full bg-primary/10">
+                      <Waves className="w-8 h-8 text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-center mb-2">Saune i wellness</h3>
+                  <p className="text-sm text-foreground/80 text-center">
                     Kompletan asortiman za vaš wellness
                   </p>
                 </div>
-                <div className="p-6 glass-effect border border-primary/20 rounded-lg text-center">
-                  <div className="text-3xl mb-4">⚡</div>
-                  <h3 className="font-bold mb-2">Automatika</h3>
-                  <p className="text-sm text-foreground/80">
+                <div className="p-6 glass-effect border border-primary/20 rounded-lg hover:border-primary/40 transition-all">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 rounded-full bg-primary/10">
+                      <Zap className="w-8 h-8 text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-center mb-2">Automatika</h3>
+                  <p className="text-sm text-foreground/80 text-center">
                     Automatsko održavanje i ušteda energije
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="py-16 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div className="p-8">
+                <div 
+                  className="text-5xl font-bold mb-3"
+                  style={{ 
+                    background: "var(--gradient-water)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text"
+                  }}
+                >
+                  18+
+                </div>
+                <p className="text-xl font-semibold">Godina Iskustva</p>
+              </div>
+              <div className="p-8">
+                <div 
+                  className="text-5xl font-bold mb-3"
+                  style={{ 
+                    background: "var(--gradient-water)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text"
+                  }}
+                >
+                  1000+
+                </div>
+                <p className="text-xl font-semibold">Izgrađenih Bazena</p>
+              </div>
+              <div className="p-8">
+                <div 
+                  className="text-5xl font-bold mb-3"
+                  style={{ 
+                    background: "var(--gradient-water)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text"
+                  }}
+                >
+                  100%
+                </div>
+                <p className="text-xl font-semibold">Zadovoljnih Klijenata</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Partnership Section */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">
+              Naše Partnerstvo
+            </h2>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
+              <img src={coolpoolLogo} alt="CoolPool" className="h-20 w-auto object-contain" />
+              <span className="text-3xl font-light text-foreground/60">+</span>
+              <img src={astralPoolLogo} alt="AstralPool" className="h-16 w-auto object-contain" />
+            </div>
+            <p className="text-lg text-foreground/90 leading-relaxed max-w-2xl mx-auto">
+              Kao službeni partner AstralPool Fluidra Group, jednog od vodećih svjetskih proizvođača opreme za bazene, 
+              garantiramo vrhunsku kvalitetu i najnovije tehnološke inovacije za vaš bazen.
+            </p>
+          </div>
+        </section>
+
+        {/* Values Section */}
+        <section className="py-16 px-4 bg-muted/30">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              Naše Vrijednosti
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="p-6 glass-effect border border-primary/20 rounded-lg hover:border-primary/40 transition-all">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <Target className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold">Kvaliteta</h3>
+                </div>
+                <p className="text-foreground/80">
+                  Koristimo samo najbolje materijale i opremu od renomiranih proizvođača
+                </p>
+              </div>
+              <div className="p-6 glass-effect border border-primary/20 rounded-lg hover:border-primary/40 transition-all">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <Award className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold">Profesionalnost</h3>
+                </div>
+                <p className="text-foreground/80">
+                  Naš tim stručnjaka osigurava vrhunsku izvedbu svakog projekta
+                </p>
+              </div>
+              <div className="p-6 glass-effect border border-primary/20 rounded-lg hover:border-primary/40 transition-all">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <Handshake className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold">Pouzdanost</h3>
+                </div>
+                <p className="text-foreground/80">
+                  Uz nas ste sigurni - od projektiranja do održavanja
+                </p>
+              </div>
+              <div className="p-6 glass-effect border border-primary/20 rounded-lg hover:border-primary/40 transition-all">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <Lightbulb className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold">Inovativnost</h3>
+                </div>
+                <p className="text-foreground/80">
+                  Pratimo najnovije trendove i tehnologije u industriji bazena
+                </p>
               </div>
             </div>
           </div>
