@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import ProductCatalog from "@/components/ProductCatalog";
 import { Button } from "@/components/ui/button";
 import { Sparkles, MessageCircle, ShoppingBag, Droplets, Waves, Zap, Target, Award, Handshake, Lightbulb } from "lucide-react";
+import { Link } from "react-router-dom";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
 import astralPoolLogo from "@/assets/astralpool-logo.png";
 import pool1 from "@/assets/pool-1.png";
@@ -97,7 +98,13 @@ const ONama = () => {
               </p>
             </div>
             
-            <div className="p-8 glass-effect border border-primary/20 rounded-lg max-w-3xl mx-auto">
+            <div 
+              className="p-8 glass-effect border border-primary/20 rounded-lg max-w-3xl mx-auto cursor-pointer hover:border-primary/40 transition-all"
+              onClick={() => {
+                const chatbot = document.querySelector('[data-chatbot]');
+                if (chatbot instanceof HTMLElement) chatbot.click();
+              }}
+            >
               <div className="flex items-center justify-center gap-3 mb-4">
                 <MessageCircle className="w-8 h-8 text-primary" />
                 <p className="text-xl font-semibold">
@@ -296,10 +303,19 @@ const ONama = () => {
               Javite nam se i započnite put do vašeg savršenog bazena
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
+              <Link to="/izgradnja#contact-form">
+                <Button 
+                  size="lg"
+                  className="text-white font-bold shadow-md hover:shadow-lg transition-all duration-300 text-lg px-8"
+                  style={{ background: "var(--gradient-water)" }}
+                >
+                  Kontaktirajte Nas
+                </Button>
+              </Link>
               <Button 
                 size="lg"
-                className="text-white font-bold shadow-md hover:shadow-lg transition-all duration-300 text-lg px-8"
-                style={{ background: "var(--gradient-water)" }}
+                variant="outline"
+                className="font-bold text-lg px-8"
                 onClick={() => {
                   const chatbot = document.querySelector('[data-chatbot]');
                   if (chatbot instanceof HTMLElement) chatbot.click();
