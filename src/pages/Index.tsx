@@ -138,47 +138,20 @@ const Index = () => {
           
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="text-center p-6">
-              <div 
-                className="text-5xl font-bold mb-3"
-                style={{ 
-                  background: "var(--gradient-water)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}
-              >
-                18+
-              </div>
-              <p className="text-lg font-semibold">Godina Iskustva</p>
+            <div className="group relative overflow-hidden border border-primary/30 bg-card p-8 text-center transition-all hover:border-primary hover:shadow-lg">
+              <div className="absolute top-0 left-0 w-full h-1" style={{ background: "var(--gradient-water)" }}></div>
+              <div className="text-6xl mb-4 font-extrabold text-primary">18+</div>
+              <p className="text-base font-semibold text-foreground/80 uppercase tracking-wide">Godina Iskustva</p>
             </div>
-            <div className="text-center p-6">
-              <div 
-                className="text-5xl font-bold mb-3"
-                style={{ 
-                  background: "var(--gradient-water)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}
-              >
-                1000+
-              </div>
-              <p className="text-lg font-semibold">Izgrađenih Bazena</p>
+            <div className="group relative overflow-hidden border border-primary/30 bg-card p-8 text-center transition-all hover:border-primary hover:shadow-lg">
+              <div className="absolute top-0 left-0 w-full h-1" style={{ background: "var(--gradient-water)" }}></div>
+              <div className="text-6xl mb-4 font-extrabold text-primary">1000+</div>
+              <p className="text-base font-semibold text-foreground/80 uppercase tracking-wide">Izgrađenih Bazena</p>
             </div>
-            <div className="text-center p-6">
-              <div 
-                className="text-5xl font-bold mb-3"
-                style={{ 
-                  background: "var(--gradient-water)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}
-              >
-                100%
-              </div>
-              <p className="text-lg font-semibold">Zadovoljnih Klijenata</p>
+            <div className="group relative overflow-hidden border border-primary/30 bg-card p-8 text-center transition-all hover:border-primary hover:shadow-lg">
+              <div className="absolute top-0 left-0 w-full h-1" style={{ background: "var(--gradient-water)" }}></div>
+              <div className="text-6xl mb-4 font-extrabold text-primary">100%</div>
+              <p className="text-base font-semibold text-foreground/80 uppercase tracking-wide">Zadovoljnih Klijenata</p>
             </div>
           </div>
           
@@ -196,44 +169,46 @@ const Index = () => {
           </div>
           
           {/* CTA Cards */}
-          <div className="flex gap-4 justify-center flex-wrap">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             <Link to="/izgradnja">
-              <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[240px] h-[180px] cursor-pointer">
-                <img 
-                  src={pool1} 
-                  alt="Izgradnja bazena" 
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div 
-                  className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity"
-                  style={{ background: "var(--gradient-water)" }}
-                />
-                <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-4">
-                  <span className="text-2xl mb-2">🏗️</span>
-                  <span className="text-xl font-bold">Izgradnja</span>
-                  <span className="text-xs mt-1 opacity-90">Saznajte više</span>
+              <div className="group border border-primary/30 bg-card p-6 hover:border-primary hover:shadow-xl transition-all cursor-pointer">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-16 h-16 rounded-lg overflow-hidden border border-primary/20 flex-shrink-0">
+                    <img 
+                      src={pool1} 
+                      alt="Izgradnja bazena" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <span className="text-3xl">🏗️</span>
+                  </div>
                 </div>
+                <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">Izgradnja</h3>
+                <p className="text-sm text-muted-foreground mb-3">Profesionalna izgradnja bazena od planiranja do realizacije</p>
+                <span className="text-sm font-semibold text-primary">Saznajte više →</span>
               </div>
             </Link>
             
             <button
               onClick={() => openCatalog("Filteri")}
-              className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105 group w-[240px] h-[180px]"
+              className="group border border-primary/30 bg-card p-6 hover:border-primary hover:shadow-xl transition-all text-left"
             >
-              <img 
-                src={filter1} 
-                alt="Oprema za bazene" 
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div 
-                className="absolute inset-0 opacity-70 group-hover:opacity-60 transition-opacity"
-                style={{ background: "var(--gradient-water-deep)" }}
-              />
-              <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-4">
-                <span className="text-2xl mb-2">⚙️</span>
-                <span className="text-xl font-bold">Oprema</span>
-                <span className="text-xs mt-1 opacity-90">Pregledajte katalog</span>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-16 h-16 rounded-lg overflow-hidden border border-primary/20 flex-shrink-0">
+                  <img 
+                    src={filter1} 
+                    alt="Oprema za bazene" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <span className="text-3xl">⚙️</span>
+                </div>
               </div>
+              <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">Oprema za bazene</h3>
+              <p className="text-sm text-muted-foreground mb-3">Širok asortiman opreme i kemikalija za održavanje bazena</p>
+              <span className="text-sm font-semibold text-primary">Pregledajte katalog →</span>
             </button>
           </div>
           
