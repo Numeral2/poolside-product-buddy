@@ -167,14 +167,7 @@ const Index = () => {
             <Link to="/izgradnja">
               <div className="group border border-primary/20 bg-card p-4 hover:border-primary hover:shadow-lg transition-all cursor-pointer">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-12 h-12 rounded overflow-hidden border border-primary/20 flex-shrink-0">
-                    <img 
-                      src={pool1} 
-                      alt="Izgradnja bazena" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <span className="text-2xl">🏗️</span>
+                  <span className="text-3xl">🏗️</span>
                 </div>
                 <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">Izgradnja</h3>
                 <p className="text-xs text-muted-foreground mb-2">Profesionalna izgradnja bazena od planiranja do realizacije</p>
@@ -187,14 +180,7 @@ const Index = () => {
               className="group border border-primary/20 bg-card p-4 hover:border-primary hover:shadow-lg transition-all text-left"
             >
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-12 h-12 rounded overflow-hidden border border-primary/20 flex-shrink-0">
-                  <img 
-                    src={filter1} 
-                    alt="Oprema za bazene" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <span className="text-2xl">⚙️</span>
+                <span className="text-3xl">⚙️</span>
               </div>
               <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">Oprema za bazene</h3>
               <p className="text-xs text-muted-foreground mb-2">Širok asortiman opreme i kemikalija za održavanje bazena</p>
