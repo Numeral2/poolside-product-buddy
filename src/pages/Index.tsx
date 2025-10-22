@@ -204,23 +204,23 @@ const Index = () => {
           </div>
           
           {/* AI Section */}
-          <div className="text-center max-w-2xl mx-auto">
-            <div className="rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-8 border border-primary/20">
-              <div className="flex items-center justify-center mb-4">
-                <div className="p-3 rounded-full bg-gradient-to-br from-primary to-primary/80 shadow-lg">
-                  <Sparkles className="h-6 w-6 text-white" />
+          <div className="text-center max-w-xl mx-auto">
+            <div className="rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-5 border border-primary/20">
+              <div className="flex items-center justify-center mb-3">
+                <div className="p-2 rounded-full bg-gradient-to-br from-primary to-primary/80 shadow-lg">
+                  <Sparkles className="h-5 w-5 text-white" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold mb-3">AI Asistent za Bazene</h3>
-              <p className="text-sm text-foreground/80 mb-5">
-                Pronađite opremu koja najbolje odgovara veličini vašeg bazena i postavite pitanja koja biste inače pitali majstora.
+              <h3 className="text-lg font-bold mb-2">AI Asistent za Bazene</h3>
+              <p className="text-xs text-foreground/80 mb-4">
+                Pronađite opremu koja najbolje odgovara veličini vašeg bazena, kao i načinu održavanja bazena i slično.
               </p>
               <Button
                 onClick={() => {
                   const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
                   if (chatbot) chatbot.click();
                 }}
-                size="lg"
+                size="default"
                 className="text-white font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
                 style={{ background: "var(--gradient-water)" }}
               >
