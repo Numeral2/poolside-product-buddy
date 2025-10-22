@@ -166,9 +166,6 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto mb-6">
             <Link to="/izgradnja">
               <div className="group border border-primary/20 bg-card p-4 hover:border-primary hover:shadow-lg transition-all cursor-pointer">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-3xl">🏗️</span>
-                </div>
                 <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">Izgradnja</h3>
                 <p className="text-xs text-muted-foreground mb-2">Profesionalna izgradnja bazena od planiranja do realizacije</p>
                 <span className="text-xs font-semibold text-primary">Saznajte više →</span>
@@ -179,9 +176,6 @@ const Index = () => {
               onClick={() => openCatalog("Filteri")}
               className="group border border-primary/20 bg-card p-4 hover:border-primary hover:shadow-lg transition-all text-left"
             >
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-3xl">⚙️</span>
-              </div>
               <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">Oprema za bazene</h3>
               <p className="text-xs text-muted-foreground mb-2">Širok asortiman opreme i kemikalija za održavanje bazena</p>
               <span className="text-xs font-semibold text-primary">Pregledajte katalog →</span>
