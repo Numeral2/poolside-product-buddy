@@ -127,88 +127,122 @@ const Index = () => {
       </div>
       
       {/* Stats Section with Partners */}
-      <section className="py-8 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
+      <section className="py-10 px-4 bg-gradient-to-b from-background via-muted/20 to-background">
         <div className="container mx-auto max-w-6xl">
           {/* Partner Logos */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-3 mb-8">
-            <img src={coolpoolLogo} alt="CoolPool" className="h-10 w-auto object-contain" />
-            <span className="text-lg font-light text-foreground/60">+</span>
-            <img src={astralPoolLogo} alt="AstralPool" className="h-9 w-auto object-contain" />
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-10">
+            <div className="flex items-center gap-4 p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-primary/10">
+              <img src={coolpoolLogo} alt="CoolPool" className="h-12 w-auto object-contain" />
+              <span className="text-xl font-light text-foreground/40">+</span>
+              <img src={astralPoolLogo} alt="AstralPool" className="h-10 w-auto object-contain" />
+            </div>
           </div>
           
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-1">18+</div>
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">Godina Iskustva</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/50 p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="relative">
+                <div className="text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-2">18+</div>
+                <p className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">Godina Iskustva</p>
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-1">1000+</div>
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">Izgrađenih Bazena</p>
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/50 p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="relative">
+                <div className="text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-2">1000+</div>
+                <p className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">Izgrađenih Bazena</p>
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-1">100%</div>
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">Zadovoljnih Klijenata</p>
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/50 p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="relative">
+                <div className="text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-2">100%</div>
+                <p className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">Zadovoljnih Klijenata</p>
+              </div>
             </div>
           </div>
           
           {/* Description */}
-          <div className="text-center max-w-2xl mx-auto space-y-2 mb-6">
-            <p className="text-sm text-foreground/90 leading-relaxed">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <p className="text-base text-foreground/90 leading-relaxed mb-3">
               Nudimo izgradnju bazena te proizvode za opremanje bazena.
             </p>
-            <p className="text-xs text-foreground/70 leading-relaxed">
+            <p className="text-sm text-foreground/70 leading-relaxed">
               Od 2006. godine specijalizirani smo za izgradnju i opremanje bazena. Kao glavni partner AstralPool Fluidra Group u Dalmaciji, nudimo vrhunsku opremu, profesionalnu ugradnju i potpunu tehničku podršku.
             </p>
           </div>
           
           {/* CTA Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto mb-10">
             <Link to="/izgradnja">
-              <div className="group border border-primary/20 bg-card p-4 hover:border-primary hover:shadow-lg transition-all cursor-pointer">
-                <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">Izgradnja</h3>
-                <p className="text-xs text-muted-foreground mb-2">Profesionalna izgradnja bazena od planiranja do realizacije</p>
-                <span className="text-xs font-semibold text-primary">Saznajte više →</span>
+              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Izgradnja Bazena</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Profesionalna izgradnja od planiranja do realizacije</p>
+                  <span className="inline-flex items-center text-sm font-semibold text-primary group-hover:gap-2 transition-all">
+                    Saznajte više <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+                  </span>
+                </div>
               </div>
             </Link>
             
             <button
               onClick={() => openCatalog("Filteri")}
-              className="group border border-primary/20 bg-card p-4 hover:border-primary hover:shadow-lg transition-all text-left"
+              className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-all hover:-translate-y-1 text-left"
             >
-              <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">Oprema za bazene</h3>
-              <p className="text-xs text-muted-foreground mb-2">Širok asortiman opreme i kemikalija za održavanje bazena</p>
-              <span className="text-xs font-semibold text-primary">Pregledajte katalog →</span>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Oprema za Bazene</h3>
+                <p className="text-sm text-muted-foreground mb-3">Širok asortiman opreme i kemikalija za održavanje</p>
+                <span className="inline-flex items-center text-sm font-semibold text-primary group-hover:gap-2 transition-all">
+                  Pregledajte katalog <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+              </div>
             </button>
           </div>
           
           {/* AI Section */}
-          <div className="text-center max-w-xl mx-auto">
-            <p className="text-sm text-foreground/80 mb-4">
-              Saznajte sve o bazenima uz naš AI i otkrijte proizvode koji najbolje odgovaraju vašem bazenu.
-            </p>
-            <Button
-              onClick={() => {
-                const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
-                if (chatbot) chatbot.click();
-              }}
-              size="default"
-              className="text-white px-6"
-              style={{ background: "var(--gradient-water)" }}
-            >
-              <Sparkles className="mr-2 h-4 w-4" />
-              Razgovarajte s AI
-            </Button>
+          <div className="text-center max-w-2xl mx-auto">
+            <div className="rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-8 border border-primary/20">
+              <div className="flex items-center justify-center mb-4">
+                <div className="p-3 rounded-full bg-gradient-to-br from-primary to-primary/80 shadow-lg">
+                  <Sparkles className="h-6 w-6 text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold mb-3">AI Asistent za Bazene</h3>
+              <p className="text-sm text-foreground/80 mb-5">
+                Saznajte sve o bazenima uz naš AI i otkrijte proizvode koji najbolje odgovaraju vašem bazenu.
+              </p>
+              <Button
+                onClick={() => {
+                  const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
+                  if (chatbot) chatbot.click();
+                }}
+                size="lg"
+                className="text-white font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
+                style={{ background: "var(--gradient-water)" }}
+              >
+                <Sparkles className="mr-2 h-4 w-4" />
+                Razgovarajte s AI
+              </Button>
+            </div>
           </div>
         </div>
       </section>
       
       {/* Featured Projects Section - Carousel */}
-      <section className="py-8 bg-transparent">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-6">
-            Naši Izdvojeni Projekti
-          </h2>
+      <section className="py-12 px-4 bg-gradient-to-b from-background to-muted/20">
+        <div className="container mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              Naši Izdvojeni Projekti
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+              Pogledajte neke od naših najuspješnijih realizacija
+            </p>
+          </div>
           <Carousel
             opts={{
               align: "start",
@@ -219,7 +253,7 @@ const Index = () => {
             <CarouselContent className="-ml-6">
               {featuredProjects.map((project) => (
                 <CarouselItem key={project.id} className="pl-6 md:basis-1/2 lg:basis-1/3">
-                  <div onClick={() => openCatalog(project.category)} className="cursor-pointer">
+                  <div onClick={() => openCatalog(project.category)} className="cursor-pointer h-full">
                     <ProductCard 
                       name={project.name}
                       description={project.description}
@@ -234,12 +268,12 @@ const Index = () => {
             <CarouselNext className="right-0" />
           </Carousel>
         </div>
-        <div className="text-center mt-8 flex flex-wrap gap-4 justify-center">
+        <div className="text-center mt-10 flex flex-wrap gap-4 justify-center">
           <Link to="/projekti">
             <Button 
               size="lg" 
               variant="outline"
-              className="font-bold text-lg px-8 py-6"
+              className="font-bold px-8 hover:bg-primary/5 transition-all hover:-translate-y-0.5"
             >
               Pogledaj Više Projekata
             </Button>
@@ -247,7 +281,7 @@ const Index = () => {
           <Link to="/izgradnja#contact-form">
             <Button 
               size="lg" 
-              className="text-white font-bold shadow-md hover:shadow-lg transition-all duration-300 text-lg px-8 py-6"
+              className="text-white font-bold shadow-md hover:shadow-xl transition-all hover:-translate-y-0.5"
               style={{ background: "var(--gradient-water)" }}
             >
               Zatražite Ponudu
@@ -257,7 +291,7 @@ const Index = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="font-bold text-lg px-8 py-6"
+              className="font-bold px-8 hover:bg-primary/5 transition-all hover:-translate-y-0.5"
             >
               Pogledajte Sve Proizvode
             </Button>
