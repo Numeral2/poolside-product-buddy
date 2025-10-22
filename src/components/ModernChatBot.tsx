@@ -42,7 +42,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
     // Add initial greeting message
     return [{
       role: "assistant",
-      content: "Pozdrav! 👋 Ja sam vaš AI asistent za bazene.\n\nMogu vam pomoći da:\n• Pronađete pravu opremu za vaš bazen\n• Saznate više o našim proizvodima\n• Dobijete savjet o održavanju bazena\n• Informacije o izgradnji bazena\n\nŠto vas zanima danas?"
+      content: "Pozdrav! 👋 Ja sam vaš AI asistent za bazene.\n\n**Kako funkcionira:**\nNapišite kvadraturu vašeg bazena i opremu koja vas zanima, a ja ću vam preporučiti najbolje proizvode iz našeg asortimana.\n\n**Primjer:**\n\"Trebam filter za bazen 35m³\"\n\"Zanima me pumpa za bazen 8x4 metra\"\n\nŠto vas zanima?"
     }];
   });
   const [input, setInput] = useState("");
@@ -78,7 +78,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
   const clearConversation = () => {
     const initialMessage: Message = {
       role: "assistant",
-      content: "Pozdrav! 👋 Ja sam vaš AI asistent za bazene.\n\nMogu vam pomoći da:\n• Pronađete pravu opremu za vaš bazen\n• Saznate više o našim proizvodima\n• Dobijete savjet o održavanju bazena\n• Informacije o izgradnji bazena\n\nŠto vas zanima danas?"
+      content: "Pozdrav! 👋 Ja sam vaš AI asistent za bazene.\n\n**Kako funkcionira:**\nNapišite kvadraturu vašeg bazena i opremu koja vas zanima, a ja ću vam preporučiti najbolje proizvode iz našeg asortimana.\n\n**Primjer:**\n\"Trebam filter za bazen 35m³\"\n\"Zanima me pumpa za bazen 8x4 metra\"\n\nŠto vas zanima?"
     };
     setMessages([initialMessage]);
     setShowInitialOptions(false);
