@@ -82,7 +82,7 @@ const ONama = () => {
             <div className="flex items-center justify-center gap-3 mb-6">
               <Sparkles className="w-8 h-8 text-primary" />
               <h2 className="text-2xl md:text-3xl font-bold">
-                AI Bazeni – Prvi u Hrvatskoj
+                Ai za bazene - prvi u Hrvatskoj
               </h2>
             </div>
             
