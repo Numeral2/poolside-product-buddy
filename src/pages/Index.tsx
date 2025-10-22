@@ -132,30 +132,30 @@ const Index = () => {
           {/* Partner Logos */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-10">
             <div className="flex items-center gap-2 md:gap-4 p-3 md:p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-primary/10">
-              <img src={coolpoolLogo} alt="CoolPool" className="h-8 md:h-12 w-auto object-contain" />
+              <img src={coolpoolLogo} alt="CoolPool" loading="eager" className="h-8 md:h-12 w-auto object-contain" />
               <span className="text-lg md:text-xl font-light text-foreground/40">+</span>
-              <img src={astralPoolLogo} alt="AstralPool" className="h-7 md:h-10 w-auto object-contain" />
+              <img src={astralPoolLogo} alt="AstralPool" loading="eager" className="h-7 md:h-10 w-auto object-contain" />
             </div>
           </div>
           
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 mb-10">
-            <div className="group relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
-              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+            <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-colors hover:shadow-lg">
+              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10"></div>
               <div className="relative">
                 <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">18+</div>
                 <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Godina Iskustva</p>
               </div>
             </div>
-            <div className="group relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
-              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+            <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-colors hover:shadow-lg">
+              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10"></div>
               <div className="relative">
                 <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">1000+</div>
                 <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Izgrađenih Bazena</p>
               </div>
             </div>
-            <div className="group relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
-              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+            <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-colors hover:shadow-lg">
+              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10"></div>
               <div className="relative">
                 <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">100%</div>
                 <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Zadovoljnih Klijenata</p>
@@ -176,13 +176,13 @@ const Index = () => {
           {/* CTA Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto mb-10">
             <Link to="/izgradnja">
-              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer">
+              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-colors cursor-pointer">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
                   <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Izgradnja Bazena</h3>
                   <p className="text-sm text-muted-foreground mb-3">Profesionalna izgradnja od planiranja do realizacije</p>
-                  <span className="inline-flex items-center text-sm font-semibold text-primary group-hover:gap-2 transition-all">
-                    Saznajte više <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+                  <span className="inline-flex items-center text-sm font-semibold text-primary">
+                    Saznajte više <span className="ml-1">→</span>
                   </span>
                 </div>
               </div>
@@ -190,14 +190,14 @@ const Index = () => {
             
             <button
               onClick={() => openCatalog("Filteri")}
-              className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-all hover:-translate-y-1 text-left"
+              className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-colors text-left"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Oprema za Bazene</h3>
                 <p className="text-sm text-muted-foreground mb-3">Širok asortiman opreme i kemikalija za održavanje</p>
-                <span className="inline-flex items-center text-sm font-semibold text-primary group-hover:gap-2 transition-all">
-                  Pregledajte katalog <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+                <span className="inline-flex items-center text-sm font-semibold text-primary">
+                  Pregledajte katalog <span className="ml-1">→</span>
                 </span>
               </div>
             </button>
@@ -219,7 +219,7 @@ const Index = () => {
                   if (chatbot) chatbot.click();
                 }}
                 size="sm"
-                className="text-white font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
+                className="text-white font-semibold shadow-md hover:shadow-lg transition-shadow"
                 style={{ background: "var(--gradient-water)" }}
               >
                 <Sparkles className="mr-1.5 h-3.5 w-3.5" />
@@ -271,7 +271,7 @@ const Index = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="font-bold px-8 hover:bg-primary/5 transition-all hover:-translate-y-0.5"
+              className="font-bold px-8 hover:bg-primary/5 transition-colors"
             >
               Pogledaj Više Projekata
             </Button>
@@ -279,7 +279,7 @@ const Index = () => {
           <Link to="/izgradnja#contact-form">
             <Button 
               size="lg" 
-              className="text-white font-bold shadow-md hover:shadow-xl transition-all hover:-translate-y-0.5"
+              className="text-white font-bold shadow-md hover:shadow-xl transition-shadow"
               style={{ background: "var(--gradient-water)" }}
             >
               Zatražite Ponudu
@@ -289,7 +289,7 @@ const Index = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="font-bold px-8 hover:bg-primary/5 transition-all hover:-translate-y-0.5"
+              className="font-bold px-8 hover:bg-primary/5 transition-colors"
             >
               Pogledajte Sve Proizvode
             </Button>
@@ -326,7 +326,7 @@ const Index = () => {
             {/* Company Info and Map */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <img src={coolpoolLogo} alt="CoolPool" className="h-20 w-auto object-contain" />
+                <img src={coolpoolLogo} alt="CoolPool" loading="lazy" className="h-20 w-auto object-contain" />
               </div>
               <div className="text-muted-foreground text-sm leading-relaxed space-y-1">
                 <p className="font-bold text-foreground">COOL POOL d.o.o.</p>
@@ -430,7 +430,7 @@ const Index = () => {
                 CoolPool | © {new Date().getFullYear()} | Sva prava pridržana
               </p>
               <div className="flex items-center gap-4">
-                <img src={astralPoolLogo} alt="AstralPool" className="h-8 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                <img src={astralPoolLogo} alt="AstralPool" loading="lazy" className="h-8 w-auto object-contain opacity-60 hover:opacity-100" />
               </div>
             </div>
           </div>

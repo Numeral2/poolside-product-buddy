@@ -25,6 +25,7 @@ const ONama = () => {
             <img 
               src={coolpoolLogo} 
               alt="CoolPool Hrvatska" 
+              loading="eager"
               className="h-20 w-auto mx-auto mb-6 object-contain"
             />
             <h1 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
@@ -60,16 +61,19 @@ const ONama = () => {
                 <img 
                   src={pool1} 
                   alt="Pool project 1" 
+                  loading="lazy"
                   className="rounded-lg shadow-lg w-full h-32 md:h-40 object-cover"
                 />
                 <img 
                   src={pool2} 
                   alt="Pool project 2" 
+                  loading="lazy"
                   className="rounded-lg shadow-lg w-full h-32 md:h-40 object-cover md:mt-6"
                 />
                 <img 
                   src={pool3} 
                   alt="Pool project 3" 
+                  loading="lazy"
                   className="rounded-lg shadow-lg w-full h-32 md:h-40 object-cover col-span-2"
                 />
               </div>
@@ -223,9 +227,9 @@ const ONama = () => {
               Naše Partnerstvo
             </h2>
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-6">
-              <img src={coolpoolLogo} alt="CoolPool" className="h-16 w-auto object-contain" />
+              <img src={coolpoolLogo} alt="CoolPool" loading="lazy" className="h-16 w-auto object-contain" />
               <span className="text-2xl font-light text-foreground/60">+</span>
-              <img src={astralPoolLogo} alt="AstralPool" className="h-14 w-auto object-contain" />
+              <img src={astralPoolLogo} alt="AstralPool" loading="lazy" className="h-14 w-auto object-contain" />
             </div>
             <p className="text-base text-foreground/90 leading-relaxed max-w-2xl mx-auto">
               Kao službeni partner AstralPool Fluidra Group, jednog od vodećih svjetskih proizvođača opreme za bazene, 

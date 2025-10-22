@@ -35,7 +35,7 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
       <div className="absolute inset-0 z-[1]" style={{ background: "var(--gradient-hero)" }} />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
-        <div className="text-center space-y-6 animate-fade-in max-w-4xl mx-auto">
+        <div className="text-center space-y-6 max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold text-center text-white drop-shadow-2xl"
               style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}>
             Zaronite u bazen po mjeri.
@@ -56,10 +56,10 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
                 const chatbot = document.querySelector('[data-chatbot]');
                 if (chatbot instanceof HTMLElement) chatbot.click();
               }}
-              className="px-6 py-3 rounded-full font-semibold text-base text-white shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center gap-2 group"
+              className="px-6 py-3 rounded-full font-semibold text-base text-white shadow-lg hover:opacity-90 transition-opacity inline-flex items-center gap-2 group"
               style={{ background: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.3)" }}
             >
-              <Search className="h-5 w-5 group-hover:scale-110 transition-transform" />
+              <Search className="h-5 w-5" />
               AI Tražilica
             </button>
           </div>

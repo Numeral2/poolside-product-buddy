@@ -88,7 +88,7 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
   };
 
   return (
-    <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border/50 hover:border-border bg-card">
+    <Card className="overflow-hidden hover:shadow-xl transition-shadow border border-border/50 hover:border-border bg-card">
       
       
       {image && (
@@ -96,7 +96,8 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
           <img 
             src={image} 
             alt={name} 
-            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 p-3"
+            loading="lazy"
+            className="w-full h-full object-contain p-3"
           />
         </div>
       )}

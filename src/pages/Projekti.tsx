@@ -164,7 +164,7 @@ const Projekti = () => {
                 {currentProjects.map((project) => (
                   <div 
                     key={project.id}
-                    className="group relative overflow-hidden rounded-lg border border-primary/20 hover:border-primary/50 transition-all cursor-pointer"
+                    className="group relative overflow-hidden rounded-lg border border-primary/20 hover:border-primary/50 transition-colors cursor-pointer"
                     onClick={() => project.location && setSelectedProject(project)}
                   >
                     <div className="aspect-[4/3] overflow-hidden">
@@ -172,7 +172,7 @@ const Projekti = () => {
                         src={project.image} 
                         alt={project.title}
                         loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <div className="p-6 bg-card">

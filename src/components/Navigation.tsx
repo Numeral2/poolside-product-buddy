@@ -29,7 +29,7 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md border-b border-border/50 shadow-sm">
       <div className="container mx-auto px-4 h-14 flex items-center justify-between">
         <Link to="/" className="absolute left-4 top-1.5 flex items-center flex-shrink-0">
-          <img src={coolpoolLogo} alt="CoolPool" className="h-10 w-auto object-contain" />
+          <img src={coolpoolLogo} alt="CoolPool" loading="eager" className="h-10 w-auto object-contain" />
         </Link>
         
         <div className="flex items-center gap-4 ml-auto">
