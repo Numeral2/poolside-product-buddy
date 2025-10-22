@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCatalog from "@/components/ProductCatalog";
+import ModernChatBot from "@/components/ModernChatBot";
 import { Button } from "@/components/ui/button";
 import { Sparkles, MessageCircle, ShoppingBag, Droplets, Waves, Zap, Target, Award, Handshake, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -19,7 +20,7 @@ const ONama = () => {
       
       <div className="md:ml-72 pt-20">
         {/* Hero Section */}
-        <section className="relative py-12 px-4 bg-gradient-to-b from-primary/5 to-transparent">
+        <section className="relative py-8 md:py-10 px-4 bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container mx-auto max-w-6xl text-center">
             <img 
               src={coolpoolLogo} 
@@ -36,14 +37,14 @@ const ONama = () => {
         </section>
 
         {/* Mission Section */}
-        <section className="py-10 px-4">
+        <section className="py-6 md:py-8 px-4">
           <div className="container mx-auto max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="grid md:grid-cols-2 lg:gap-8 gap-6 items-center">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">
                   Naša Misija
                 </h2>
-                <div className="space-y-3 text-base text-foreground/90 leading-relaxed">
+                <div className="space-y-2 md:space-y-3 text-sm md:text-base text-foreground/90 leading-relaxed">
                   <p>
                     <strong>Svaki kupac je na prvom mjestu.</strong> Gradimo bazene po vašim željama, mjerama i viziji, koristeći najnovije tehnologije i kvalitetne materijale koji garantiraju dugotrajnost i eleganciju.
                   </p>
@@ -55,21 +56,21 @@ const ONama = () => {
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2 md:gap-3">
                 <img 
                   src={pool1} 
                   alt="Pool project 1" 
-                  className="rounded-lg shadow-lg w-full h-40 object-cover"
+                  className="rounded-lg shadow-lg w-full h-32 md:h-40 object-cover"
                 />
                 <img 
                   src={pool2} 
                   alt="Pool project 2" 
-                  className="rounded-lg shadow-lg w-full h-40 object-cover mt-6"
+                  className="rounded-lg shadow-lg w-full h-32 md:h-40 object-cover md:mt-6"
                 />
                 <img 
                   src={pool3} 
                   alt="Pool project 3" 
-                  className="rounded-lg shadow-lg w-full h-40 object-cover col-span-2"
+                  className="rounded-lg shadow-lg w-full h-32 md:h-40 object-cover col-span-2"
                 />
               </div>
             </div>
@@ -77,16 +78,16 @@ const ONama = () => {
         </section>
 
         {/* AI Pools Section */}
-        <section className="py-10 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
+        <section className="py-6 md:py-8 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
           <div className="container mx-auto max-w-6xl">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Sparkles className="w-8 h-8 text-primary" />
-              <h2 className="text-2xl md:text-3xl font-bold">
+            <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6">
+              <Sparkles className="w-6 md:w-8 h-6 md:h-8 text-primary" />
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">
                 Ai za bazene - prvi u Hrvatskoj
               </h2>
             </div>
             
-            <div className="max-w-4xl mx-auto space-y-3 text-base text-foreground/90 leading-relaxed mb-8">
+            <div className="max-w-4xl mx-auto space-y-2 md:space-y-3 text-sm md:text-base text-foreground/90 leading-relaxed mb-6 md:mb-8">
               <p className="text-center">
                 Ponosno predstavljamo <strong>prvi hrvatski AI sustav za planiranje i opremanje bazena.</strong>
               </p>
@@ -119,7 +120,7 @@ const ONama = () => {
         </section>
 
         {/* Webshop Section */}
-        <section className="py-10 px-4">
+        <section className="py-6 md:py-8 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="flex items-center justify-center gap-3 mb-8">
               <ShoppingBag className="w-8 h-8 text-primary" />
@@ -166,7 +167,7 @@ const ONama = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="py-10 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
+        <section className="py-6 md:py-8 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
           <div className="container mx-auto max-w-6xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div className="p-5">
@@ -216,7 +217,7 @@ const ONama = () => {
         </section>
 
         {/* Partnership Section */}
-        <section className="py-10 px-4">
+        <section className="py-6 md:py-8 px-4">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">
               Naše Partnerstvo
@@ -234,7 +235,7 @@ const ONama = () => {
         </section>
 
         {/* Values Section */}
-        <section className="py-10 px-4 bg-muted/30">
+        <section className="py-6 md:py-8 px-4 bg-muted/30">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
               Naše Vrijednosti
@@ -289,7 +290,7 @@ const ONama = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-10 px-4">
+        <section className="py-6 md:py-8 px-4">
           <div className="container mx-auto max-w-3xl text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               Kontaktirajte Nas
@@ -320,6 +321,7 @@ const ONama = () => {
           </div>
         </section>
       </div>
+      <ModernChatBot onOpenCatalog={() => {}} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCatalog from "@/components/ProductCatalog";
+import ModernChatBot from "@/components/ModernChatBot";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -83,7 +84,7 @@ const Izgradnja = () => {
       
       <div className="md:ml-72">
         {/* Hero Section */}
-        <section className="relative py-16 px-4 bg-gradient-to-b from-primary/5 to-transparent">
+        <section className="relative py-10 md:py-12 px-4 bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container mx-auto max-w-6xl text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
               Izgradnja Bazena
@@ -120,7 +121,7 @@ const Izgradnja = () => {
         </section>
 
         {/* Services Section */}
-        <section className="py-12 px-4 bg-muted/30">
+        <section className="py-8 md:py-10 px-4 bg-muted/30">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
               Što Nudimo
@@ -158,7 +159,7 @@ const Izgradnja = () => {
         </section>
 
         {/* Construction Process Section */}
-        <section className="py-12 px-4 bg-gradient-to-b from-transparent to-muted/30">
+        <section className="py-8 md:py-10 px-4 bg-gradient-to-b from-transparent to-muted/30">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
               Proces Izgradnje Bazena
@@ -230,7 +231,7 @@ const Izgradnja = () => {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="py-12 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
+        <section className="py-8 md:py-10 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">
               Zašto Odabrati CoolPool?
@@ -259,7 +260,7 @@ const Izgradnja = () => {
         </section>
 
         {/* Contact Form Section */}
-        <section id="contact-form" className="py-12 px-4 bg-gradient-to-b from-muted/30 to-transparent">
+        <section id="contact-form" className="py-8 md:py-10 px-4 bg-gradient-to-b from-muted/30 to-transparent">
           <div className="container mx-auto max-w-3xl">
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-3">
@@ -358,6 +359,7 @@ const Izgradnja = () => {
           </div>
         </section>
       </div>
+      <ModernChatBot onOpenCatalog={() => {}} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCatalog from "@/components/ProductCatalog";
+import ModernChatBot from "@/components/ModernChatBot";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MapPin } from "lucide-react";
@@ -128,7 +129,7 @@ const Projekti = () => {
       
       <div className="md:ml-72">
         {/* Hero Section */}
-        <section className="relative py-20 px-4 bg-gradient-to-b from-primary/5 to-transparent">
+        <section className="relative py-10 md:py-12 px-4 bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container mx-auto max-w-6xl text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
               Naši Projekti
@@ -141,7 +142,7 @@ const Projekti = () => {
         </section>
 
         {/* Projects Tabs */}
-        <section className="py-16 px-4">
+        <section className="py-8 md:py-10 px-4">
           <div className="container mx-auto max-w-6xl">
             <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
               <TabsList className="grid w-full grid-cols-4 mb-8">
@@ -220,6 +221,7 @@ const Projekti = () => {
           </DialogContent>
         </Dialog>
       </div>
+      <ModernChatBot onOpenCatalog={() => {}} />
     </div>
   );
 };
