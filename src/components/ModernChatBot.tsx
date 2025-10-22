@@ -42,7 +42,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
     // Add initial greeting message
     return [{
       role: "assistant",
-      content: "Pozdrav! 👋 Ja sam vaš AI asistent za bazene.\n\n**Kako funkcionira:**\nNapišite kvadraturu vašeg bazena i opremu koja vas zanima, a ja ću vam preporučiti najbolje proizvode iz našeg asortimana.\n\n**Primjer:**\n\"Trebam filter za bazen 35m³\"\n\"Zanima me pumpa za bazen 8x4 metra\"\n\nŠto vas zanima?"
+      content: "Pozdrav! 👋 Ja sam vaš AI asistent za bazene.\n\n**Unesite podatke o vašem bazenu ili svoje želje, a ja ću vam preporučiti najbolje proizvode.**\n\n**Mogu vam pomoći s:**\n• Odabir opreme za vaš bazen\n• Savjeti o održavanju\n• Informacije o kemikalijama\n• Rješavanje problema s bazenom\n• Sve što biste inače pitali majstore za bazene\n\n**Primjer:**\n\"Trebam filter za bazen 35m³\"\n\"Kako održavati bazen?\"\n\"Voda mi je mutna, što da radim?\"\n\nŠto vas zanima?"
     }];
   });
   const [input, setInput] = useState("");
@@ -78,7 +78,7 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
   const clearConversation = () => {
     const initialMessage: Message = {
       role: "assistant",
-      content: "Pozdrav! 👋 Ja sam vaš AI asistent za bazene.\n\n**Kako funkcionira:**\nNapišite kvadraturu vašeg bazena i opremu koja vas zanima, a ja ću vam preporučiti najbolje proizvode iz našeg asortimana.\n\n**Primjer:**\n\"Trebam filter za bazen 35m³\"\n\"Zanima me pumpa za bazen 8x4 metra\"\n\nŠto vas zanima?"
+      content: "Pozdrav! 👋 Ja sam vaš AI asistent za bazene.\n\n**Unesite podatke o vašem bazenu ili svoje želje, a ja ću vam preporučiti najbolje proizvode.**\n\n**Mogu vam pomoći s:**\n• Odabir opreme za vaš bazen\n• Savjeti o održavanju\n• Informacije o kemikalijama\n• Rješavanje problema s bazenom\n• Sve što biste inače pitali majstore za bazene\n\n**Primjer:**\n\"Trebam filter za bazen 35m³\"\n\"Kako održavati bazen?\"\n\"Voda mi je mutna, što da radim?\"\n\nŠto vas zanima?"
     };
     setMessages([initialMessage]);
     setShowInitialOptions(false);
