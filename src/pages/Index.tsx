@@ -131,10 +131,10 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           {/* Partner Logos */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-10">
-            <div className="flex items-center gap-4 p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-primary/10">
-              <img src={coolpoolLogo} alt="CoolPool" className="h-12 w-auto object-contain" />
-              <span className="text-xl font-light text-foreground/40">+</span>
-              <img src={astralPoolLogo} alt="AstralPool" className="h-10 w-auto object-contain" />
+            <div className="flex items-center gap-2 md:gap-4 p-3 md:p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-primary/10">
+              <img src={coolpoolLogo} alt="CoolPool" className="h-8 md:h-12 w-auto object-contain" />
+              <span className="text-lg md:text-xl font-light text-foreground/40">+</span>
+              <img src={astralPoolLogo} alt="AstralPool" className="h-7 md:h-10 w-auto object-contain" />
             </div>
           </div>
           
