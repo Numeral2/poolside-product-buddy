@@ -139,26 +139,26 @@ const Index = () => {
           </div>
           
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/50 p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 mb-10">
+            <div className="group relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
+              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10 group-hover:scale-150 transition-transform duration-500"></div>
               <div className="relative">
-                <div className="text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-2">18+</div>
-                <p className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">Godina Iskustva</p>
+                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">18+</div>
+                <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Godina Iskustva</p>
               </div>
             </div>
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/50 p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+            <div className="group relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
+              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10 group-hover:scale-150 transition-transform duration-500"></div>
               <div className="relative">
-                <div className="text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-2">1000+</div>
-                <p className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">Izgrađenih Bazena</p>
+                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">1000+</div>
+                <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Izgrađenih Bazena</p>
               </div>
             </div>
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/50 p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+            <div className="group relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-1">
+              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10 group-hover:scale-150 transition-transform duration-500"></div>
               <div className="relative">
-                <div className="text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-2">100%</div>
-                <p className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">Zadovoljnih Klijenata</p>
+                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">100%</div>
+                <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Zadovoljnih Klijenata</p>
               </div>
             </div>
           </div>
