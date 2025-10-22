@@ -207,10 +207,10 @@ const Index = () => {
           <div className="text-center max-w-lg mx-auto">
             <div className="p-4">
               <div className="flex items-center justify-center gap-2 mb-2">
-                <Sparkles className="h-4 w-4 text-primary" />
-                <h3 className="text-base font-bold">AI Asistent za Bazene</h3>
+                <Sparkles className="h-5 w-5 text-primary" />
+                <h3 className="text-xl font-bold">AI Asistent za Bazene</h3>
               </div>
-              <p className="text-xs text-foreground/70 mb-3">
+              <p className="text-sm text-foreground/70 mb-3">
                 Pronađite opremu za veličinu i održavanje vašeg bazena
               </p>
               <Button
