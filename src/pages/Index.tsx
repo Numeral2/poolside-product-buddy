@@ -205,7 +205,7 @@ const Index = () => {
           
           {/* AI Section */}
           <div className="text-center max-w-lg mx-auto">
-            <div className="rounded-lg bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-4 border border-primary/20">
+            <div className="p-4">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Sparkles className="h-4 w-4 text-primary" />
                 <h3 className="text-base font-bold">AI Asistent za Bazene</h3>
