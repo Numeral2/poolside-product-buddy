@@ -213,7 +213,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-bold mb-3">AI Asistent za Bazene</h3>
               <p className="text-sm text-foreground/80 mb-5">
-                Saznajte sve o bazenima uz naš AI i otkrijte proizvode koji najbolje odgovaraju vašem bazenu.
+                Pronađite opremu koja najbolje odgovara veličini vašeg bazena i postavite pitanja koja biste inače pitali majstora.
               </p>
               <Button
                 onClick={() => {
