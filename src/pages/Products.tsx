@@ -69,6 +69,15 @@ const Products = () => {
     fetchProducts();
   }, [fromChat]);
 
+  // Update selectedCategory when URL category changes
+  useEffect(() => {
+    if (category) {
+      setSelectedCategory(category);
+    } else {
+      setSelectedCategory("all");
+    }
+  }, [category]);
+
   useEffect(() => {
     if (fromChat === "true") return;
     

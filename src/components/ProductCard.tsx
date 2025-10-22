@@ -92,11 +92,11 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
       
       
       {image && (
-        <div className="h-72 overflow-hidden relative bg-muted/20">
+        <div className="h-56 overflow-hidden relative bg-muted/20">
           <img 
             src={image} 
             alt={name} 
-            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 p-4"
+            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 p-3"
           />
         </div>
       )}
