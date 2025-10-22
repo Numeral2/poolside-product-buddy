@@ -8,6 +8,16 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
 
   return (
     <div className="relative h-[90vh] w-full overflow-hidden">
+      {/* Poster image - loads immediately */}
+      <img 
+        src="/hero-poster.png"
+        alt="Pool background"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ filter: "brightness(1.1)" }}
+        loading="eager"
+        decoding="sync"
+      />
+      
       <video
         key="hero-video-v5"
         autoPlay
@@ -15,7 +25,6 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
         playsInline
         loop
         preload="auto"
-        poster="/hero-poster.png"
         onEnded={onVideoEnd}
         className="absolute inset-0 w-full h-full object-cover z-0"
         style={{ filter: "brightness(1.1)" }}
