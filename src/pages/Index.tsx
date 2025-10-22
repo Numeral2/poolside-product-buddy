@@ -204,27 +204,25 @@ const Index = () => {
           </div>
           
           {/* AI Section */}
-          <div className="text-center max-w-xl mx-auto">
-            <div className="rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-5 border border-primary/20">
-              <div className="flex items-center justify-center mb-3">
-                <div className="p-2 rounded-full bg-gradient-to-br from-primary to-primary/80 shadow-lg">
-                  <Sparkles className="h-5 w-5 text-white" />
-                </div>
+          <div className="text-center max-w-lg mx-auto">
+            <div className="rounded-lg bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-4 border border-primary/20">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Sparkles className="h-4 w-4 text-primary" />
+                <h3 className="text-base font-bold">AI Asistent za Bazene</h3>
               </div>
-              <h3 className="text-lg font-bold mb-2">AI Asistent za Bazene</h3>
-              <p className="text-xs text-foreground/80 mb-4">
-                Pronađite opremu koja najbolje odgovara veličini vašeg bazena, kao i načinu održavanja bazena i slično.
+              <p className="text-xs text-foreground/70 mb-3">
+                Pronađite opremu za veličinu i održavanje vašeg bazena
               </p>
               <Button
                 onClick={() => {
                   const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
                   if (chatbot) chatbot.click();
                 }}
-                size="default"
+                size="sm"
                 className="text-white font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
                 style={{ background: "var(--gradient-water)" }}
               >
-                <Sparkles className="mr-2 h-4 w-4" />
+                <Sparkles className="mr-1.5 h-3.5 w-3.5" />
                 Razgovarajte s AI
               </Button>
             </div>
