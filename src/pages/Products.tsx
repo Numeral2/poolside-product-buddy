@@ -244,7 +244,7 @@ const Products = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <div className="container mx-auto px-4 pt-24 pb-12">
+      <div className="container mx-auto px-4 pt-40 pb-12">
         <div className="text-center mb-4 md:mb-6">
           <h1 className="text-3xl md:text-4xl font-bold mb-3">
             {searchQuery ? `Rezultati pretrage: "${searchQuery}"` : 

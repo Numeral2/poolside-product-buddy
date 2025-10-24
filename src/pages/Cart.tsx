@@ -17,7 +17,7 @@ const Cart = () => {
           <ProductCatalog />
         </div>
         
-        <div className="md:ml-72 pt-20">
+        <div className="md:ml-72 pt-40">
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-2xl mx-auto text-center">
               <ShoppingCart className="h-24 w-24 mx-auto mb-6 text-muted-foreground" />
@@ -48,7 +48,7 @@ const Cart = () => {
         <ProductCatalog />
       </div>
       
-      <div className="md:ml-72 pt-20">
+      <div className="md:ml-72 pt-40">
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-between mb-8">

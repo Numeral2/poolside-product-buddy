@@ -144,7 +144,7 @@ const Projekti = () => {
       
       <div className="md:ml-72">
         {/* Hero Section */}
-        <section className="relative py-6 md:py-8 px-4 pt-24 bg-gradient-to-b from-primary/5 to-transparent">
+        <section className="relative py-6 md:py-8 px-4 pt-40 bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container mx-auto max-w-6xl text-center">
             <h1 className="text-2xl md:text-3xl font-bold mb-3 text-foreground">
               Naši Projekti
