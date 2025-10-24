@@ -137,7 +137,7 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
 
         {currentPrice && (
           <div className="flex items-center justify-between pt-2">
-            <div className="text-3xl font-black text-foreground tracking-tight">
+            <div className="text-3xl font-semibold text-foreground tracking-tight">
               €{currentPrice.toFixed(2)}
             </div>
             <Button
