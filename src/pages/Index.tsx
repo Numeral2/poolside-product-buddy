@@ -188,19 +188,18 @@ const Index = () => {
               </div>
             </Link>
             
-            <button
-              onClick={() => openCatalog("Filteri")}
-              className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-colors text-left"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Oprema za Bazene</h3>
-                <p className="text-sm text-muted-foreground mb-3">Širok asortiman opreme i kemikalija za održavanje</p>
-                <span className="inline-flex items-center text-sm font-semibold text-primary">
-                  Pregledajte katalog <span className="ml-1">→</span>
-                </span>
+            <Link to="/products">
+              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-colors cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Oprema za Bazene</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Širok asortiman opreme i kemikalija za održavanje</p>
+                  <span className="inline-flex items-center text-sm font-semibold text-primary">
+                    Pregledajte katalog <span className="ml-1">→</span>
+                  </span>
+                </div>
               </div>
-            </button>
+            </Link>
           </div>
           
           {/* AI Section */}
