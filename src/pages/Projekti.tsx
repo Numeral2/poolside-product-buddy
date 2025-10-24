@@ -129,12 +129,12 @@ const Projekti = () => {
       
       <div className="md:ml-72">
         {/* Hero Section */}
-        <section className="relative py-10 md:py-12 px-4 bg-gradient-to-b from-primary/5 to-transparent">
+        <section className="relative py-6 md:py-8 px-4 bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container mx-auto max-w-6xl text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-foreground">
               Naši Projekti
             </h1>
-            <p className="text-xl md:text-2xl text-foreground/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-foreground/80 mb-4 max-w-3xl mx-auto leading-relaxed">
               Preko 1000 uspješno realiziranih projekata u Dalmaciji.<br />
               Pogledajte neke od naših najljepših radova.
             </p>
@@ -142,10 +142,10 @@ const Projekti = () => {
         </section>
 
         {/* Projects Tabs */}
-        <section className="py-8 md:py-10 px-4">
+        <section className="py-4 md:py-6 px-4">
           <div className="container mx-auto max-w-6xl">
             <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-8">
+              <TabsList className="grid w-full grid-cols-4 mb-4 md:mb-6">
                 <TabsTrigger value="Bazeni">
                   Bazeni
                 </TabsTrigger>

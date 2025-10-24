@@ -112,7 +112,7 @@ const Index = () => {
       <div className="md:ml-72">
         <Hero onVideoEnd={() => setVideoEnded(true)} />
       {/* Scrolling Categories Section - overlapping video */}
-      <div className="relative overflow-hidden py-4 -mt-16 z-20 glass-effect">
+      <div className="relative overflow-hidden py-2 -mt-16 z-20 glass-effect">
         <div className="flex animate-scroll whitespace-nowrap">
           {[...categories, ...categories].map((category, index) => (
             <Link
@@ -127,10 +127,10 @@ const Index = () => {
       </div>
       
       {/* Stats Section with Partners */}
-      <section className="py-6 px-4 bg-gradient-to-b from-background via-muted/20 to-background">
+      <section className="py-4 px-4 bg-gradient-to-b from-background via-muted/20 to-background">
         <div className="container mx-auto max-w-6xl">
           {/* Partner Logos */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
             <div className="flex items-center gap-2 md:gap-4 p-3 md:p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-primary/10">
               <img src={coolpoolLogo} alt="CoolPool" loading="eager" className="h-8 md:h-12 w-auto object-contain" />
               <span className="text-lg md:text-xl font-light text-foreground/40">+</span>
@@ -139,7 +139,7 @@ const Index = () => {
           </div>
           
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-4">
             <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-colors hover:shadow-lg">
               <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10"></div>
               <div className="relative">
@@ -164,7 +164,7 @@ const Index = () => {
           </div>
           
           {/* Description */}
-          <div className="text-center max-w-2xl mx-auto mb-6">
+          <div className="text-center max-w-2xl mx-auto mb-4">
             <p className="text-base text-foreground/90 leading-relaxed mb-3">
               Nudimo izgradnju bazena te proizvode za opremanje bazena.
             </p>
@@ -174,7 +174,7 @@ const Index = () => {
           </div>
           
           {/* CTA Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-4">
             <Link to="/izgradnja">
               <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-colors cursor-pointer">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -231,9 +231,9 @@ const Index = () => {
       </section>
       
       {/* Featured Projects Section - Carousel */}
-      <section className="py-6 px-4 bg-gradient-to-b from-background to-muted/20">
+      <section className="py-4 px-4 bg-gradient-to-b from-background to-muted/20">
         <div className="container mx-auto">
-          <div className="text-center mb-6">
+          <div className="text-center mb-4">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
               Naši Izdvojeni Projekti
             </h2>
@@ -299,12 +299,12 @@ const Index = () => {
       
       {/* AI-Suggested Products Section */}
       {displayedProducts.length > 0 && (
-        <section className="py-6 px-4 bg-muted/30">
+        <section className="py-4 px-4 bg-muted/30">
           <div className="container mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-6 text-foreground">
+            <h2 className="text-3xl font-bold text-center mb-4 text-foreground">
               Products We Think You'll Love
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {displayedProducts.map((product) => (
                 <ProductCard 
                   key={product.id} 
@@ -321,8 +321,8 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="relative overflow-hidden bg-gradient-to-b from-muted/50 to-muted border-t border-primary/20">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div className="container mx-auto px-4 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             {/* Company Info and Map */}
             <div className="space-y-3">
               <div className="flex items-center gap-3">
@@ -360,7 +360,7 @@ const Index = () => {
             </div>
 
             {/* Social Networks */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <h3 className="text-lg font-bold text-foreground uppercase tracking-wider">
                   Društvene Mreže
@@ -396,7 +396,7 @@ const Index = () => {
             </div>
 
             {/* Working Hours */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <h3 className="text-lg font-bold text-foreground uppercase tracking-wider">
                   Radno Vrijeme
@@ -424,7 +424,7 @@ const Index = () => {
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-primary/20 pt-6">
+          <div className="border-t border-primary/20 pt-4">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm text-muted-foreground">
                 CoolPool | © {new Date().getFullYear()} | Sva prava pridržana

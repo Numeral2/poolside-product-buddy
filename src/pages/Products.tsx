@@ -245,7 +245,7 @@ const Products = () => {
       <Navigation />
       
       <div className="container mx-auto px-4 pt-24 pb-12">
-        <div className="text-center mb-8">
+        <div className="text-center mb-4 md:mb-6">
           <h1 className="text-3xl md:text-4xl font-bold mb-3">
             {searchQuery ? `Rezultati pretrage: "${searchQuery}"` : 
              category ? category : "Svi Proizvodi"}
@@ -256,7 +256,7 @@ const Products = () => {
         </div>
 
         {/* Filters */}
-        <div className="mb-8 p-4 glass-effect border border-primary/20 rounded-lg">
+        <div className="mb-4 md:mb-6 p-4 glass-effect border border-primary/20 rounded-lg">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Category Filter */}
             <div>

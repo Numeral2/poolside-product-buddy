@@ -84,12 +84,12 @@ const Izgradnja = () => {
       
       <div className="md:ml-72">
         {/* Hero Section */}
-        <section className="relative py-10 md:py-12 px-4 bg-gradient-to-b from-primary/5 to-transparent">
+        <section className="relative py-6 md:py-8 px-4 bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container mx-auto max-w-6xl text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
               Izgradnja Bazena
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80 mb-6 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-foreground/80 mb-4 max-w-3xl mx-auto leading-relaxed">
               18+ godina iskustva u izgradnji bazena.<br />
               Preko 1000 uspješno realiziranih projekata u Dalmaciji.
             </p>
@@ -121,12 +121,12 @@ const Izgradnja = () => {
         </section>
 
         {/* Services Section */}
-        <section className="py-8 md:py-10 px-4 bg-muted/30">
+        <section className="py-4 md:py-6 px-4 bg-muted/30">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6">
               Što Nudimo
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               <div className="text-center p-5 glass-effect border border-primary/20">
                 <div className="w-14 h-14 mx-auto mb-3 rounded-full flex items-center justify-center" style={{ background: "var(--gradient-water)" }}>
                   <span className="text-2xl text-white">🏗️</span>
@@ -159,12 +159,12 @@ const Izgradnja = () => {
         </section>
 
         {/* Construction Process Section */}
-        <section className="py-8 md:py-10 px-4 bg-gradient-to-b from-transparent to-muted/30">
+        <section className="py-4 md:py-6 px-4 bg-gradient-to-b from-transparent to-muted/30">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
               Proces Izgradnje Bazena
             </h2>
-            <p className="text-base text-center text-foreground/80 mb-8 max-w-3xl mx-auto">
+            <p className="text-base text-center text-foreground/80 mb-4 md:mb-6 max-w-3xl mx-auto">
               Izgradnja bazena počinje kvalitetnim planiranjem i završava preciznom izvedbom. 
               Cijeli proces obuhvaća nekoliko ključnih faza:
             </p>
@@ -231,7 +231,7 @@ const Izgradnja = () => {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="py-8 md:py-10 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
+        <section className="py-4 md:py-6 px-4 bg-gradient-to-b from-muted/30 to-muted/50">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">
               Zašto Odabrati CoolPool?
@@ -260,9 +260,9 @@ const Izgradnja = () => {
         </section>
 
         {/* Contact Form Section */}
-        <section id="contact-form" className="py-8 md:py-10 px-4 bg-gradient-to-b from-muted/30 to-transparent">
+        <section id="contact-form" className="py-4 md:py-6 px-4 bg-gradient-to-b from-muted/30 to-transparent">
           <div className="container mx-auto max-w-3xl">
-            <div className="text-center mb-8">
+            <div className="text-center mb-4 md:mb-6">
               <h2 className="text-2xl md:text-3xl font-bold mb-3">
                 Kontaktirajte Nas
               </h2>
