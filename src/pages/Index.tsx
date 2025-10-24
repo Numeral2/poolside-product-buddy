@@ -404,11 +404,13 @@ const Index = () => {
               </div>
               <div className="space-y-2">
                 {[
-                  { day: "Ponedjeljak", hours: "9:00 - 17:00" },
-                  { day: "Utorak", hours: "9:00 - 17:00" },
-                  { day: "Srijeda", hours: "9:00 - 17:00" },
-                  { day: "Četvrtak", hours: "9:00 - 17:00" },
-                  { day: "Petak", hours: "9:00 - 17:00" },
+                  { day: "Ponedjeljak", hours: "08–16" },
+                  { day: "Utorak", hours: "08–16" },
+                  { day: "Srijeda", hours: "08–16" },
+                  { day: "Četvrtak", hours: "08–16" },
+                  { day: "Petak", hours: "08–16" },
+                  { day: "Subota", hours: "09–12" },
+                  { day: "Nedjelja", hours: "Zatvoreno" },
                 ].map((item, index) => (
                   <div 
                     key={item.day}
