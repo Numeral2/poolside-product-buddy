@@ -121,7 +121,7 @@ const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
                       {section.categories.map((category) => (
                         <Link
                           key={category}
-                          to={section.title === "Projekti" ? `/projekti` : `/products?category=${encodeURIComponent(category)}`}
+                          to={section.title === "Projekti" ? `/projekti?category=${encodeURIComponent(category)}` : `/products?category=${encodeURIComponent(category)}`}
                           className={cn(
                             "block px-3 py-1.5 text-xs text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors",
                             openCategory?.toLowerCase() === category.toLowerCase() && "bg-primary/10 text-primary font-medium"

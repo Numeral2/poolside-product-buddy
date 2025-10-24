@@ -1,7 +1,8 @@
 import Navigation from "@/components/Navigation";
 import ProductCatalog from "@/components/ProductCatalog";
 import ModernChatBot from "@/components/ModernChatBot";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,8 +21,22 @@ import sauna from "@/assets/sauna.png";
 import laghetto from "@/assets/laghetto.png";
 
 const Projekti = () => {
-  const [activeCategory, setActiveCategory] = useState<string>("Bazeni");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryFromUrl = searchParams.get("category") || "Bazeni";
+  const [activeCategory, setActiveCategory] = useState<string>(categoryFromUrl);
   const [selectedProject, setSelectedProject] = useState<{ title: string; location: string; image: string } | null>(null);
+
+  useEffect(() => {
+    const category = searchParams.get("category");
+    if (category) {
+      setActiveCategory(category);
+    }
+  }, [searchParams]);
+
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    setSearchParams({ category });
+  };
 
   const allProjects = {
     "Bazeni": [
@@ -144,7 +159,7 @@ const Projekti = () => {
         {/* Projects Tabs */}
         <section className="py-4 md:py-6 px-4">
           <div className="container mx-auto max-w-6xl">
-            <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
+            <Tabs value={activeCategory} onValueChange={handleCategoryChange} className="w-full">
               <TabsList className="grid w-full grid-cols-4 mb-4 md:mb-6">
                 <TabsTrigger value="Bazeni">
                   Bazeni
