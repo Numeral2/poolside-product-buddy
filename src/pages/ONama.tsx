@@ -18,7 +18,7 @@ const ONama = () => {
         <ProductCatalog />
       </div>
       
-      <div className="md:ml-72 pt-40">
+      <div className="md:ml-72 pt-20">
         {/* Hero Section */}
         <section className="relative py-4 md:py-6 px-4 bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container mx-auto max-w-6xl text-center">
