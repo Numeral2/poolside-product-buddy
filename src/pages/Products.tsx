@@ -42,11 +42,10 @@ const Products = () => {
   const [maxPrice, setMaxPrice] = useState<string>("10000");
 
   const categories = [
-    "Bazeni", "SPA kade", "Saune", "Laghetto", "Filteri", "Pumpe", 
-    "Skimmeri", "Osnovna i ABS oprema", "PVC cijevi i fitinzi", "Rasvjeta",
-    "Kemikalije", "Pribor za čišćenje", "Mozaik", "Materijal za oblaganje",
-    "Doziranje i elektronika", "Efekti", "Inox ljestve", "Prekrivači",
-    "Grijanje", "Roboti"
+    "Filteri", "Pumpe", "Skimmeri", "Osnovna i ABS oprema", 
+    "PVC cijevi i fitinzi", "Rasvjeta", "Kemikalije", "Pribor za čišćenje", 
+    "Mozaik", "Materijal za oblaganje", "Doziranje i elektronika", 
+    "Efekti", "Inox ljestve", "Prekrivači", "Grijanje", "Roboti"
   ];
 
   useEffect(() => {
