@@ -430,9 +430,6 @@ const Index = () => {
               <p className="text-sm text-muted-foreground">
                 CoolPool | © {new Date().getFullYear()} | Sva prava pridržana
               </p>
-              <div className="flex items-center gap-4">
-                <img src={astralPoolLogo} alt="AstralPool" loading="lazy" className="h-8 w-auto object-contain opacity-60 hover:opacity-100" />
-              </div>
             </div>
           </div>
         </div>
