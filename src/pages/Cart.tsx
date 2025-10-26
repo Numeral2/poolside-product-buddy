@@ -154,11 +154,8 @@ const Cart = () => {
                     if (chatbot instanceof HTMLElement) chatbot.click();
                   }}
                 >
-                  Naruči putem AI-a
+                  Naruči
                 </Button>
-                <p className="text-sm text-muted-foreground text-center mt-3">
-                  Naš AI asistent će vam pomoći završiti narudžbu
-                </p>
               </CardContent>
             </Card>
           </div>
