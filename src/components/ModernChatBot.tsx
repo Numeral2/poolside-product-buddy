@@ -387,9 +387,6 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                                       <h4 className="font-semibold text-sm text-foreground truncate">
                                         {product.name}
                                       </h4>
-                                      <p className="text-xs text-muted-foreground line-clamp-2">
-                                        {product.description}
-                                      </p>
                                       <div className="flex items-center justify-between mt-1">
                                         <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">
                                           {product.category}
