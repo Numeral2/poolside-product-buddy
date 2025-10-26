@@ -346,7 +346,7 @@ const Index = () => {
               </div>
               <div className="mt-4 rounded-lg overflow-hidden border border-primary/20">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!4v1761496397948!6m8!1m7!1sNfIxrkFjmhApQn8Mud8C0A!2m2!1d43.50714640329955!2d16.52611230872459!3f350.84313158145!4f-3.295323803461315!5f0.8294204536763221"
+                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Bazeniplus+Split+Slanice+22&zoom=15"
                   width="100%"
                   height="200"
                   style={{ border: 0 }}
