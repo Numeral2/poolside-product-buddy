@@ -123,10 +123,10 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
             variant="outline"
             size="sm"
             onClick={() => onAskAI(name)}
-            className="w-full text-xs gap-2 border-primary/30 hover:border-primary hover:bg-primary/5"
+            className="w-full text-xs gap-1.5 border-primary/30 hover:border-primary hover:bg-primary/5 h-8 py-1"
           >
-            <Sparkles className="h-3.5 w-3.5" />
-            Pitaj AI o ovom proizvodu
+            <Sparkles className="h-3 w-3" />
+            Pitaj AI
           </Button>
         )}
 
