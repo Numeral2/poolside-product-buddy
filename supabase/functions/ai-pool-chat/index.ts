@@ -220,6 +220,9 @@ Kada preporučuješ proizvode, UVIJEK prvo daj informativan odgovor s konkretnim
                 if (parsed.choices?.[0]?.finish_reason === "tool_calls" && toolCalls.length > 0) {
                   console.log("Tool calls detected:", toolCalls);
                   
+                  // Collect all products from all tool calls
+                  const allProducts: any[] = [];
+                  
                   for (const toolCall of toolCalls) {
                     if (toolCall.function.name === "search_products") {
                       const args = JSON.parse(toolCall.function.arguments);
@@ -239,16 +242,24 @@ Kada preporučuješ proizvode, UVIJEK prvo daj informativan odgovor s konkretnim
                       if (error) {
                         console.error("Error fetching products:", error);
                       } else if (products && products.length > 0) {
-                        console.log(`Found ${products.length} products`);
-                        
-                        // Send products as a special SSE event
-                        const productsEvent = `data: ${JSON.stringify({
-                          type: "products",
-                          products: products
-                        })}\n\n`;
-                        controller.enqueue(encoder.encode(productsEvent));
+                        console.log(`Found ${products.length} products for query`);
+                        allProducts.push(...products);
                       }
                     }
+                  }
+                  
+                  // Remove duplicates based on product id and send all products
+                  if (allProducts.length > 0) {
+                    const uniqueProducts = Array.from(
+                      new Map(allProducts.map(p => [p.id, p])).values()
+                    );
+                    console.log(`Sending ${uniqueProducts.length} unique products`);
+                    
+                    const productsEvent = `data: ${JSON.stringify({
+                      type: "products",
+                      products: uniqueProducts
+                    })}\n\n`;
+                    controller.enqueue(encoder.encode(productsEvent));
                   }
                 }
                 

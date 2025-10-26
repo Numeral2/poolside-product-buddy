@@ -69,9 +69,14 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Disable auto-scroll during streaming - user controls scroll
+  // Only scroll when user explicitly sends a message
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    // Only auto-scroll when a new user message is added
+    if (messages.length > 0 && messages[messages.length - 1].role === "user") {
+      scrollToBottom();
+    }
+  }, [messages.length]); // Only trigger on message count change, not content updates
 
   const handleInitialChoice = (choice: string) => {
     setShowInitialOptions(false);
