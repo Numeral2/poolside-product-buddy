@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Sparkles, X, Send, Bot } from "lucide-react";
+import { Sparkles, X, Send, Bot, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { useCart } from "@/contexts/CartContext";
 
 interface Message {
   role: "user" | "assistant";
@@ -28,6 +29,8 @@ interface ModernChatBotProps {
 
 const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
+  const [addToCartPrompts, setAddToCartPrompts] = useState<Record<number, boolean>>({});
   const [isOpen, setIsOpen] = useState(() => {
     // Load chatbot open state from localStorage
     const saved = localStorage.getItem('chatbotIsOpen');
@@ -340,37 +343,74 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
                               Vidi sve
                             </Button>
                           </div>
-                          <div className="grid grid-cols-1 gap-2">
-                            {message.products.slice(0, 3).map((product) => (
-                              <div
-                                key={product.id}
-                                className="p-3 rounded-lg border bg-background"
-                              >
-                                <div className="flex gap-3">
-                                  {product.image_url && (
-                                    <img
-                                      src={product.image_url}
-                                      alt={product.name}
-                                      className="w-16 h-16 object-cover rounded"
-                                    />
-                                  )}
-                                  <div className="flex-1 min-w-0">
-                                    <h4 className="font-semibold text-sm text-foreground truncate">
-                                      {product.name}
-                                    </h4>
-                                    <p className="text-xs text-muted-foreground line-clamp-2">
-                                      {product.description}
-                                    </p>
-                                    <div className="flex items-center justify-between mt-1">
-                                      <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">
-                                        {product.category}
-                                      </span>
-                                      <span className="text-sm font-bold text-foreground">
-                                        €{product.price.toFixed(2)}
-                                      </span>
+                          <div className="grid grid-cols-1 gap-3">
+                            {message.products.slice(0, 3).map((product, prodIndex) => (
+                              <div key={product.id} className="space-y-2">
+                                <div className="p-3 rounded-lg border bg-background">
+                                  <div className="flex gap-3">
+                                    {product.image_url && (
+                                      <img
+                                        src={product.image_url}
+                                        alt={product.name}
+                                        className="w-16 h-16 object-cover rounded"
+                                      />
+                                    )}
+                                    <div className="flex-1 min-w-0">
+                                      <h4 className="font-semibold text-sm text-foreground truncate">
+                                        {product.name}
+                                      </h4>
+                                      <p className="text-xs text-muted-foreground line-clamp-2">
+                                        {product.description}
+                                      </p>
+                                      <div className="flex items-center justify-between mt-1">
+                                        <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                                          {product.category}
+                                        </span>
+                                        <span className="text-sm font-bold text-foreground">
+                                          €{product.price.toFixed(2)}
+                                        </span>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
+                                
+                                {!addToCartPrompts[`${index}-${prodIndex}`] && (
+                                  <div className="flex items-center gap-2 px-2">
+                                    <p className="text-xs text-muted-foreground flex-1">Želite li dodati u košaricu?</p>
+                                    <div className="flex gap-2">
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() => {
+                                          addToCart({
+                                            id: product.id,
+                                            name: product.name,
+                                            price: product.price,
+                                            category: product.category,
+                                            image: product.image_url
+                                          });
+                                          setAddToCartPrompts(prev => ({ ...prev, [`${index}-${prodIndex}`]: true }));
+                                          toast.success(`${product.name} dodano u košaricu!`);
+                                        }}
+                                        className="h-7 text-xs"
+                                        style={{ background: "var(--gradient-water)" }}
+                                      >
+                                        <ShoppingCart className="h-3 w-3 mr-1 text-white" />
+                                        <span className="text-white">Da</span>
+                                      </Button>
+                                      <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        onClick={() => {
+                                          setAddToCartPrompts(prev => ({ ...prev, [`${index}-${prodIndex}`]: true }));
+                                        }}
+                                        className="h-7 text-xs"
+                                      >
+                                        Ne
+                                      </Button>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             ))}
                             {message.products.length > 3 && (

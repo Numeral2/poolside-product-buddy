@@ -89,7 +89,7 @@ const Cart = () => {
                           <p className="text-sm text-muted-foreground">{item.category}</p>
                         </div>
                         
-                        <div className="flex items-center justify-between mt-4">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-4 gap-3">
                           <div className="flex items-center gap-3">
                             <Button
                               size="icon"
@@ -110,8 +110,8 @@ const Cart = () => {
                             </Button>
                           </div>
                           
-                          <div className="flex items-center gap-4">
-                            <p className="font-bold text-2xl">
+                          <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                            <p className="font-bold text-xl sm:text-2xl">
                               €{(item.price * item.quantity).toFixed(2)}
                             </p>
                             <Button
