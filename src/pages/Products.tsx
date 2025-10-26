@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import ProductCard, { ProductVariant } from "@/components/ProductCard";
 import ModernChatBot from "@/components/ModernChatBot";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2 } from "lucide-react";
+import { Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -240,6 +240,12 @@ const Products = () => {
     return groupProducts(filteredProducts);
   }, [filteredProducts]);
 
+  const handleAskAI = (productName: string) => {
+    if (window.triggerChatbot) {
+      window.triggerChatbot(`Reci mi detaljnije o proizvodu: ${productName}`);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -252,6 +258,10 @@ const Products = () => {
           </h1>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto">
             Istražite našu premium ponudu bazenske opreme i dodataka
+          </p>
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-2 flex items-center justify-center gap-2">
+            <Sparkles className="h-4 w-4" />
+            Kliknite "Pitaj AI" na proizvodu za detaljne informacije
           </p>
         </div>
 
@@ -320,6 +330,7 @@ const Products = () => {
                 category={product.category}
                 image={product.image}
                 variants={product.variants}
+                onAskAI={handleAskAI}
               />
             ))}
           </div>

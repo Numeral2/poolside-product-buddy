@@ -25,6 +25,14 @@ interface Product {
 
 interface ModernChatBotProps {
   onOpenCatalog: (category?: string) => void;
+  onAskAboutProduct?: (productName: string) => void;
+}
+
+// Expose a global function to trigger chatbot with a message
+declare global {
+  interface Window {
+    triggerChatbot?: (message: string) => void;
+  }
 }
 
 const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
@@ -52,6 +60,21 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showInitialOptions, setShowInitialOptions] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Setup global trigger for chatbot
+  useEffect(() => {
+    window.triggerChatbot = (message: string) => {
+      setIsOpen(true);
+      // Wait for chatbot to open before sending message
+      setTimeout(() => {
+        handleSendMessage(message);
+      }, 100);
+    };
+    
+    return () => {
+      delete window.triggerChatbot;
+    };
+  }, [messages]); // Include messages in dependency to capture latest state
 
   // Save messages to localStorage whenever they change
   useEffect(() => {

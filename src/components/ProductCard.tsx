@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Sparkles } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import {
   Select,
@@ -25,9 +25,10 @@ interface ProductCardProps {
   category: string;
   image?: string;
   variants?: ProductVariant[];
+  onAskAI?: (productName: string) => void;
 }
 
-const ProductCard = ({ name, description, price, category, image, variants }: ProductCardProps) => {
+const ProductCard = ({ name, description, price, category, image, variants, onAskAI }: ProductCardProps) => {
   const { addToCart } = useCart();
   const [selectedVariant, setSelectedVariant] = useState<string>(
     variants && variants.length > 0 ? variants[0].id : ""
@@ -113,9 +114,21 @@ const ProductCard = ({ name, description, price, category, image, variants }: Pr
             {category}
           </Badge>
         </div>
-        <CardDescription className="text-sm leading-relaxed">
-          {currentDescription}
+        <CardDescription className="text-sm leading-relaxed font-semibold text-foreground">
+          {name}
         </CardDescription>
+        
+        {onAskAI && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => onAskAI(name)}
+            className="w-full text-xs gap-2 border-primary/30 hover:border-primary hover:bg-primary/5"
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            Pitaj AI o ovom proizvodu
+          </Button>
+        )}
 
         {variants && variants.length > 0 && (
           <div className="space-y-2">
