@@ -183,6 +183,34 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
               console.log("Received products:", currentProducts);
             }
             
+            // Handle add to cart event
+            if (parsed.type === "add_to_cart" && parsed.productIds) {
+              console.log("Add to cart event:", parsed.productIds);
+              for (const productId of parsed.productIds) {
+                // Find product in current products
+                const product = currentProducts?.find(p => p.id === productId);
+                if (product) {
+                  addToCart({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    category: product.category,
+                    image: product.image_url
+                  });
+                  toast.success(`${product.name} dodano u košaricu!`);
+                }
+              }
+            }
+            
+            // Handle navigation event
+            if (parsed.type === "navigate" && parsed.category) {
+              console.log("Navigate event:", parsed.category);
+              setTimeout(() => {
+                navigate(`/products?category=${parsed.category}`);
+                toast.info(`Prikazujem ${parsed.category}`);
+              }, 1000);
+            }
+            
             const content = parsed.choices?.[0]?.delta?.content as string | undefined;
             if (content) {
               assistantContent += content;

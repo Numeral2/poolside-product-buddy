@@ -43,11 +43,14 @@ TVOJA GLAVNA FUNKCIJA:
 VAŽNE UPUTE:
 - Odgovori UVIJEK na hrvatskom jeziku
 - Budi profesionalan, ali prijateljski nastrojen
-- Kada korisnik pita o proizvodima, PRVO daj koristan odgovor i objašnjenje, PA ONDA koristi search_products alat
+- Kada korisnik pita o proizvodima, PRVO daj KOMPLETAN odgovor sa SVIM informacijama, PA ONDA koristi search_products alat
+- UVIJEK u svom odgovoru NAVEDI SVE relevantne informacije o proizvodima prije nego što pozoveš search_products
 - Daj konkretne preporuke SAMO iz našeg asortimana proizvoda
 - Objasni koji proizvodi su najbolji za njihove potrebe i ZAŠTO
 - Pomozi im pronaći idealno rješenje
 - Ako ne znaš informaciju - priznaj to, ne izmišljaj
+- Kada korisnik kaže "dodaj u košaricu" ili "želim kupiti", koristi add_to_cart alat
+- Kada preporučuješ kategoriju proizvoda, koristi navigate_to_category alat da ih preusmjeriš
 
 NAŠI FILTERI ZA BAZENE - DETALJAN PREGLED:
 
@@ -126,6 +129,40 @@ Kada preporučuješ proizvode, UVIJEK prvo daj informativan odgovor s konkretnim
                 description: "Ključna riječ za pretragu (npr. 'robot', 'kemija', 'grijanje')"
               }
             }
+          }
+        }
+      },
+      {
+        type: "function",
+        function: {
+          name: "add_to_cart",
+          description: "Dodaj proizvod u korisničku košaricu. Koristi kada korisnik kaže 'dodaj u košaricu', 'želim kupiti', 'naruči' ili slično.",
+          parameters: {
+            type: "object",
+            properties: {
+              productId: {
+                type: "string",
+                description: "ID proizvoda koji treba dodati"
+              }
+            },
+            required: ["productId"]
+          }
+        }
+      },
+      {
+        type: "function",
+        function: {
+          name: "navigate_to_category",
+          description: "Preusmjeri korisnika na stranicu s proizvodima određene kategorije. Koristi kada preporučuješ kategoriju proizvoda.",
+          parameters: {
+            type: "object",
+            properties: {
+              category: {
+                type: "string",
+                description: "Naziv kategorije (npr. 'Filteri', 'Pumpe', 'Kemikalije')"
+              }
+            },
+            required: ["category"]
           }
         }
       }
@@ -222,6 +259,8 @@ Kada preporučuješ proizvode, UVIJEK prvo daj informativan odgovor s konkretnim
                   
                   // Collect all products from all tool calls
                   const allProducts: any[] = [];
+                  let addToCartIds: string[] = [];
+                  let navigateToCategory: string | null = null;
                   
                   for (const toolCall of toolCalls) {
                     if (toolCall.function.name === "search_products") {
@@ -245,6 +284,14 @@ Kada preporučuješ proizvode, UVIJEK prvo daj informativan odgovor s konkretnim
                         console.log(`Found ${products.length} products for query`);
                         allProducts.push(...products);
                       }
+                    } else if (toolCall.function.name === "add_to_cart") {
+                      const args = JSON.parse(toolCall.function.arguments);
+                      console.log("Add to cart request:", args);
+                      addToCartIds.push(args.productId);
+                    } else if (toolCall.function.name === "navigate_to_category") {
+                      const args = JSON.parse(toolCall.function.arguments);
+                      console.log("Navigate to category:", args);
+                      navigateToCategory = args.category;
                     }
                   }
                   
@@ -260,6 +307,24 @@ Kada preporučuješ proizvode, UVIJEK prvo daj informativan odgovor s konkretnim
                       products: uniqueProducts
                     })}\n\n`;
                     controller.enqueue(encoder.encode(productsEvent));
+                  }
+                  
+                  // Send add to cart events
+                  if (addToCartIds.length > 0) {
+                    const cartEvent = `data: ${JSON.stringify({
+                      type: "add_to_cart",
+                      productIds: addToCartIds
+                    })}\n\n`;
+                    controller.enqueue(encoder.encode(cartEvent));
+                  }
+                  
+                  // Send navigation event
+                  if (navigateToCategory) {
+                    const navEvent = `data: ${JSON.stringify({
+                      type: "navigate",
+                      category: navigateToCategory
+                    })}\n\n`;
+                    controller.enqueue(encoder.encode(navEvent));
                   }
                 }
                 
