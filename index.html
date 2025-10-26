@@ -4,20 +4,64 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bazeni Plus - Vrhunska Oprema i Proizvodi za Bazene</title>
-    <meta name="description" content="Otkrijte vrhunska rješenja za bazene uključujući filtre, grijače, čistače i više. Pretvorite svoje dvorište u raj s visokokvalitetnom opremom za bazene." />
+    <meta
+      name="description"
+      content="Otkrijte vrhunska rješenja za bazene uključujući filtre, grijače, čistače i više. Pretvorite svoje dvorište u raj s visokokvalitetnom opremom za bazene."
+    />
     <meta name="author" content="Bazeni Plus" />
 
     <meta property="og:title" content="Bazeni Plus - Vrhunska Oprema i Proizvodi za Bazene" />
-    <meta property="og:description" content="Otkrijte vrhunska rješenja za bazene uključujući filtre, grijače, čistače i više. Pretvorite svoje dvorište u raj s visokokvalitetnom opremom za bazene." />
+    <meta
+      property="og:description"
+      content="Otkrijte vrhunska rješenja za bazene uključujući filtre, grijače, čistače i više. Pretvorite svoje dvorište u raj s visokokvalitetnom opremom za bazene."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    
+
     <!-- Preload hero video for faster loading -->
     <link rel="preload" href="/hero-video.mp4?v=3" as="video" type="video/mp4" />
+
+    <!-- 🚫 Skripta za blokiranje Lovable bedža -->
+    <script>
+      // Spriječi umetanje bilo kojeg <script> s lovable.dev
+      const originalCreateElement = document.createElement;
+      document.createElement = function (tagName, ...args) {
+        if (tagName.toLowerCase() === "script") {
+          const el = originalCreateElement.call(this, tagName, ...args);
+          const originalSetAttribute = el.setAttribute;
+          el.setAttribute = function (name, value) {
+            if (
+              name === "src" &&
+              typeof value === "string" &&
+              value.includes("lovable.dev")
+            ) {
+              console.warn("Lovable script blocked:", value);
+              return;
+            }
+            return originalSetAttribute.call(this, name, value);
+          };
+          return el;
+        }
+        return originalCreateElement.call(this, tagName, ...args);
+      };
+
+      // Ako se badge već pojavi (fallback), odmah ga ukloni
+      const removeLovable = () => {
+        const badge = document.querySelector('a[href*="lovable.dev"]');
+        if (badge) badge.remove();
+      };
+
+      // Pokreni odmah i ponovi nekoliko puta za svaki slučaj
+      const interval = setInterval(removeLovable, 100);
+      document.addEventListener("DOMContentLoaded", () => {
+        removeLovable();
+        setTimeout(() => clearInterval(interval), 2000);
+      });
+    </script>
   </head>
 
   <body>
