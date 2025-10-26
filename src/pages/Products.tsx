@@ -240,9 +240,10 @@ const Products = () => {
     return groupProducts(filteredProducts);
   }, [filteredProducts]);
 
-  const handleAskAI = (productName: string) => {
+  const handleAskAI = (productName: string, selectedSize?: string) => {
     if (window.triggerChatbot) {
-      window.triggerChatbot(`Reci mi detaljnije o proizvodu: ${productName}`);
+      const sizeInfo = selectedSize ? ` veličina ${selectedSize}` : '';
+      window.triggerChatbot(`Reci mi detaljnije o proizvodu: ${productName}${sizeInfo}`);
     }
   };
 

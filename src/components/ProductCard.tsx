@@ -25,7 +25,7 @@ interface ProductCardProps {
   category: string;
   image?: string;
   variants?: ProductVariant[];
-  onAskAI?: (productName: string) => void;
+  onAskAI?: (productName: string, selectedSize?: string) => void;
 }
 
 const ProductCard = ({ name, description, price, category, image, variants, onAskAI }: ProductCardProps) => {
@@ -122,7 +122,10 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
           <Button
             variant="outline"
             size="sm"
-            onClick={() => onAskAI(name)}
+            onClick={() => {
+              const selectedVariantData = variants?.find(v => v.id === selectedVariant);
+              onAskAI(name, selectedVariantData?.size);
+            }}
             className="w-full text-xs gap-2 border-primary/30 hover:border-primary hover:bg-primary/5"
           >
             <Sparkles className="h-3.5 w-3.5" />
