@@ -47,10 +47,6 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
           
           {/* AI Search */}
           <div className="mt-8">
-            <p className="text-base md:text-lg text-white/95 mb-4 drop-shadow-lg">
-              Ponude, cijene i kalkulacije za bazene — uz pomoć AI-a!<br />
-              Pronađite sve informacije o bazenima jednostavno i brzo.
-            </p>
             <button
               onClick={() => {
                 const chatbot = document.querySelector('[data-chatbot]');
