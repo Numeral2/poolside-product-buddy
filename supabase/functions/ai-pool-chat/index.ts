@@ -267,22 +267,49 @@ Kada preporučuješ proizvode, UVIJEK prvo daj informativan odgovor s konkretnim
                       const args = JSON.parse(toolCall.function.arguments);
                       console.log("Searching products with args:", args);
                       
-                      let query = supabase.from('products').select('*');
+                      const PHP_API_URL = Deno.env.get('PHP_API_URL');
+                      if (!PHP_API_URL) {
+                        console.error("PHP_API_URL not configured");
+                        continue;
+                      }
+                      
+                      // Build query parameters for PHP API
+                      let apiUrl = `${PHP_API_URL}/products.php`;
+                      const params = new URLSearchParams();
                       
                       if (args.category) {
-                        query = query.ilike('category', `%${args.category}%`);
+                        params.append('category', args.category);
                       }
                       if (args.searchTerm) {
-                        query = query.or(`name.ilike.%${args.searchTerm}%,description.ilike.%${args.searchTerm}%,category.ilike.%${args.searchTerm}%`);
+                        params.append('search', args.searchTerm);
                       }
                       
-                      const { data: products, error } = await query.limit(20);
+                      if (params.toString()) {
+                        apiUrl += `?${params.toString()}`;
+                      }
                       
-                      if (error) {
-                        console.error("Error fetching products:", error);
-                      } else if (products && products.length > 0) {
-                        console.log(`Found ${products.length} products for query`);
-                        allProducts.push(...products);
+                      try {
+                        const response = await fetch(apiUrl, {
+                          method: 'GET',
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                        });
+                        
+                        if (!response.ok) {
+                          console.error(`PHP API error: ${response.status}`);
+                          continue;
+                        }
+                        
+                        const data = await response.json();
+                        const products = data.products || [];
+                        
+                        if (products.length > 0) {
+                          console.log(`Found ${products.length} products for query`);
+                          allProducts.push(...products);
+                        }
+                      } catch (error) {
+                        console.error("Error fetching products from PHP API:", error);
                       }
                     } else if (toolCall.function.name === "add_to_cart") {
                       const args = JSON.parse(toolCall.function.arguments);
