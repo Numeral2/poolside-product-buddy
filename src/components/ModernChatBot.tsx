@@ -179,7 +179,11 @@ const ModernChatBot = ({ onOpenCatalog }: ModernChatBotProps) => {
             
             // Handle products event
             if (parsed.type === "products") {
-              currentProducts = parsed.products;
+              // Convert price from string to number (MySQL returns strings)
+              currentProducts = parsed.products.map((p: any) => ({
+                ...p,
+                price: typeof p.price === 'string' ? parseFloat(p.price) : p.price
+              }));
               console.log("Received products:", currentProducts);
             }
             
