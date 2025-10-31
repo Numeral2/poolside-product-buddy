@@ -81,93 +81,82 @@ const Index = () => {
       </div>
       
       {/* Main Content Section */}
-      <section className="py-16 px-4 bg-gradient-to-b from-background via-background to-muted/5">
-        <div className="container mx-auto max-w-5xl">
+      <section className="relative py-12 px-4 overflow-hidden">
+        {/* Water Animation Background */}
+        <div className="absolute inset-0 pointer-events-none opacity-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-primary/10 to-transparent animate-wave"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-primary/10 to-transparent animate-wave-delay"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-4xl relative z-10">
           {/* Main Headline */}
-          <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Otkrijte najmoderniju <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">AI online trgovinu</span> za bazene
+          <div className="text-center mb-8">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
+              Otkrijte najmoderniju <span className="text-primary">AI online trgovinu</span> za bazene
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-2">
+            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-3">
               Mjesto gdje tehnologija i kvaliteta rade za vas.
             </p>
-            <p className="text-sm md:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Pronađite sve proizvode za održavanje i opremanje bazena:<br/>
-              <span className="font-semibold">kemikalije, robote za čišćenje, pumpe, filtere, mozaike, rasvjetu i mnogo više...</span>
+            <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Pronađite sve proizvode za održavanje i opremanje bazena: kemikalije, robote za čišćenje, pumpe, filtere, mozaike, rasvjetu i mnogo više...
             </p>
           </div>
           
           {/* AI Highlight */}
-          <div className="text-center mb-12 p-6 rounded-2xl bg-gradient-to-br from-secondary/10 to-primary/5 border border-secondary/20">
-            <p className="text-lg md:text-xl font-semibold text-foreground">
-              Naš <span className="text-secondary font-bold">AI asistent</span> u manje od <span className="text-primary font-bold">5 sekundi</span> preporučuje proizvode koji najbolje odgovaraju vašem bazenu — bez gubljenja vremena i s maksimalnom preciznošću.
+          <div className="text-center mb-8 p-4 max-w-2xl mx-auto">
+            <p className="text-sm md:text-base text-foreground/90">
+              Naš <span className="text-primary font-semibold">AI asistent</span> u manje od <span className="text-primary font-semibold">5 sekundi</span> preporučuje proizvode koji najbolje odgovaraju vašem bazenu — bez gubljenja vremena i s maksimalnom preciznošću.
             </p>
           </div>
           
-          {/* CTA Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-            {/* Web Shop CTA */}
+          {/* Simple CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Link to="/products">
-              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-8 border border-primary/30 hover:border-primary hover:shadow-2xl transition-all cursor-pointer h-full">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="relative flex flex-col h-full">
-                  <ShoppingCart className="h-12 w-12 text-primary mb-4" />
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors">Web Shop</h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed flex-grow">
-                    Pregledajte naš kompletan asortiman premium opreme za bazene
-                  </p>
-                  <span className="inline-flex items-center text-lg font-bold text-primary group-hover:translate-x-2 transition-transform">
-                    Otvori trgovinu →
-                  </span>
-                </div>
-              </div>
+              <Button size="lg" className="w-full sm:w-auto">
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                Web Shop
+              </Button>
             </Link>
-            
-            {/* AI Assistant CTA */}
-            <div 
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="w-full sm:w-auto"
               onClick={() => {
                 const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
                 if (chatbot) chatbot.click();
               }}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary/10 to-secondary/5 p-8 border border-secondary/30 hover:border-secondary hover:shadow-2xl transition-all cursor-pointer h-full"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative flex flex-col h-full">
-                <Sparkles className="h-12 w-12 text-secondary mb-4" />
-                <h3 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-secondary transition-colors">AI Asistent</h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed flex-grow">
-                  Brze i precizne preporuke proizvoda za vaš bazen u sekundama
-                </p>
-                <span className="inline-flex items-center text-lg font-bold text-secondary group-hover:translate-x-2 transition-transform">
-                  Razgovarajte s AI →
-                </span>
-              </div>
-            </div>
+              <Sparkles className="mr-2 h-5 w-5" />
+              AI Asistent
+            </Button>
           </div>
         </div>
       </section>
       
       {/* Manufacturers Section */}
-      <section className="py-12 px-4 bg-muted/20">
-        <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+      <section className="py-8 px-4 bg-muted/10">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-6">
+            <h2 className="text-xl md:text-2xl font-bold mb-2">
               Proizvođači
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Radimo s vodećim svjetskim brendovima
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {manufacturers.map((manufacturer, index) => (
-              <div 
-                key={index}
-                className="bg-card p-4 rounded-lg border border-border hover:border-primary transition-all hover:shadow-md text-center"
-              >
-                <p className="font-semibold text-sm text-foreground">{manufacturer}</p>
-              </div>
-            ))}
+          {/* Scrolling Manufacturers */}
+          <div className="relative overflow-hidden">
+            <div className="flex animate-scroll whitespace-nowrap">
+              {[...manufacturers, ...manufacturers].map((manufacturer, index) => (
+                <div 
+                  key={index}
+                  className="inline-flex items-center justify-center mx-3 px-4 py-2 bg-card/50 border border-border/50 hover:border-primary/50 transition-all text-center min-w-[120px]"
+                >
+                  <p className="font-medium text-xs text-foreground">{manufacturer}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
