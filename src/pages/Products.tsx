@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import ProductCard, { ProductVariant } from "@/components/ProductCard";
 import ModernChatBot from "@/components/ModernChatBot";
@@ -319,6 +319,96 @@ const Products = () => {
         {isLoading ? (
           <div className="flex justify-center items-center py-20">
             <Loader2 className="h-12 w-12 animate-spin text-primary" />
+          </div>
+        ) : selectedCategory === "Filteri" ? (
+          <div className="space-y-8">
+            {/* Category Description */}
+            <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-6 border border-primary/20">
+              <h2 className="text-2xl font-bold mb-3">Filteri za bazene</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Filteri su ključni dio sustava za održavanje čistoće vode u bazenu. Naša ponuda uključuje profesionalne filtere vrhunske kvalitete 
+                raznih veličina i kapaciteta, prikladne za privatne i komercijalne bazene. Nudimo IML Lisboa seriju, Astral Aster filtere, 
+                multiventile i kompletnu opremu za filtraciju - od kvarcnog pijeska do filter stakla.
+              </p>
+            </div>
+
+            {/* Vertical Product List */}
+            <div className="space-y-6">
+              {groupedProducts.map((product) => (
+                <div 
+                  key={product.id}
+                  className="bg-card border border-primary/20 rounded-lg overflow-hidden hover:shadow-xl transition-shadow"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                    {/* Product Image */}
+                    <div className="md:col-span-1">
+                      <div className="aspect-square bg-muted/20 rounded-lg overflow-hidden">
+                        <img 
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-full object-contain p-4"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Product Details */}
+                    <div className="md:col-span-2 space-y-4">
+                      <div>
+                        <Link 
+                          to={`/product/${product.id}`}
+                          className="text-xl font-bold hover:text-primary transition-colors"
+                        >
+                          {product.name}
+                        </Link>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          {product.description}
+                        </p>
+                      </div>
+
+                      {/* Variants Selection */}
+                      {product.variants && product.variants.length > 0 && (
+                        <div className="space-y-2">
+                          <label className="text-sm font-semibold">Odaberite veličinu:</label>
+                          <div className="flex flex-wrap gap-2">
+                            {product.variants.map((variant) => (
+                              <div 
+                                key={variant.id}
+                                className="px-4 py-2 border border-primary/30 rounded-lg bg-background hover:bg-primary/5 transition-colors"
+                              >
+                                <span className="font-medium">{variant.size}</span>
+                                <span className="text-primary ml-2">€{variant.price.toFixed(2)}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Price and Actions */}
+                      <div className="flex items-center justify-between pt-4 border-t border-primary/20">
+                        <div className="text-3xl font-bold text-primary">
+                          €{product.price.toFixed(2)}
+                        </div>
+                        <div className="flex gap-3">
+                          <Link to={`/product/${product.id}`}>
+                            <Button variant="outline">
+                              Pogledaj Detalje
+                            </Button>
+                          </Link>
+                          <Button
+                            variant="outline"
+                            onClick={() => handleAskAI(product.name)}
+                            className="gap-2"
+                          >
+                            <Sparkles className="h-4 w-4" />
+                            Pitaj AI
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

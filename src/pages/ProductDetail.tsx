@@ -303,9 +303,9 @@ const ProductDetail = () => {
             <h2 className="text-2xl font-bold mb-6">Slični proizvodi</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedProducts.map((relatedProduct) => (
-                <div 
+                <Link 
                   key={relatedProduct.id}
-                  onClick={() => navigate(`/product/${relatedProduct.id}`)}
+                  to={`/product/${relatedProduct.id}`}
                   className="cursor-pointer group"
                 >
                   <div className="bg-card border border-primary/20 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
@@ -321,7 +321,7 @@ const ProductDetail = () => {
                       <p className="text-2xl font-bold text-primary">€{relatedProduct.price.toFixed(2)}</p>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
