@@ -147,94 +147,98 @@ const Index = () => {
       </div>
       
       {/* Hero Content Section */}
-      <section className="py-12 px-4 bg-gradient-to-b from-background to-muted/10">
-        <div className="container mx-auto max-w-7xl">
+      <section className="py-8 px-4 bg-gradient-to-b from-background to-muted/5">
+        <div className="container mx-auto max-w-6xl">
           {/* Main Headline */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
               Profesionalna izgradnja i opremanje bazena
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-4">
+            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-3">
               Od 2006. godine specijalizirani smo za izgradnju i opremanje bazena. 
-              <br className="hidden md:block" />
               Kao glavni partner AstralPool Fluidra Group u Dalmaciji, nudimo vrhunsku opremu, 
               profesionalnu ugradnju i potpunu tehničku podršku.
             </p>
             
             {/* Partner Logos - Inline */}
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <img src={coolpoolLogo} alt="CoolPool" loading="eager" className="h-10 md:h-14 w-auto object-contain" />
-              <span className="text-2xl text-muted-foreground">×</span>
-              <img src={astralPoolLogo} alt="AstralPool" loading="eager" className="h-8 md:h-12 w-auto object-contain" />
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <img src={coolpoolLogo} alt="CoolPool" loading="eager" className="h-8 md:h-10 w-auto object-contain" />
+              <span className="text-lg text-muted-foreground">×</span>
+              <img src={astralPoolLogo} alt="AstralPool" loading="eager" className="h-6 md:h-8 w-auto object-contain" />
             </div>
           </div>
           
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card via-card to-primary/5 p-8 border-2 border-primary/20 hover:border-primary/50 transition-all hover:shadow-2xl hover:scale-105">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/50 p-4 border border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
               <div className="relative">
-                <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-3">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-1">
                   <AnimatedCounter end={18} suffix="+" />
                 </div>
-                <p className="text-sm md:text-base uppercase tracking-wide font-bold text-foreground/80">Godina Iskustva</p>
+                <p className="text-[10px] md:text-xs uppercase tracking-wide font-semibold text-muted-foreground">Godina Iskustva</p>
               </div>
             </div>
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card via-card to-primary/5 p-8 border-2 border-primary/20 hover:border-primary/50 transition-all hover:shadow-2xl hover:scale-105">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/50 p-4 border border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
               <div className="relative">
-                <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-3">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-1">
                   <AnimatedCounter end={1000} suffix="+" />
                 </div>
-                <p className="text-sm md:text-base uppercase tracking-wide font-bold text-foreground/80">Izgrađenih Bazena</p>
+                <p className="text-[10px] md:text-xs uppercase tracking-wide font-semibold text-muted-foreground">Izgrađenih Bazena</p>
               </div>
             </div>
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card via-card to-primary/5 p-8 border-2 border-primary/20 hover:border-primary/50 transition-all hover:shadow-2xl hover:scale-105">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/50 p-4 border border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
               <div className="relative">
-                <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-3">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-1">
                   <AnimatedCounter end={100} suffix="%" />
                 </div>
-                <p className="text-sm md:text-base uppercase tracking-wide font-bold text-foreground/80">Zadovoljnih Klijenata</p>
+                <p className="text-[10px] md:text-xs uppercase tracking-wide font-semibold text-muted-foreground">Zadovoljnih Klijenata</p>
+              </div>
+            </div>
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/50 p-4 border border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
+              <div className="relative">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-1">
+                  <AnimatedCounter end={36} />
+                </div>
+                <p className="text-[10px] md:text-xs uppercase tracking-wide font-semibold text-muted-foreground">Stručan Djelatnik</p>
               </div>
             </div>
           </div>
           
-          {/* CTA Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Web Shop CTA */}
+          {/* CTA Cards Grid - Emphasized */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+            {/* Web Shop CTA - PRIMARY */}
             <Link to="/products">
-              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/15 via-primary/10 to-primary/5 p-10 border-2 border-primary/40 hover:border-primary hover:shadow-2xl transition-all cursor-pointer h-full">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 via-primary/15 to-primary/10 p-8 border-2 border-primary/50 hover:border-primary hover:shadow-2xl transition-all cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
-                  <div className="text-5xl mb-4">🛒</div>
-                  <h3 className="text-3xl font-extrabold mb-4 group-hover:text-primary transition-colors">Web Shop</h3>
-                  <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+                  <div className="text-4xl mb-3">🛒</div>
+                  <h3 className="text-2xl font-extrabold mb-3 group-hover:text-primary transition-colors">Web Shop</h3>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                     Širok asortiman premium opreme i kemikalija za održavanje bazena
                   </p>
-                  <span className="inline-flex items-center text-xl font-bold text-primary group-hover:translate-x-2 transition-transform">
+                  <span className="inline-flex items-center text-base font-bold text-primary group-hover:translate-x-2 transition-transform">
                     Pregledajte sada →
                   </span>
                 </div>
               </div>
             </Link>
             
-            {/* AI Assistant CTA */}
+            {/* AI Assistant CTA - PRIMARY */}
             <div 
               onClick={() => {
                 const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
                 if (chatbot) chatbot.click();
               }}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary/15 via-secondary/10 to-secondary/5 p-10 border-2 border-secondary/40 hover:border-secondary hover:shadow-2xl transition-all cursor-pointer h-full"
+              className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-secondary/20 via-secondary/15 to-secondary/10 p-8 border-2 border-secondary/50 hover:border-secondary hover:shadow-2xl transition-all cursor-pointer"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
-                <Sparkles className="h-12 w-12 text-secondary mb-4" />
-                <h3 className="text-3xl font-extrabold mb-4 group-hover:text-secondary transition-colors">AI Asistent</h3>
-                <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+                <Sparkles className="h-10 w-10 text-secondary mb-3" />
+                <h3 className="text-2xl font-extrabold mb-3 group-hover:text-secondary transition-colors">AI Asistent</h3>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                   Pronađite opremu za veličinu i održavanje vašeg bazena
                 </p>
-                <span className="inline-flex items-center text-xl font-bold text-secondary group-hover:translate-x-2 transition-transform">
+                <span className="inline-flex items-center text-base font-bold text-secondary group-hover:translate-x-2 transition-transform">
                   Razgovarajte s AI →
                 </span>
               </div>
@@ -244,39 +248,39 @@ const Index = () => {
       </section>
       
       {/* Featured Projects Section */}
-      <section className="py-12 px-4 bg-gradient-to-b from-muted/10 to-background">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+      <section className="py-8 px-4 bg-gradient-to-b from-muted/5 to-background">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Naši Izdvojeni Projekti
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-sm text-muted-foreground max-w-xl mx-auto">
               Pogledajte neke od naših najuspješnijih realizacija bazena, spa zona i wellness centara
             </p>
           </div>
           
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
             {featuredProjects.map((project) => (
               <Link 
                 key={project.id}
                 to="/projekti"
-                className="group relative overflow-hidden rounded-2xl border-2 border-border hover:border-primary transition-all hover:shadow-2xl"
+                className="group relative overflow-hidden rounded-lg border border-border hover:border-primary transition-all hover:shadow-xl"
               >
                 <div className="aspect-[4/3] overflow-hidden bg-muted/20">
                   <img 
                     src={project.image}
                     alt={project.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold mb-3">
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <div className="inline-block px-2 py-0.5 rounded-full bg-primary/20 text-primary text-[10px] font-bold mb-1">
                       {project.category}
                     </div>
-                    <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
-                    <p className="text-sm text-muted-foreground">{project.description}</p>
+                    <h3 className="text-sm font-bold mb-1">{project.name}</h3>
+                    <p className="text-xs text-muted-foreground line-clamp-2">{project.description}</p>
                   </div>
                 </div>
               </Link>
@@ -284,20 +288,20 @@ const Index = () => {
           </div>
           
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link to="/projekti">
               <Button 
-                size="lg" 
+                size="sm" 
                 variant="outline"
-                className="font-bold px-10 py-6 text-lg rounded-xl hover:bg-primary/5 transition-all"
+                className="font-bold px-6 hover:bg-primary/5 transition-all"
               >
                 Pogledaj Više Projekata
               </Button>
             </Link>
             <Link to="/izgradnja#contact-form">
               <Button 
-                size="lg" 
-                className="text-white font-bold px-10 py-6 text-lg rounded-xl shadow-lg hover:shadow-2xl transition-all"
+                size="sm" 
+                className="text-white font-bold px-6 shadow-lg hover:shadow-xl transition-all"
                 style={{ background: "var(--gradient-water)" }}
               >
                 Zatražite Ponudu
@@ -309,19 +313,20 @@ const Index = () => {
       
       {/* Trending Products Carousel */}
       {trendingProducts.length > 0 && (
-        <section className="py-12 px-4 bg-gradient-to-b from-background to-muted/10 overflow-hidden">
-          <div className="container mx-auto max-w-7xl mb-8">
+        <section className="py-8 px-4 bg-gradient-to-b from-background to-muted/5 overflow-hidden">
+          <div className="container mx-auto max-w-6xl mb-6">
             <div className="text-center">
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Istaknuti Proizvodi
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+              <p className="text-sm text-muted-foreground max-w-xl mx-auto mb-4">
                 Najpopularnija oprema za bazene iz našeg asortimana
               </p>
               <Link to="/products">
                 <Button 
                   variant="outline"
-                  className="font-bold px-8 hover:bg-primary/5 transition-colors"
+                  size="sm"
+                  className="font-bold px-6 hover:bg-primary/5 transition-colors"
                 >
                   Pogledajte Sve Proizvode →
                 </Button>
@@ -331,36 +336,36 @@ const Index = () => {
           
           {/* Auto-scrolling Products */}
           <div className="relative">
-            <div className="flex gap-6 animate-scroll">
+            <div className="flex gap-4 animate-scroll">
               {[...trendingProducts, ...trendingProducts].map((product, index) => (
                 <Link
                   key={`${product.id}-${index}`}
                   to={`/product/${product.id}`}
-                  className="flex-shrink-0 w-80 group"
+                  className="flex-shrink-0 w-64 group"
                 >
-                  <div className="bg-card rounded-2xl overflow-hidden border-2 border-border hover:border-primary transition-all hover:shadow-xl">
+                  <div className="bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all hover:shadow-lg h-full">
                     <div className="aspect-square bg-muted/10 overflow-hidden">
                       <img 
                         src={product.image_url}
                         alt={product.name}
-                        className="w-full h-full object-contain p-6 group-hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <div className="p-6">
-                      <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-3">
+                    <div className="p-4">
+                      <div className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold mb-2">
                         {product.category}
                       </div>
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                      <h3 className="text-base font-bold mb-1 group-hover:text-primary transition-colors line-clamp-2">
                         {product.name}
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                      <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
                         {product.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-2xl font-black text-primary">
+                        <span className="text-xl font-black text-primary">
                           €{product.price.toFixed(2)}
                         </span>
-                        <span className="text-sm font-bold text-primary group-hover:translate-x-1 transition-transform">
+                        <span className="text-xs font-bold text-primary group-hover:translate-x-1 transition-transform">
                           Detalji →
                         </span>
                       </div>
