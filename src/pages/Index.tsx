@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ModernChatBot from "@/components/ModernChatBot";
-import ProductCard from "@/components/ProductCard";
 import ProductCatalog from "@/components/ProductCatalog";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import astralPoolLogo from "@/assets/astralpool-logo.png";
@@ -14,9 +13,9 @@ import pool3 from "@/assets/pool-3.png";
 import pool4 from "@/assets/pool-4.png";
 import pool5 from "@/assets/pool-5.png";
 import pool6 from "@/assets/pool-6.png";
-import filter1 from "@/assets/filter-1.png";
-import { Sparkles, Tag, Facebook, Instagram, MessageCircle, Search } from "lucide-react";
+import { Sparkles, Facebook, Instagram, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Carousel,
   CarouselContent,
@@ -97,6 +96,26 @@ const Index = () => {
   const [displayedProducts, setDisplayedProducts] = useState<any[]>([]);
   const [videoEnded, setVideoEnded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
+  const [trendingProducts, setTrendingProducts] = useState<any[]>([]);
+
+  useEffect(() => {
+    loadTrendingProducts();
+  }, []);
+
+  const loadTrendingProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .limit(12)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setTrendingProducts(data || []);
+    } catch (error) {
+      console.error('Error loading trending products:', error);
+    }
+  };
 
   const openCatalog = (category?: string) => {
     setSelectedCategory(category);
@@ -127,168 +146,232 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Stats Section with Partners */}
-      <section className="py-4 px-4 bg-gradient-to-b from-background via-muted/20 to-background">
-        <div className="container mx-auto max-w-6xl">
-          {/* Partner Logos */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
-            <div className="flex items-center gap-2 md:gap-4 p-3 md:p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-primary/10">
-              <img src={coolpoolLogo} alt="CoolPool" loading="eager" className="h-8 md:h-12 w-auto object-contain" />
-              <span className="text-lg md:text-xl font-light text-foreground/40">+</span>
-              <img src={astralPoolLogo} alt="AstralPool" loading="eager" className="h-7 md:h-10 w-auto object-contain" />
+      {/* Hero Content Section */}
+      <section className="py-12 px-4 bg-gradient-to-b from-background to-muted/10">
+        <div className="container mx-auto max-w-7xl">
+          {/* Main Headline */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
+              Profesionalna izgradnja i opremanje bazena
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-4">
+              Od 2006. godine specijalizirani smo za izgradnju i opremanje bazena. 
+              <br className="hidden md:block" />
+              Kao glavni partner AstralPool Fluidra Group u Dalmaciji, nudimo vrhunsku opremu, 
+              profesionalnu ugradnju i potpunu tehničku podršku.
+            </p>
+            
+            {/* Partner Logos - Inline */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <img src={coolpoolLogo} alt="CoolPool" loading="eager" className="h-10 md:h-14 w-auto object-contain" />
+              <span className="text-2xl text-muted-foreground">×</span>
+              <img src={astralPoolLogo} alt="AstralPool" loading="eager" className="h-8 md:h-12 w-auto object-contain" />
             </div>
           </div>
           
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-4">
-            <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-colors hover:shadow-lg">
-              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card via-card to-primary/5 p-8 border-2 border-primary/20 hover:border-primary/50 transition-all hover:shadow-2xl hover:scale-105">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
               <div className="relative">
-                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">
+                <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-3">
                   <AnimatedCounter end={18} suffix="+" />
                 </div>
-                <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Godina Iskustva</p>
+                <p className="text-sm md:text-base uppercase tracking-wide font-bold text-foreground/80">Godina Iskustva</p>
               </div>
             </div>
-            <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-colors hover:shadow-lg">
-              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10"></div>
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card via-card to-primary/5 p-8 border-2 border-primary/20 hover:border-primary/50 transition-all hover:shadow-2xl hover:scale-105">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
               <div className="relative">
-                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">
+                <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-3">
                   <AnimatedCounter end={1000} suffix="+" />
                 </div>
-                <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Izgrađenih Bazena</p>
+                <p className="text-sm md:text-base uppercase tracking-wide font-bold text-foreground/80">Izgrađenih Bazena</p>
               </div>
             </div>
-            <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-colors hover:shadow-lg">
-              <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10"></div>
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card via-card to-primary/5 p-8 border-2 border-primary/20 hover:border-primary/50 transition-all hover:shadow-2xl hover:scale-105">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
               <div className="relative">
-                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">
+                <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-3">
                   <AnimatedCounter end={100} suffix="%" />
                 </div>
-                <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Zadovoljnih Klijenata</p>
+                <p className="text-sm md:text-base uppercase tracking-wide font-bold text-foreground/80">Zadovoljnih Klijenata</p>
               </div>
             </div>
           </div>
           
-          {/* Description */}
-          <div className="text-center max-w-2xl mx-auto mb-4">
-            <p className="text-base text-foreground/90 leading-relaxed mb-3">
-              Nudimo izgradnju bazena te proizvode za opremanje bazena.
-            </p>
-            <p className="text-sm text-foreground/70 leading-relaxed">
-              Od 2006. godine specijalizirani smo za izgradnju i opremanje bazena. Kao glavni partner AstralPool Fluidra Group u Dalmaciji, nudimo vrhunsku opremu, profesionalnu ugradnju i potpunu tehničku podršku.
-            </p>
-          </div>
-          
-          {/* CTA Card - Web Shop Focus */}
-          <div className="max-w-2xl mx-auto mb-4">
+          {/* CTA Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Web Shop CTA */}
             <Link to="/products">
-              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 p-8 border-2 border-primary/30 hover:border-primary hover:shadow-2xl transition-all cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="relative text-center">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors">🛒 Web Shop - Oprema za Bazene</h3>
-                  <p className="text-base text-muted-foreground mb-4">Širok asortiman premium opreme i kemikalija za održavanje bazena</p>
-                  <span className="inline-flex items-center text-lg font-bold text-primary">
-                    Pregledajte sada <span className="ml-2 text-2xl">→</span>
+              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/15 via-primary/10 to-primary/5 p-10 border-2 border-primary/40 hover:border-primary hover:shadow-2xl transition-all cursor-pointer h-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative">
+                  <div className="text-5xl mb-4">🛒</div>
+                  <h3 className="text-3xl font-extrabold mb-4 group-hover:text-primary transition-colors">Web Shop</h3>
+                  <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+                    Širok asortiman premium opreme i kemikalija za održavanje bazena
+                  </p>
+                  <span className="inline-flex items-center text-xl font-bold text-primary group-hover:translate-x-2 transition-transform">
+                    Pregledajte sada →
                   </span>
                 </div>
               </div>
             </Link>
-          </div>
-          
-          {/* AI Section */}
-          <div className="text-center max-w-lg mx-auto">
-            <div className="p-4">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Sparkles className="h-5 w-5 text-primary" />
-                <h3 className="text-xl font-bold">AI Asistent za Bazene</h3>
+            
+            {/* AI Assistant CTA */}
+            <div 
+              onClick={() => {
+                const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
+                if (chatbot) chatbot.click();
+              }}
+              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary/15 via-secondary/10 to-secondary/5 p-10 border-2 border-secondary/40 hover:border-secondary hover:shadow-2xl transition-all cursor-pointer h-full"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <Sparkles className="h-12 w-12 text-secondary mb-4" />
+                <h3 className="text-3xl font-extrabold mb-4 group-hover:text-secondary transition-colors">AI Asistent</h3>
+                <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+                  Pronađite opremu za veličinu i održavanje vašeg bazena
+                </p>
+                <span className="inline-flex items-center text-xl font-bold text-secondary group-hover:translate-x-2 transition-transform">
+                  Razgovarajte s AI →
+                </span>
               </div>
-              <p className="text-sm text-foreground/70 mb-3">
-                Pronađite opremu za veličinu i održavanje vašeg bazena
-              </p>
-              <Button
-                onClick={() => {
-                  const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
-                  if (chatbot) chatbot.click();
-                }}
-                size="sm"
-                className="text-white font-semibold shadow-md hover:shadow-lg transition-shadow"
-                style={{ background: "var(--gradient-water)" }}
-              >
-                <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-                Razgovarajte s AI
-              </Button>
             </div>
           </div>
         </div>
       </section>
       
-      {/* Featured Projects Section - Carousel */}
-      <section className="py-4 px-4 bg-gradient-to-b from-background to-muted/20">
-        <div className="container mx-auto">
-          <div className="text-center mb-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+      {/* Featured Projects Section */}
+      <section className="py-12 px-4 bg-gradient-to-b from-muted/10 to-background">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Naši Izdvojeni Projekti
             </h2>
-            <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-              Pogledajte neke od naših najuspješnijih realizacija
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Pogledajte neke od naših najuspješnijih realizacija bazena, spa zona i wellness centara
             </p>
           </div>
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full max-w-6xl mx-auto"
-          >
-            <CarouselContent className="-ml-6">
-              {featuredProjects.map((project) => (
-                <CarouselItem key={project.id} className="pl-6 md:basis-1/2 lg:basis-1/3">
-                  <div onClick={() => openCatalog(project.category)} className="cursor-pointer h-full">
-                    <ProductCard 
-                      name={project.name}
-                      description={project.description}
-                      category={project.category}
-                      image={project.image}
-                    />
+          
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {featuredProjects.map((project) => (
+              <Link 
+                key={project.id}
+                to="/projekti"
+                className="group relative overflow-hidden rounded-2xl border-2 border-border hover:border-primary transition-all hover:shadow-2xl"
+              >
+                <div className="aspect-[4/3] overflow-hidden bg-muted/20">
+                  <img 
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <div className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold mb-3">
+                      {project.category}
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
+                    <p className="text-sm text-muted-foreground">{project.description}</p>
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-0" />
-            <CarouselNext className="right-0" />
-          </Carousel>
-        </div>
-        <div className="text-center mt-6 flex flex-wrap gap-4 justify-center">
-          <Link to="/projekti">
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="font-bold px-8 hover:bg-primary/5 transition-colors"
-            >
-              Pogledaj Više Projekata
-            </Button>
-          </Link>
-          <Link to="/izgradnja#contact-form">
-            <Button 
-              size="lg" 
-              className="text-white font-bold shadow-md hover:shadow-xl transition-shadow"
-              style={{ background: "var(--gradient-water)" }}
-            >
-              Zatražite Ponudu
-            </Button>
-          </Link>
-          <Link to="/products">
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="font-bold px-8 hover:bg-primary/5 transition-colors"
-            >
-              Pogledajte Sve Proizvode
-            </Button>
-          </Link>
+                </div>
+              </Link>
+            ))}
+          </div>
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/projekti">
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="font-bold px-10 py-6 text-lg rounded-xl hover:bg-primary/5 transition-all"
+              >
+                Pogledaj Više Projekata
+              </Button>
+            </Link>
+            <Link to="/izgradnja#contact-form">
+              <Button 
+                size="lg" 
+                className="text-white font-bold px-10 py-6 text-lg rounded-xl shadow-lg hover:shadow-2xl transition-all"
+                style={{ background: "var(--gradient-water)" }}
+              >
+                Zatražite Ponudu
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
+      
+      {/* Trending Products Carousel */}
+      {trendingProducts.length > 0 && (
+        <section className="py-12 px-4 bg-gradient-to-b from-background to-muted/10 overflow-hidden">
+          <div className="container mx-auto max-w-7xl mb-8">
+            <div className="text-center">
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Istaknuti Proizvodi
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+                Najpopularnija oprema za bazene iz našeg asortimana
+              </p>
+              <Link to="/products">
+                <Button 
+                  variant="outline"
+                  className="font-bold px-8 hover:bg-primary/5 transition-colors"
+                >
+                  Pogledajte Sve Proizvode →
+                </Button>
+              </Link>
+            </div>
+          </div>
+          
+          {/* Auto-scrolling Products */}
+          <div className="relative">
+            <div className="flex gap-6 animate-scroll">
+              {[...trendingProducts, ...trendingProducts].map((product, index) => (
+                <Link
+                  key={`${product.id}-${index}`}
+                  to={`/product/${product.id}`}
+                  className="flex-shrink-0 w-80 group"
+                >
+                  <div className="bg-card rounded-2xl overflow-hidden border-2 border-border hover:border-primary transition-all hover:shadow-xl">
+                    <div className="aspect-square bg-muted/10 overflow-hidden">
+                      <img 
+                        src={product.image_url}
+                        alt={product.name}
+                        className="w-full h-full object-contain p-6 group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-3">
+                        {product.category}
+                      </div>
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                        {product.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                        {product.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-2xl font-black text-primary">
+                          €{product.price.toFixed(2)}
+                        </span>
+                        <span className="text-sm font-bold text-primary group-hover:translate-x-1 transition-transform">
+                          Detalji →
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
       
       {/* AI-Suggested Products Section */}
       {displayedProducts.length > 0 && (
@@ -299,13 +382,15 @@ const Index = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {displayedProducts.map((product) => (
-                <ProductCard 
-                  key={product.id} 
-                  name={product.name}
-                  description={product.description}
-                  price={product.price}
-                  category={product.category}
-                />
+                <Link
+                  key={product.id}
+                  to={`/product/${product.id}`}
+                  className="bg-card rounded-lg overflow-hidden border-2 border-border hover:border-primary transition-all hover:shadow-xl p-4"
+                >
+                  <h3 className="text-xl font-bold">{product.name}</h3>
+                  <p className="text-sm text-muted-foreground">{product.description}</p>
+                  <div className="text-2xl font-black text-primary mt-2">€{product.price?.toFixed(2)}</div>
+                </Link>
               ))}
             </div>
           </div>
