@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
 
 interface HeroProps {
-  onVideoEnd: () => void;
+  onVideoEnd?: () => void;
 }
 
 const Hero = ({ onVideoEnd }: HeroProps) => {
