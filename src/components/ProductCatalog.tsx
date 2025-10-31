@@ -53,22 +53,33 @@ interface ProductCatalogProps {
 }
 
 const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
-  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+  // All sections expanded by default except "Projekti"
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(
+    new Set(catalogSections.filter(s => s.title !== "Projekti").map(s => s.title))
+  );
 
   useEffect(() => {
     if (openCategory) {
-      // Find which section contains this category
+      // Find which section contains this category and expand it
       const section = catalogSections.find(s => 
         s.categories.some(cat => cat.toLowerCase().includes(openCategory.toLowerCase()))
       );
       if (section) {
-        setExpandedSection(section.title);
+        setExpandedSections(prev => new Set(prev).add(section.title));
       }
     }
   }, [openCategory]);
 
   const toggleSection = (title: string) => {
-    setExpandedSection(expandedSection === title ? null : title);
+    setExpandedSections(prev => {
+      const next = new Set(prev);
+      if (next.has(title)) {
+        next.delete(title);
+      } else {
+        next.add(title);
+      }
+      return next;
+    });
   };
 
   return (
@@ -84,7 +95,7 @@ const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
         <div className="p-3 space-y-2">
             {catalogSections.map((section) => {
               const Icon = section.icon;
-              const isExpanded = expandedSection === section.title;
+              const isExpanded = expandedSections.has(section.title);
 
               return (
                 <div key={section.title} className="space-y-1">
@@ -101,28 +112,31 @@ const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
                     </div>
                     <ChevronRight
                       className={cn(
-                        "h-5 w-5 text-muted-foreground transition-transform",
+                        "h-5 w-5 text-muted-foreground transition-transform duration-300",
                         isExpanded && "rotate-90"
                       )}
                     />
                   </button>
 
-                  {isExpanded && (
-                    <div className="ml-9 space-y-0.5">
-                      {section.categories.map((category) => (
-                        <Link
-                          key={category}
-                          to={section.title === "Projekti" ? `/projekti?category=${encodeURIComponent(category)}` : `/products?category=${encodeURIComponent(category)}`}
-                          className={cn(
-                            "block px-3 py-1.5 text-xs text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors",
-                            openCategory?.toLowerCase() === category.toLowerCase() && "bg-primary/10 text-primary font-medium"
-                          )}
-                        >
-                          {category}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
+                  <div 
+                    className={cn(
+                      "ml-9 space-y-0.5 overflow-hidden transition-all duration-300",
+                      isExpanded ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                    )}
+                  >
+                    {section.categories.map((category) => (
+                      <Link
+                        key={category}
+                        to={section.title === "Projekti" ? `/projekti?category=${encodeURIComponent(category)}` : `/products?category=${encodeURIComponent(category)}`}
+                        className={cn(
+                          "block px-3 py-1.5 text-xs text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors",
+                          openCategory?.toLowerCase() === category.toLowerCase() && "bg-primary/10 text-primary font-medium"
+                        )}
+                      >
+                        {category}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               );
             })}

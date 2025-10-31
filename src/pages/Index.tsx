@@ -67,7 +67,7 @@ const Index = () => {
       
       
       {/* Main Content Section */}
-      <section className="relative py-12 px-4 overflow-hidden">
+      <section className="relative py-6 px-4 overflow-hidden">
         {/* Water Animation Background */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-primary/10 to-transparent animate-wave"></div>
@@ -75,12 +75,25 @@ const Index = () => {
         </div>
         
         <div className="container mx-auto max-w-4xl relative z-10">
+          {/* Company Brand with Underline */}
+          <div className="text-center mb-4">
+            <div className="inline-block">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-1">
+                CoolPool d.o.o.
+              </h2>
+              <div className="h-1 w-full rounded-full" style={{ background: "var(--gradient-water)" }}></div>
+            </div>
+            <p className="text-sm text-muted-foreground mt-2">
+              Službeni partner vodećeg svjetskog proizvođača
+            </p>
+          </div>
+
           {/* Main Headline */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
+          <div className="text-center mb-6">
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 leading-tight">
               Otkrijte najmoderniju <span className="text-primary">AI online trgovinu</span> za bazene
             </h1>
-            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-3">
+            <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-2">
               Mjesto gdje tehnologija i kvaliteta rade za vas.
             </p>
             <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -89,14 +102,14 @@ const Index = () => {
           </div>
           
           {/* AI Highlight */}
-          <div className="text-center mb-8 p-4 max-w-2xl mx-auto">
-            <p className="text-sm md:text-base text-foreground/90">
+          <div className="text-center mb-6 max-w-2xl mx-auto">
+            <p className="text-sm text-foreground/90">
               Naš <span className="text-primary font-semibold">AI asistent</span> u manje od <span className="text-primary font-semibold">5 sekundi</span> preporučuje proizvode koji najbolje odgovaraju vašem bazenu — bez gubljenja vremena i s maksimalnom preciznošću.
             </p>
           </div>
           
           {/* Simple CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
             <Link to="/products">
               <Button size="lg" className="w-full sm:w-auto">
                 <ShoppingCart className="mr-2 h-5 w-5" />
@@ -120,7 +133,7 @@ const Index = () => {
       </section>
       
       {/* Manufacturers Section */}
-      <section className="py-8 px-4 bg-muted/10">
+      <section className="py-6 px-4 bg-muted/10">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-6">
             <h2 className="text-xl md:text-2xl font-bold mb-2">
