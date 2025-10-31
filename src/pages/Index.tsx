@@ -65,20 +65,6 @@ const Index = () => {
       <div className="md:ml-72">
         <Hero />
       
-      {/* Scrolling Categories Section */}
-      <div className="relative overflow-hidden py-3 -mt-20 z-20 glass-effect">
-        <div className="flex animate-scroll whitespace-nowrap">
-          {[...categories, ...categories].map((category, index) => (
-            <Link
-              key={index}
-              to={`/products?category=${category}`}
-              className="inline-flex items-center px-4 py-2 mx-2 glass-effect text-foreground text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer border border-primary/20 hover:border-primary group"
-            >
-              <span className="group-hover:text-primary transition-colors">{category}</span>
-            </Link>
-          ))}
-        </div>
-      </div>
       
       {/* Main Content Section */}
       <section className="relative py-12 px-4 overflow-hidden">

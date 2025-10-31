@@ -73,24 +73,15 @@ const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
 
   return (
     <div className="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 bg-background/95 backdrop-blur-md border-r shadow-lg z-30 flex flex-col overflow-hidden">
-      <div className="flex items-center p-4 border-b">
-        <h2 className="text-lg font-bold text-foreground">Katalog Proizvoda</h2>
+      <div className="flex items-center justify-center p-4 border-b">
+        <div className="flex flex-col gap-1">
+          <div className="h-0.5 w-8 bg-foreground"></div>
+          <div className="h-0.5 w-8 bg-foreground"></div>
+        </div>
       </div>
 
       <ScrollArea className="flex-1">
         <div className="p-3 space-y-2">
-            <Link to="/izgradnja" className="block">
-              <button className="w-full flex items-center justify-between p-2 hover:bg-muted transition-colors group">
-                <div className="flex items-center gap-2">
-                  <div className="h-7 w-7 flex items-center justify-center"
-                       style={{ background: "var(--gradient-water)" }}>
-                    <Package className="h-3.5 w-3.5 text-white" />
-                  </div>
-                  <span className="font-semibold text-sm text-foreground">Izgradnja</span>
-                </div>
-              </button>
-            </Link>
-
             {catalogSections.map((section) => {
               const Icon = section.icon;
               const isExpanded = expandedSection === section.title;

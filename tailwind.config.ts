@@ -114,14 +114,32 @@ export default {
             boxShadow: "0 0 60px hsl(var(--primary) / 0.8)",
           },
         },
+        wave: {
+          "0%, 100%": {
+            transform: "translateY(0) rotate(0deg)",
+          },
+          "50%": {
+            transform: "translateY(-20px) rotate(5deg)",
+          },
+        },
+        "wave-delay": {
+          "0%, 100%": {
+            transform: "translateY(0) rotate(0deg)",
+          },
+          "50%": {
+            transform: "translateY(-15px) rotate(-5deg)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        scroll: "scroll 30s linear infinite",
+        scroll: "scroll 40s linear infinite",
         "fade-in": "fade-in 0.5s ease-out",
         shimmer: "shimmer 3s infinite",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        wave: "wave 8s ease-in-out infinite",
+        "wave-delay": "wave-delay 10s ease-in-out infinite",
       },
     },
   },

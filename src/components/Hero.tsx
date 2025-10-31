@@ -13,7 +13,7 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
         muted
         loop
         playsInline
-        poster="/hero-poster.jpg"
+        poster="/hero-poster-new.jpg"
         onEnded={onVideoEnd}
         className="absolute inset-0 w-full h-full object-cover z-0"
         style={{ filter: "brightness(0.9)" }}
