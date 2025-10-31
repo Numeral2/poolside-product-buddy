@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import Products from "./pages/Products";
+import Izgradnja from "./pages/Izgradnja";
+import ONama from "./pages/ONama";
 import Cart from "./pages/Cart";
 import Projekti from "./pages/Projekti";
 import NotFound from "./pages/NotFound";
@@ -42,7 +44,9 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/products" element={<Products />} />
+              <Route path="/izgradnja" element={<Izgradnja />} />
               <Route path="/projekti" element={<Projekti />} />
+              <Route path="/o-nama" element={<ONama />} />
               <Route path="/cart" element={<Cart />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

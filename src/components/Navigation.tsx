@@ -54,10 +54,17 @@ const Navigation = () => {
           </Link>
           
           <Link 
-            to="/projekti" 
+            to="/o-nama" 
             className="text-sm text-foreground hover:text-primary transition-colors font-medium hidden md:block"
           >
-            Projekti
+            O nama
+          </Link>
+
+          <Link 
+            to="/izgradnja" 
+            className="text-sm text-foreground hover:text-primary transition-colors font-medium hidden md:block"
+          >
+            Izgradnja bazena
           </Link>
           
           <DropdownMenu>
@@ -132,7 +139,10 @@ const Navigation = () => {
                 <Link to="/" className="w-full">Početna</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/projekti" className="w-full">Projekti</Link>
+                <Link to="/o-nama" className="w-full">O nama</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/izgradnja" className="w-full">Izgradnja</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link to="/products" className="w-full">Web Shop</Link>

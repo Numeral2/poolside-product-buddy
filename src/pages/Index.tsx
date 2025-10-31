@@ -5,7 +5,6 @@ import Hero from "@/components/Hero";
 import ModernChatBot from "@/components/ModernChatBot";
 import ProductCard from "@/components/ProductCard";
 import ProductCatalog from "@/components/ProductCatalog";
-import Footer from "@/components/Footer";
 import astralPoolLogo from "@/assets/astralpool-logo.png";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
 import pool1 from "@/assets/pool-1.png";
@@ -95,6 +94,7 @@ const featuredProjects = [
 
 const Index = () => {
   const [displayedProducts, setDisplayedProducts] = useState<any[]>([]);
+  const [videoEnded, setVideoEnded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
 
   const openCatalog = (category?: string) => {
@@ -110,7 +110,7 @@ const Index = () => {
       
       {/* Main content with left margin for sidebar */}
       <div className="md:ml-72">
-        <Hero />
+        <Hero onVideoEnd={() => setVideoEnded(true)} />
       {/* Scrolling Categories Section - overlapping video */}
       <div className="relative overflow-hidden py-2 -mt-16 z-20 glass-effect">
         <div className="flex animate-scroll whitespace-nowrap">
@@ -175,6 +175,19 @@ const Index = () => {
           
           {/* CTA Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-4">
+            <Link to="/izgradnja">
+              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-colors cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Izgradnja Bazena</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Profesionalna izgradnja od planiranja do realizacije</p>
+                  <span className="inline-flex items-center text-sm font-semibold text-primary">
+                    Saznajte više <span className="ml-1">→</span>
+                  </span>
+                </div>
+              </div>
+            </Link>
+            
             <Link to="/products">
               <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-colors cursor-pointer">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -183,19 +196,6 @@ const Index = () => {
                   <p className="text-sm text-muted-foreground mb-3">Širok asortiman opreme i kemikalija za održavanje</p>
                   <span className="inline-flex items-center text-sm font-semibold text-primary">
                     Pregledajte katalog <span className="ml-1">→</span>
-                  </span>
-                </div>
-              </div>
-            </Link>
-            
-            <Link to="/projekti">
-              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-colors cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="relative">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Naši Projekti</h3>
-                  <p className="text-sm text-muted-foreground mb-3">Pogledajte galeriju realiziranih projekata</p>
-                  <span className="inline-flex items-center text-sm font-semibold text-primary">
-                    Pogledajte projekate <span className="ml-1">→</span>
                   </span>
                 </div>
               </div>
@@ -275,11 +275,20 @@ const Index = () => {
               Pogledaj Više Projekata
             </Button>
           </Link>
-          <Link to="/products">
+          <Link to="/izgradnja#contact-form">
             <Button 
               size="lg" 
               className="text-white font-bold shadow-md hover:shadow-xl transition-shadow"
               style={{ background: "var(--gradient-water)" }}
+            >
+              Zatražite Ponudu
+            </Button>
+          </Link>
+          <Link to="/products">
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="font-bold px-8 hover:bg-primary/5 transition-colors"
             >
               Pogledajte Sve Proizvode
             </Button>
@@ -309,7 +318,122 @@ const Index = () => {
         </section>
       )}
 
-      <Footer />
+      {/* Footer */}
+      <footer className="relative overflow-hidden bg-gradient-to-b from-muted/50 to-muted border-t border-primary/20">
+        <div className="container mx-auto px-4 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            {/* Company Info and Map */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <img src={coolpoolLogo} alt="CoolPool" loading="lazy" className="h-12 w-auto object-contain" />
+              </div>
+              <div className="text-muted-foreground text-sm leading-relaxed space-y-1">
+                <p className="font-bold text-foreground">COOL POOL d.o.o.</p>
+                <p>Kroz Smrdečac 31, 21000 Split</p>
+                <p>OIB: 58469938489</p>
+                <p className="font-semibold text-foreground mt-2">Adresa poslovanja:</p>
+                <p>Slanice 22, 21000 Split</p>
+                <p className="mt-2">
+                  <a href="mailto:info@coolpool.hr" className="hover:text-primary transition-colors">
+                    info@coolpool.hr
+                  </a>
+                </p>
+                <p>
+                  <a href="tel:+385956633214" className="hover:text-primary transition-colors">
+                    +385 (0) 95 66 33 214
+                  </a>
+                </p>
+              </div>
+              <div className="mt-4 rounded-lg overflow-hidden border border-primary/20">
+                <iframe
+                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Bazeniplus+Split+Slanice+22&zoom=15"
+                  width="100%"
+                  height="200"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Bazeniplus Location"
+                />
+              </div>
+            </div>
+
+            {/* Social Networks */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <h3 className="text-lg font-bold text-foreground uppercase tracking-wider">
+                  Društvene Mreže
+                </h3>
+                <div className="h-0.5 flex-1 max-w-[60px]" style={{ background: "var(--gradient-water)" }}></div>
+              </div>
+              <div className="flex gap-3">
+                <a 
+                  href="https://facebook.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group h-12 w-12 border border-primary/20 flex items-center justify-center transition-all hover:bg-primary/10"
+                >
+                  <Facebook className="h-5 w-5 text-primary" />
+                </a>
+                <a 
+                  href="https://instagram.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group h-12 w-12 border border-primary/20 flex items-center justify-center transition-all hover:bg-primary/10"
+                >
+                  <Instagram className="h-5 w-5 text-primary" />
+                </a>
+                <a 
+                  href="https://wa.me" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group h-12 w-12 border border-primary/20 flex items-center justify-center transition-all hover:bg-primary/10"
+                >
+                  <MessageCircle className="h-5 w-5 text-primary" />
+                </a>
+              </div>
+            </div>
+
+            {/* Working Hours */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <h3 className="text-lg font-bold text-foreground uppercase tracking-wider">
+                  Radno Vrijeme
+                </h3>
+                <div className="h-0.5 flex-1 max-w-[60px]" style={{ background: "var(--gradient-water)" }}></div>
+              </div>
+              <div className="space-y-2">
+                {[
+                  { day: "Ponedjeljak", hours: "08–16" },
+                  { day: "Utorak", hours: "08–16" },
+                  { day: "Srijeda", hours: "08–16" },
+                  { day: "Četvrtak", hours: "08–16" },
+                  { day: "Petak", hours: "08–16" },
+                  { day: "Subota", hours: "09–12" },
+                  { day: "Nedjelja", hours: "Zatvoreno" },
+                ].map((item, index) => (
+                  <div 
+                    key={item.day}
+                    className="flex justify-between items-center p-2 border border-primary/10 hover:border-primary/30 transition-all"
+                  >
+                    <span className="text-muted-foreground text-sm">{item.day}</span>
+                    <span className="font-semibold text-foreground text-sm">{item.hours}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-primary/20 pt-4">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-sm text-muted-foreground">
+                CoolPool | © {new Date().getFullYear()} | Sva prava pridržana
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
 
         <ModernChatBot onOpenCatalog={openCatalog} />
       </div>

@@ -267,29 +267,22 @@ Kada preporučuješ proizvode, UVIJEK prvo daj informativan odgovor s konkretnim
                       const args = JSON.parse(toolCall.function.arguments);
                       console.log("Searching products with args:", args);
                       
-                      try {
-                        let query = supabase.from('products').select('*');
-                        
-                        if (args.category) {
-                          query = query.eq('category', args.category);
-                        }
-                        if (args.searchTerm) {
-                          query = query.or(`name.ilike.%${args.searchTerm}%,description.ilike.%${args.searchTerm}%,category.ilike.%${args.searchTerm}%`);
-                        }
-                        
-                        const { data: products, error } = await query.order('name', { ascending: true });
-                        
-                        if (error) {
-                          console.error("Supabase error:", error);
-                          continue;
-                        }
-                        
-                        if (products && products.length > 0) {
-                          console.log(`Found ${products.length} products for query`);
-                          allProducts.push(...products);
-                        }
-                      } catch (error) {
-                        console.error("Error fetching products from Supabase:", error);
+                      let query = supabase.from('products').select('*');
+                      
+                      if (args.category) {
+                        query = query.ilike('category', `%${args.category}%`);
+                      }
+                      if (args.searchTerm) {
+                        query = query.or(`name.ilike.%${args.searchTerm}%,description.ilike.%${args.searchTerm}%,category.ilike.%${args.searchTerm}%`);
+                      }
+                      
+                      const { data: products, error } = await query.limit(20);
+                      
+                      if (error) {
+                        console.error("Error fetching products:", error);
+                      } else if (products && products.length > 0) {
+                        console.log(`Found ${products.length} products for query`);
+                        allProducts.push(...products);
                       }
                     } else if (toolCall.function.name === "add_to_cart") {
                       const args = JSON.parse(toolCall.function.arguments);

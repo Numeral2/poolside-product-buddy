@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import ProductCard, { ProductVariant } from "@/components/ProductCard";
 import ModernChatBot from "@/components/ModernChatBot";
-import { fetchProducts as apiFetchProducts } from "@/services/api";
+import { supabase } from "@/integrations/supabase/client";
 import { Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -122,23 +122,15 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
-      console.log('Fetching products from Supabase...');
-      const data = await apiFetchProducts();
-      console.log('Received products:', data);
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .order('category', { ascending: true });
+
+      if (error) throw error;
       setProducts(data || []);
-      if (!data || data.length === 0) {
-        console.warn('No products returned from API');
-      }
     } catch (error) {
       console.error('Error fetching products:', error);
-      // Show a toast notification
-      import('@/hooks/use-toast').then(({ toast }) => {
-        toast({
-          title: "Greška",
-          description: "Nije moguće učitati proizvode. Molimo osvježite stranicu.",
-          variant: "destructive"
-        });
-      });
     } finally {
       setIsLoading(false);
     }
