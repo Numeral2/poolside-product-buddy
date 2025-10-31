@@ -5,19 +5,22 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Minus, Plus, Trash2, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const Cart = () => {
   const { items, removeFromCart, updateQuantity, clearCart, totalPrice } = useCart();
+  const [catalogOpen, setCatalogOpen] = useState(false);
 
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-background">
         <Navigation />
         <div className="hidden md:block">
-          <ProductCatalog />
+          <ProductCatalog isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
         </div>
         
-        <div className="md:ml-72 pt-40">
+        <div className={cn("transition-all duration-500 pt-40", catalogOpen ? "md:ml-72" : "md:ml-0")}>
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-2xl mx-auto text-center">
               <ShoppingCart className="h-24 w-24 mx-auto mb-6 text-muted-foreground" />
@@ -45,10 +48,10 @@ const Cart = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <div className="hidden md:block">
-        <ProductCatalog />
+        <ProductCatalog isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
       </div>
       
-      <div className="md:ml-72 pt-40">
+      <div className={cn("transition-all duration-500 pt-40", catalogOpen ? "md:ml-72" : "md:ml-0")}>
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-between mb-8">

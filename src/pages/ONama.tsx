@@ -9,16 +9,20 @@ import astralPoolLogo from "@/assets/astralpool-logo.png";
 import pool1 from "@/assets/pool-1.png";
 import pool2 from "@/assets/pool-2.png";
 import pool3 from "@/assets/pool-3.png";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const ONama = () => {
+  const [catalogOpen, setCatalogOpen] = useState(false);
+  
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <div className="hidden md:block">
-        <ProductCatalog />
+        <ProductCatalog isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
       </div>
       
-      <div className="md:ml-72 pt-20 md:pt-24">
+      <div className={cn("transition-all duration-500 pt-20 md:pt-24", catalogOpen ? "md:ml-72" : "md:ml-0")}>
         {/* Hero Section */}
         <section className="relative py-4 md:py-6 px-4 bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container mx-auto max-w-6xl text-center">

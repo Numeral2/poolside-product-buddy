@@ -19,12 +19,14 @@ import projectMakarska from "@/assets/project-makarska.png";
 import spaKade from "@/assets/spa-kade.png";
 import sauna from "@/assets/sauna.png";
 import laghetto from "@/assets/laghetto.png";
+import { cn } from "@/lib/utils";
 
 const Projekti = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryFromUrl = searchParams.get("category") || "Bazeni";
   const [activeCategory, setActiveCategory] = useState<string>(categoryFromUrl);
   const [selectedProject, setSelectedProject] = useState<{ title: string; location: string; image: string } | null>(null);
+  const [catalogOpen, setCatalogOpen] = useState(false);
 
   useEffect(() => {
     const category = searchParams.get("category");
@@ -139,10 +141,10 @@ const Projekti = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <div className="hidden md:block">
-        <ProductCatalog />
+        <ProductCatalog isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
       </div>
       
-      <div className="md:ml-72">
+      <div className={cn("transition-all duration-500", catalogOpen ? "md:ml-72" : "md:ml-0")}>
         {/* Hero Section */}
         <section className="relative py-6 md:py-8 px-4 pt-24 md:pt-44 bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container mx-auto max-w-6xl text-center">

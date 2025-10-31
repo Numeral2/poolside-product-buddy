@@ -46,10 +46,11 @@ const catalogSections: CatalogSection[] = [
 
 interface ProductCatalogProps {
   openCategory?: string;
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
 }
 
-const ProductCatalog = ({ openCategory }: ProductCatalogProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+const ProductCatalog = ({ openCategory, isOpen, setIsOpen }: ProductCatalogProps) => {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
     new Set(catalogSections.map(s => s.title))
   );

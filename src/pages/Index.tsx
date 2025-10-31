@@ -8,6 +8,7 @@ import { Sparkles, ShoppingCart, Facebook, Instagram, MessageCircle } from "luci
 import { Button } from "@/components/ui/button";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
 import astralpool from "@/assets/astralpool-logo.png";
+import { cn } from "@/lib/utils";
 
 const categories = [
   "Bazeni",
@@ -50,25 +51,30 @@ const manufacturers = [
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
+  const [catalogOpen, setCatalogOpen] = useState(false);
 
   const openCatalog = (category?: string) => {
     setSelectedCategory(category);
+    setCatalogOpen(true);
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <div className="hidden md:block">
-        <ProductCatalog openCategory={selectedCategory} />
+        <ProductCatalog openCategory={selectedCategory} isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
       </div>
       
-      {/* Main content with left margin for sidebar */}
-      <div className="md:ml-72">
+      {/* Main content with transition */}
+      <div className={cn(
+        "transition-all duration-500",
+        catalogOpen ? "md:ml-72" : "md:ml-0"
+      )}>
         <Hero />
       
       
       {/* Main Content Section */}
-      <section className="relative py-8 px-4 overflow-hidden">
+      <section className="relative py-6 px-4 overflow-hidden">
         {/* Water Animation Background */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-primary/10 to-transparent animate-wave"></div>
@@ -77,7 +83,7 @@ const Index = () => {
         
         <div className="container mx-auto max-w-6xl relative z-10">
           {/* Company Brand with Underline and Logo */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6">
             <div className="inline-block">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-1">
                 CoolPool d.o.o.
@@ -94,87 +100,70 @@ const Index = () => {
             />
           </div>
 
-          {/* Two Column Layout */}
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            {/* Left Column */}
-            <div className="space-y-4">
-              <div className="flex gap-3">
-                <div className="text-primary mt-1 flex-shrink-0">
-                  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <p className="text-sm text-foreground leading-relaxed">
-                  Poduzeće ACQUA POOL d.o.o. sa sjedištem na adresi Sv.Ivana 3, Pula, osnovano je 1992. godine. Specijalizirani smo za izgradnju obiteljskih i javnih komunatnih bazena.
-                </p>
-              </div>
+          {/* Main Headline */}
+          <div className="text-center mb-6">
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 leading-tight">
+              Otkrijte najmoderniju <span className="text-primary">AI online trgovinu</span> za bazene
+            </h1>
+            <p className="text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Mjesto gdje tehnologija i kvaliteta rade za vas. Pronađite sve proizvode za održavanje i opremanje bazena: kemikalije, robote za čišćenje, pumpe, filtere, mozaike, rasvjetu i mnogo više...
+            </p>
+          </div>
 
-              <div className="flex gap-3">
-                <div className="text-primary mt-1 flex-shrink-0">
-                  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <p className="text-sm text-foreground leading-relaxed">
-                  Iza nas je 30. uspješnih godina rada gdje smo sudjelovali u izgradnji privatnih i javnih objekata na području cijele regije kao i unutar članica zemalja europske unije (Njemačka, Austrija, Slovenija).
-                </p>
+          {/* Features Grid */}
+          <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-6">
+            <div className="flex gap-3 items-start p-4 bg-card/30 rounded-lg border border-primary/10">
+              <div className="text-primary mt-0.5 flex-shrink-0">
+                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
               </div>
-
-              <div className="flex gap-3">
-                <div className="text-primary mt-1 flex-shrink-0">
-                  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <p className="text-sm text-foreground leading-relaxed">
-                  Poduzeće zapošljava djelatnike s višegodišnjim iskustvom u projektiranju i opremanju bazena sa svim potrebnim certifikatima za kvalitetnu realizaciju projekta.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="text-primary mt-1 flex-shrink-0">
-                  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <p className="text-sm text-foreground leading-relaxed">
-                  Unutar našeg asortimana proizvoda nudimo razne varijacije i prilagodbe za sve vrste bazena opremljene keramikom, mozaikom ili PVC folijom.
+              <div>
+                <h3 className="font-semibold text-foreground mb-1">AI Asistent</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Naš AI asistent u manje od 5 sekundi preporučuje proizvode koji najbolje odgovaraju vašem bazenu — bez gubljenja vremena i s maksimalnom preciznošću.
                 </p>
               </div>
             </div>
 
-            {/* Right Column */}
-            <div className="space-y-4">
-              <div className="flex gap-3">
-                <div className="text-primary mt-1 flex-shrink-0">
-                  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <p className="text-sm text-foreground leading-relaxed">
-                  Koristimo najsuvremenije proizvode i opremu od renomiranih europskih i svjetskih proizvođača s pripadajućom tvorničkom garancijom.
+            <div className="flex gap-3 items-start p-4 bg-card/30 rounded-lg border border-primary/10">
+              <div className="text-primary mt-0.5 flex-shrink-0">
+                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-1">Brza dostava</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Slanje istog ili idućeg dana — vaši proizvodi stižu brzo i sigurno.
                 </p>
               </div>
+            </div>
 
-              <div className="flex gap-3">
-                <div className="text-primary mt-1 flex-shrink-0">
-                  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <p className="text-sm text-foreground leading-relaxed">
-                  Unutar poslovanja poduzeća pružamo našim korisnicima mogućnost savjetovanja o vlastitoj izgradnji bazena na sistemu "sam svoj majstor" gdje uz savjet vrhunskih stručnjaka i majstora omogućavamo da samostalno realizirate i konstruirate svoj bazen.
+            <div className="flex gap-3 items-start p-4 bg-card/30 rounded-lg border border-primary/10">
+              <div className="text-primary mt-0.5 flex-shrink-0">
+                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-1">Jednostavan povrat</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Povrat robe unutar 14 dana bez komplikacija.
                 </p>
               </div>
+            </div>
 
-              <div className="flex gap-3">
-                <div className="text-primary mt-1 flex-shrink-0">
-                  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <p className="text-sm text-foreground leading-relaxed">
-                  U lepezi proizvoda nudimo i opciju "ključ u ruke" koja obuhvaća sve potrebne radove od iskopa, građevinskih radova, opremanje te puštanje bazena u rad.
+            <div className="flex gap-3 items-start p-4 bg-card/30 rounded-lg border border-primary/10">
+              <div className="text-primary mt-0.5 flex-shrink-0">
+                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-1">Vrhunska kvaliteta</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Radimo s vodećim svjetskim proizvođačima opreme za bazene.
                 </p>
               </div>
             </div>
