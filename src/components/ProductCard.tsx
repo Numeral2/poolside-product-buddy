@@ -1,8 +1,9 @@
 import { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Sparkles } from "lucide-react";
+import { ShoppingCart, Sparkles, Eye } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import {
   Select,
@@ -26,10 +27,12 @@ interface ProductCardProps {
   image?: string;
   variants?: ProductVariant[];
   onAskAI?: (productName: string, selectedSize?: string) => void;
+  productId?: string;
 }
 
-const ProductCard = ({ name, description, price, category, image, variants, onAskAI }: ProductCardProps) => {
+const ProductCard = ({ name, description, price, category, image, variants, onAskAI, productId }: ProductCardProps) => {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
   const [selectedVariant, setSelectedVariant] = useState<string>(
     variants && variants.length > 0 ? variants[0].id : ""
   );
@@ -117,6 +120,18 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
         <CardDescription className="text-sm leading-relaxed font-semibold text-foreground">
           {name}
         </CardDescription>
+        
+        {productId && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => navigate(`/product/${productId}`)}
+            className="w-full text-xs gap-2 border-primary/30 hover:border-primary hover:bg-primary/5"
+          >
+            <Eye className="h-3.5 w-3.5" />
+            Pogledaj Detalje
+          </Button>
+        )}
         
         {onAskAI && (
           <Button

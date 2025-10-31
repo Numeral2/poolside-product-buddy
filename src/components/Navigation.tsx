@@ -53,20 +53,6 @@ const Navigation = () => {
             Početna
           </Link>
           
-          <Link 
-            to="/o-nama" 
-            className="text-sm text-foreground hover:text-primary transition-colors font-medium hidden md:block"
-          >
-            O nama
-          </Link>
-
-          <Link 
-            to="/izgradnja" 
-            className="text-sm text-foreground hover:text-primary transition-colors font-medium hidden md:block"
-          >
-            Izgradnja bazena
-          </Link>
-          
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="text-sm text-foreground hover:text-primary transition-colors font-medium flex items-center gap-1 hidden md:flex">
@@ -137,12 +123,6 @@ const Navigation = () => {
             <DropdownMenuContent align="end" className="w-48">
               <DropdownMenuItem asChild>
                 <Link to="/" className="w-full">Početna</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/o-nama" className="w-full">O nama</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/izgradnja" className="w-full">Izgradnja</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link to="/products" className="w-full">Web Shop</Link>

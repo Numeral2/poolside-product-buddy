@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import ProductCard, { ProductVariant } from "@/components/ProductCard";
 import ModernChatBot from "@/components/ModernChatBot";
-import { supabase } from "@/integrations/supabase/client";
+import { fetchProducts } from "@/services/api";
 import { Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -66,7 +66,7 @@ const Products = () => {
         }
       }
     }
-    fetchProducts();
+    loadProducts();
   }, [fromChat]);
 
   // Update selectedCategory when URL category changes
@@ -120,14 +120,9 @@ const Products = () => {
     setPriceRange([min, max]);
   };
 
-  const fetchProducts = async () => {
+  const loadProducts = async () => {
     try {
-      const { data, error } = await supabase
-        .from('products')
-        .select('*')
-        .order('category', { ascending: true });
-
-      if (error) throw error;
+      const data = await fetchProducts();
       setProducts(data || []);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -332,6 +327,7 @@ const Products = () => {
                 image={product.image}
                 variants={product.variants}
                 onAskAI={handleAskAI}
+                productId={product.id}
               />
             ))}
           </div>

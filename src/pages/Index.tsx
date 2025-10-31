@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import ModernChatBot from "@/components/ModernChatBot";
 import ProductCard from "@/components/ProductCard";
 import ProductCatalog from "@/components/ProductCatalog";
+import AnimatedCounter from "@/components/AnimatedCounter";
 import astralPoolLogo from "@/assets/astralpool-logo.png";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
 import pool1 from "@/assets/pool-1.png";
@@ -143,21 +144,27 @@ const Index = () => {
             <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-colors hover:shadow-lg">
               <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10"></div>
               <div className="relative">
-                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">18+</div>
+                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">
+                  <AnimatedCounter end={18} suffix="+" />
+                </div>
                 <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Godina Iskustva</p>
               </div>
             </div>
             <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-colors hover:shadow-lg">
               <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10"></div>
               <div className="relative">
-                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">1000+</div>
+                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">
+                  <AnimatedCounter end={1000} suffix="+" />
+                </div>
                 <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Izgrađenih Bazena</p>
               </div>
             </div>
             <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-br from-card to-card/50 p-4 md:p-6 border border-primary/10 hover:border-primary/30 transition-colors hover:shadow-lg">
               <div className="absolute top-0 right-0 w-16 md:w-20 h-16 md:h-20 bg-primary/5 rounded-full -mr-8 md:-mr-10 -mt-8 md:-mt-10"></div>
               <div className="relative">
-                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">100%</div>
+                <div className="text-2xl md:text-4xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-1 md:mb-2">
+                  <AnimatedCounter end={100} suffix="%" />
+                </div>
                 <p className="text-[10px] md:text-xs uppercase tracking-wider font-semibold text-muted-foreground">Zadovoljnih Klijenata</p>
               </div>
             </div>
@@ -173,29 +180,16 @@ const Index = () => {
             </p>
           </div>
           
-          {/* CTA Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-4">
-            <Link to="/izgradnja">
-              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-colors cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="relative">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Izgradnja Bazena</h3>
-                  <p className="text-sm text-muted-foreground mb-3">Profesionalna izgradnja od planiranja do realizacije</p>
-                  <span className="inline-flex items-center text-sm font-semibold text-primary">
-                    Saznajte više <span className="ml-1">→</span>
-                  </span>
-                </div>
-              </div>
-            </Link>
-            
+          {/* CTA Card - Web Shop Focus */}
+          <div className="max-w-2xl mx-auto mb-4">
             <Link to="/products">
-              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-card/80 p-6 border border-primary/20 hover:border-primary hover:shadow-xl transition-colors cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="relative">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Oprema za Bazene</h3>
-                  <p className="text-sm text-muted-foreground mb-3">Širok asortiman opreme i kemikalija za održavanje</p>
-                  <span className="inline-flex items-center text-sm font-semibold text-primary">
-                    Pregledajte katalog <span className="ml-1">→</span>
+              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 p-8 border-2 border-primary/30 hover:border-primary hover:shadow-2xl transition-all cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative text-center">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors">🛒 Web Shop - Oprema za Bazene</h3>
+                  <p className="text-base text-muted-foreground mb-4">Širok asortiman premium opreme i kemikalija za održavanje bazena</p>
+                  <span className="inline-flex items-center text-lg font-bold text-primary">
+                    Pregledajte sada <span className="ml-2 text-2xl">→</span>
                   </span>
                 </div>
               </div>
