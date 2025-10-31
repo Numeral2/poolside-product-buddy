@@ -122,10 +122,23 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
+      console.log('Fetching products from Supabase...');
       const data = await apiFetchProducts();
+      console.log('Received products:', data);
       setProducts(data || []);
+      if (!data || data.length === 0) {
+        console.warn('No products returned from API');
+      }
     } catch (error) {
       console.error('Error fetching products:', error);
+      // Show a toast notification
+      import('@/hooks/use-toast').then(({ toast }) => {
+        toast({
+          title: "Greška",
+          description: "Nije moguće učitati proizvode. Molimo osvježite stranicu.",
+          variant: "destructive"
+        });
+      });
     } finally {
       setIsLoading(false);
     }
