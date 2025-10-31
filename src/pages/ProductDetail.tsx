@@ -4,10 +4,20 @@ import Navigation from "@/components/Navigation";
 import ModernChatBot from "@/components/ModernChatBot";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
-import { fetchProducts, fetchProductById, Product } from "@/services/api";
+import { supabase } from "@/integrations/supabase/client";
 import { Loader2, ShoppingCart, ArrowLeft, Truck, Shield, HeartHandshake, CreditCard, Headphones, Package } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  image_url: string;
+  features?: string[];
+}
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -27,18 +37,26 @@ const ProductDetail = () => {
 
   const fetchProduct = async () => {
     try {
-      const data = await fetchProductById(id!);
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('id', id)
+        .maybeSingle();
+
+      if (error) throw error;
       if (!data) throw new Error('Product not found');
       
       setProduct(data);
 
       // Fetch related products from same category
-      const allProducts = await fetchProducts();
-      const related = allProducts
-        .filter(p => p.category === data.category && p.id !== id)
-        .slice(0, 3);
+      const { data: related } = await supabase
+        .from('products')
+        .select('*')
+        .eq('category', data.category)
+        .neq('id', id)
+        .limit(3);
       
-      setRelatedProducts(related);
+      setRelatedProducts(related || []);
     } catch (error) {
       console.error('Error fetching product:', error);
     } finally {

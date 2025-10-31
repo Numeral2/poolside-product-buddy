@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import ProductCard, { ProductVariant } from "@/components/ProductCard";
 import ModernChatBot from "@/components/ModernChatBot";
-import { fetchProducts } from "@/services/api";
+import { supabase } from "@/integrations/supabase/client";
 import { Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -122,7 +122,12 @@ const Products = () => {
 
   const loadProducts = async () => {
     try {
-      const data = await fetchProducts();
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .order('category', { ascending: true });
+
+      if (error) throw error;
       setProducts(data || []);
     } catch (error) {
       console.error('Error fetching products:', error);
