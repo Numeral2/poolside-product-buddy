@@ -1,4 +1,4 @@
-import { supabase } from "@/integrations/supabase/client";
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost/api';
 
 export interface Product {
   id: string;
@@ -14,14 +14,12 @@ export interface Product {
 // Dohvati sve proizvode
 export const fetchProducts = async (): Promise<Product[]> => {
   try {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .order('category', { ascending: true })
-      .order('name', { ascending: true });
-
-    if (error) throw error;
-    return data || [];
+    const response = await fetch(`${API_URL}/products.php`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.products || [];
   } catch (error) {
     console.error('Error fetching products:', error);
     throw error;
@@ -31,14 +29,12 @@ export const fetchProducts = async (): Promise<Product[]> => {
 // Dohvati proizvod po ID-u
 export const fetchProductById = async (id: string): Promise<Product | null> => {
   try {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .eq('id', id)
-      .maybeSingle();
-
-    if (error) throw error;
-    return data;
+    const response = await fetch(`${API_URL}/products.php?id=${id}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.product || null;
   } catch (error) {
     console.error('Error fetching product:', error);
     throw error;
@@ -48,14 +44,12 @@ export const fetchProductById = async (id: string): Promise<Product | null> => {
 // Dohvati proizvode po kategoriji
 export const fetchProductsByCategory = async (category: string): Promise<Product[]> => {
   try {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .eq('category', category)
-      .order('name', { ascending: true });
-
-    if (error) throw error;
-    return data || [];
+    const response = await fetch(`${API_URL}/products.php?category=${encodeURIComponent(category)}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.products || [];
   } catch (error) {
     console.error('Error fetching products by category:', error);
     throw error;
@@ -65,14 +59,12 @@ export const fetchProductsByCategory = async (category: string): Promise<Product
 // Pretraži proizvode
 export const searchProducts = async (query: string): Promise<Product[]> => {
   try {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .or(`name.ilike.%${query}%,description.ilike.%${query}%,category.ilike.%${query}%`)
-      .order('name', { ascending: true });
-
-    if (error) throw error;
-    return data || [];
+    const response = await fetch(`${API_URL}/products.php?search=${encodeURIComponent(query)}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.products || [];
   } catch (error) {
     console.error('Error searching products:', error);
     throw error;
