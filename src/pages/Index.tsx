@@ -92,7 +92,7 @@ const Index = () => {
         "transition-all duration-500",
         catalogOpen ? "md:ml-72" : "md:ml-0"
       )}>
-        <Hero onOpenCatalog={openCatalog} catalogOpen={catalogOpen} setCatalogOpen={setCatalogOpen} setSelectedCategory={setSelectedCategory} />
+        <Hero onOpenCatalog={openCatalog} catalogOpen={catalogOpen} />
       
       
       {/* Main Content Section */}
