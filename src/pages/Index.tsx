@@ -73,7 +73,7 @@ const Index = () => {
         "transition-all duration-500",
         catalogOpen ? "md:ml-72" : "md:ml-0"
       )}>
-        <Hero />
+        <Hero onOpenCatalog={openCatalog} />
       
       
       {/* Main Content Section */}

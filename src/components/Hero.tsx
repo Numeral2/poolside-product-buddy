@@ -1,12 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import AnimatedCounter from "./AnimatedCounter";
-import astralpool from "@/assets/astralpool-logo.png";
+import { ArrowRight } from "lucide-react";
+import productPump from "@/assets/product-pump.png";
+import productControl from "@/assets/product-control.png";
+import productValve from "@/assets/product-valve.png";
 
 interface HeroProps {
   onVideoEnd?: () => void;
+  onOpenCatalog?: () => void;
 }
 
-const Hero = ({ onVideoEnd }: HeroProps) => {
+const Hero = ({ onVideoEnd, onOpenCatalog }: HeroProps) => {
   const [videoEnded, setVideoEnded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -19,6 +23,10 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
   const handleVideoEnd = () => {
     setVideoEnded(true);
     onVideoEnd?.();
+  };
+
+  const handleViewProducts = () => {
+    onOpenCatalog?.();
   };
 
   return (
@@ -46,22 +54,38 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
         </video>
       </div>
 
+      {/* Product Showcase - Shows after video ends */}
+      {videoEnded && (
+        <div className="absolute right-0 top-0 h-full w-full md:w-1/2 flex items-center justify-center animate-fade-in" style={{ zIndex: 2 }}>
+          <div className="flex flex-col items-center gap-8 px-8">
+            <div className="grid grid-cols-3 gap-6 max-w-2xl">
+              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                <img src={productPump} alt="Pool Pump" className="w-full h-32 object-contain" />
+              </div>
+              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                <img src={productControl} alt="Pool Control" className="w-full h-32 object-contain" />
+              </div>
+              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                <img src={productValve} alt="Pool Valve" className="w-full h-32 object-contain" />
+              </div>
+            </div>
+            <button 
+              onClick={handleViewProducts}
+              className="group flex items-center gap-3 text-foreground hover:text-primary transition-colors duration-300"
+            >
+              <span className="text-lg font-medium">Pogledajte sve proizvode</span>
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Left Content */}
       <div className="relative z-10 h-full flex items-center px-4 md:px-12 lg:px-20">
         <div className="max-w-xl space-y-6">
-          <div className="space-y-3">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
-              CoolPool d.o.o.
-            </h1>
-            <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">
-              Službeni partner vodećeg<br />svjetskog proizvođača
-            </p>
-            <img 
-              src={astralpool} 
-              alt="AstralPool" 
-              className="h-12 md:h-14 object-contain opacity-90"
-            />
-          </div>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
+            CoolPool d.o.o.
+          </h1>
 
           {/* Animated Stats - Show only after video ends */}
           {videoEnded && (
