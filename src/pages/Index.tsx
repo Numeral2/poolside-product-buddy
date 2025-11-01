@@ -85,24 +85,6 @@ const Index = () => {
         </div>
         
         <div className="container mx-auto max-w-6xl relative z-10">
-          {/* Company Brand with Underline and Logo */}
-          <div className="text-center mb-6">
-            <div className="inline-block">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-1">
-                CoolPool d.o.o.
-              </h2>
-              <div className="h-1 w-full rounded-full" style={{ background: "var(--gradient-water)" }}></div>
-            </div>
-            <p className="text-sm text-muted-foreground mt-3 mb-4">
-              Službeni partner vodećeg svjetskog proizvođača
-            </p>
-            <img 
-              src={astralpool} 
-              alt="AstralPool" 
-              className="h-12 mx-auto object-contain"
-            />
-          </div>
-
           {/* Main Headline */}
           <div className="text-center mb-8">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">

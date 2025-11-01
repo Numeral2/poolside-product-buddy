@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import productPump from "@/assets/product-pump.png";
 import productControl from "@/assets/product-control.png";
 import productValve from "@/assets/product-valve.png";
+import astralpool from "@/assets/astralpool-logo.png";
 
 interface HeroProps {
   onVideoEnd?: () => void;
@@ -31,14 +32,26 @@ const Hero = ({ onVideoEnd, onOpenCatalog }: HeroProps) => {
 
   return (
     <div className="relative h-[80vh] w-full overflow-hidden bg-background">
+      {/* Top Left - AstralPool Partner Info */}
+      <div className="absolute top-8 left-8 z-20 space-y-2">
+        <p className="text-sm md:text-base text-muted-foreground font-light">
+          Službeni partner vodećeg<br />svjetskog proizvođača
+        </p>
+        <img 
+          src={astralpool} 
+          alt="AstralPool" 
+          className="h-10 md:h-12 object-contain opacity-90"
+        />
+      </div>
+
       {/* Elegant Side Gradients */}
       <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-primary/8 via-primary/5 to-transparent pointer-events-none z-[1]" />
       <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-primary/8 via-primary/5 to-transparent pointer-events-none z-[1]" />
       
       {/* Video on Right Side */}
       <div 
-        className={`absolute right-0 top-0 h-full w-full md:w-1/2 transition-transform duration-1000 ease-in-out ${
-          videoEnded ? 'translate-x-full' : 'translate-x-0'
+        className={`absolute right-0 top-0 h-full w-full md:w-1/2 transition-all duration-[1500ms] ease-out ${
+          videoEnded ? 'translate-x-full opacity-0' : 'translate-x-0 opacity-100'
         }`}
         style={{ zIndex: 2 }}
       >
@@ -58,22 +71,26 @@ const Hero = ({ onVideoEnd, onOpenCatalog }: HeroProps) => {
       {videoEnded && (
         <div className="absolute right-0 top-0 h-full w-full md:w-1/2 flex items-center justify-center animate-fade-in" style={{ zIndex: 2 }}>
           <div className="flex flex-col items-center gap-8 px-8">
-            <div className="relative flex items-center justify-center gap-6 max-w-2xl">
-              {/* Left vertical image */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                <img src={productPump} alt="Pool Pump" className="w-40 h-48 object-contain" />
+            {/* Grid layout: 2 on top, 1 on bottom */}
+            <div className="flex flex-col gap-6">
+              {/* Top row - 2 images */}
+              <div className="flex gap-6 justify-center">
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                  <img src={productPump} alt="Pool Pump" className="w-36 h-40 object-contain" />
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                  <img src={productControl} alt="Pool Control" className="w-36 h-40 object-contain" />
+                </div>
               </div>
               
-              {/* Center image (slightly lower) */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105 mt-12">
-                <img src={productControl} alt="Pool Control" className="w-40 h-48 object-contain" />
-              </div>
-              
-              {/* Right vertical image */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                <img src={productValve} alt="Pool Valve" className="w-40 h-48 object-contain" />
+              {/* Bottom row - 1 image centered */}
+              <div className="flex justify-center">
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                  <img src={productValve} alt="Pool Valve" className="w-36 h-40 object-contain" />
+                </div>
               </div>
             </div>
+            
             <button 
               onClick={handleViewProducts}
               className="group flex items-center gap-3 text-foreground hover:text-primary transition-colors duration-300"
