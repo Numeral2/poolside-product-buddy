@@ -32,18 +32,6 @@ const Hero = ({ onVideoEnd, onOpenCatalog }: HeroProps) => {
 
   return (
     <div className="relative h-[80vh] w-full overflow-hidden bg-background">
-      {/* Top Left - AstralPool Partner Info */}
-      <div className="absolute top-8 left-8 z-20 space-y-2">
-        <p className="text-sm md:text-base text-muted-foreground font-light">
-          Službeni partner vodećeg<br />svjetskog proizvođača
-        </p>
-        <img 
-          src={astralpool} 
-          alt="AstralPool" 
-          className="h-10 md:h-12 object-contain opacity-90"
-        />
-      </div>
-
       {/* Elegant Side Gradients */}
       <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-primary/8 via-primary/5 to-transparent pointer-events-none z-[1]" />
       <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-primary/8 via-primary/5 to-transparent pointer-events-none z-[1]" />
@@ -70,11 +58,11 @@ const Hero = ({ onVideoEnd, onOpenCatalog }: HeroProps) => {
       {/* Product Showcase - Shows after video ends */}
       {videoEnded && (
         <div className="absolute right-0 top-0 h-full w-full md:w-1/2 flex items-center justify-center animate-fade-in" style={{ zIndex: 2 }}>
-          <div className="flex flex-col items-center gap-8 px-8">
+          <div className="flex flex-col items-center gap-6 px-8">
             {/* Grid layout: 2 on top, 1 on bottom */}
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4">
               {/* Top row - 2 images */}
-              <div className="flex gap-6 justify-center">
+              <div className="flex gap-4 justify-center">
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
                   <img src={productPump} alt="Pool Pump" className="w-36 h-40 object-contain" />
                 </div>
@@ -103,13 +91,24 @@ const Hero = ({ onVideoEnd, onOpenCatalog }: HeroProps) => {
       )}
 
       {/* Left Content */}
-      <div className="relative z-10 h-full flex items-center px-4 md:px-8 lg:px-12">
-        <div className="max-w-md space-y-6">
-          <div className="inline-block">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-2">
-              CoolPool d.o.o.
-            </h1>
-            <div className="h-1 w-3/4 rounded-full bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
+      <div className="relative z-10 h-full flex items-center px-6 md:px-12 lg:px-16">
+        <div className="max-w-md space-y-6 pt-20">
+          <div className="space-y-3">
+            <div className="inline-block">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-2">
+                CoolPool d.o.o.
+              </h1>
+              <div className="h-1 w-3/4 rounded-full bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
+            </div>
+            
+            <p className="text-sm md:text-base text-muted-foreground font-light leading-relaxed pt-2">
+              Službeni partner vodećeg<br />svjetskog proizvođača
+            </p>
+            <img 
+              src={astralpool} 
+              alt="AstralPool" 
+              className="h-10 md:h-12 object-contain opacity-90"
+            />
           </div>
 
           {/* Animated Stats - Show only after video ends */}
