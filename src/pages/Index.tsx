@@ -77,7 +77,7 @@ const Index = () => {
       
       
       {/* Main Content Section */}
-      <section className="relative py-6 px-4 overflow-hidden">
+      <section className="relative py-3 md:py-4 px-4 overflow-hidden">
         {/* Water Animation Background */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-primary/10 to-transparent animate-wave"></div>
@@ -86,17 +86,17 @@ const Index = () => {
         
         <div className="container mx-auto max-w-6xl relative z-10">
           {/* Main Headline */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
+          <div className="text-center mb-4 md:mb-6">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3 leading-tight">
               Otkrijte najmoderniju <span className="text-primary">AI online trgovinu</span> za bazene
             </h1>
-            <p className="text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            <p className="text-sm md:text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Mjesto gdje tehnologija i kvaliteta rade za vas. Pronađite sve proizvode za održavanje i opremanje bazena.
             </p>
           </div>
 
           {/* Content Layout - Left: AI Assistant, Right: Features */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-8">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto mb-4 md:mb-6">
             {/* Left Side - AI Assistant */}
             <div className="space-y-4">
               <div>
@@ -164,7 +164,7 @@ const Index = () => {
           </div>
 
           {/* Product Showcase */}
-          <div className="grid grid-cols-3 gap-3 max-w-3xl mx-auto mb-6">
+          <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-3xl mx-auto mb-3 md:mb-4">
             <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all hover:shadow-lg">
               <img 
                 src={productRobot} 
@@ -212,7 +212,7 @@ const Index = () => {
       </section>
       
       {/* Manufacturers Section */}
-      <section className="py-6 px-4 bg-muted/10">
+      <section className="py-3 md:py-4 px-4 bg-muted/10">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-6">
             <h2 className="text-xl md:text-2xl font-bold mb-2">

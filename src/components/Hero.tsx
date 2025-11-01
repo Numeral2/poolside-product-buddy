@@ -74,17 +74,17 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
               {/* Top row - 2 images */}
               <div className="flex gap-0.5 justify-center">
                 <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                  <img src={productPump} alt="Pool Pump" className="w-12 h-16 xs:w-14 xs:h-18 sm:w-16 sm:h-20 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
+                  <img src={productPump} alt="Pool Pump" className="w-16 h-20 xs:w-18 xs:h-22 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
                 </div>
                 <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                  <img src={productControl} alt="Pool Control" className="w-12 h-16 xs:w-14 xs:h-18 sm:w-16 sm:h-20 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
+                  <img src={productControl} alt="Pool Control" className="w-16 h-20 xs:w-18 xs:h-22 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
                 </div>
               </div>
               
               {/* Bottom row - 1 image centered */}
               <div className="flex justify-center">
                 <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                  <img src={productValve} alt="Pool Valve" className="w-12 h-16 xs:w-14 xs:h-18 sm:w-16 sm:h-20 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
+                  <img src={productValve} alt="Pool Valve" className="w-16 h-20 xs:w-18 xs:h-22 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
                 </div>
               </div>
             </div>
