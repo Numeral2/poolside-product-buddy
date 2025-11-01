@@ -10,9 +10,11 @@ interface HeroProps {
   onVideoEnd?: () => void;
   onOpenCatalog?: () => void;
   catalogOpen?: boolean;
+  setCatalogOpen?: (open: boolean) => void;
+  setSelectedCategory?: (category: string | undefined) => void;
 }
 
-const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
+const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true, setCatalogOpen, setSelectedCategory }: HeroProps) => {
   const [videoEnded, setVideoEnded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -28,11 +30,8 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
   };
 
   const handleViewProducts = () => {
-    console.log("Pogledajte sve proizvode clicked, onOpenCatalog:", onOpenCatalog);
-    if (onOpenCatalog) {
-      onOpenCatalog();
-      console.log("onOpenCatalog called");
-    }
+    setCatalogOpen(true);
+    setSelectedCategory(undefined);
   };
 
   return (
