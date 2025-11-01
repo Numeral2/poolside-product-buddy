@@ -110,7 +110,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
           justifyContent: 'center'
         }}
       >
-        <div className="max-w-md space-y-2 sm:space-y-3 md:space-y-4 pt-8 md:pt-12 px-2">
+        <div className="max-w-md space-y-2 sm:space-y-3 md:space-y-4 pt-8 sm:pt-12 md:pt-16 lg:pt-12 px-2">
           <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
             <div className="inline-block">
               <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-1.5 sm:mb-2">
