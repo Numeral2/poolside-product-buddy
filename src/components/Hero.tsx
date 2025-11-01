@@ -33,7 +33,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
   };
 
   return (
-    <div className="relative h-[80vh] w-full overflow-hidden bg-background">
+    <div className="relative h-[65vh] md:h-[70vh] w-full overflow-hidden bg-background">
       {/* Elegant Side Gradients - Always visible */}
       <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-primary/8 via-primary/5 to-transparent pointer-events-none z-[1]" />
       <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-primary/8 via-primary/5 to-transparent pointer-events-none z-[1]" />
