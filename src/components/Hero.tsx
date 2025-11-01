@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import AnimatedCounter from "./AnimatedCounter";
 import { ArrowRight } from "lucide-react";
 import productPump from "@/assets/product-pump.png";
@@ -58,7 +59,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
 
       {/* Product Showcase - Shows after video ends - RIGHT SIDE */}
       {videoEnded && (
-        <div className="absolute right-0 top-0 h-full w-1/2 md:w-1/2 flex items-center justify-center animate-fade-in px-2 md:px-4" style={{ zIndex: 2 }}>
+        <div className="absolute right-4 md:right-8 lg:right-12 top-0 h-full flex items-center justify-end animate-fade-in" style={{ zIndex: 2 }}>
           <div className="flex flex-col items-center gap-3 md:gap-4">
             {/* Grid layout: 2 on top, 1 on bottom - Responsive */}
             <div className="flex flex-col gap-0.5">
@@ -80,21 +81,19 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
               </div>
             </div>
             
-            <button 
-              onClick={handleViewProducts}
-              type="button"
-              className="group flex items-center gap-1.5 md:gap-2 text-foreground hover:text-primary transition-colors duration-300 cursor-pointer bg-transparent border-none outline-none text-xs sm:text-sm md:text-base"
-              style={{ WebkitTapHighlightColor: 'transparent' }}
+            <Link 
+              to="/products"
+              className="group flex items-center gap-1.5 md:gap-2 text-foreground hover:text-primary transition-colors duration-300 text-xs sm:text-sm md:text-base no-underline"
             >
               <span className="font-medium">Pogledajte sve proizvode</span>
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
-            </button>
+            </Link>
           </div>
         </div>
       )}
 
-      {/* Left Content - FIXED POSITION - Always stays centered/left */}
-      <div className="absolute left-0 top-0 h-full w-1/2 md:w-1/2 flex items-center z-10 px-3 sm:px-4 md:pl-[clamp(2rem,6vw,6rem)]">
+      {/* Left Content - FIXED POSITION - Always stays left */}
+      <div className="absolute left-4 md:left-8 lg:left-12 top-0 h-full flex items-center z-10">
         <div className="max-w-md space-y-3 md:space-y-4 pt-16 md:pt-20">
           <div className="space-y-2 md:space-y-3">
             <div className="inline-block">
