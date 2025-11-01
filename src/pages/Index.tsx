@@ -63,25 +63,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background relative">
-      {/* Full Page Wave Patterns - Show when catalog is closed */}
-      {!catalogOpen && (
-        <>
-          <div className="fixed left-0 top-0 h-full w-32 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent pointer-events-none z-[5] animate-pulse" 
-               style={{ 
-                 background: 'linear-gradient(to right, hsl(var(--primary) / 0.12), hsl(var(--primary) / 0.06), transparent)',
-                 animation: 'pulse 3s ease-in-out infinite'
-               }} 
-          />
-          <div className="fixed right-0 top-0 h-full w-32 bg-gradient-to-l from-primary/10 via-primary/5 to-transparent pointer-events-none z-[5] animate-pulse" 
-               style={{ 
-                 background: 'linear-gradient(to left, hsl(var(--primary) / 0.12), hsl(var(--primary) / 0.06), transparent)',
-                 animation: 'pulse 3s ease-in-out infinite',
-                 animationDelay: '1.5s'
-               }} 
-          />
-        </>
-      )}
-      
       <Navigation />
       <div className="hidden md:block">
         <ProductCatalog openCategory={selectedCategory} isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
@@ -92,7 +73,7 @@ const Index = () => {
         "transition-all duration-500",
         catalogOpen ? "md:ml-72" : "md:ml-0"
       )}>
-        <Hero onOpenCatalog={openCatalog} catalogOpen={catalogOpen} />
+        <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={catalogOpen} />
       
       
       {/* Main Content Section */}
@@ -218,12 +199,14 @@ const Index = () => {
           
           {/* CTA Button */}
           <div className="flex justify-center">
-            <Link to="/products">
-              <Button size="lg" className="px-8">
-                <ShoppingCart className="mr-2 h-5 w-5" />
-                Pregledaj Web Shop
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              className="px-8"
+              onClick={() => openCatalog()}
+            >
+              <ShoppingCart className="mr-2 h-5 w-5" />
+              Pogledajte sve proizvode
+            </Button>
           </div>
         </div>
       </section>

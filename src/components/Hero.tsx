@@ -28,11 +28,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
   };
 
   const handleViewProducts = () => {
-    console.log("Pogledajte sve proizvode clicked, onOpenCatalog:", onOpenCatalog);
-    if (onOpenCatalog) {
-      onOpenCatalog();
-      console.log("onOpenCatalog called");
-    }
+    onOpenCatalog?.();
   };
 
   return (
@@ -97,9 +93,9 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
         </div>
       )}
 
-      {/* Left Content - Fixed position regardless of catalog state */}
-      <div className="relative z-10 h-full flex items-center px-4 sm:px-6 md:px-0" style={{ paddingLeft: catalogOpen ? 'clamp(1.5rem, 3vw, 4rem)' : 'clamp(3rem, 8vw, 8rem)' }}>
-        <div className="max-w-md space-y-4 md:space-y-6 pt-16 md:pt-20 transition-all duration-500">
+      {/* Left Content - Centered */}
+      <div className="relative z-10 h-full flex items-center justify-center md:justify-start px-4 sm:px-6 md:px-0 md:pl-[clamp(3rem,8vw,8rem)]">
+        <div className="max-w-md space-y-4 md:space-y-6 pt-16 md:pt-20">
           <div className="space-y-2 md:space-y-3">
             <div className="inline-block">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-2">
