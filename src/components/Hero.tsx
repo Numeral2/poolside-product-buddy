@@ -60,96 +60,101 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
       {/* Product Showcase - Shows after video ends - RIGHT SIDE */}
       {videoEnded && (
         <div 
-          className="absolute top-0 h-full flex items-center justify-end animate-fade-in transition-all duration-500" 
+          className="absolute top-0 h-full flex items-center animate-fade-in transition-all duration-500" 
           style={{ 
             zIndex: 2,
-            right: catalogOpen ? '1rem' : 'clamp(1.5rem, 5vw, 4rem)'
+            right: catalogOpen ? '1rem' : 'clamp(1.5rem, 8vw, 6rem)',
+            width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(50% - clamp(1.5rem, 8vw, 6rem))',
+            justifyContent: 'center'
           }}
         >
-          <div className="flex flex-col items-center gap-3 md:gap-4">
+          <div className="flex flex-col items-center gap-2 md:gap-3 lg:gap-4 px-2">
             {/* Grid layout: 2 on top, 1 on bottom - Responsive */}
             <div className="flex flex-col gap-0.5">
               {/* Top row - 2 images */}
               <div className="flex gap-0.5 justify-center">
-                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                  <img src={productPump} alt="Pool Pump" className="w-20 h-24 sm:w-24 sm:h-28 md:w-32 md:h-36 object-contain" />
+                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                  <img src={productPump} alt="Pool Pump" className="w-12 h-16 xs:w-14 xs:h-18 sm:w-16 sm:h-20 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
                 </div>
-                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                  <img src={productControl} alt="Pool Control" className="w-20 h-24 sm:w-24 sm:h-28 md:w-32 md:h-36 object-contain" />
+                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                  <img src={productControl} alt="Pool Control" className="w-12 h-16 xs:w-14 xs:h-18 sm:w-16 sm:h-20 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
                 </div>
               </div>
               
               {/* Bottom row - 1 image centered */}
               <div className="flex justify-center">
-                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                  <img src={productValve} alt="Pool Valve" className="w-20 h-24 sm:w-24 sm:h-28 md:w-32 md:h-36 object-contain" />
+                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                  <img src={productValve} alt="Pool Valve" className="w-12 h-16 xs:w-14 xs:h-18 sm:w-16 sm:h-20 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
                 </div>
               </div>
             </div>
             
             <Link 
               to="/products"
-              className="group flex items-center gap-1.5 md:gap-2 text-foreground hover:text-primary transition-colors duration-300 text-xs sm:text-sm md:text-base no-underline"
+              className="group flex items-center gap-1 sm:gap-1.5 md:gap-2 text-foreground hover:text-primary transition-colors duration-300 text-[10px] xs:text-xs sm:text-sm md:text-base no-underline"
             >
-              <span className="font-medium">Pogledajte sve proizvode</span>
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
+              <span className="font-medium whitespace-nowrap">Pogledajte sve proizvode</span>
+              <ArrowRight className="w-3 h-3 xs:w-4 xs:h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300 flex-shrink-0" />
             </Link>
           </div>
         </div>
       )}
 
-      {/* Left Content - RESPONSIVE POSITION */}
+      {/* Left Content - CENTERED */}
       <div 
-        className="absolute top-0 h-full flex items-center z-10 transition-all duration-500"
+        className="absolute top-0 h-full flex items-center transition-all duration-500"
         style={{
-          left: catalogOpen ? '1rem' : 'clamp(1.5rem, 5vw, 4rem)'
+          zIndex: 10,
+          left: catalogOpen ? '1rem' : 'clamp(1.5rem, 8vw, 6rem)',
+          width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(50% - clamp(1.5rem, 8vw, 6rem))',
+          justifyContent: 'center'
         }}
       >
-        <div className="max-w-md space-y-3 md:space-y-4 pt-16 md:pt-20">
-          <div className="space-y-2 md:space-y-3">
+        <div className="max-w-md space-y-2 sm:space-y-3 md:space-y-4 pt-16 md:pt-20 px-2">
+          <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
             <div className="inline-block">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-2">
+              <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-1.5 sm:mb-2">
                 CoolPool d.o.o.
               </h1>
-              <div className="h-1 w-3/4 rounded-full bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
+              <div className="h-0.5 sm:h-1 w-3/4 rounded-full bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
             </div>
             
-            <p className="text-xs sm:text-sm md:text-base text-muted-foreground font-light leading-relaxed pt-2">
+            <p className="text-[10px] xs:text-xs sm:text-sm md:text-base text-muted-foreground font-light leading-relaxed pt-1 sm:pt-2">
               Službeni partner vodećeg<br />svjetskog proizvođača
             </p>
             <img 
               src={astralpool} 
               alt="AstralPool" 
-              className="h-8 sm:h-10 md:h-12 object-contain opacity-90"
+              className="h-6 xs:h-7 sm:h-8 md:h-10 lg:h-12 object-contain opacity-90"
             />
           </div>
 
           {/* Animated Stats - Show only after video ends */}
           {videoEnded && (
-            <div className="space-y-3 md:space-y-4 pt-4 md:pt-6 animate-fade-in">
-              <div className="flex items-baseline gap-2">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary tabular-nums">
+            <div className="space-y-2 sm:space-y-3 md:space-y-4 pt-3 sm:pt-4 md:pt-6 animate-fade-in">
+              <div className="flex items-baseline gap-1.5 sm:gap-2">
+                <div className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-primary tabular-nums">
                   <AnimatedCounter end={18} suffix="+" />
                 </div>
-                <div className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium">
+                <div className="text-[10px] xs:text-xs sm:text-sm md:text-base text-muted-foreground font-medium">
                   godina s vama
                 </div>
               </div>
 
-              <div className="flex items-baseline gap-2">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary tabular-nums">
+              <div className="flex items-baseline gap-1.5 sm:gap-2">
+                <div className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-primary tabular-nums">
                   <AnimatedCounter end={2000} suffix="+" />
                 </div>
-                <div className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium">
+                <div className="text-[10px] xs:text-xs sm:text-sm md:text-base text-muted-foreground font-medium">
                   prodanih proizvoda
                 </div>
               </div>
 
-              <div className="flex items-baseline gap-2">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary tabular-nums">
+              <div className="flex items-baseline gap-1.5 sm:gap-2">
+                <div className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-primary tabular-nums">
                   <AnimatedCounter end={1000} suffix="+" />
                 </div>
-                <div className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium">
+                <div className="text-[10px] xs:text-xs sm:text-sm md:text-base text-muted-foreground font-medium">
                   zadovoljnih kupaca
                 </div>
               </div>
