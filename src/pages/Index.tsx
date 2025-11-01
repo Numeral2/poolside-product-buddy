@@ -8,6 +8,9 @@ import { Sparkles, ShoppingCart, Facebook, Instagram, MessageCircle } from "luci
 import { Button } from "@/components/ui/button";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
 import astralpool from "@/assets/astralpool-logo.png";
+import productRobot from "@/assets/product-robot.png";
+import productMozaik from "@/assets/product-mozaik.png";
+import productKemikalija from "@/assets/product-kemikalija.png";
 import { cn } from "@/lib/utils";
 
 const categories = [
@@ -101,94 +104,125 @@ const Index = () => {
           </div>
 
           {/* Main Headline */}
-          <div className="text-center mb-6">
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 leading-tight">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
               Otkrijte najmoderniju <span className="text-primary">AI online trgovinu</span> za bazene
             </h1>
-            <p className="text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Mjesto gdje tehnologija i kvaliteta rade za vas. Pronađite sve proizvode za održavanje i opremanje bazena: kemikalije, robote za čišćenje, pumpe, filtere, mozaike, rasvjetu i mnogo više...
+            <p className="text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              Mjesto gdje tehnologija i kvaliteta rade za vas. Pronađite sve proizvode za održavanje i opremanje bazena.
             </p>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-6">
-            <div className="flex gap-3 items-start p-4 bg-card/30 rounded-lg border border-primary/10">
-              <div className="text-primary mt-0.5 flex-shrink-0">
-                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </div>
+          {/* Content Layout - Left: AI Assistant, Right: Features */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-8">
+            {/* Left Side - AI Assistant */}
+            <div className="space-y-4">
               <div>
-                <h3 className="font-semibold text-foreground mb-1">AI Asistent</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <h2 className="text-2xl font-bold text-foreground mb-3">AI Asistent</h2>
+                <div className="h-1 w-20 rounded-full mb-4" style={{ background: "var(--gradient-water)" }}></div>
+                <p className="text-muted-foreground leading-relaxed mb-4">
                   Naš AI asistent u manje od 5 sekundi preporučuje proizvode koji najbolje odgovaraju vašem bazenu — bez gubljenja vremena i s maksimalnom preciznošću.
                 </p>
+                <Button 
+                  size="lg" 
+                  className="w-full"
+                  onClick={() => {
+                    const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
+                    if (chatbot) chatbot.click();
+                  }}
+                >
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Pokreni AI Asistenta
+                </Button>
               </div>
             </div>
 
-            <div className="flex gap-3 items-start p-4 bg-card/30 rounded-lg border border-primary/10">
-              <div className="text-primary mt-0.5 flex-shrink-0">
-                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
+            {/* Right Side - Features */}
+            <div className="space-y-3">
+              <div className="flex gap-3 items-start">
+                <div className="h-1 w-8 rounded-full mt-2 flex-shrink-0" style={{ background: "var(--gradient-water)" }}></div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Brza dostava</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Slanje istog ili idućeg dana — vaši proizvodi stižu brzo i sigurno.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold text-foreground mb-1">Brza dostava</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Slanje istog ili idućeg dana — vaši proizvodi stižu brzo i sigurno.
-                </p>
+
+              <div className="flex gap-3 items-start">
+                <div className="h-1 w-8 rounded-full mt-2 flex-shrink-0" style={{ background: "var(--gradient-water)" }}></div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Jednostavan povrat</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Povrat robe unutar 14 dana bez komplikacija.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-3 items-start">
+                <div className="h-1 w-8 rounded-full mt-2 flex-shrink-0" style={{ background: "var(--gradient-water)" }}></div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Vrhunska kvaliteta</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Radimo s vodećim svjetskim proizvođačima opreme za bazene.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-3 items-start">
+                <div className="h-1 w-8 rounded-full mt-2 flex-shrink-0" style={{ background: "var(--gradient-water)" }}></div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Stručna podrška</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Tim stručnjaka uvijek spreman pomoći s odabirom i savjetima.
+                  </p>
+                </div>
               </div>
             </div>
+          </div>
 
-            <div className="flex gap-3 items-start p-4 bg-card/30 rounded-lg border border-primary/10">
-              <div className="text-primary mt-0.5 flex-shrink-0">
-                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="font-semibold text-foreground mb-1">Jednostavan povrat</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Povrat robe unutar 14 dana bez komplikacija.
-                </p>
+          {/* Product Showcase */}
+          <div className="grid grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
+            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all">
+              <img 
+                src={productRobot} 
+                alt="Robot za čišćenje bazena" 
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="p-3 text-center">
+                <p className="font-semibold text-sm text-foreground">Roboti za čišćenje</p>
               </div>
             </div>
-
-            <div className="flex gap-3 items-start p-4 bg-card/30 rounded-lg border border-primary/10">
-              <div className="text-primary mt-0.5 flex-shrink-0">
-                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
+            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all">
+              <img 
+                src={productMozaik} 
+                alt="Mozaik za bazene" 
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="p-3 text-center">
+                <p className="font-semibold text-sm text-foreground">Mozaik</p>
               </div>
-              <div>
-                <h3 className="font-semibold text-foreground mb-1">Vrhunska kvaliteta</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Radimo s vodećim svjetskim proizvođačima opreme za bazene.
-                </p>
+            </div>
+            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all">
+              <img 
+                src={productKemikalija} 
+                alt="Kemikalije za bazene" 
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="p-3 text-center">
+                <p className="font-semibold text-sm text-foreground">Kemikalije</p>
               </div>
             </div>
           </div>
           
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          {/* CTA Button */}
+          <div className="flex justify-center">
             <Link to="/products">
-              <Button size="lg" className="w-full sm:w-auto">
+              <Button size="lg" className="px-8">
                 <ShoppingCart className="mr-2 h-5 w-5" />
-                Web Shop
+                Pregledaj Web Shop
               </Button>
             </Link>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="w-full sm:w-auto"
-              onClick={() => {
-                const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
-                if (chatbot) chatbot.click();
-              }}
-            >
-              <Sparkles className="mr-2 h-5 w-5" />
-              AI Asistent
-            </Button>
           </div>
         </div>
       </section>
