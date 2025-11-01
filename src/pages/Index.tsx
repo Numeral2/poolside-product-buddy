@@ -182,35 +182,35 @@ const Index = () => {
           </div>
 
           {/* Product Showcase */}
-          <div className="grid grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
-            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all">
+          <div className="grid grid-cols-3 gap-3 max-w-3xl mx-auto mb-6">
+            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all hover:shadow-lg">
               <img 
                 src={productRobot} 
                 alt="Robot za čišćenje bazena" 
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-32 object-contain p-2 group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="p-3 text-center">
-                <p className="font-semibold text-sm text-foreground">Roboti za čišćenje</p>
+              <div className="p-2 text-center border-t border-primary/10">
+                <p className="font-medium text-xs text-foreground">Roboti</p>
               </div>
             </div>
-            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all">
+            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all hover:shadow-lg">
               <img 
                 src={productMozaik} 
                 alt="Mozaik za bazene" 
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="p-3 text-center">
-                <p className="font-semibold text-sm text-foreground">Mozaik</p>
+              <div className="p-2 text-center border-t border-primary/10">
+                <p className="font-medium text-xs text-foreground">Mozaik</p>
               </div>
             </div>
-            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all">
+            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all hover:shadow-lg">
               <img 
                 src={productKemikalija} 
                 alt="Kemikalije za bazene" 
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-32 object-contain p-2 group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="p-3 text-center">
-                <p className="font-semibold text-sm text-foreground">Kemikalije</p>
+              <div className="p-2 text-center border-t border-primary/10">
+                <p className="font-medium text-xs text-foreground">Kemikalije</p>
               </div>
             </div>
           </div>
