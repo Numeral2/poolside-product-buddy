@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Search } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import AnimatedCounter from "./AnimatedCounter";
 import astralpool from "@/assets/astralpool-logo.png";
 
@@ -9,6 +8,13 @@ interface HeroProps {
 
 const Hero = ({ onVideoEnd }: HeroProps) => {
   const [videoEnded, setVideoEnded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5;
+    }
+  }, []);
 
   const handleVideoEnd = () => {
     setVideoEnded(true);
@@ -18,8 +24,8 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
   return (
     <div className="relative h-[80vh] w-full overflow-hidden bg-background">
       {/* Elegant Side Gradients */}
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-primary/5 via-primary/10 to-transparent pointer-events-none z-[1]" />
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-primary/5 via-primary/10 to-transparent pointer-events-none z-[1]" />
+      <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-primary/8 via-primary/5 to-transparent pointer-events-none z-[1]" />
+      <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-primary/8 via-primary/5 to-transparent pointer-events-none z-[1]" />
       
       {/* Video on Right Side */}
       <div 
@@ -29,6 +35,7 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
         style={{ zIndex: 2 }}
       >
         <video
+          ref={videoRef}
           autoPlay
           muted
           playsInline
@@ -41,64 +48,52 @@ const Hero = ({ onVideoEnd }: HeroProps) => {
 
       {/* Left Content */}
       <div className="relative z-10 h-full flex items-center px-4 md:px-12 lg:px-20">
-        <div className="max-w-2xl space-y-8 animate-fade-in">
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
+        <div className="max-w-xl space-y-6">
+          <div className="space-y-3">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
               CoolPool d.o.o.
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground">
-              Službeni partner vodećeg svjetskog proizvođača
+            <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">
+              Službeni partner vodećeg<br />svjetskog proizvođača
             </p>
             <img 
               src={astralpool} 
               alt="AstralPool" 
-              className="h-16 object-contain"
+              className="h-12 md:h-14 object-contain opacity-90"
             />
           </div>
 
-          {/* Animated Stats */}
-          <div className="space-y-6 pt-4">
-            <div className="flex items-baseline gap-3">
-              <div className="text-5xl md:text-6xl font-bold text-primary">
-                <AnimatedCounter end={18} suffix="+" />
+          {/* Animated Stats - Show only after video ends */}
+          {videoEnded && (
+            <div className="space-y-4 pt-6 animate-fade-in">
+              <div className="flex items-baseline gap-2">
+                <div className="text-3xl md:text-4xl font-bold text-primary tabular-nums">
+                  <AnimatedCounter end={18} suffix="+" />
+                </div>
+                <div className="text-sm md:text-base text-muted-foreground font-medium">
+                  godina s vama
+                </div>
               </div>
-              <div className="text-xl md:text-2xl text-foreground font-semibold">
-                godina sa vama
+
+              <div className="flex items-baseline gap-2">
+                <div className="text-3xl md:text-4xl font-bold text-primary tabular-nums">
+                  <AnimatedCounter end={2000} suffix="+" />
+                </div>
+                <div className="text-sm md:text-base text-muted-foreground font-medium">
+                  prodanih proizvoda
+                </div>
+              </div>
+
+              <div className="flex items-baseline gap-2">
+                <div className="text-3xl md:text-4xl font-bold text-primary tabular-nums">
+                  <AnimatedCounter end={1000} suffix="+" />
+                </div>
+                <div className="text-sm md:text-base text-muted-foreground font-medium">
+                  zadovoljnih kupaca
+                </div>
               </div>
             </div>
-
-            <div className="flex items-baseline gap-3">
-              <div className="text-4xl md:text-5xl font-bold text-primary">
-                <AnimatedCounter end={2000} suffix="+" />
-              </div>
-              <div className="text-lg md:text-xl text-foreground">
-                prodanih proizvoda
-              </div>
-            </div>
-
-            <div className="flex items-baseline gap-3">
-              <div className="text-4xl md:text-5xl font-bold text-primary">
-                <AnimatedCounter end={1000} suffix="+" />
-              </div>
-              <div className="text-lg md:text-xl text-foreground">
-                zadovoljnih kupaca
-              </div>
-            </div>
-          </div>
-
-          {/* AI Search Button */}
-          <div className="pt-6">
-            <button
-              onClick={() => {
-                const chatbot = document.querySelector('[data-chatbot]');
-                if (chatbot instanceof HTMLElement) chatbot.click();
-              }}
-              className="px-8 py-4 rounded-lg font-semibold text-base bg-primary text-primary-foreground shadow-lg hover:opacity-90 transition-all inline-flex items-center gap-2 group"
-            >
-              <Search className="h-5 w-5" />
-              AI Tražilica
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </div>
