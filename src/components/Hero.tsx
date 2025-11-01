@@ -16,7 +16,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog }: HeroProps) => {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5;
+      videoRef.current.playbackRate = 0.75;
     }
   }, []);
 
@@ -58,15 +58,20 @@ const Hero = ({ onVideoEnd, onOpenCatalog }: HeroProps) => {
       {videoEnded && (
         <div className="absolute right-0 top-0 h-full w-full md:w-1/2 flex items-center justify-center animate-fade-in" style={{ zIndex: 2 }}>
           <div className="flex flex-col items-center gap-8 px-8">
-            <div className="grid grid-cols-3 gap-6 max-w-2xl">
+            <div className="relative flex items-center justify-center gap-6 max-w-2xl">
+              {/* Left vertical image */}
               <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                <img src={productPump} alt="Pool Pump" className="w-full h-32 object-contain" />
+                <img src={productPump} alt="Pool Pump" className="w-40 h-48 object-contain" />
               </div>
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                <img src={productControl} alt="Pool Control" className="w-full h-32 object-contain" />
+              
+              {/* Center image (slightly lower) */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105 mt-12">
+                <img src={productControl} alt="Pool Control" className="w-40 h-48 object-contain" />
               </div>
+              
+              {/* Right vertical image */}
               <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                <img src={productValve} alt="Pool Valve" className="w-full h-32 object-contain" />
+                <img src={productValve} alt="Pool Valve" className="w-40 h-48 object-contain" />
               </div>
             </div>
             <button 
@@ -81,11 +86,14 @@ const Hero = ({ onVideoEnd, onOpenCatalog }: HeroProps) => {
       )}
 
       {/* Left Content */}
-      <div className="relative z-10 h-full flex items-center px-4 md:px-12 lg:px-20">
-        <div className="max-w-xl space-y-6">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
-            CoolPool d.o.o.
-          </h1>
+      <div className="relative z-10 h-full flex items-center px-4 md:px-8 lg:px-12">
+        <div className="max-w-md space-y-6">
+          <div className="inline-block">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-2">
+              CoolPool d.o.o.
+            </h1>
+            <div className="h-1 w-3/4 rounded-full bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
+          </div>
 
           {/* Animated Stats - Show only after video ends */}
           {videoEnded && (
