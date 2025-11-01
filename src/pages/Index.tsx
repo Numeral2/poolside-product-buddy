@@ -54,7 +54,7 @@ const manufacturers = [
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
-  const [catalogOpen, setCatalogOpen] = useState(false);
+  const [catalogOpen, setCatalogOpen] = useState(true);
 
   const openCatalog = (category?: string) => {
     setSelectedCategory(category);
@@ -197,7 +197,7 @@ const Index = () => {
               <img 
                 src={productMozaik} 
                 alt="Mozaik za bazene" 
-                className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-32 object-contain p-2 group-hover:scale-105 transition-transform duration-300"
               />
               <div className="p-2 text-center border-t border-primary/10">
                 <p className="font-medium text-xs text-foreground">Mozaik</p>
