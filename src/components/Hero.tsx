@@ -63,7 +63,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
           className="absolute top-0 h-full flex items-center justify-end animate-fade-in transition-all duration-500" 
           style={{ 
             zIndex: 2,
-            right: catalogOpen ? '1rem' : 'clamp(2rem, 12vw, 12rem)'
+            right: catalogOpen ? '1rem' : 'clamp(1.5rem, 5vw, 4rem)'
           }}
         >
           <div className="flex flex-col items-center gap-3 md:gap-4">
@@ -102,7 +102,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
       <div 
         className="absolute top-0 h-full flex items-center z-10 transition-all duration-500"
         style={{
-          left: catalogOpen ? '1rem' : 'clamp(2rem, 12vw, 12rem)'
+          left: catalogOpen ? '1rem' : 'clamp(1.5rem, 5vw, 4rem)'
         }}
       >
         <div className="max-w-md space-y-3 md:space-y-4 pt-16 md:pt-20">
