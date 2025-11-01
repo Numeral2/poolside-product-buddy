@@ -62,7 +62,26 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      {/* Full Page Wave Patterns - Show when catalog is closed */}
+      {!catalogOpen && (
+        <>
+          <div className="fixed left-0 top-0 h-full w-32 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent pointer-events-none z-[5] animate-pulse" 
+               style={{ 
+                 background: 'linear-gradient(to right, hsl(var(--primary) / 0.12), hsl(var(--primary) / 0.06), transparent)',
+                 animation: 'pulse 3s ease-in-out infinite'
+               }} 
+          />
+          <div className="fixed right-0 top-0 h-full w-32 bg-gradient-to-l from-primary/10 via-primary/5 to-transparent pointer-events-none z-[5] animate-pulse" 
+               style={{ 
+                 background: 'linear-gradient(to left, hsl(var(--primary) / 0.12), hsl(var(--primary) / 0.06), transparent)',
+                 animation: 'pulse 3s ease-in-out infinite',
+                 animationDelay: '1.5s'
+               }} 
+          />
+        </>
+      )}
+      
       <Navigation />
       <div className="hidden md:block">
         <ProductCatalog openCategory={selectedCategory} isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
