@@ -59,7 +59,7 @@ const Hero = ({
             <div className="flex flex-col gap-0.5">
               {/* Top row - 2 images */}
               <div className="flex gap-0.5 justify-center">
-                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105 mx-0">
                   <img src={productPump} alt="Pool Pump" className="w-16 h-20 xs:w-18 xs:h-22 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
                 </div>
                 <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
@@ -90,7 +90,7 @@ const Hero = ({
       justifyContent: catalogOpen ? 'center' : 'flex-start',
       paddingLeft: catalogOpen ? '0' : 'clamp(1rem, 4vw, 3rem)'
     }}>
-        <div className="max-w-md space-y-2 sm:space-y-3 md:space-y-4 pt-8 sm:pt-12 md:pt-16 lg:pt-12 px-[11px] py-[50px] mx-[200px]">
+        <div className="max-w-md space-y-2 sm:space-y-3 md:space-y-4 pt-8 sm:pt-12 md:pt-16 lg:pt-12 px-[11px] py-[50px] mx-[320px]">
           <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
             <div className="inline-block">
               <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-1.5 sm:mb-2">
