@@ -66,8 +66,8 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
           className="absolute top-0 h-full flex items-center animate-fade-in transition-all duration-500" 
           style={{ 
             zIndex: 2,
-            right: '1rem',
-            width: 'calc(50% - 1rem)',
+            right: catalogOpen ? '1rem' : 'clamp(1rem, 3vw, 2rem)',
+            width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(45% - clamp(1rem, 3vw, 2rem))',
             justifyContent: 'flex-start'
           }}
         >
@@ -108,8 +108,8 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
         className="absolute top-0 h-full flex items-center transition-all duration-500"
         style={{
           zIndex: 10,
-          left: 'clamp(2rem, 5vw, 4rem)',
-          width: 'calc(50% - clamp(2rem, 5vw, 4rem))',
+          left: catalogOpen ? '1rem' : 'clamp(2rem, 5vw, 4rem)',
+          width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(55% - clamp(2rem, 5vw, 4rem))',
           justifyContent: 'center'
         }}
       >

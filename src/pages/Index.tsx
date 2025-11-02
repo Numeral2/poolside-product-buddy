@@ -54,21 +54,26 @@ const manufacturers = [
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
+  const [catalogOpen, setCatalogOpen] = useState(true);
 
   const openCatalog = (category?: string) => {
     setSelectedCategory(category);
+    setCatalogOpen(true);
   };
 
   return (
     <div className="min-h-screen bg-background relative">
       <Navigation />
       <div className="hidden md:block">
-        <ProductCatalog openCategory={selectedCategory} isOpen={true} setIsOpen={() => {}} />
+        <ProductCatalog openCategory={selectedCategory} isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
       </div>
       
-      {/* Main content with fixed left margin for catalog */}
-      <div className="md:ml-64">
-        <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={true} />
+      {/* Main content with transition */}
+      <div className={cn(
+        "transition-all duration-500",
+        catalogOpen ? "md:ml-72" : "md:ml-0"
+      )}>
+        <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={catalogOpen} />
       
       
       {/* Main Content Section */}
