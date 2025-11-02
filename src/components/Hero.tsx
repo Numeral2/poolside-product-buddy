@@ -108,10 +108,9 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
         className="absolute top-0 h-full flex items-center transition-all duration-500"
         style={{
           zIndex: 10,
-          left: catalogOpen ? '1rem' : 'clamp(1rem, 3vw, 2rem)',
-          width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(55% - clamp(1rem, 3vw, 2rem))',
-          justifyContent: catalogOpen ? 'center' : 'flex-start',
-          paddingLeft: catalogOpen ? '0' : 'clamp(1rem, 4vw, 3rem)'
+          left: '1rem',
+          width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(55% - 1rem)',
+          justifyContent: 'center'
         }}
       >
         <div className="max-w-md space-y-2 sm:space-y-3 md:space-y-4 pt-8 sm:pt-12 md:pt-16 lg:pt-12 px-2">
