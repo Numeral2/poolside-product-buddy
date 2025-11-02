@@ -40,6 +40,7 @@ const Products = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
   const [minPrice, setMinPrice] = useState<string>("0");
   const [maxPrice, setMaxPrice] = useState<string>("10000");
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
 
   const categories = [
     "Bazeni", "SPA kade", "Saune", "Laghetto", "Filteri", "Pumpe", 
@@ -48,6 +49,16 @@ const Products = () => {
     "Doziranje i elektronika", "Efekti", "Inox ljestve", "Prekrivači",
     "Grijanje", "Roboti"
   ];
+
+  const toggleCategory = (cat: string) => {
+    const newExpanded = new Set(expandedCategories);
+    if (newExpanded.has(cat)) {
+      newExpanded.delete(cat);
+    } else {
+      newExpanded.add(cat);
+    }
+    setExpandedCategories(newExpanded);
+  };
 
   useEffect(() => {
     // Check if we have products from chatbot
@@ -248,72 +259,82 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex">
       <Navigation />
       
-      <div className="container mx-auto px-4 pt-40 pb-12">
-        <div className="text-center mb-4 md:mb-6">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">
+      {/* Sidebar */}
+      <aside className="fixed left-0 top-24 w-56 h-[calc(100vh-6rem)] bg-card border-r border-border overflow-y-auto z-10">
+        <div className="p-4">
+          <h2 className="text-lg font-bold mb-4 text-foreground">KATALOG</h2>
+          
+          <div className="space-y-1">
+            <button
+              onClick={() => handleCategoryChange("all")}
+              className={`w-full text-left px-3 py-2 text-sm rounded transition-colors ${
+                selectedCategory === "all" 
+                  ? "bg-primary text-primary-foreground font-medium" 
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              Sve kategorije
+            </button>
+            
+            {categories.map(cat => (
+              <div key={cat}>
+                <button
+                  onClick={() => {
+                    handleCategoryChange(cat);
+                    toggleCategory(cat);
+                  }}
+                  className={`w-full text-left px-3 py-2 text-sm rounded transition-colors ${
+                    selectedCategory === cat 
+                      ? "bg-primary text-primary-foreground font-medium" 
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  {cat}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Price Filter in Sidebar */}
+        <div className="p-4 border-t border-border">
+          <h3 className="text-sm font-semibold mb-3">Raspon cijena (€)</h3>
+          <div className="space-y-2">
+            <Input
+              type="number"
+              placeholder="Min"
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+              className="h-8 text-sm"
+            />
+            <Input
+              type="number"
+              placeholder="Max"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              className="h-8 text-sm"
+            />
+            <Button onClick={handlePriceFilter} size="sm" className="w-full h-8">
+              Filtriraj
+            </Button>
+          </div>
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex-1 ml-56 pt-24 pb-12 px-6">
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold mb-2">
             {searchQuery ? `Rezultati pretrage: "${searchQuery}"` : 
              category ? category : "Svi Proizvodi"}
           </h1>
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-            Istražite našu premium ponudu bazenske opreme i dodataka
-          </p>
-          <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-2 flex items-center justify-center gap-2">
+          <p className="text-sm text-muted-foreground flex items-center gap-2">
             <Sparkles className="h-4 w-4" />
             Kliknite "Pitaj AI" na proizvodu za detaljne informacije
           </p>
-        </div>
-
-        {/* Filters */}
-        <div className="mb-4 md:mb-6 p-4 glass-effect border border-primary/20 rounded-lg">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Category Filter */}
-            <div>
-              <label className="text-sm font-semibold mb-2 block">Kategorija</label>
-              <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Sve kategorije" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Sve kategorije</SelectItem>
-                  {categories.map(cat => (
-                    <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Price Filter */}
-            <div className="md:col-span-2">
-              <label className="text-sm font-semibold mb-2 block">Raspon cijena (€)</label>
-              <div className="flex gap-2 items-end">
-                <div className="flex-1">
-                  <Input
-                    type="number"
-                    placeholder="Min"
-                    value={minPrice}
-                    onChange={(e) => setMinPrice(e.target.value)}
-                    className="h-9"
-                  />
-                </div>
-                <span className="text-muted-foreground">-</span>
-                <div className="flex-1">
-                  <Input
-                    type="number"
-                    placeholder="Max"
-                    value={maxPrice}
-                    onChange={(e) => setMaxPrice(e.target.value)}
-                    className="h-9"
-                  />
-                </div>
-                <Button onClick={handlePriceFilter} size="sm" className="h-9">
-                  Filtriraj
-                </Button>
-              </div>
-            </div>
-          </div>
         </div>
 
         {isLoading ? (
