@@ -33,9 +33,9 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
   };
 
   return (
-    <div className="relative h-[50vh] md:h-[70vh] w-full overflow-hidden bg-background">
+    <div className="relative h-[50vh] md:h-[70vh] w-full overflow-hidden bg-background/50">
       {/* Lighter overlay */}
-      <div className="absolute inset-0 bg-white/10 pointer-events-none z-[0]" />
+      <div className="absolute inset-0 bg-white/20 pointer-events-none z-[0]" />
       
       {/* Elegant Side Gradients - Always visible */}
       <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />

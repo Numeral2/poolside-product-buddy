@@ -4,13 +4,10 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ModernChatBot from "@/components/ModernChatBot";
 import ProductCatalog from "@/components/ProductCatalog";
+import ProductCarousel from "@/components/ProductCarousel";
 import { Sparkles, ShoppingCart, Facebook, Instagram, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
-import astralpool from "@/assets/astralpool-logo.png";
-import productRobot from "@/assets/product-robot.png";
-import productMozaik from "@/assets/product-mozaik.png";
-import productKemikalija from "@/assets/product-kemikalija.png";
 import { cn } from "@/lib/utils";
 
 const categories = [
@@ -164,38 +161,7 @@ const Index = () => {
           </div>
 
           {/* Product Showcase */}
-          <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-3xl mx-auto mb-3 md:mb-4">
-            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all hover:shadow-lg">
-              <img 
-                src={productRobot} 
-                alt="Robot za čišćenje bazena" 
-                className="w-full h-32 object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="p-2 text-center border-t border-primary/10">
-                <p className="font-medium text-xs text-foreground">Roboti</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all hover:shadow-lg">
-              <img 
-                src={productMozaik} 
-                alt="Mozaik za bazene" 
-                className="w-full h-32 object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="p-2 text-center border-t border-primary/10">
-                <p className="font-medium text-xs text-foreground">Mozaik</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-lg border border-primary/20 bg-card/30 hover:border-primary/50 transition-all hover:shadow-lg">
-              <img 
-                src={productKemikalija} 
-                alt="Kemikalije za bazene" 
-                className="w-full h-32 object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="p-2 text-center border-t border-primary/10">
-                <p className="font-medium text-xs text-foreground">Kemikalije</p>
-              </div>
-            </div>
-          </div>
+          <ProductCarousel />
           
           {/* CTA Button */}
           <div className="flex justify-center">
