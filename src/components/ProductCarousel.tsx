@@ -7,7 +7,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import productRobot from "@/assets/product-robot.png";
-import productRobotCleaner from "@/assets/product-robot-cleaner.png";
 import productMozaik from "@/assets/product-mozaik.png";
 import productKemikalija from "@/assets/product-kemikalija.png";
 import productFilterSystem from "@/assets/product-filter-system.png";
@@ -17,11 +16,6 @@ const products = [
   {
     name: "Roboti",
     image: productRobot,
-    category: "Roboti"
-  },
-  {
-    name: "Roboti za čišćenje",
-    image: productRobotCleaner,
     category: "Roboti"
   },
   {
