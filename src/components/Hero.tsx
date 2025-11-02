@@ -34,6 +34,9 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
 
   return (
     <div className="relative h-[50vh] md:h-[70vh] w-full overflow-hidden bg-background">
+      {/* Lighter overlay */}
+      <div className="absolute inset-0 bg-white/10 pointer-events-none z-[0]" />
+      
       {/* Elegant Side Gradients - Always visible */}
       <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />
       <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />
@@ -107,7 +110,8 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
           zIndex: 10,
           left: catalogOpen ? '1rem' : 'clamp(1rem, 3vw, 2rem)',
           width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(55% - clamp(1rem, 3vw, 2rem))',
-          justifyContent: 'flex-end'
+          justifyContent: catalogOpen ? 'center' : 'flex-start',
+          paddingLeft: catalogOpen ? '0' : 'clamp(1rem, 4vw, 3rem)'
         }}
       >
         <div className="max-w-md space-y-2 sm:space-y-3 md:space-y-4 pt-8 sm:pt-12 md:pt-16 lg:pt-12 px-2">
