@@ -35,8 +35,8 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
   return (
     <div className="relative h-[50vh] md:h-[70vh] w-full overflow-hidden bg-background">
       {/* Elegant Side Gradients - Always visible */}
-      <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-primary/8 via-primary/5 to-transparent pointer-events-none z-[1]" />
-      <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-primary/8 via-primary/5 to-transparent pointer-events-none z-[1]" />
+      <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />
+      <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />
       
       {/* Video on Right Side */}
       <div 
@@ -63,9 +63,9 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
           className="absolute top-0 h-full flex items-center animate-fade-in transition-all duration-500" 
           style={{ 
             zIndex: 2,
-            right: catalogOpen ? '1rem' : 'clamp(1.5rem, 8vw, 6rem)',
-            width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(50% - clamp(1.5rem, 8vw, 6rem))',
-            justifyContent: 'center'
+            right: catalogOpen ? '1rem' : 'clamp(1rem, 3vw, 2rem)',
+            width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(45% - clamp(1rem, 3vw, 2rem))',
+            justifyContent: 'flex-start'
           }}
         >
           <div className="flex flex-col items-center gap-2 md:gap-3 lg:gap-4 px-2">
@@ -105,9 +105,9 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
         className="absolute top-0 h-full flex items-center transition-all duration-500"
         style={{
           zIndex: 10,
-          left: catalogOpen ? '1rem' : 'clamp(1.5rem, 8vw, 6rem)',
-          width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(50% - clamp(1.5rem, 8vw, 6rem))',
-          justifyContent: 'center'
+          left: catalogOpen ? '1rem' : 'clamp(1rem, 3vw, 2rem)',
+          width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(55% - clamp(1rem, 3vw, 2rem))',
+          justifyContent: 'flex-end'
         }}
       >
         <div className="max-w-md space-y-2 sm:space-y-3 md:space-y-4 pt-8 sm:pt-12 md:pt-16 lg:pt-12 px-2">
