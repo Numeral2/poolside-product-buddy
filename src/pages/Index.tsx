@@ -1,14 +1,11 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ModernChatBot from "@/components/ModernChatBot";
-import ProductCatalog from "@/components/ProductCatalog";
 import ProductCarousel from "@/components/ProductCarousel";
 import { Sparkles, ShoppingCart, Facebook, Instagram, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
-import { cn } from "@/lib/utils";
 
 const categories = [
   "Bazeni",
@@ -50,27 +47,10 @@ const manufacturers = [
 ];
 
 const Index = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
-  const [catalogOpen, setCatalogOpen] = useState(true);
-
-  const openCatalog = (category?: string) => {
-    setSelectedCategory(category);
-    setCatalogOpen(true);
-  };
-
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-background">
       <Navigation />
-      <div className="hidden md:block">
-        <ProductCatalog openCategory={selectedCategory} isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
-      </div>
-      
-      {/* Main content with transition */}
-      <div className={cn(
-        "transition-all duration-500",
-        catalogOpen ? "md:ml-72" : "md:ml-0"
-      )}>
-        <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={catalogOpen} />
+      <Hero onVideoEnd={() => {}} onOpenCatalog={() => {}} catalogOpen={false} />
       
       
       {/* Main Content Section */}
@@ -81,19 +61,19 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-primary/10 to-transparent animate-wave-delay"></div>
         </div>
         
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-4xl relative z-10">
           {/* Main Headline */}
           <div className="text-center mb-4 md:mb-6">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3 leading-tight">
               Otkrijte najmoderniju <span className="text-primary">AI online trgovinu</span> za bazene
             </h1>
-            <p className="text-sm md:text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            <p className="text-sm md:text-base text-muted-foreground mx-auto leading-relaxed">
               Mjesto gdje tehnologija i kvaliteta rade za vas. Pronađite sve proizvode za održavanje i opremanje bazena.
             </p>
           </div>
 
           {/* Content Layout - Left: AI Assistant, Right: Features */}
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto mb-4 md:mb-6">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 mx-auto mb-4 md:mb-6">
             {/* Left Side - AI Assistant */}
             <div className="space-y-4">
               <div>
@@ -323,8 +303,7 @@ const Index = () => {
         </div>
       </footer>
 
-        <ModernChatBot onOpenCatalog={openCatalog} />
-      </div>
+      <ModernChatBot onOpenCatalog={() => {}} />
     </div>
   );
 };
