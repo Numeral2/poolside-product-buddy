@@ -300,25 +300,25 @@ const ProductDetail = () => {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div>
-            <h2 className="text-2xl font-bold mb-6">Slični proizvodi</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <h2 className="text-lg font-bold mb-4">Slični proizvodi</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {relatedProducts.map((relatedProduct) => (
                 <Link 
                   key={relatedProduct.id}
                   to={`/product/${relatedProduct.id}`}
                   className="cursor-pointer group"
                 >
-                  <div className="bg-card border border-primary/20 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                    <div className="aspect-square overflow-hidden bg-muted">
+                  <div className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                    <div className="aspect-square overflow-hidden bg-muted/50">
                       <img 
                         src={relatedProduct.image_url}
                         alt={relatedProduct.name}
-                        className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform"
+                        className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform"
                       />
                     </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold mb-2 line-clamp-2">{relatedProduct.name}</h3>
-                      <p className="text-2xl font-bold text-primary">€{relatedProduct.price.toFixed(2)}</p>
+                    <div className="p-3">
+                      <h3 className="text-sm font-medium mb-1 line-clamp-2">{relatedProduct.name}</h3>
+                      <p className="text-lg font-bold text-primary">€{relatedProduct.price.toFixed(2)}</p>
                     </div>
                   </div>
                 </Link>
