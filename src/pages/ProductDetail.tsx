@@ -31,7 +31,9 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (id) {
+      setIsLoading(true);
       fetchProduct();
+      window.scrollTo(0, 0);
     }
   }, [id]);
 
