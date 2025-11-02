@@ -121,7 +121,7 @@ const ProductDetail = () => {
 
         <Button 
           variant="ghost" 
-          onClick={() => navigate(-1)}
+          onClick={() => navigate(`/products?category=${product.category}`)}
           className="mb-6"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
