@@ -364,13 +364,13 @@ const Products = () => {
             </div>
 
             {/* Products List */}
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {groupedProducts.map((product) => (
                 <div 
                   key={product.id}
                   className="bg-card rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-border/50"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 p-3 md:p-6">
                     {/* Product Image */}
                     <div className="md:col-span-3">
                       <Link to={`/product/${product.id}`}>
@@ -378,7 +378,7 @@ const Products = () => {
                           <img 
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-contain p-6"
+                            className="w-full h-full object-contain p-3 md:p-6"
                           />
                         </div>
                       </Link>
@@ -386,35 +386,35 @@ const Products = () => {
 
                     {/* Product Details */}
                     <div className="md:col-span-9 flex flex-col justify-between">
-                      <div className="space-y-3">
+                      <div className="space-y-2 md:space-y-3">
                         <Link 
                           to={`/product/${product.id}`}
                           className="group"
                         >
-                          <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">
+                          <h3 className="text-lg md:text-2xl font-bold group-hover:text-primary transition-colors">
                             {product.name}
                           </h3>
                         </Link>
                         
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                           {product.description}
                         </p>
 
                         {/* Variants Selection */}
                         {product.variants && product.variants.length > 0 && (
-                          <div className="pt-3">
-                            <p className="text-sm font-medium mb-3">Dostupne veličine:</p>
-                            <div className="flex flex-wrap gap-3">
+                          <div className="pt-2 md:pt-3">
+                            <p className="text-xs md:text-sm font-medium mb-2 md:mb-3">Dostupne veličine:</p>
+                            <div className="flex flex-wrap gap-2 md:gap-3">
                               {product.variants.map((variant) => (
                                 <Link
                                   key={variant.id}
                                   to={`/product/${variant.id}`}
-                                  className="group flex flex-col items-center px-5 py-3 border-2 border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all"
+                                  className="group flex flex-col items-center px-3 py-2 md:px-5 md:py-3 border-2 border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all"
                                 >
-                                  <span className="text-lg font-semibold group-hover:text-primary transition-colors">
+                                  <span className="text-sm md:text-lg font-semibold group-hover:text-primary transition-colors">
                                     {variant.size}
                                   </span>
-                                  <span className="text-sm text-muted-foreground">
+                                  <span className="text-xs md:text-sm text-muted-foreground">
                                     €{variant.price.toFixed(2)}
                                   </span>
                                 </Link>
@@ -425,20 +425,20 @@ const Products = () => {
                       </div>
 
                       {/* Price and Actions */}
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 mt-6 border-t">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4 pt-3 md:pt-6 mt-3 md:mt-6 border-t">
                         <div>
-                          <p className="text-sm text-muted-foreground mb-1">Cijena od</p>
-                          <p className="text-3xl font-bold text-primary">€{product.price.toFixed(2)}</p>
+                          <p className="text-xs md:text-sm text-muted-foreground mb-1">Cijena od</p>
+                          <p className="text-2xl md:text-3xl font-bold text-primary">€{product.price.toFixed(2)}</p>
                         </div>
-                        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                        <div className="flex flex-col sm:flex-row gap-2 md:gap-3 w-full sm:w-auto">
                           <Link to={`/product/${product.id}`} className="w-full sm:w-auto">
-                            <Button className="w-full" size="lg">
+                            <Button className="w-full" size="default">
                               Pogledaj Detalje
                             </Button>
                           </Link>
                           <Button
                             variant="outline"
-                            size="lg"
+                            size="default"
                             onClick={() => handleAskAI(product.name)}
                             className="gap-2 w-full sm:w-auto"
                           >
