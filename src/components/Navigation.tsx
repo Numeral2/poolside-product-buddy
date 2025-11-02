@@ -120,12 +120,58 @@ const Navigation = () => {
                 Meni
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
+            <DropdownMenuContent align="end" className="w-64 max-h-[70vh] overflow-y-auto bg-background z-50">
               <DropdownMenuItem asChild>
                 <Link to="/" className="w-full">Početna</Link>
               </DropdownMenuItem>
+              <DropdownMenuLabel className="text-primary font-bold mt-2">Web Shop</DropdownMenuLabel>
               <DropdownMenuItem asChild>
-                <Link to="/products" className="w-full">Web Shop</Link>
+                <Link to="/products?category=Filteri" className="w-full cursor-pointer">Filteri</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Pumpe" className="w-full cursor-pointer">Pumpe</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Skimmeri" className="w-full cursor-pointer">Skimmeri</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Osnovna i ABS oprema" className="w-full cursor-pointer">Osnovna i ABS oprema</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=PVC cijevi i fitinzi" className="w-full cursor-pointer">PVC cijevi i fitinzi</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Rasvjeta" className="w-full cursor-pointer">Rasvjeta</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Kemikalije" className="w-full cursor-pointer">Kemikalije</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Pribor za čišćenje" className="w-full cursor-pointer">Pribor za čišćenje</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Mozaik" className="w-full cursor-pointer">Mozaik</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Materijal za oblaganje" className="w-full cursor-pointer">Materijal za oblaganje</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Doziranje i elektronika" className="w-full cursor-pointer">Doziranje i elektronika</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Efekti" className="w-full cursor-pointer">Efekti</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Inox ljestve" className="w-full cursor-pointer">Inox ljestve</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Prekrivači" className="w-full cursor-pointer">Prekrivači</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Grijanje" className="w-full cursor-pointer">Grijanje</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/products?category=Roboti" className="w-full cursor-pointer">Roboti</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
