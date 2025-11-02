@@ -96,15 +96,15 @@ const ProductCatalog = ({ openCategory, isOpen, setIsOpen }: ProductCatalogProps
       {/* Expanded Catalog */}
       <div 
         className={cn(
-          "fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 bg-background/95 backdrop-blur-md border-r shadow-lg z-40 flex flex-col overflow-hidden transition-transform duration-500 ease-in-out",
+          "fixed left-0 top-16 h-[calc(100vh-4rem)] w-56 bg-background/95 backdrop-blur-md border-r shadow-lg z-40 flex flex-col overflow-hidden transition-transform duration-500 ease-in-out",
           isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center gap-2">
             <div className="flex flex-col gap-1">
-              <div className="h-0.5 w-6 bg-foreground rounded-full"></div>
-              <div className="h-0.5 w-6 bg-foreground rounded-full"></div>
+              <div className="h-0.5 w-5 bg-foreground rounded-full"></div>
+              <div className="h-0.5 w-5 bg-foreground rounded-full"></div>
             </div>
             <span className="text-sm font-semibold">Katalog</span>
           </div>
@@ -119,7 +119,7 @@ const ProductCatalog = ({ openCategory, isOpen, setIsOpen }: ProductCatalogProps
         </div>
 
         <ScrollArea className="flex-1">
-          <div className="p-3 space-y-2">
+          <div className="p-2 space-y-1.5">
             {catalogSections.map((section) => {
               const Icon = section.icon;
               const isExpanded = expandedSections.has(section.title);
