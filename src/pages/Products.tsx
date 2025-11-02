@@ -430,8 +430,8 @@ const Products = () => {
                           <p className="text-sm text-muted-foreground mb-1">Cijena od</p>
                           <p className="text-3xl font-bold text-primary">€{product.price.toFixed(2)}</p>
                         </div>
-                        <div className="flex gap-3 w-full sm:w-auto">
-                          <Link to={`/product/${product.id}`} className="flex-1 sm:flex-none">
+                        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                          <Link to={`/product/${product.id}`} className="w-full sm:w-auto">
                             <Button className="w-full" size="lg">
                               Pogledaj Detalje
                             </Button>
@@ -440,7 +440,7 @@ const Products = () => {
                             variant="outline"
                             size="lg"
                             onClick={() => handleAskAI(product.name)}
-                            className="gap-2"
+                            className="gap-2 w-full sm:w-auto"
                           >
                             <Sparkles className="h-4 w-4" />
                             Pitaj AI
