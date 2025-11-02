@@ -262,8 +262,8 @@ const Products = () => {
     <div className="min-h-screen bg-background flex">
       <Navigation />
       
-      {/* Sidebar */}
-      <aside className="fixed left-0 top-24 w-56 h-[calc(100vh-6rem)] bg-card border-r border-border overflow-y-auto z-10">
+      {/* Sidebar - Hidden on mobile */}
+      <aside className="hidden lg:block fixed left-0 top-24 w-56 h-[calc(100vh-6rem)] bg-card border-r border-border overflow-y-auto z-10">
         <div className="p-4">
           <h2 className="text-lg font-bold mb-4 text-foreground">KATALOG</h2>
           
@@ -325,7 +325,7 @@ const Products = () => {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 ml-56 pt-24 pb-12 px-6">
+      <div className="flex-1 lg:ml-56 pt-24 pb-12 px-4 lg:px-6">
         <div className="mb-6">
           <h1 className="text-2xl font-bold mb-2">
             {searchQuery ? `Rezultati pretrage: "${searchQuery}"` : 
