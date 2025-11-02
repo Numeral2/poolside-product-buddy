@@ -199,14 +199,15 @@ const Index = () => {
           
           {/* CTA Button */}
           <div className="flex justify-center">
-            <Button 
-              size="lg" 
-              className="px-8"
-              onClick={() => openCatalog()}
-            >
-              <ShoppingCart className="mr-2 h-5 w-5" />
-              Pogledajte sve proizvode
-            </Button>
+            <Link to="/products">
+              <Button 
+                size="lg" 
+                className="px-8"
+              >
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                Pogledajte sve proizvode
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
