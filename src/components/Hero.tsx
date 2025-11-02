@@ -38,12 +38,12 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
       <div className="absolute inset-0 bg-white/20 pointer-events-none z-[0]" />
       
       {/* Elegant Side Gradients - Always visible */}
-      <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />
-      <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />
       
       {/* Video on Right Side */}
       <div 
-        className={`absolute right-0 top-0 h-full w-full md:w-1/2 transition-all duration-[2000ms] ease-in-out ${
+        className={`absolute right-0 top-0 h-full w-full md:w-3/5 transition-all duration-[2000ms] ease-in-out ${
           videoEnded ? 'translate-x-full opacity-0 scale-110' : 'translate-x-0 opacity-100 scale-100'
         }`}
         style={{ zIndex: 2 }}
@@ -66,8 +66,8 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
           className="absolute top-0 h-full flex items-center animate-fade-in transition-all duration-500" 
           style={{ 
             zIndex: 2,
-            right: catalogOpen ? '1rem' : 'clamp(1rem, 3vw, 2rem)',
-            width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(45% - clamp(1rem, 3vw, 2rem))',
+            right: '2rem',
+            width: 'calc(50% - 2rem)',
             justifyContent: 'flex-start'
           }}
         >
@@ -108,8 +108,8 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
         className="absolute top-0 h-full flex items-center transition-all duration-500"
         style={{
           zIndex: 10,
-          left: catalogOpen ? '1rem' : 'clamp(2rem, 5vw, 4rem)',
-          width: catalogOpen ? 'calc(50% - 1rem)' : 'calc(55% - clamp(2rem, 5vw, 4rem))',
+          left: '2rem',
+          width: 'calc(50% - 2rem)',
           justifyContent: 'center'
         }}
       >

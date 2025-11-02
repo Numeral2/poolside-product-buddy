@@ -263,14 +263,14 @@ const Products = () => {
       <Navigation />
 
       {/* Main Content */}
-      <div className="pt-24 pb-12 px-4 max-w-5xl mx-auto">
+      <div className="pt-24 pb-12 px-4 max-w-7xl mx-auto">
         {/* Mobile Category Filter */}
         <div className="mb-4 lg:hidden">
           <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full bg-background">
               <SelectValue placeholder="Izaberite kategoriju" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-background z-[100]">
               <SelectItem value="all">Sve kategorije</SelectItem>
               {categories.map(cat => (
                 <SelectItem key={cat} value={cat}>{cat}</SelectItem>
@@ -280,30 +280,34 @@ const Products = () => {
         </div>
 
         {/* Desktop Category Pills */}
-        <div className="hidden lg:flex flex-wrap gap-2 mb-6 justify-center">
-          <button
-            onClick={() => handleCategoryChange("all")}
-            className={`px-4 py-2 rounded-full text-sm transition-colors ${
-              selectedCategory === "all" 
-                ? "bg-primary text-primary-foreground font-medium" 
-                : "bg-muted text-foreground hover:bg-muted/80"
-            }`}
-          >
-            Sve
-          </button>
-          {categories.map(cat => (
+        <div className="hidden lg:block mb-6">
+          <div className="flex flex-wrap gap-2 justify-center mb-4">
             <button
-              key={cat}
-              onClick={() => handleCategoryChange(cat)}
-              className={`px-4 py-2 rounded-full text-sm transition-colors ${
-                selectedCategory === cat 
-                  ? "bg-primary text-primary-foreground font-medium" 
+              onClick={() => handleCategoryChange("all")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                selectedCategory === "all" 
+                  ? "bg-primary text-primary-foreground shadow-md" 
                   : "bg-muted text-foreground hover:bg-muted/80"
               }`}
             >
-              {cat}
+              Sve kategorije
             </button>
-          ))}
+          </div>
+          <div className="grid grid-cols-4 gap-2">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => handleCategoryChange(cat)}
+                className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all text-left ${
+                  selectedCategory === cat 
+                    ? "bg-primary text-primary-foreground shadow-md" 
+                    : "bg-card border border-border hover:border-primary hover:bg-card/80"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="mb-6 text-center">
