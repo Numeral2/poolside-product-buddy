@@ -11,6 +11,12 @@ import productMozaik from "@/assets/product-mozaik.png";
 import productKemikalija from "@/assets/product-kemikalija.png";
 import productFilterSystem from "@/assets/product-filter-system.png";
 import productPumpSystem from "@/assets/product-pump-system.png";
+import productSkimmer from "@/assets/product-skimmer.png";
+import productAbsOprema from "@/assets/product-abs-oprema.png";
+import productPvcPipe from "@/assets/product-pvc-pipe.png";
+import productRasvjeta from "@/assets/product-rasvjeta.png";
+import productCleaning from "@/assets/product-cleaning.png";
+import productOblaganje from "@/assets/product-oblaganje.png";
 
 const products = [
   {
@@ -37,6 +43,36 @@ const products = [
     name: "Pumpe",
     image: productPumpSystem,
     category: "Pumpe"
+  },
+  {
+    name: "Skimmeri",
+    image: productSkimmer,
+    category: "Skimmeri"
+  },
+  {
+    name: "Osnovna i ABS oprema",
+    image: productAbsOprema,
+    category: "Osnovna i ABS oprema"
+  },
+  {
+    name: "PVC cijevi i fitinzi",
+    image: productPvcPipe,
+    category: "PVC cijevi i fitinzi"
+  },
+  {
+    name: "Rasvjeta",
+    image: productRasvjeta,
+    category: "Rasvjeta"
+  },
+  {
+    name: "Pribor za čišćenje",
+    image: productCleaning,
+    category: "Pribor za čišćenje"
+  },
+  {
+    name: "Materijal za oblaganje",
+    image: productOblaganje,
+    category: "Materijal za oblaganje"
   },
 ];
 
