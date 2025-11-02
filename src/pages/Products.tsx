@@ -259,63 +259,79 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex">
       <Navigation />
-
-      {/* Main Content */}
-      <div className="pt-24 pb-12 px-4 max-w-7xl mx-auto">
-        {/* Mobile Category Filter */}
-        <div className="mb-4 lg:hidden">
-          <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-            <SelectTrigger className="w-full bg-background">
-              <SelectValue placeholder="Izaberite kategoriju" />
-            </SelectTrigger>
-            <SelectContent className="bg-background z-[100]">
-              <SelectItem value="all">Sve kategorije</SelectItem>
-              {categories.map(cat => (
-                <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Desktop Category Pills */}
-        <div className="hidden lg:block mb-6">
-          <div className="flex flex-wrap gap-2 justify-center mb-4">
+      
+      {/* Sidebar - Hidden on mobile */}
+      <aside className="hidden lg:block fixed left-0 top-24 w-56 h-[calc(100vh-6rem)] bg-card border-r border-border overflow-y-auto z-10">
+        <div className="p-4">
+          <h2 className="text-lg font-bold mb-4 text-foreground">KATALOG</h2>
+          
+          <div className="space-y-1">
             <button
               onClick={() => handleCategoryChange("all")}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`w-full text-left px-3 py-2 text-sm rounded transition-colors ${
                 selectedCategory === "all" 
-                  ? "bg-primary text-primary-foreground shadow-md" 
-                  : "bg-muted text-foreground hover:bg-muted/80"
+                  ? "bg-primary text-primary-foreground font-medium" 
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
               }`}
             >
               Sve kategorije
             </button>
-          </div>
-          <div className="grid grid-cols-4 gap-2">
+            
             {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => handleCategoryChange(cat)}
-                className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all text-left ${
-                  selectedCategory === cat 
-                    ? "bg-primary text-primary-foreground shadow-md" 
-                    : "bg-card border border-border hover:border-primary hover:bg-card/80"
-                }`}
-              >
-                {cat}
-              </button>
+              <div key={cat}>
+                <button
+                  onClick={() => {
+                    handleCategoryChange(cat);
+                    toggleCategory(cat);
+                  }}
+                  className={`w-full text-left px-3 py-2 text-sm rounded transition-colors ${
+                    selectedCategory === cat 
+                      ? "bg-primary text-primary-foreground font-medium" 
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  {cat}
+                </button>
+              </div>
             ))}
           </div>
         </div>
+        
+        {/* Price Filter in Sidebar */}
+        <div className="p-4 border-t border-border">
+          <h3 className="text-sm font-semibold mb-3">Raspon cijena (€)</h3>
+          <div className="space-y-2">
+            <Input
+              type="number"
+              placeholder="Min"
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+              className="h-8 text-sm"
+            />
+            <Input
+              type="number"
+              placeholder="Max"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              className="h-8 text-sm"
+            />
+            <Button onClick={handlePriceFilter} size="sm" className="w-full h-8">
+              Filtriraj
+            </Button>
+          </div>
+        </div>
+      </aside>
 
-        <div className="mb-6 text-center">
+      {/* Main Content */}
+      <div className="flex-1 lg:ml-56 pt-24 pb-12 px-4 lg:px-6">
+        <div className="mb-6">
           <h1 className="text-2xl font-bold mb-2">
             {searchQuery ? `Rezultati pretrage: "${searchQuery}"` : 
              category ? category : "Svi Proizvodi"}
           </h1>
-          <p className="text-sm text-muted-foreground inline-flex items-center gap-2">
+          <p className="text-sm text-muted-foreground flex items-center gap-2">
             <Sparkles className="h-4 w-4" />
             Kliknite "Pitaj AI" na proizvodu za detaljne informacije
           </p>
@@ -326,35 +342,35 @@ const Products = () => {
             <Loader2 className="h-12 w-12 animate-spin text-primary" />
           </div>
         ) : selectedCategory === "Filteri" ? (
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Hero Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-12">
               <div>
-                <h2 className="text-xl md:text-2xl font-bold mb-3">Filteri za bazene - čista voda, bezbrižno kupanje</h2>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                <h2 className="text-3xl font-bold mb-4">Filteri za bazene - čista voda, bezbrižno kupanje</h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
                   Filteri su ključni dio sustava za održavanje čistoće vode u bazenu. Uklanjaju nečistoće, 
                   bakterije i alge, osiguravajući kristalno čistu vodu.
                 </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   Naša ponuda uključuje profesionalne filtere vrhunske kvalitete - IML Lisboa seriju, 
                   Astral Aster filtere, multiventile i kompletnu opremu za filtraciju od kvarcnog pijeska 
                   do filter stakla. Prikladni za privatne i komercijalne bazene svih veličina.
                 </p>
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-4">
                 <img src="/images/filter-lisboa.png" alt="IML Lisboa Filter" className="rounded-lg shadow-lg" />
                 <img src="/images/filter-astral-aster.png" alt="Astral Aster Filter" className="rounded-lg shadow-lg" />
               </div>
             </div>
 
             {/* Products List */}
-            <div className="space-y-3">
+            <div className="space-y-4 md:space-y-6">
               {groupedProducts.map((product) => (
                 <div 
                   key={product.id}
                   className="bg-card rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-border/50"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-3 p-3 md:p-4">
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 p-3 md:p-6">
                     {/* Product Image */}
                     <div className="md:col-span-3">
                       <Link to={`/product/${product.id}`}>
@@ -362,7 +378,7 @@ const Products = () => {
                           <img 
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-contain p-2 md:p-4"
+                            className="w-full h-full object-contain p-3 md:p-6"
                           />
                         </div>
                       </Link>
@@ -370,35 +386,35 @@ const Products = () => {
 
                     {/* Product Details */}
                     <div className="md:col-span-9 flex flex-col justify-between">
-                      <div className="space-y-2">
+                      <div className="space-y-2 md:space-y-3">
                         <Link 
                           to={`/product/${product.id}`}
                           className="group"
                         >
-                          <h3 className="text-base md:text-lg font-bold group-hover:text-primary transition-colors">
+                          <h3 className="text-lg md:text-2xl font-bold group-hover:text-primary transition-colors">
                             {product.name}
                           </h3>
                         </Link>
                         
-                        <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                           {product.description}
                         </p>
 
                         {/* Variants Selection */}
                         {product.variants && product.variants.length > 0 && (
-                          <div className="pt-2">
-                            <p className="text-xs font-medium mb-2">Dostupne veličine:</p>
-                            <div className="flex flex-wrap gap-2">
+                          <div className="pt-2 md:pt-3">
+                            <p className="text-xs md:text-sm font-medium mb-2 md:mb-3">Dostupne veličine:</p>
+                            <div className="flex flex-wrap gap-2 md:gap-3">
                               {product.variants.map((variant) => (
                                 <Link
                                   key={variant.id}
                                   to={`/product/${variant.id}`}
-                                  className="group flex flex-col items-center px-3 py-1.5 border-2 border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all"
+                                  className="group flex flex-col items-center px-3 py-2 md:px-5 md:py-3 border-2 border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all"
                                 >
-                                  <span className="text-xs md:text-sm font-semibold group-hover:text-primary transition-colors">
+                                  <span className="text-sm md:text-lg font-semibold group-hover:text-primary transition-colors">
                                     {variant.size}
                                   </span>
-                                  <span className="text-xs text-muted-foreground">
+                                  <span className="text-xs md:text-sm text-muted-foreground">
                                     €{variant.price.toFixed(2)}
                                   </span>
                                 </Link>
@@ -409,24 +425,24 @@ const Products = () => {
                       </div>
 
                       {/* Price and Actions */}
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-3 mt-3 border-t">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4 pt-3 md:pt-6 mt-3 md:mt-6 border-t">
                         <div>
-                          <p className="text-xs text-muted-foreground mb-0.5">Cijena od</p>
-                          <p className="text-xl md:text-2xl font-bold text-primary">€{product.price.toFixed(2)}</p>
+                          <p className="text-xs md:text-sm text-muted-foreground mb-1">Cijena od</p>
+                          <p className="text-2xl md:text-3xl font-bold text-primary">€{product.price.toFixed(2)}</p>
                         </div>
-                        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                        <div className="flex flex-col sm:flex-row gap-2 md:gap-3 w-full sm:w-auto">
                           <Link to={`/product/${product.id}`} className="w-full sm:w-auto">
-                            <Button className="w-full" size="sm">
+                            <Button className="w-full" size="default">
                               Pogledaj Detalje
                             </Button>
                           </Link>
                           <Button
                             variant="outline"
-                            size="sm"
+                            size="default"
                             onClick={() => handleAskAI(product.name)}
                             className="gap-2 w-full sm:w-auto"
                           >
-                            <Sparkles className="h-3 w-3" />
+                            <Sparkles className="h-4 w-4" />
                             Pitaj AI
                           </Button>
                         </div>
@@ -438,7 +454,7 @@ const Products = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {groupedProducts.map((product) => (
               <ProductCard
                 key={product.id}

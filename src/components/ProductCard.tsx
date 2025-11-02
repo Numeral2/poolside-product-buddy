@@ -96,28 +96,28 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
       
       
       {image && (
-        <div className="h-40 overflow-hidden relative bg-muted/20">
+        <div className="h-56 overflow-hidden relative bg-muted/20">
           <img 
             src={image} 
             alt={name} 
             loading="lazy"
-            className="w-full h-full object-contain p-2"
+            className="w-full h-full object-contain p-3"
           />
         </div>
       )}
-      <CardHeader className="space-y-2 p-3">
-        <div className="flex items-start justify-between gap-2">
-          <CardTitle className="text-base font-bold text-foreground">
+      <CardHeader className="space-y-3">
+        <div className="flex items-start justify-between gap-3">
+          <CardTitle className="text-xl font-bold text-foreground">
             {displayName}
           </CardTitle>
           <Badge 
             variant="secondary"
-            className="whitespace-nowrap font-semibold text-xs"
+            className="whitespace-nowrap font-semibold"
           >
             {category}
           </Badge>
         </div>
-        <CardDescription className="text-xs leading-relaxed font-semibold text-foreground">
+        <CardDescription className="text-sm leading-relaxed font-semibold text-foreground">
           {name}
         </CardDescription>
         
@@ -126,9 +126,9 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
             variant="outline"
             size="sm"
             onClick={() => navigate(`/product/${productId}`)}
-            className="w-full text-xs gap-1 border-primary/30 hover:border-primary hover:bg-primary/5 h-8"
+            className="w-full text-xs gap-2 border-primary/30 hover:border-primary hover:bg-primary/5"
           >
-            <Eye className="h-3 w-3" />
+            <Eye className="h-3.5 w-3.5" />
             Pogledaj Detalje
           </Button>
         )}
@@ -141,23 +141,23 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
               const selectedVariantData = variants?.find(v => v.id === selectedVariant);
               onAskAI(name, selectedVariantData?.size);
             }}
-            className="w-full text-xs gap-1 border-primary/30 hover:border-primary hover:bg-primary/5 h-8"
+            className="w-full text-xs gap-2 border-primary/30 hover:border-primary hover:bg-primary/5"
           >
-            <Sparkles className="h-3 w-3" />
-            Pitaj AI
+            <Sparkles className="h-3.5 w-3.5" />
+            Pitaj AI o ovom proizvodu
           </Button>
         )}
 
         {variants && variants.length > 0 && (
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Veličina:</label>
             <Select value={selectedVariant} onValueChange={setSelectedVariant}>
-              <SelectTrigger className="w-full bg-background border z-50 font-medium h-8 text-xs">
+              <SelectTrigger className="w-full bg-background border z-50 font-medium">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-background border z-[100]">
                 {variants.map((variant) => (
-                  <SelectItem key={variant.id} value={variant.id} className="cursor-pointer font-medium text-xs">
+                  <SelectItem key={variant.id} value={variant.id} className="cursor-pointer font-medium">
                     {variant.size} - €{variant.price.toFixed(2)}
                   </SelectItem>
                 ))}
@@ -168,15 +168,14 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
 
         {currentPrice && (
           <div className="flex items-center justify-between pt-2">
-            <div className="text-xl font-semibold text-foreground tracking-tight">
+            <div className="text-3xl font-semibold text-foreground tracking-tight">
               €{currentPrice.toFixed(2)}
             </div>
             <Button
               onClick={handleAddToCart}
-              size="sm"
-              className="font-bold shadow-md hover:shadow-lg transition-shadow h-8 text-xs"
+              className="font-bold shadow-md hover:shadow-lg transition-shadow"
             >
-              <ShoppingCart className="h-3 w-3 mr-1" />
+              <ShoppingCart className="h-4 w-4 mr-2" />
               Dodaj
             </Button>
           </div>
