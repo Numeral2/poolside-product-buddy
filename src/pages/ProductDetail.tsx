@@ -198,8 +198,8 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          {/* Why Us Section */}
-          <div className="lg:col-span-1">
+          {/* Why Us Section - Hidden on mobile */}
+          <div className="hidden lg:block lg:col-span-1">
             <div className="sticky top-24 bg-primary/5 rounded-lg p-6 border border-primary/20">
               <h3 className="text-xl font-bold mb-6">Zašto kupiti kod nas?</h3>
               <div className="space-y-4">

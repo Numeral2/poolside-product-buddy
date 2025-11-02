@@ -43,7 +43,7 @@ const Products = () => {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
 
   const categories = [
-    "Bazeni", "SPA kade", "Saune", "Laghetto", "Filteri", "Pumpe", 
+    "Filteri", "Pumpe", 
     "Skimmeri", "Osnovna i ABS oprema", "PVC cijevi i fitinzi", "Rasvjeta",
     "Kemikalije", "Pribor za čišćenje", "Mozaik", "Materijal za oblaganje",
     "Doziranje i elektronika", "Efekti", "Inox ljestve", "Prekrivači",
