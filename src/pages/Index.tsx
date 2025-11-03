@@ -1,14 +1,12 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ModernChatBot from "@/components/ModernChatBot";
-import ProductCatalog from "@/components/ProductCatalog";
 import ProductCarousel from "@/components/ProductCarousel";
-import { Sparkles, ShoppingCart, Facebook, Instagram, MessageCircle } from "lucide-react";
+import { Sparkles, ShoppingCart, Facebook, Instagram, MessageCircle, Shield, Truck, HeadphonesIcon, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
-import { cn } from "@/lib/utils";
 
 const categories = [
   "Bazeni",
@@ -50,128 +48,187 @@ const manufacturers = [
 ];
 
 const Index = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
-  const [catalogOpen, setCatalogOpen] = useState(true);
-
-  const openCatalog = (category?: string) => {
-    setSelectedCategory(category);
-    setCatalogOpen(true);
-  };
+  const openCatalog = () => {};
 
   return (
     <div className="min-h-screen bg-background relative">
       <Navigation />
-      <div className="hidden md:block">
-        <ProductCatalog openCategory={selectedCategory} isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
-      </div>
       
-      {/* Main content with transition */}
-      <div className={cn(
-        "transition-all duration-500",
-        catalogOpen ? "md:ml-72" : "md:ml-0"
-      )}>
-        <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={catalogOpen} />
+      {/* Main content - centered */}
+      <div className="w-full">
+        <Hero onVideoEnd={() => {}} onOpenCatalog={() => {}} catalogOpen={false} />
       
       
       {/* Main Content Section */}
-      <section className="relative py-3 md:py-4 px-4 overflow-hidden">
+      <section className="relative py-8 md:py-12 px-4 overflow-hidden">
         {/* Water Animation Background */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-primary/10 to-transparent animate-wave"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-primary/10 to-transparent animate-wave-delay"></div>
         </div>
         
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-7xl relative z-10">
           {/* Main Headline */}
-          <div className="text-center mb-4 md:mb-6">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3 leading-tight">
-              Otkrijte najmoderniju <span className="text-primary">AI online trgovinu</span> za bazene
+          <div className="text-center mb-12">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+              Vaš pouzdani partner za <span className="text-primary">bazene i wellness</span>
             </h1>
-            <p className="text-sm md:text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Mjesto gdje tehnologija i kvaliteta rade za vas. Pronađite sve proizvode za održavanje i opremanje bazena.
+            <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Više od 20 godina iskustva u projektiranju, izgradnji i održavanju bazena. 
+              Pružamo kompletna rješenja s vodećim svjetskim brendovima.
             </p>
           </div>
 
-          {/* Content Layout - Left: AI Assistant, Right: Features */}
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto mb-4 md:mb-6">
-            {/* Left Side - AI Assistant */}
-            <div className="space-y-4">
-              <div>
-                <h2 className="text-2xl font-bold text-foreground mb-3">AI Asistent</h2>
-                <div className="h-1 w-20 rounded-full mb-4" style={{ background: "var(--gradient-water)" }}></div>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Naš AI asistent u manje od 5 sekundi preporučuje proizvode koji najbolje odgovaraju vašem bazenu — bez gubljenja vremena i s maksimalnom preciznošću.
+          {/* Key Benefits Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <Card className="border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
+              <CardContent className="pt-6 text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Truck className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Brza Dostava</h3>
+                <p className="text-sm text-muted-foreground">
+                  Isporuka istog ili sljedećeg radnog dana za sve dostupne proizvode
                 </p>
-                <Button 
-                  size="lg" 
-                  className="w-full"
-                  onClick={() => {
-                    const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
-                    if (chatbot) chatbot.click();
-                  }}
-                >
-                  <Sparkles className="mr-2 h-5 w-5" />
-                  Pokreni AI Asistenta
-                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
+              <CardContent className="pt-6 text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Shield className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Garancija Kvalitete</h3>
+                <p className="text-sm text-muted-foreground">
+                  Svi proizvodi imaju službenu garanciju proizvođača i certifikate
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
+              <CardContent className="pt-6 text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                  <HeadphonesIcon className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Stručna Podrška</h3>
+                <p className="text-sm text-muted-foreground">
+                  Naš tim stručnjaka dostupan je za savjete i tehničku podršku
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
+              <CardContent className="pt-6 text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Award className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">20+ Godina Iskustva</h3>
+                <p className="text-sm text-muted-foreground">
+                  Realizirali smo stotine projekata od privatnih do hotelskih bazena
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* AI Assistant Section */}
+          <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 md:p-12 mb-12 text-center border border-primary/20">
+            <div className="max-w-3xl mx-auto">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/20 mb-6">
+                <Sparkles className="w-10 h-10 text-primary" />
               </div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">AI Asistent za Vaš Bazen</h2>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Naš AI asistent u manje od 5 sekundi preporučuje proizvode koji najbolje odgovaraju vašem bazenu. 
+                Postavite pitanje o održavanju, kemiji vode, opremi ili bilo čemu drugom — odgovor dolazi odmah!
+              </p>
+              <Button 
+                size="lg" 
+                className="text-lg px-8"
+                onClick={() => {
+                  const chatbot = document.querySelector('[data-chatbot]') as HTMLButtonElement;
+                  if (chatbot) chatbot.click();
+                }}
+              >
+                <Sparkles className="mr-2 h-5 w-5" />
+                Pokreni AI Asistenta
+              </Button>
             </div>
+          </div>
 
-            {/* Right Side - Features */}
-            <div className="space-y-3">
-              <div className="flex gap-3 items-start">
-                <div className="h-1 w-8 rounded-full mt-2 flex-shrink-0" style={{ background: "var(--gradient-water)" }}></div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Brza dostava</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Slanje istog ili idućeg dana — vaši proizvodi stižu brzo i sigurno.
+          {/* Services Section */}
+          <div className="mb-12">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">Naše Usluge</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Nudimo kompletna rješenja za vaš bazen - od projektiranja do redovnog održavanja
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="border-primary/20">
+                <CardContent className="pt-6">
+                  <h3 className="font-bold text-xl mb-3">Projektiranje i Izgradnja</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Dizajniramo i gradimo bazene prema vašim željama - od malih privatnih do velikih hotelskih kompleksa.
                   </p>
-                </div>
-              </div>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• 3D vizualizacija projekta</li>
+                    <li>• Profesionalna ugradnja</li>
+                    <li>• Turnkey rješenja</li>
+                  </ul>
+                </CardContent>
+              </Card>
 
-              <div className="flex gap-3 items-start">
-                <div className="h-1 w-8 rounded-full mt-2 flex-shrink-0" style={{ background: "var(--gradient-water)" }}></div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Jednostavan povrat</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Povrat robe unutar 14 dana bez komplikacija.
+              <Card className="border-primary/20">
+                <CardContent className="pt-6">
+                  <h3 className="font-bold text-xl mb-3">Oprema i Pribor</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Najveći izbor opreme za bazene - filtri, pumpe, rasvjeta, kemikalije i sav potreban pribor.
                   </p>
-                </div>
-              </div>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Vodećih svjetski brendovi</li>
+                    <li>• Garancija i servis</li>
+                    <li>• Stručno savjetovanje</li>
+                  </ul>
+                </CardContent>
+              </Card>
 
-              <div className="flex gap-3 items-start">
-                <div className="h-1 w-8 rounded-full mt-2 flex-shrink-0" style={{ background: "var(--gradient-water)" }}></div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Vrhunska kvaliteta</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Radimo s vodećim svjetskim proizvođačima opreme za bazene.
+              <Card className="border-primary/20">
+                <CardContent className="pt-6">
+                  <h3 className="font-bold text-xl mb-3">Održavanje i Servis</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Redovno održavanje, popravci, zimski servis i sve što vaš bazen treba za dugotrajnost.
                   </p>
-                </div>
-              </div>
-
-              <div className="flex gap-3 items-start">
-                <div className="h-1 w-8 rounded-full mt-2 flex-shrink-0" style={{ background: "var(--gradient-water)" }}></div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Stručna podrška</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Tim stručnjaka uvijek spreman pomoći s odabirom i savjetima.
-                  </p>
-                </div>
-              </div>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Analiza kvalitete vode</li>
+                    <li>• Servisni ugovori</li>
+                    <li>• Hitne intervencije</li>
+                  </ul>
+                </CardContent>
+              </Card>
             </div>
           </div>
 
           {/* Product Showcase */}
-          <ProductCarousel />
+          <div className="mb-12">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">Naši Proizvodi</h2>
+              <p className="text-muted-foreground">
+                Pregledajte našu ponudu proizvoda po kategorijama
+              </p>
+            </div>
+            <ProductCarousel />
+          </div>
           
           {/* CTA Button */}
           <div className="flex justify-center">
             <Link to="/products">
               <Button 
                 size="lg" 
-                className="px-8"
+                className="text-lg px-10"
               >
-                <ShoppingCart className="mr-2 h-5 w-5" />
-                Pogledajte sve proizvode
+                <ShoppingCart className="mr-2 h-6 w-6" />
+                Pogledajte Sve Proizvode
               </Button>
             </Link>
           </div>
