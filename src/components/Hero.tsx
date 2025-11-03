@@ -33,13 +33,13 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
   };
 
   return (
-    <div className="relative h-[55vh] md:h-[70vh] w-full bg-background overflow-hidden">
+    <div className="relative h-[55vh] md:h-[70vh] w-screen bg-background overflow-hidden">
       {/* Subtle Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/3 via-background/50 to-background pointer-events-none z-[0]" />
       
       {/* Content Container */}
-      <div className="relative h-full w-full" style={{ paddingTop: '1cm' }}>
-        <div className="container mx-auto h-full px-4 md:px-6 lg:px-8 flex items-center">
+      <div className="relative h-full w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8" style={{ paddingTop: '1cm' }}>
+        <div className="h-full flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full items-center">
             {/* Left Content - Text Section */}
             <div className="space-y-3 md:space-y-4 z-10">
