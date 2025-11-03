@@ -4,11 +4,10 @@ import Navigation from "@/components/Navigation";
 import ProductCard, { ProductVariant } from "@/components/ProductCard";
 import ModernChatBot from "@/components/ModernChatBot";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2, Sparkles, ChevronDown, ArrowUpDown, Grid3x3, List, ShoppingCart } from "lucide-react";
+import { Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useCart } from "@/contexts/CartContext";
 
 interface Product {
   id: string;
@@ -31,7 +30,6 @@ interface GroupedProduct {
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { addToCart } = useCart();
   const category = searchParams.get("category");
   const fromChat = searchParams.get("fromChat");
   const searchQuery = searchParams.get("search");
@@ -43,11 +41,6 @@ const Products = () => {
   const [minPrice, setMinPrice] = useState<string>("0");
   const [maxPrice, setMaxPrice] = useState<string>("10000");
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
-  const [sortBy, setSortBy] = useState<string>("price");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const [itemsPerPage, setItemsPerPage] = useState<number>(12);
-  const [viewMode, setViewMode] = useState<"grid" | "list">("list");
-  const [expandedFilters, setExpandedFilters] = useState<Set<string>>(new Set(["categories", "price"]));
 
   const categories = [
     "Filteri", "Pumpe", 
@@ -57,18 +50,14 @@ const Products = () => {
     "Grijanje", "Roboti"
   ];
 
-  const toggleFilterSection = (section: string) => {
-    const newExpanded = new Set(expandedFilters);
-    if (newExpanded.has(section)) {
-      newExpanded.delete(section);
+  const toggleCategory = (cat: string) => {
+    const newExpanded = new Set(expandedCategories);
+    if (newExpanded.has(cat)) {
+      newExpanded.delete(cat);
     } else {
-      newExpanded.add(section);
+      newExpanded.add(cat);
     }
-    setExpandedFilters(newExpanded);
-  };
-
-  const toggleSortOrder = () => {
-    setSortOrder(prev => prev === "asc" ? "desc" : "asc");
+    setExpandedCategories(newExpanded);
   };
 
   useEffect(() => {
@@ -122,21 +111,9 @@ const Products = () => {
         p.category.toLowerCase().includes(query)
       );
     }
-
-    // Sorting
-    filtered.sort((a, b) => {
-      if (sortBy === "price") {
-        return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
-      } else if (sortBy === "name") {
-        return sortOrder === "asc" 
-          ? a.name.localeCompare(b.name)
-          : b.name.localeCompare(a.name);
-      }
-      return 0;
-    });
     
     setFilteredProducts(filtered);
-  }, [category, products, fromChat, selectedCategory, priceRange, searchQuery, sortBy, sortOrder]);
+  }, [category, products, fromChat, selectedCategory, priceRange, searchQuery]);
 
   const handleCategoryChange = (value: string) => {
     setSelectedCategory(value);
@@ -285,177 +262,123 @@ const Products = () => {
     <div className="min-h-screen bg-background flex">
       <Navigation />
       
-      {/* Sidebar */}
-      <aside className="hidden lg:block fixed left-0 top-24 w-64 h-[calc(100vh-6rem)] bg-card border-r border-border overflow-y-auto z-10">
-        <div className="p-4 space-y-4">
-          {/* Categories Section */}
-          <div>
+      {/* Sidebar - Hidden on mobile */}
+      <aside className="hidden lg:block fixed left-0 top-24 w-56 h-[calc(100vh-6rem)] bg-card border-r border-border overflow-y-auto z-10">
+        <div className="p-4">
+          <h2 className="text-lg font-bold mb-4 text-foreground">KATALOG</h2>
+          
+          <div className="space-y-1">
             <button
-              onClick={() => toggleFilterSection("categories")}
-              className="w-full flex items-center justify-between mb-2"
+              onClick={() => handleCategoryChange("all")}
+              className={`w-full text-left px-3 py-2 text-sm rounded transition-colors ${
+                selectedCategory === "all" 
+                  ? "bg-primary text-primary-foreground font-medium" 
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
             >
-              <h2 className="text-sm font-bold text-foreground uppercase tracking-wider">KATEGORIJE</h2>
-              <ChevronDown className={`h-4 w-4 transition-transform ${expandedFilters.has("categories") ? "rotate-180" : ""}`} />
+              Sve kategorije
             </button>
             
-            {expandedFilters.has("categories") && (
-              <div className="space-y-1">
+            {categories.map(cat => (
+              <div key={cat}>
                 <button
-                  onClick={() => handleCategoryChange("all")}
+                  onClick={() => {
+                    handleCategoryChange(cat);
+                    toggleCategory(cat);
+                  }}
                   className={`w-full text-left px-3 py-2 text-sm rounded transition-colors ${
-                    selectedCategory === "all" 
-                      ? "bg-muted text-foreground font-medium" 
-                      : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                    selectedCategory === cat 
+                      ? "bg-primary text-primary-foreground font-medium" 
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
-                  Sve kategorije
+                  {cat}
                 </button>
-                
-                {categories.map(cat => (
-                  <button
-                    key={cat}
-                    onClick={() => handleCategoryChange(cat)}
-                    className={`w-full text-left px-3 py-2 text-sm rounded transition-colors ${
-                      selectedCategory === cat 
-                        ? "bg-muted text-foreground font-medium" 
-                        : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
               </div>
-            )}
+            ))}
           </div>
-
-          {/* Price Filter */}
-          <div className="border-t border-border pt-4">
-            <button
-              onClick={() => toggleFilterSection("price")}
-              className="w-full flex items-center justify-between mb-2"
-            >
-              <h3 className="text-sm font-bold text-foreground uppercase tracking-wider">CIJENA</h3>
-              <ChevronDown className={`h-4 w-4 transition-transform ${expandedFilters.has("price") ? "rotate-180" : ""}`} />
-            </button>
-            
-            {expandedFilters.has("price") && (
-              <div className="space-y-2">
-                <Input
-                  type="number"
-                  placeholder="Min"
-                  value={minPrice}
-                  onChange={(e) => setMinPrice(e.target.value)}
-                  className="h-9 text-sm bg-background"
-                />
-                <Input
-                  type="number"
-                  placeholder="Max"
-                  value={maxPrice}
-                  onChange={(e) => setMaxPrice(e.target.value)}
-                  className="h-9 text-sm bg-background"
-                />
-                <Button onClick={handlePriceFilter} size="sm" className="w-full">
-                  Primijeni
-                </Button>
-              </div>
-            )}
+        </div>
+        
+        {/* Price Filter in Sidebar */}
+        <div className="p-4 border-t border-border">
+          <h3 className="text-sm font-semibold mb-3">Raspon cijena (€)</h3>
+          <div className="space-y-2">
+            <Input
+              type="number"
+              placeholder="Min"
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+              className="h-8 text-sm"
+            />
+            <Input
+              type="number"
+              placeholder="Max"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              className="h-8 text-sm"
+            />
+            <Button onClick={handlePriceFilter} size="sm" className="w-full h-8">
+              Filtriraj
+            </Button>
           </div>
         </div>
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 lg:ml-64 pt-24 pb-12 px-4 lg:px-8">
-        {/* Top Controls */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
-          <h1 className="text-2xl font-bold">
-            {searchQuery ? `Rezultati: "${searchQuery}"` : 
-             selectedCategory !== "all" ? selectedCategory : "Svi Proizvodi"}
+      <div className="flex-1 lg:ml-56 pt-24 pb-12 px-4 lg:px-6">
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold mb-2">
+            {searchQuery ? `Rezultati pretrage: "${searchQuery}"` : 
+             category ? category : "Svi Proizvodi"}
           </h1>
-          
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            {/* Sort By */}
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground whitespace-nowrap">Sort By</span>
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-32 h-9 bg-background">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-background z-50">
-                  <SelectItem value="price">Price</SelectItem>
-                  <SelectItem value="name">Name</SelectItem>
-                </SelectContent>
-              </Select>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-9 w-9"
-                onClick={toggleSortOrder}
-              >
-                <ArrowUpDown className="h-4 w-4" />
-              </Button>
-            </div>
-
-            {/* Items Per Page */}
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground whitespace-nowrap">Show</span>
-              <Select value={itemsPerPage.toString()} onValueChange={(v) => setItemsPerPage(parseInt(v))}>
-                <SelectTrigger className="w-20 h-9 bg-background">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-background z-50">
-                  <SelectItem value="12">12</SelectItem>
-                  <SelectItem value="24">24</SelectItem>
-                  <SelectItem value="48">48</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* View Toggle */}
-            <div className="flex gap-1 border border-border rounded">
-              <Button
-                variant={viewMode === "list" ? "default" : "ghost"}
-                size="icon"
-                className="h-9 w-9"
-                onClick={() => setViewMode("list")}
-              >
-                <List className="h-4 w-4" />
-              </Button>
-              <Button
-                variant={viewMode === "grid" ? "default" : "ghost"}
-                size="icon"
-                className="h-9 w-9"
-                onClick={() => setViewMode("grid")}
-              >
-                <Grid3x3 className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
+          <p className="text-sm text-muted-foreground flex items-center gap-2">
+            <Sparkles className="h-4 w-4" />
+            Kliknite "Pitaj AI" na proizvodu za detaljne informacije
+          </p>
         </div>
 
-        {/* Products Display */}
         {isLoading ? (
           <div className="flex justify-center items-center py-20">
             <Loader2 className="h-12 w-12 animate-spin text-primary" />
           </div>
-        ) : viewMode === "list" ? (
-          /* List View */
-          <div className="space-y-4">
-            {groupedProducts.slice(0, itemsPerPage).map((product) => {
-              const originalPrice = product.price / 0.85;
-              return (
+        ) : selectedCategory === "Filteri" ? (
+          <div className="space-y-8">
+            {/* Hero Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-12">
+              <div>
+                <h2 className="text-3xl font-bold mb-4">Filteri za bazene - čista voda, bezbrižno kupanje</h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Filteri su ključni dio sustava za održavanje čistoće vode u bazenu. Uklanjaju nečistoće, 
+                  bakterije i alge, osiguravajući kristalno čistu vodu.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Naša ponuda uključuje profesionalne filtere vrhunske kvalitete - IML Lisboa seriju, 
+                  Astral Aster filtere, multiventile i kompletnu opremu za filtraciju od kvarcnog pijeska 
+                  do filter stakla. Prikladni za privatne i komercijalne bazene svih veličina.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <img src="/images/filter-lisboa.png" alt="IML Lisboa Filter" className="rounded-lg shadow-lg" />
+                <img src="/images/filter-astral-aster.png" alt="Astral Aster Filter" className="rounded-lg shadow-lg" />
+              </div>
+            </div>
+
+            {/* Products List */}
+            <div className="space-y-4 md:space-y-6">
+              {groupedProducts.map((product) => (
                 <div 
                   key={product.id}
-                  className="bg-card rounded border border-border hover:shadow-lg transition-shadow"
+                  className="bg-card rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-border/50"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4">
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 p-3 md:p-6">
                     {/* Product Image */}
                     <div className="md:col-span-3">
                       <Link to={`/product/${product.id}`}>
-                        <div className="aspect-square bg-muted/10 rounded overflow-hidden hover:bg-muted/20 transition-colors">
+                        <div className="aspect-square bg-muted/10 rounded-lg overflow-hidden hover:bg-muted/20 transition-colors">
                           <img 
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-contain p-4"
+                            className="w-full h-full object-contain p-3 md:p-6"
                           />
                         </div>
                       </Link>
@@ -463,86 +386,76 @@ const Products = () => {
 
                     {/* Product Details */}
                     <div className="md:col-span-9 flex flex-col justify-between">
-                      <div>
+                      <div className="space-y-2 md:space-y-3">
                         <Link 
                           to={`/product/${product.id}`}
                           className="group"
                         >
-                          <h3 className="text-xl font-bold group-hover:text-primary transition-colors mb-2">
+                          <h3 className="text-lg md:text-2xl font-bold group-hover:text-primary transition-colors">
                             {product.name}
                           </h3>
                         </Link>
                         
-                        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                           {product.description}
                         </p>
 
-                        {/* Variants */}
+                        {/* Variants Selection */}
                         {product.variants && product.variants.length > 0 && (
-                          <div className="mb-4">
-                            <p className="text-xs font-medium mb-2">Dostupne veličine:</p>
-                            <div className="flex flex-wrap gap-2">
-                              {product.variants.map((variant) => {
-                                const variantOriginalPrice = variant.price / 0.85;
-                                return (
-                                  <Link
-                                    key={variant.id}
-                                    to={`/product/${variant.id}`}
-                                    className="group flex flex-col items-center px-4 py-2 border border-border rounded hover:border-primary hover:bg-primary/5 transition-all"
-                                  >
-                                    <span className="text-sm font-semibold group-hover:text-primary">
-                                      {variant.size}
-                                    </span>
-                                    <div className="flex items-center gap-2">
-                                      <span className="text-xs text-muted-foreground line-through">
-                                        €{variantOriginalPrice.toFixed(2)}
-                                      </span>
-                                      <span className="text-sm font-bold text-primary">
-                                        €{variant.price.toFixed(2)}
-                                      </span>
-                                    </div>
-                                  </Link>
-                                );
-                              })}
+                          <div className="pt-2 md:pt-3">
+                            <p className="text-xs md:text-sm font-medium mb-2 md:mb-3">Dostupne veličine:</p>
+                            <div className="flex flex-wrap gap-2 md:gap-3">
+                              {product.variants.map((variant) => (
+                                <Link
+                                  key={variant.id}
+                                  to={`/product/${variant.id}`}
+                                  className="group flex flex-col items-center px-3 py-2 md:px-5 md:py-3 border-2 border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all"
+                                >
+                                  <span className="text-sm md:text-lg font-semibold group-hover:text-primary transition-colors">
+                                    {variant.size}
+                                  </span>
+                                  <span className="text-xs md:text-sm text-muted-foreground">
+                                    €{variant.price.toFixed(2)}
+                                  </span>
+                                </Link>
+                              ))}
                             </div>
                           </div>
                         )}
                       </div>
 
                       {/* Price and Actions */}
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-4 border-t">
-                        <div className="flex items-baseline gap-3">
-                          <span className="text-xl text-muted-foreground line-through">
-                            €{originalPrice.toFixed(2)}
-                          </span>
-                          <span className="text-3xl font-bold text-foreground">
-                            €{product.price.toFixed(2)}
-                          </span>
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4 pt-3 md:pt-6 mt-3 md:mt-6 border-t">
+                        <div>
+                          <p className="text-xs md:text-sm text-muted-foreground mb-1">Cijena od</p>
+                          <p className="text-2xl md:text-3xl font-bold text-primary">€{product.price.toFixed(2)}</p>
                         </div>
-                        <Button
-                          onClick={() => addToCart({
-                            id: product.id,
-                            name: product.name,
-                            price: product.price,
-                            category: product.category,
-                            image: product.image,
-                          })}
-                          className="w-full sm:w-auto gap-2"
-                        >
-                          <ShoppingCart className="h-4 w-4" />
-                          ADD TO CART
-                        </Button>
+                        <div className="flex flex-col sm:flex-row gap-2 md:gap-3 w-full sm:w-auto">
+                          <Link to={`/product/${product.id}`} className="w-full sm:w-auto">
+                            <Button className="w-full" size="default">
+                              Pogledaj Detalje
+                            </Button>
+                          </Link>
+                          <Button
+                            variant="outline"
+                            size="default"
+                            onClick={() => handleAskAI(product.name)}
+                            className="gap-2 w-full sm:w-auto"
+                          >
+                            <Sparkles className="h-4 w-4" />
+                            Pitaj AI
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         ) : (
-          /* Grid View */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {groupedProducts.slice(0, itemsPerPage).map((product) => (
+            {groupedProducts.map((product) => (
               <ProductCard
                 key={product.id}
                 name={product.name}
