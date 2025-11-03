@@ -54,12 +54,10 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative overflow-x-hidden">
+    <div className="min-h-screen bg-background relative">
       <Navigation />
       
-      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-        <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={false} />
-      </div>
+      <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={false} />
       
       {/* Discount Banner */}
       <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-4 text-center">
