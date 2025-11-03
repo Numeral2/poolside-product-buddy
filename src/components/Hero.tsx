@@ -33,144 +33,143 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
   };
 
   return (
-    <div className="relative h-[50vh] md:h-[60vh] w-full overflow-hidden bg-background">
-      {/* Lighter overlay */}
-      <div className="absolute inset-0 bg-background/80 pointer-events-none z-[0]" />
+    <div className="relative h-[55vh] md:h-[65vh] w-full overflow-hidden bg-background">
+      {/* Subtle Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background pointer-events-none z-[0]" />
       
-      {/* Elegant Side Gradients - Always visible */}
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-primary/5 via-primary/3 to-transparent pointer-events-none z-[1]" />
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-primary/5 via-primary/3 to-transparent pointer-events-none z-[1]" />
-      
-      {/* Video on Right Side - Smaller */}
-      <div 
-        className={`absolute top-1/2 -translate-y-1/2 h-[75%] transition-all duration-[2000ms] ease-in-out ${
-          videoEnded ? 'translate-x-full opacity-0 scale-110' : 'translate-x-0 opacity-100 scale-100'
-        }`}
-        style={{ 
-          zIndex: 2,
-          right: '5%',
-          width: '35%'
-        }}
-      >
-        <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl bg-background">
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            playsInline
-            onEnded={handleVideoEnd}
-            className="w-full h-full object-cover"
-          >
-            <source src="/pool-entry-video.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-
-      {/* Product Showcase - Shows after video ends - RIGHT SIDE */}
-      {videoEnded && (
+      {/* Content Container - 1cm from top */}
+      <div className="absolute inset-0" style={{ top: '1cm', bottom: 0 }}>
+        {/* Left Content - Text Section */}
         <div 
-          className="absolute top-0 h-full flex items-center animate-fade-in transition-all duration-500" 
-          style={{ 
-            zIndex: 2,
-            right: '2rem',
-            width: 'calc(40% - 2rem)',
-            justifyContent: 'center'
+          className="absolute left-0 top-0 h-full flex items-center"
+          style={{
+            zIndex: 10,
+            width: '50%',
+            paddingLeft: 'clamp(2rem, 5vw, 6rem)'
           }}
         >
-          <div className="flex flex-col items-center gap-2 md:gap-3 lg:gap-4 px-2">
-            {/* Grid layout: 2 on top, 1 on bottom - Responsive */}
-            <div className="flex flex-col gap-0.5">
-              {/* Top row - 2 images */}
-              <div className="flex gap-0.5 justify-center">
-                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                  <img src={productPump} alt="Pool Pump" className="w-16 h-20 xs:w-18 xs:h-22 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
+          <div className="max-w-lg space-y-3 sm:space-y-4 md:space-y-6">
+            <div className="space-y-2 sm:space-y-3 md:space-y-4">
+              <div className="flex flex-col items-start">
+                <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight mb-2 sm:mb-3 md:mb-4">
+                  CoolPool d.o.o.
+                </h1>
+                <div className="h-1 w-48 sm:w-56 md:w-64 rounded-full bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
+              </div>
+              
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground font-light leading-relaxed">
+                Službeni partner vodećeg<br />svjetskog proizvođača
+              </p>
+              <div>
+                <img 
+                  src={astralpool} 
+                  alt="AstralPool" 
+                  className="h-10 xs:h-12 sm:h-14 md:h-16 lg:h-20 object-contain opacity-90"
+                />
+              </div>
+            </div>
+
+            {/* Animated Stats - Show only after video ends */}
+            {videoEnded && (
+              <div className="space-y-2 sm:space-y-3 md:space-y-4 pt-4 sm:pt-6 md:pt-8 animate-fade-in">
+                <div className="flex items-baseline gap-3 sm:gap-4">
+                  <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold text-primary tabular-nums">
+                    <AnimatedCounter end={18} suffix="+" />
+                  </div>
+                  <div className="text-sm xs:text-base sm:text-lg md:text-xl text-muted-foreground font-medium">
+                    godina s vama
+                  </div>
                 </div>
-                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                  <img src={productControl} alt="Pool Control" className="w-16 h-20 xs:w-18 xs:h-22 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
+
+                <div className="flex items-baseline gap-3 sm:gap-4">
+                  <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold text-primary tabular-nums">
+                    <AnimatedCounter end={2000} suffix="+" />
+                  </div>
+                  <div className="text-sm xs:text-base sm:text-lg md:text-xl text-muted-foreground font-medium">
+                    prodanih proizvoda
+                  </div>
+                </div>
+
+                <div className="flex items-baseline gap-3 sm:gap-4">
+                  <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold text-primary tabular-nums">
+                    <AnimatedCounter end={1000} suffix="+" />
+                  </div>
+                  <div className="text-sm xs:text-base sm:text-lg md:text-xl text-muted-foreground font-medium">
+                    zadovoljnih kupaca
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Video on Right Side */}
+        <div 
+          className={`absolute right-0 top-0 h-full transition-all duration-1000 ease-out ${
+            videoEnded ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+          }`}
+          style={{ 
+            zIndex: 2,
+            width: '42%',
+            paddingRight: 'clamp(2rem, 5vw, 6rem)'
+          }}
+        >
+          <div className="w-full h-full flex items-center justify-end">
+            <div className="relative w-full max-w-2xl" style={{ aspectRatio: '16/9' }}>
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                playsInline
+                onEnded={handleVideoEnd}
+                className="w-full h-full object-cover rounded-xl shadow-2xl"
+              >
+                <source src="/pool-entry-video.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+
+        {/* Product Showcase - Shows after video ends */}
+        {videoEnded && (
+          <div 
+            className="absolute right-0 top-0 h-full flex items-center animate-fade-in" 
+            style={{ 
+              zIndex: 3,
+              width: '42%',
+              paddingRight: 'clamp(2rem, 5vw, 6rem)'
+            }}
+          >
+            <div className="flex flex-col items-center gap-3 md:gap-4 w-full">
+              <div className="flex flex-col gap-1">
+                {/* Top row - 2 images */}
+                <div className="flex gap-1 justify-center">
+                  <div className="bg-card/50 backdrop-blur-sm rounded-lg p-2 md:p-3 hover:bg-card/70 transition-all duration-300 hover:scale-105 border border-border/50">
+                    <img src={productPump} alt="Pool Pump" className="w-20 h-24 sm:w-24 sm:h-28 md:w-28 md:h-32 lg:w-36 lg:h-40 object-contain" />
+                  </div>
+                  <div className="bg-card/50 backdrop-blur-sm rounded-lg p-2 md:p-3 hover:bg-card/70 transition-all duration-300 hover:scale-105 border border-border/50">
+                    <img src={productControl} alt="Pool Control" className="w-20 h-24 sm:w-24 sm:h-28 md:w-28 md:h-32 lg:w-36 lg:h-40 object-contain" />
+                  </div>
+                </div>
+                
+                {/* Bottom row - 1 image centered */}
+                <div className="flex justify-center">
+                  <div className="bg-card/50 backdrop-blur-sm rounded-lg p-2 md:p-3 hover:bg-card/70 transition-all duration-300 hover:scale-105 border border-border/50">
+                    <img src={productValve} alt="Pool Valve" className="w-20 h-24 sm:w-24 sm:h-28 md:w-28 md:h-32 lg:w-36 lg:h-40 object-contain" />
+                  </div>
                 </div>
               </div>
               
-              {/* Bottom row - 1 image centered */}
-              <div className="flex justify-center">
-                <div className="bg-white/5 backdrop-blur-sm rounded-md p-1 sm:p-1.5 md:p-2 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                  <img src={productValve} alt="Pool Valve" className="w-16 h-20 xs:w-18 xs:h-22 sm:w-20 sm:h-24 md:w-24 md:h-28 lg:w-32 lg:h-36 object-contain" />
-                </div>
-              </div>
-            </div>
-            
-            <Link 
-              to="/products"
-              className="group flex items-center gap-1 sm:gap-1.5 md:gap-2 text-foreground hover:text-primary transition-colors duration-300 text-[10px] xs:text-xs sm:text-sm md:text-base no-underline"
-            >
-              <span className="font-medium whitespace-nowrap">Pogledajte sve proizvode</span>
-              <ArrowRight className="w-3 h-3 xs:w-4 xs:h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300 flex-shrink-0" />
-            </Link>
-          </div>
-        </div>
-      )}
-
-      {/* Left Content - CENTERED */}
-      <div 
-        className="absolute top-0 h-full flex items-center justify-center transition-all duration-500"
-        style={{
-          zIndex: 10,
-          left: 0,
-          width: '60%'
-        }}
-      >
-        <div className="max-w-md space-y-2 sm:space-y-3 md:space-y-4 text-center px-4">
-          <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
-            <div className="flex flex-col items-center">
-              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight mb-2 sm:mb-3">
-                CoolPool d.o.o.
-              </h1>
-              <div className="h-0.5 sm:h-1 w-32 sm:w-40 md:w-48 rounded-full bg-gradient-to-r from-transparent via-primary to-transparent"></div>
-            </div>
-            
-            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground font-light leading-relaxed pt-2 sm:pt-3">
-              Službeni partner vodećeg<br />svjetskog proizvođača
-            </p>
-            <div className="flex justify-center">
-              <img 
-                src={astralpool} 
-                alt="AstralPool" 
-                className="h-8 xs:h-10 sm:h-12 md:h-14 lg:h-16 object-contain opacity-90"
-              />
+              <Link 
+                to="/products"
+                className="group flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-300 text-sm md:text-base font-medium no-underline"
+              >
+                <span className="whitespace-nowrap">Pogledajte sve proizvode</span>
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
+              </Link>
             </div>
           </div>
-
-          {/* Animated Stats - Show only after video ends */}
-          {videoEnded && (
-            <div className="space-y-2 sm:space-y-3 md:space-y-4 pt-3 sm:pt-4 md:pt-6 animate-fade-in">
-              <div className="flex items-baseline justify-center gap-2 sm:gap-3">
-                <div className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-primary tabular-nums">
-                  <AnimatedCounter end={18} suffix="+" />
-                </div>
-                <div className="text-xs xs:text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
-                  godina s vama
-                </div>
-              </div>
-
-              <div className="flex items-baseline justify-center gap-2 sm:gap-3">
-                <div className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-primary tabular-nums">
-                  <AnimatedCounter end={2000} suffix="+" />
-                </div>
-                <div className="text-xs xs:text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
-                  prodanih proizvoda
-                </div>
-              </div>
-
-              <div className="flex items-baseline justify-center gap-2 sm:gap-3">
-                <div className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-primary tabular-nums">
-                  <AnimatedCounter end={1000} suffix="+" />
-                </div>
-                <div className="text-xs xs:text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
-                  zadovoljnih kupaca
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );
