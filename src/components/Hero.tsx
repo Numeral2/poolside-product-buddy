@@ -33,31 +33,37 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
   };
 
   return (
-    <div className="relative h-[50vh] md:h-[60vh] w-full overflow-hidden bg-background/50">
+    <div className="relative h-[50vh] md:h-[60vh] w-full overflow-hidden bg-background">
       {/* Lighter overlay */}
-      <div className="absolute inset-0 bg-white/20 pointer-events-none z-[0]" />
+      <div className="absolute inset-0 bg-background/80 pointer-events-none z-[0]" />
       
       {/* Elegant Side Gradients - Always visible */}
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-primary/3 via-primary/2 to-transparent pointer-events-none z-[1]" />
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-primary/5 via-primary/3 to-transparent pointer-events-none z-[1]" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-primary/5 via-primary/3 to-transparent pointer-events-none z-[1]" />
       
       {/* Video on Right Side - Smaller */}
       <div 
-        className={`absolute right-0 top-1/2 -translate-y-1/2 h-[80%] w-full md:w-[40%] transition-all duration-[2000ms] ease-in-out ${
+        className={`absolute top-1/2 -translate-y-1/2 h-[75%] transition-all duration-[2000ms] ease-in-out ${
           videoEnded ? 'translate-x-full opacity-0 scale-110' : 'translate-x-0 opacity-100 scale-100'
         }`}
-        style={{ zIndex: 2 }}
+        style={{ 
+          zIndex: 2,
+          right: '5%',
+          width: '35%'
+        }}
       >
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          onEnded={handleVideoEnd}
-          className="w-full h-full object-cover rounded-lg shadow-2xl"
-        >
-          <source src="/pool-entry-video.mp4" type="video/mp4" />
-        </video>
+        <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl bg-background">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            onEnded={handleVideoEnd}
+            className="w-full h-full object-cover"
+          >
+            <source src="/pool-entry-video.mp4" type="video/mp4" />
+          </video>
+        </div>
       </div>
 
       {/* Product Showcase - Shows after video ends - RIGHT SIDE */}
