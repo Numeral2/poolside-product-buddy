@@ -55,10 +55,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background relative">
-      <Navigation />
-      
-      <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={false} />
-      
       {/* Discount Banner */}
       <div className="relative bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-2 text-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-transparent animate-[slide_3s_ease-in-out_infinite]" 
@@ -71,6 +67,10 @@ const Index = () => {
           🎉 Trajno snižene cijene na sve artikle - Uštedite 15%! 🎉
         </p>
       </div>
+      
+      <Navigation />
+      
+      <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={false} />
 
       {/* Main Content Section */}
       <section className="relative py-2 md:py-3 px-4 overflow-hidden">
