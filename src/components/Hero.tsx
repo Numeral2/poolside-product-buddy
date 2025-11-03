@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AnimatedCounter from "./AnimatedCounter";
 import { ArrowRight } from "lucide-react";
@@ -14,23 +14,10 @@ interface HeroProps {
 }
 
 const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
-  const [videoEnded, setVideoEnded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.9;
-    }
-  }, []);
-
-  const handleVideoEnd = () => {
-    setVideoEnded(true);
+    // Trigger video end callback on mount since we're not using video
     onVideoEnd?.();
-  };
-
-  const handleViewProducts = () => {
-    onOpenCatalog?.();
-  };
+  }, [onVideoEnd]);
 
   return (
     <div className="relative h-[55vh] md:h-[70vh] w-screen bg-background overflow-hidden">
@@ -63,9 +50,8 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
                 </div>
               </div>
 
-              {/* Animated Stats - Show only after video ends */}
-              {videoEnded && (
-                <div className="space-y-2 md:space-y-3 pt-3 md:pt-4 animate-fade-in">
+              {/* Animated Stats */}
+              <div className="space-y-2 md:space-y-3 pt-3 md:pt-4 animate-fade-in">
                   <div className="flex items-baseline gap-2 sm:gap-3">
                     <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary tabular-nums">
                       <AnimatedCounter end={18} suffix="+" />
@@ -93,32 +79,11 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
                     </div>
                   </div>
                 </div>
-              )}
-            </div>
-
-            {/* Right Side - Video or Product Showcase */}
-            <div className="relative h-full flex items-center justify-center lg:justify-end">
-              {/* Video */}
-              <div 
-                className={`relative w-full aspect-video transition-all duration-1000 ease-out ${
-                  videoEnded ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
-                }`}
-              >
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  muted
-                  playsInline
-                  onEnded={handleVideoEnd}
-                  className="w-full h-full object-cover rounded-lg shadow-2xl"
-                >
-                  <source src="/pool-entry-video.mp4" type="video/mp4" />
-                </video>
               </div>
 
-              {/* Product Showcase - Shows after video ends */}
-              {videoEnded && (
-                <div className="absolute inset-0 flex items-center justify-center animate-fade-in">
+            {/* Right Side - Product Showcase */}
+            <div className="relative h-full flex items-center justify-center lg:justify-end">
+              <div className="relative flex items-center justify-center animate-fade-in">
                   <div className="flex flex-col items-center gap-3">
                     <div className="flex flex-col gap-2">
                       {/* Top row - 2 images */}
@@ -148,8 +113,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
                     </Link>
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
           </div>
         </div>
       </div>
