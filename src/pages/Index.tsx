@@ -60,14 +60,14 @@ const Index = () => {
       <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={false} />
       
       {/* Discount Banner */}
-      <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-4 text-center">
-        <p className="text-lg md:text-2xl font-bold text-foreground animate-pulse">
+      <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-2 text-center">
+        <p className="text-base md:text-xl font-bold text-foreground animate-pulse">
           🎉 Trajno snižene cijene na sve artikle - Uštedite 15%! 🎉
         </p>
       </div>
 
       {/* Main Content Section */}
-      <section className="relative py-3 md:py-4 px-4 overflow-hidden">
+      <section className="relative py-2 md:py-3 px-4 overflow-hidden">
         {/* Water Animation Background */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-primary/10 to-transparent animate-wave"></div>
@@ -76,17 +76,17 @@ const Index = () => {
         
         <div className="container mx-auto max-w-6xl relative z-10">
           {/* Main Headline */}
-          <div className="text-center mb-4 md:mb-6">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3 leading-tight">
+          <div className="text-center mb-3 md:mb-4">
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-1 md:mb-2 leading-tight">
               Otkrijte najmoderniju <span className="text-primary">AI online trgovinu</span> za bazene
             </h1>
-            <p className="text-sm md:text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xs md:text-sm text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Mjesto gdje tehnologija i kvaliteta rade za vas. Pronađite sve proizvode za održavanje i opremanje bazena.
             </p>
           </div>
 
           {/* Content Layout - Left: AI Assistant, Right: Features */}
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto mb-4 md:mb-6">
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4 max-w-5xl mx-auto mb-3 md:mb-4">
             {/* Left Side - AI Assistant */}
             <div className="space-y-4">
               <div>
@@ -172,7 +172,7 @@ const Index = () => {
       </section>
       
       {/* Manufacturers Section */}
-      <section className="py-3 md:py-4 px-4 bg-muted/10">
+      <section className="py-2 md:py-3 px-4 bg-muted/10">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-6">
             <h2 className="text-xl md:text-2xl font-bold mb-2">
@@ -201,8 +201,8 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="relative overflow-hidden bg-gradient-to-b from-muted/50 to-muted border-t border-primary/20">
-        <div className="container mx-auto px-4 py-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div className="container mx-auto px-4 py-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
             {/* Company Info and Map */}
             <div className="space-y-3">
               <div className="flex items-center gap-3">
