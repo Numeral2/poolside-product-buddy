@@ -41,6 +41,9 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
     ? variants.find(v => v.id === selectedVariant)?.price || variants[0].price
     : price;
 
+  // Calculate original price (15% higher than current price)
+  const originalPrice = currentPrice ? currentPrice / 0.85 : undefined;
+
   const displayName = variants && variants.length > 0
     ? name.replace(/\s+\d+$/, "")
     : name;
@@ -168,8 +171,13 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
 
         {currentPrice && (
           <div className="flex items-center justify-between pt-2">
-            <div className="text-3xl font-semibold text-foreground tracking-tight">
-              €{currentPrice.toFixed(2)}
+            <div className="flex flex-col gap-1">
+              <div className="text-sm text-muted-foreground line-through">
+                €{originalPrice?.toFixed(2)}
+              </div>
+              <div className="text-3xl font-semibold text-foreground tracking-tight">
+                €{currentPrice.toFixed(2)}
+              </div>
             </div>
             <Button
               onClick={handleAddToCart}
