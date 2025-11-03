@@ -395,21 +395,6 @@ const Products = () => {
               </Button>
             </div>
 
-            {/* Items Per Page */}
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground whitespace-nowrap">Show</span>
-              <Select value={itemsPerPage.toString()} onValueChange={(v) => setItemsPerPage(parseInt(v))}>
-                <SelectTrigger className="w-20 h-9 bg-background">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-background z-50">
-                  <SelectItem value="12">12</SelectItem>
-                  <SelectItem value="24">24</SelectItem>
-                  <SelectItem value="48">48</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
             {/* View Toggle */}
             <div className="flex gap-1 border border-border rounded">
               <Button
@@ -447,15 +432,15 @@ const Products = () => {
                   key={product.id}
                   className="bg-card rounded border border-border hover:shadow-lg transition-shadow"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4">
+                  <div className="flex flex-col md:grid md:grid-cols-12 gap-4 p-4">
                     {/* Product Image */}
-                    <div className="md:col-span-3">
-                      <Link to={`/product/${product.id}`}>
-                        <div className="aspect-square bg-muted/10 rounded overflow-hidden hover:bg-muted/20 transition-colors">
+                    <div className="md:col-span-3 flex justify-center">
+                      <Link to={`/product/${product.id}`} className="w-32 h-32 sm:w-40 sm:h-40 md:w-full md:h-auto md:aspect-square">
+                        <div className="w-full h-full bg-muted/10 rounded overflow-hidden hover:bg-muted/20 transition-colors">
                           <img 
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-contain p-4"
+                            className="w-full h-full object-contain p-2 md:p-4"
                           />
                         </div>
                       </Link>
@@ -541,7 +526,7 @@ const Products = () => {
           </div>
         ) : (
           /* Grid View */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {groupedProducts.slice(0, itemsPerPage).map((product) => (
               <ProductCard
                 key={product.id}

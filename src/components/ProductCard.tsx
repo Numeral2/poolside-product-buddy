@@ -99,12 +99,12 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
       
       
       {image && (
-        <div className="h-56 overflow-hidden relative bg-muted/20">
+        <div className="h-40 sm:h-48 md:h-56 overflow-hidden relative bg-muted/20">
           <img 
             src={image} 
             alt={name} 
             loading="lazy"
-            className="w-full h-full object-contain p-3"
+            className="w-full h-full object-contain p-2 sm:p-3"
           />
         </div>
       )}
