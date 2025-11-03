@@ -20,7 +20,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
   }, [onVideoEnd]);
 
   return (
-    <div className="relative min-h-[50vh] md:h-[60vh] lg:h-[70vh] w-screen bg-background overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-2 md:pb-4">
+    <div className="relative min-h-[45vh] md:h-[55vh] lg:h-[65vh] w-screen bg-background overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-0">
       {/* Subtle Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/3 via-background/50 to-background pointer-events-none z-[0]" />
       
