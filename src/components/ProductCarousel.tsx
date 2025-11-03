@@ -17,6 +17,11 @@ import productPvcPipe from "@/assets/product-pvc-pipe.png";
 import productRasvjeta from "@/assets/product-rasvjeta.png";
 import productCleaning from "@/assets/product-cleaning.png";
 import productOblaganje from "@/assets/product-oblaganje.png";
+import productDoziranje from "@/assets/product-doziranje.png";
+import productEfekti from "@/assets/product-efekti.png";
+import productInoxLjestve from "@/assets/product-inox-ljestve.png";
+import productPrekrivaci from "@/assets/product-prekrivaci.png";
+import productGrijanje from "@/assets/product-grijanje.png";
 
 const products = [
   {
@@ -73,6 +78,31 @@ const products = [
     name: "Materijal za oblaganje",
     image: productOblaganje,
     category: "Materijal za oblaganje"
+  },
+  {
+    name: "Doziranje i elektronika",
+    image: productDoziranje,
+    category: "Doziranje i elektronika"
+  },
+  {
+    name: "Efekti",
+    image: productEfekti,
+    category: "Efekti"
+  },
+  {
+    name: "Inox ljestve",
+    image: productInoxLjestve,
+    category: "Inox ljestve"
+  },
+  {
+    name: "Prekrivači",
+    image: productPrekrivaci,
+    category: "Prekrivači"
+  },
+  {
+    name: "Grijanje",
+    image: productGrijanje,
+    category: "Grijanje"
   },
 ];
 
