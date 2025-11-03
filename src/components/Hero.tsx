@@ -33,69 +33,68 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
   };
 
   return (
-    <div className="relative h-[55vh] md:h-[70vh] w-full overflow-hidden bg-background">
+    <div className="relative h-[55vh] md:h-[70vh] w-full bg-background">
       {/* Subtle Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/3 via-background/50 to-background pointer-events-none z-[0]" />
       
       {/* Content Container - 1cm from top */}
       <div className="absolute inset-0" style={{ top: '1cm', bottom: 0 }}>
-        {/* Left Content - Text Section */}
+        {/* Left Content - Text Section - Centered horizontally */}
         <div 
-          className="absolute left-0 top-0 h-full flex items-center"
+          className="absolute left-1/2 top-0 h-full flex items-center -translate-x-[120%]"
           style={{
             zIndex: 10,
-            width: '45%',
-            paddingLeft: 'clamp(1.5rem, 4vw, 4rem)',
-            paddingRight: '1rem'
+            width: '400px',
+            maxWidth: '90vw'
           }}
         >
-          <div className="max-w-md space-y-2 sm:space-y-3 md:space-y-4">
-            <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
+          <div className="space-y-2 sm:space-y-2.5 md:space-y-3">
+            <div className="space-y-1.5 sm:space-y-2">
               <div className="flex flex-col items-start">
-                <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight mb-1.5 sm:mb-2">
+                <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-1 sm:mb-1.5">
                   CoolPool d.o.o.
                 </h1>
-                <div className="h-0.5 sm:h-1 w-32 sm:w-40 md:w-48 rounded-full bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
+                <div className="h-0.5 w-24 sm:w-32 md:w-40 rounded-full bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
               </div>
               
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground font-light leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base text-muted-foreground font-light leading-relaxed">
                 Službeni partner vodećeg<br />svjetskog proizvođača
               </p>
               <div>
                 <img 
                   src={astralpool} 
                   alt="AstralPool" 
-                  className="h-8 xs:h-10 sm:h-12 md:h-14 lg:h-16 object-contain opacity-90"
+                  className="h-7 xs:h-8 sm:h-10 md:h-12 lg:h-14 object-contain opacity-90"
                 />
               </div>
             </div>
 
             {/* Animated Stats - Show only after video ends */}
             {videoEnded && (
-              <div className="space-y-1.5 sm:space-y-2 md:space-y-3 pt-2 sm:pt-3 md:pt-4 animate-fade-in">
-                <div className="flex items-baseline gap-2 sm:gap-3">
-                  <div className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-primary tabular-nums">
+              <div className="space-y-1.5 sm:space-y-2 pt-2 sm:pt-2.5 md:pt-3 animate-fade-in">
+                <div className="flex items-baseline gap-1.5 sm:gap-2">
+                  <div className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-primary tabular-nums">
                     <AnimatedCounter end={18} suffix="+" />
                   </div>
-                  <div className="text-xs xs:text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
+                  <div className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium">
                     godina s vama
                   </div>
                 </div>
 
-                <div className="flex items-baseline gap-2 sm:gap-3">
-                  <div className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-primary tabular-nums">
+                <div className="flex items-baseline gap-1.5 sm:gap-2">
+                  <div className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-primary tabular-nums">
                     <AnimatedCounter end={2000} suffix="+" />
                   </div>
-                  <div className="text-xs xs:text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
+                  <div className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium">
                     prodanih proizvoda
                   </div>
                 </div>
 
-                <div className="flex items-baseline gap-2 sm:gap-3">
-                  <div className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-primary tabular-nums">
+                <div className="flex items-baseline gap-1.5 sm:gap-2">
+                  <div className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-primary tabular-nums">
                     <AnimatedCounter end={1000} suffix="+" />
                   </div>
-                  <div className="text-xs xs:text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
+                  <div className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium">
                     zadovoljnih kupaca
                   </div>
                 </div>
@@ -106,17 +105,17 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
 
         {/* Video on Right Side - Larger */}
         <div 
-          className={`absolute right-0 top-0 h-full transition-all duration-1000 ease-out ${
+          className={`absolute left-1/2 top-0 h-full transition-all duration-1000 ease-out ${
             videoEnded ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
           }`}
           style={{ 
             zIndex: 2,
-            width: '55%',
-            paddingLeft: '1rem',
-            paddingRight: 'clamp(1.5rem, 4vw, 4rem)'
+            transform: 'translateX(-15%)',
+            width: 'min(60%, 700px)',
+            maxWidth: '90vw'
           }}
         >
-          <div className="w-full h-full flex items-center">
+          <div className="w-full h-full flex items-center justify-center">
             <div className="relative w-full h-[85%]">
               <video
                 ref={videoRef}
@@ -135,12 +134,12 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
         {/* Product Showcase - Shows after video ends */}
         {videoEnded && (
           <div 
-            className="absolute right-0 top-0 h-full flex items-center animate-fade-in" 
+            className="absolute left-1/2 top-0 h-full flex items-center justify-center animate-fade-in" 
             style={{ 
               zIndex: 3,
-              width: '55%',
-              paddingLeft: '1rem',
-              paddingRight: 'clamp(1.5rem, 4vw, 4rem)'
+              transform: 'translateX(-15%)',
+              width: 'min(60%, 700px)',
+              maxWidth: '90vw'
             }}
           >
             <div className="flex flex-col items-center gap-2 md:gap-3 w-full">
