@@ -97,17 +97,12 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
             </div>
 
             {/* Right Side - Video or Product Showcase */}
-            <div className="relative h-full flex items-center justify-end">
+            <div className="relative h-full flex items-center justify-center lg:justify-end">
               {/* Video */}
               <div 
-                className={`absolute right-0 top-1/2 -translate-y-1/2 transition-all duration-1000 ease-out ${
+                className={`relative w-full aspect-video transition-all duration-1000 ease-out ${
                   videoEnded ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
                 }`}
-                style={{ 
-                  zIndex: 2,
-                  width: '120%',
-                  height: '90%'
-                }}
               >
                 <video
                   ref={videoRef}
@@ -123,33 +118,35 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
 
               {/* Product Showcase - Shows after video ends */}
               {videoEnded && (
-                <div className="relative z-3 animate-fade-in flex flex-col items-center gap-3">
-                  <div className="flex flex-col gap-2">
-                    {/* Top row - 2 images */}
-                    <div className="flex gap-2 justify-center">
-                      <div className="bg-card/50 backdrop-blur-sm rounded-lg p-3 hover:bg-card/70 transition-all duration-300 hover:scale-105 border border-border/50">
-                        <img src={productPump} alt="Pool Pump" className="w-24 h-28 sm:w-28 sm:h-32 md:w-32 md:h-36 lg:w-40 lg:h-44 object-contain" />
+                <div className="absolute inset-0 flex items-center justify-center animate-fade-in">
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="flex flex-col gap-2">
+                      {/* Top row - 2 images */}
+                      <div className="flex gap-2 justify-center">
+                        <div className="bg-card/50 backdrop-blur-sm rounded-lg p-3 hover:bg-card/70 transition-all duration-300 hover:scale-105 border border-border/50">
+                          <img src={productPump} alt="Pool Pump" className="w-24 h-28 sm:w-28 sm:h-32 md:w-32 md:h-36 lg:w-40 lg:h-44 object-contain" />
+                        </div>
+                        <div className="bg-card/50 backdrop-blur-sm rounded-lg p-3 hover:bg-card/70 transition-all duration-300 hover:scale-105 border border-border/50">
+                          <img src={productControl} alt="Pool Control" className="w-24 h-28 sm:w-28 sm:h-32 md:w-32 md:h-36 lg:w-40 lg:h-44 object-contain" />
+                        </div>
                       </div>
-                      <div className="bg-card/50 backdrop-blur-sm rounded-lg p-3 hover:bg-card/70 transition-all duration-300 hover:scale-105 border border-border/50">
-                        <img src={productControl} alt="Pool Control" className="w-24 h-28 sm:w-28 sm:h-32 md:w-32 md:h-36 lg:w-40 lg:h-44 object-contain" />
+                      
+                      {/* Bottom row - 1 image centered */}
+                      <div className="flex justify-center">
+                        <div className="bg-card/50 backdrop-blur-sm rounded-lg p-3 hover:bg-card/70 transition-all duration-300 hover:scale-105 border border-border/50">
+                          <img src={productValve} alt="Pool Valve" className="w-24 h-28 sm:w-28 sm:h-32 md:w-32 md:h-36 lg:w-40 lg:h-44 object-contain" />
+                        </div>
                       </div>
                     </div>
                     
-                    {/* Bottom row - 1 image centered */}
-                    <div className="flex justify-center">
-                      <div className="bg-card/50 backdrop-blur-sm rounded-lg p-3 hover:bg-card/70 transition-all duration-300 hover:scale-105 border border-border/50">
-                        <img src={productValve} alt="Pool Valve" className="w-24 h-28 sm:w-28 sm:h-32 md:w-32 md:h-36 lg:w-40 lg:h-44 object-contain" />
-                      </div>
-                    </div>
+                    <Link 
+                      to="/products"
+                      className="group flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-300 text-sm md:text-base font-medium no-underline"
+                    >
+                      <span className="whitespace-nowrap">Pogledajte sve proizvode</span>
+                      <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                    </Link>
                   </div>
-                  
-                  <Link 
-                    to="/products"
-                    className="group flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-300 text-sm md:text-base font-medium no-underline"
-                  >
-                    <span className="whitespace-nowrap">Pogledajte sve proizvode</span>
-                    <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
-                  </Link>
                 </div>
               )}
             </div>
