@@ -27,7 +27,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
       {/* Content Container */}
       <div className="relative h-full w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="h-full flex items-center">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 lg:gap-16 w-full items-center">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-10 lg:gap-16 w-full items-center">
             {/* Left Content - Text Section */}
             <div className="space-y-2 sm:space-y-3 md:space-y-4 z-10">
               <div className="space-y-2 md:space-y-3">
@@ -82,7 +82,7 @@ const Hero = ({ onVideoEnd, onOpenCatalog, catalogOpen = true }: HeroProps) => {
               </div>
 
             {/* Right Side - Product Showcase */}
-            <div className="relative flex items-center justify-center lg:justify-end mt-4 lg:mt-0">
+            <div className="relative flex items-center justify-center lg:justify-end">
               <div className="relative flex items-center justify-center animate-fade-in">
                   <div className="flex flex-col items-center gap-2 sm:gap-3">
                     <div className="flex flex-col gap-1.5 sm:gap-2">
