@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ModernChatBot from "@/components/ModernChatBot";
-import ProductCatalog from "@/components/ProductCatalog";
+
 import ProductCarousel from "@/components/ProductCarousel";
 import { Sparkles, ShoppingCart, Facebook, Instagram, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import coolpoolLogo from "@/assets/coolpool-logo.png";
-import { cn } from "@/lib/utils";
 
 const categories = [
   "Bazeni",
@@ -50,29 +49,24 @@ const manufacturers = [
 ];
 
 const Index = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
-  const [catalogOpen, setCatalogOpen] = useState(true);
-
   const openCatalog = (category?: string) => {
-    setSelectedCategory(category);
-    setCatalogOpen(true);
+    // Catalog removed from homepage
   };
 
   return (
     <div className="min-h-screen bg-background relative">
       <Navigation />
-      <div className="hidden md:block">
-        <ProductCatalog openCategory={selectedCategory} isOpen={catalogOpen} setIsOpen={setCatalogOpen} />
+      
+      <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={false} />
+      
+      
+      {/* Discount Banner */}
+      <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-4 text-center">
+        <p className="text-lg md:text-2xl font-bold text-foreground animate-pulse">
+          🎉 Trajno snižene cijene na sve artikle - Uštedite 15%! 🎉
+        </p>
       </div>
-      
-      {/* Main content with transition */}
-      <div className={cn(
-        "transition-all duration-500",
-        catalogOpen ? "md:ml-72" : "md:ml-0"
-      )}>
-        <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={catalogOpen} />
-      
-      
+
       {/* Main Content Section */}
       <section className="relative py-3 md:py-4 px-4 overflow-hidden">
         {/* Water Animation Background */}
@@ -323,8 +317,7 @@ const Index = () => {
         </div>
       </footer>
 
-        <ModernChatBot onOpenCatalog={openCatalog} />
-      </div>
+      <ModernChatBot onOpenCatalog={openCatalog} />
     </div>
   );
 };
