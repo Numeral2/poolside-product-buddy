@@ -60,8 +60,14 @@ const Index = () => {
       <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={false} />
       
       {/* Discount Banner */}
-      <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-2 text-center">
-        <p className="text-base md:text-xl font-bold text-foreground animate-pulse">
+      <div className="relative bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-2 text-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-transparent animate-[slide_3s_ease-in-out_infinite]" 
+             style={{ 
+               backgroundSize: '200% 200%',
+               animation: 'diagonal-slide 3s ease-in-out infinite'
+             }} 
+        />
+        <p className="relative text-base md:text-xl font-bold text-foreground animate-pulse z-10">
           🎉 Trajno snižene cijene na sve artikle - Uštedite 15%! 🎉
         </p>
       </div>

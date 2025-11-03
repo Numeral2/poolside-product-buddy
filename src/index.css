@@ -186,6 +186,20 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes diagonal-slide {
+  0% {
+    transform: translate(-100%, 100%);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(100%, -100%);
+    opacity: 0.3;
+  }
+}
+
 .glass-effect {
   background: hsl(var(--background) / 0.6);
   backdrop-filter: blur(8px);
