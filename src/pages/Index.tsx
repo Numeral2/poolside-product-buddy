@@ -73,7 +73,7 @@ const Index = () => {
       </div>
 
       {/* Main Content Section */}
-      <section className="relative py-2 md:py-3 px-4 overflow-hidden">
+      <section className="relative py-2 md:py-3 px-4 overflow-hidden mt-[4mm]">
         {/* Water Animation Background */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-primary/10 to-transparent animate-wave"></div>
