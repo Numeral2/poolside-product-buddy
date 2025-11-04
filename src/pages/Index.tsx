@@ -60,16 +60,22 @@ const Index = () => {
       <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={false} />
       
       {/* Discount Banner */}
-      <div className="relative bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-2 text-center overflow-hidden mb-[4mm]">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-transparent animate-[slide_3s_ease-in-out_infinite]" 
-             style={{ 
-               backgroundSize: '200% 200%',
-               animation: 'diagonal-slide 3s ease-in-out infinite'
-             }} 
-        />
-        <p className="relative text-base md:text-xl font-bold text-foreground animate-pulse z-10">
-          🎉 Trajno snižene cijene na sve artikle - Uštedite 15%! 🎉
-        </p>
+      <div className="relative overflow-hidden mb-[4mm]" style={{ background: "var(--gradient-water)" }}>
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent animate-[diagonal-slide_3s_ease-in-out_infinite]" />
+        <div className="container mx-auto px-4 py-3 relative z-10">
+          <div className="flex items-center justify-center gap-3">
+            <div className="hidden md:flex h-px w-12 bg-white/30"></div>
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30">
+                <span className="text-xs font-bold text-white uppercase tracking-wider">-15%</span>
+              </span>
+              <p className="text-sm md:text-base font-semibold text-white tracking-wide">
+                Trajno snižene cijene na sve artikle
+              </p>
+            </div>
+            <div className="hidden md:flex h-px w-12 bg-white/30"></div>
+          </div>
+        </div>
       </div>
 
       {/* Main Content Section */}
