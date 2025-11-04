@@ -515,7 +515,7 @@ const Products = () => {
                           className="w-full sm:w-auto gap-2"
                         >
                           <ShoppingCart className="h-4 w-4" />
-                          ADD TO CART
+                          DODAJ U KOŠARICU
                         </Button>
                       </div>
                     </div>

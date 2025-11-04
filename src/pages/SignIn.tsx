@@ -26,11 +26,11 @@ const SignIn = () => {
 
       if (error) throw error;
 
-      toast.success("Signed in successfully!");
+      toast.success("Uspješno ste se prijavili!");
       navigate("/");
     } catch (error: any) {
       console.error("Sign in error:", error);
-      toast.error(error.message || "Failed to sign in");
+      toast.error(error.message || "Prijava nije uspjela");
     } finally {
       setIsLoading(false);
     }
@@ -50,9 +50,9 @@ const SignIn = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Sign In</CardTitle>
+            <CardTitle>Prijava</CardTitle>
             <CardDescription>
-              Enter your credentials to access your account
+              Unesite svoje podatke za pristup računu
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -62,14 +62,14 @@ const SignIn = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="vas@primjer.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Lozinka</Label>
                 <Input
                   id="password"
                   type="password"
@@ -83,13 +83,13 @@ const SignIn = () => {
                 className="w-full bg-gradient-to-r from-primary to-secondary"
                 disabled={isLoading}
               >
-                {isLoading ? "Signing in..." : "Sign In"}
+                {isLoading ? "Prijava u tijeku..." : "Prijavi se"}
               </Button>
             </form>
             <p className="text-center text-sm text-muted-foreground mt-4">
-              Don't have an account?{" "}
+              Nemate račun?{" "}
               <Link to="/signup" className="text-primary hover:underline">
-                Sign Up
+                Registriraj se
               </Link>
             </p>
           </CardContent>

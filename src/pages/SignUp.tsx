@@ -19,12 +19,12 @@ const SignUp = () => {
     e.preventDefault();
     
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
+      toast.error("Lozinke se ne podudaraju");
       return;
     }
 
     if (password.length < 6) {
-      toast.error("Password must be at least 6 characters");
+      toast.error("Lozinka mora imati najmanje 6 znakova");
       return;
     }
 
@@ -41,11 +41,11 @@ const SignUp = () => {
 
       if (error) throw error;
 
-      toast.success("Account created successfully! Please check your email to verify.");
+      toast.success("Račun uspješno kreiran! Provjerite email za verifikaciju.");
       navigate("/signin");
     } catch (error: any) {
       console.error("Sign up error:", error);
-      toast.error(error.message || "Failed to create account");
+      toast.error(error.message || "Kreiranje računa nije uspjelo");
     } finally {
       setIsLoading(false);
     }
@@ -65,9 +65,9 @@ const SignUp = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Create Account</CardTitle>
+            <CardTitle>Kreiraj račun</CardTitle>
             <CardDescription>
-              Sign up to start exploring our pool products
+              Registrirajte se kako biste pregledali naše proizvode za bazene
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -77,14 +77,14 @@ const SignUp = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="vas@primjer.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Lozinka</Label>
                 <Input
                   id="password"
                   type="password"
@@ -94,7 +94,7 @@ const SignUp = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label htmlFor="confirmPassword">Potvrdi lozinku</Label>
                 <Input
                   id="confirmPassword"
                   type="password"
@@ -108,13 +108,13 @@ const SignUp = () => {
                 className="w-full bg-gradient-to-r from-primary to-secondary"
                 disabled={isLoading}
               >
-                {isLoading ? "Creating account..." : "Sign Up"}
+                {isLoading ? "Kreiranje računa..." : "Registriraj se"}
               </Button>
             </form>
             <p className="text-center text-sm text-muted-foreground mt-4">
-              Already have an account?{" "}
+              Već imate račun?{" "}
               <Link to="/signin" className="text-primary hover:underline">
-                Sign In
+                Prijavi se
               </Link>
             </p>
           </CardContent>
