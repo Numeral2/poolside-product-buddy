@@ -78,8 +78,14 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
     return description.replace(/\d+(?=[^\d]*$)/, selectedVariantData.size);
   }, [variants, selectedVariant, description, name]);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!currentPrice) return;
+    
+    const rect = e.currentTarget.getBoundingClientRect();
+    const animationStart = {
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+    };
     
     const selectedVariantData = variants?.find(v => v.id === selectedVariant);
     
@@ -91,7 +97,7 @@ const ProductCard = ({ name, description, price, category, image, variants, onAs
       image,
       variantId: selectedVariantData?.id,
       variantSize: selectedVariantData?.size,
-    });
+    }, animationStart);
   };
 
   return (

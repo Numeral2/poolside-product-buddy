@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Menu, ChevronDown, ShoppingCart, Search } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +17,17 @@ const Navigation = () => {
   const { totalItems } = useCart();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [cartBounce, setCartBounce] = useState(false);
+  const prevTotalRef = useRef(totalItems);
+
+  // Trigger bounce animation when items are added
+  useEffect(() => {
+    if (totalItems > prevTotalRef.current) {
+      setCartBounce(true);
+      setTimeout(() => setCartBounce(false), 600);
+    }
+    prevTotalRef.current = totalItems;
+  }, [totalItems]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -180,7 +191,8 @@ const Navigation = () => {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-10 w-10 p-0"
+              className={`h-10 w-10 p-0 transition-transform ${cartBounce ? 'animate-bounce' : ''}`}
+              data-cart-icon
             >
               <ShoppingCart className="h-5 w-5" />
               {totalItems > 0 && (

@@ -14,20 +14,26 @@ export interface CartItem {
 
 interface CartContextType {
   items: CartItem[];
-  addToCart: (item: Omit<CartItem, 'quantity'>) => void;
+  addToCart: (item: Omit<CartItem, 'quantity'>, animationStart?: { x: number; y: number }) => void;
   removeFromCart: (id: string, variantId?: string) => void;
   updateQuantity: (id: string, quantity: number, variantId?: string) => void;
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
+  animationStart: { x: number; y: number } | null;
+  clearAnimation: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [animationStart, setAnimationStart] = useState<{ x: number; y: number } | null>(null);
 
-  const addToCart = (item: Omit<CartItem, 'quantity'>) => {
+  const addToCart = (item: Omit<CartItem, 'quantity'>, animStart?: { x: number; y: number }) => {
+    if (animStart) {
+      setAnimationStart(animStart);
+    }
     setItems((currentItems) => {
       const existingItemIndex = currentItems.findIndex(
         (i) => i.id === item.id && i.variantId === item.variantId
@@ -75,6 +81,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+  const clearAnimation = () => {
+    setAnimationStart(null);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -85,6 +95,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         clearCart,
         totalItems,
         totalPrice,
+        animationStart,
+        clearAnimation,
       }}
     >
       {children}
