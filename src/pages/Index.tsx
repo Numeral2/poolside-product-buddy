@@ -60,7 +60,7 @@ const Index = () => {
       <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={false} />
       
       {/* Discount Banner */}
-      <div className="relative bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-2 text-center overflow-hidden">
+      <div className="relative bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-2 text-center overflow-hidden mb-[4mm]">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-transparent animate-[slide_3s_ease-in-out_infinite]" 
              style={{ 
                backgroundSize: '200% 200%',
