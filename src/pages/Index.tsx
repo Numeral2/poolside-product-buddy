@@ -60,69 +60,20 @@ const Index = () => {
       <Hero onVideoEnd={() => {}} onOpenCatalog={() => openCatalog()} catalogOpen={false} />
       
       {/* Discount Banner */}
-      <div className="relative overflow-hidden mb-[4mm] bg-gradient-to-br from-background via-muted/30 to-background">
-        <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl opacity-20" style={{ background: "var(--gradient-water)" }}></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-3xl opacity-10" style={{ background: "var(--gradient-water)" }}></div>
-        
-        <div className="container mx-auto px-4 py-6 md:py-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-6 items-center max-w-5xl mx-auto">
-            {/* Left side - Text and CTA */}
-            <div className="space-y-4 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 border-primary/30 bg-primary/5">
-                <span className="text-sm font-semibold text-primary uppercase tracking-wider">Akcija</span>
-              </div>
-              <div>
-                <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-2">
-                  <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-water)" }}>
-                    15% OFF
-                  </span>
-                </h2>
-                <p className="text-lg md:text-xl text-muted-foreground font-medium">
-                  na sve artikle u ponudi
-                </p>
-              </div>
-              <Link to="/products">
-                <Button 
-                  size="lg" 
-                  className="shadow-lg hover:shadow-xl transition-all font-bold px-8"
-                  style={{ background: "var(--gradient-water)" }}
-                >
-                  POGLEDAJ PONUDU
-                </Button>
-              </Link>
+      <div className="relative overflow-hidden mb-[4mm]" style={{ background: "var(--gradient-water)" }}>
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent animate-[diagonal-slide_3s_ease-in-out_infinite]" />
+        <div className="container mx-auto px-4 py-3 relative z-10">
+          <div className="flex items-center justify-center gap-3">
+            <div className="hidden md:flex h-px w-12 bg-white/30"></div>
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30">
+                <span className="text-xs font-bold text-white uppercase tracking-wider">-15%</span>
+              </span>
+              <p className="text-sm md:text-base font-semibold text-white tracking-wide">
+                Trajno snižene cijene na sve artikle
+              </p>
             </div>
-
-            {/* Right side - Product Images */}
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
-              <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg p-3 hover:scale-105 transition-transform">
-                <img 
-                  src="/images/filter-astral-aster.png" 
-                  alt="Filter" 
-                  className="w-full h-24 md:h-32 object-contain"
-                />
-              </div>
-              <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg p-3 hover:scale-105 transition-transform">
-                <img 
-                  src="/images/kvarcni-pijesak-new.png" 
-                  alt="Kvarcni pijesak" 
-                  className="w-full h-24 md:h-32 object-contain"
-                />
-              </div>
-              <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg p-3 hover:scale-105 transition-transform">
-                <img 
-                  src="/images/filter-lisboa.png" 
-                  alt="Lisboa filter" 
-                  className="w-full h-24 md:h-32 object-contain"
-                />
-              </div>
-              <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg p-3 hover:scale-105 transition-transform">
-                <img 
-                  src="/images/filter-staklo-new.png" 
-                  alt="Filter staklo" 
-                  className="w-full h-24 md:h-32 object-contain"
-                />
-              </div>
-            </div>
+            <div className="hidden md:flex h-px w-12 bg-white/30"></div>
           </div>
         </div>
       </div>
